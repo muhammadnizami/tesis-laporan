@@ -35,6 +35,14 @@
 \usepackage{titlesec}       % Package Format judul
 \usepackage{parskip}
 
+% Mengatasi bug pada update terbaru titlesec yang menyebabkan section number hilang
+\usepackage{etoolbox}
+
+\makeatletter
+\patchcmd{\ttlh@hang}{\parindent\z@}{\parindent\z@\leavevmode}{}{}
+\patchcmd{\ttlh@hang}{\noindent}{}{}{}
+\makeatother
+
 % Line satu setengah spasi
 \renewcommand{\baselinestretch}{1.5}
 
