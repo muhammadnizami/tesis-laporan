@@ -1,36 +1,49 @@
 \chapter{Pendahuluan}
 
-Bab Pendahuluan secara umum yang dijadikan landasan kerja dan arah kerja penulis tugas akhir, berfungsi mengantar pembaca untuk membaca laporan tugas akhir secara keseluruhan.
-
 \section{Latar Belakang}
 
-Latar Belakang berisi dasar pemikiran, kebutuhan atau alasan yang menjadi ide dari topik tugas akhir. Tujuan utamanya adalah untuk memberikan informasi secukupnya kepada pembaca agar memahami topik yang akan dibahas.  Saat menuliskan bagian ini, posisikan anda sebagai pembaca – apakah anda tertarik untuk terus membaca?
+Sistem komputer untuk permainan musik ekspresif (CSEMP) merupakan sebuah topik yang terus diteliti selama beberapa dekade terakhir. Berbeda dengan sistem sintesis musik yang "robotik", sistem permainan musik ekspresif memberikan suara musik yang memiliki gestur-gestur ekspresi layaknya pemain manusia. Sebuah sistem komputer untuk permainan musik ekspresif dianggap mampu menghasilkan suara musik alami apabila pendengar manusia tidak mampu membedakan antara suara yang dihasilkan oleh sistem komputer tersebut dari suara yang dihasilkan pemain manusia.
+
+Pengujian kepada pendengar manusia merupakan hal yang penting untuk membuktikan kealamian dari suara yang dihasilkan CSEMP. Untuk beberapa alat musik, CSEMP telah diujikan kepada pendengar manusia. Dalam riset \cite{schubert2017test}, permainan beberapa CSEMP untuk piano telah terbukti tidak dapat dibedakan dari pemain manusia oleh pendengar manusia. Meski hasil tersebut diperoleh dalam berbagai batasan, riset tersebut menunjukkan bahwa CSEMP dapat mencapai tingkat kealamian yang tinggi. Sistem lain yang diberikan dalam riset \cite{bonada2017singing} untuk suara vokal juga telah diujikan kepada pendengar manusia dan terdapat peningkatan dari sistem-sistem sebelumnya.
+
+Meski telah banyak riset terkait CSEMP untuk alat musik gesek, belum ada yang mencapai pengujian kepada pendengar manusia. Riset-riset yang ada terkait CSEMP alat musik gesek baru berupa riset terhadap komponen-komponen dari CSEMP. Namun, komponen-komponen tersebut sulit digabungkan karena output dari satu komponen tidak dapat langsung dijadikan input komponen lain. Akibatnya, belum ada CSEMP alat musik gesek yang utuh dan dapat menghasilkan suara siap uji dari partitur.
+
+Di antara riset terkait CSEMP alat musik gesek hanya memberikan komponen perencana gestur ekspresif. Dalam \parencite{marchini2014quartet}, diberikan sistem yang mampu memprediksi tingkat keras suara, kecepatan bow, jangkauan vibrato, dan perpanjangan not dari partitur untuk kuartet gesek. Sistem ini hanya diuji dengan satu karya yang sama dengan data latih dan hanya menggunakan metrik kinerja koefisien korelasi. Dalam \parencite{yu2017bowing}, diberikan sistem yang mampu memprediksi posisi bow untuk tiap not seperenambelasan dari partitur. Sistem ini hanya diuji dengan metrik koefisien korelasi dan akurasi.
+
+Riset terkait CSEMP alat musik gesek lainnya hanya memberikan komponen sintesis suara alat musik. Synful dengan teknik RPM \parencite{lindemann2007rpm} mampu memberikan suara alat musik apabila diberikan sekuens not dengan gestur ekspresifnya. Namun, gestur ekspresif yang diberikan oleh riset komponen perencana gestur ekspresif alat musik gesek seperti \parencite{marchini2014quartet} dan \parencite{yu2017bowing} tidak dapat langsung menjadi masukan untuk Synful. Hal ini karena Synful didesain untuk menerima masukan dari pemain keyboard. Terdapat pula riset sintesis alat gesek hanya membahas sintesis satu not, seperti NSynth \parencite{nsynth2017}. Sebuah sitem lain yang diberikan oleh \parencite{yang2016synthesis} mampu membangkitkan suara alat musik gesek hanya dari partitur dan sebutan ekspresi musik, namun sintesis suara tiap not-nya tidak memperhatikan konteks not dalam karya musik.
+
+Terdapat framework yang menyediakan CSEMP alat musik gesek secara utuh. \parencite{perez2015} Framework demikian belum teruji kepada pendengar manusia. Hal ini karena implementasinya terhambat anotasi gestur secara manual. Dalam permainan musik ekspresif, anotasi gestur secara manual sangat rentan kesalahan dan membutuhkan usaha sangat banyak.
+
+
+\section{Rumusan Masalah}
+
+Pengembangan CSEMP merupakan hal yang dibutuhkan. Salah satu alat musik yang menjadi perhatian pengembangan CSEMP adalah alat musik gesek. Saat ini, CSEMP alat musik gesek yang ada belum diujikan kepada pendengar manusia. Komponen CSEMP alat musik gesek dan framework yang ada belum mampu menyediakan CSEMP alat musik gesek yang utuh. Karenanya, dibutuhkan sebuah CSEMP alat musik gesek utuh yang mampu menghasilkan suara ekspresif dari partitur yang kemudian dapat diujikan terhadap pendengar manusia.
 
 \section{Tujuan}
 
-Rumusan Masalah berisi masalah utama yang dibahas dalam tugas akhir. Rumusan masalah yang baik memiliki struktur sebagai berikut:
-
+Penelitian ini bertujuan untuk mengembangkan sebuah sistem komputer untuk permainan ekspresif alat musik gesek yang teruji kepada pendengar. Untuk itu, hal-hal berikut ini perlu dicapai dalam penelitian ini:
 \begin{enumerate}
-    \item Penjelasan ringkas tentang kondisi/situasi yang ada sekarang terkait dengan topik utama yang dibahas Tugas Akhir.
-    \item Pokok persoalan dari kondisi/situasi yang ada, dapat dilihat dari kelemahan atau kekurangannya. Bagian ini merupakan inti dari rumusan masalah.
-    \item Elaborasi lebih lanjut yang menekankan pentingnya untuk menyelesaikan pokok persoalan tersebut.
-    \item Usulan singkat terkait dengan solusi yang ditawarkan untuk menyelesaikan persoalan.
+	\item Menghasilkan sebuah sistem permainan ekspresif alat musik gesek yang mampu menghasilkan rekaman musik ekspresif dari partitur musik
+	\item Melakukan pengujian rekaman kepada pendengar
 \end{enumerate}
-
-Penting untuk diperhatikan bahwa persoalan yang dideskripsikan pada subbab ini akan dipertanggungjawabkan di bab Evaluasi apakah terselesaikan atau tidak.
-
-\section{Tujuan}
-
-Tuliskan tujuan utama dan/atau tujuan detil yang akan dicapai dalam pelaksanaan tugas akhir. Fokuskan pada hasil akhir yang ingin diperoleh setelah tugas akhir diselesaikan, terkait dengan penyelesaian persoalan pada rumusan masalah. Penting untuk diperhatikan bahwa tujuan yang dideskripsikan pada subbab ini akan dipertanggungjawabkan di akhir pelaksanaan tugas akhir apakah tercapai atau tidak.
 
 \section{Batasan Masalah}
 
-Tuliskan batasan-batasan yang diambil dalam pelaksanaan tugas akhir. Batasan ini dapat dihindari (tidak perlu ada) jika topik/judul tugas akhir dibuat cukup spesifik.
+\begin{enumerate}
+	\item Sistem hanya memainkan satu instrumen, satu baris melodi pada satu waktu
+	\item Sistem memungkinkan memainkan paling banyak double-stop (dua not) dalam satu waktu
+	\item Alat musik gesek yang dimaksud adalah violin, viola, atau cello
+	\item Kinerja CSEMP yang diukur dan diuji hanya kealamian subjektif pendengar
+\end{enumerate}
 
 \section{Metodologi}
 
-Tuliskan semua tahapan yang akan dilalui selama pelaksanaan tugas akhir. Tahapan ini spesifik untuk menyelesaikan persoalan tugas akhir. Tahapan studi literatur tidak perlu dituliskan karena ini adalah pekerjaan yang harus Anda lakukan selama proses pelaksanaan tugas akhir.
+Dalam penelitian ini, akan dilakukan langkah-langkah berikut ini:
+\begin{enumerate}
+	\item Menganalisis kekurangan dan batasan sistem-sistem permainan musik ekspresif yang sudah ada
+	\item Memodifikasi sistem permainan musik ekspresif yang sudah ada dan menyesuaikannya kepada permasalahan alat musik gesek
+	\item Melakukan pengujian kepada pendengar, dalam hal kealamian. Untuk ini, pengujian yang dilakukan adalah uji Turing dan uji preferensi
+\end{enumerate}
 
 \section{Sistematika Pembahasan}
 
-Subbab ini berisi penjelasan ringkas isi per bab. Penjelasan ditulis satu paragraf per bab buku.
