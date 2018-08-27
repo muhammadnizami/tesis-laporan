@@ -1,33 +1,51 @@
 \chapter{Tinjauan Pustaka}
 
-Bab Studi Literatur digunakan untuk mendeskripsikan kajian literatur yang terkait dengan persoalan tugas akhir. Tujuan studi literatur adalah:
+\section{Sistem untuk Permainan Musik Ekspresif}
 
-\begin{enumerate}
-    \item menunjukkan kepada pembaca adanya gap seperti pada rumusan masalah yang memang belum terselesaikan,
-    \item memberikan pemahaman yang secukupnya kepada pembaca tentang teori atau pekerjaan terkait yang terkait langsung dengan penyelesaian persoalan, serta
-    \item menyampaikan informasi apa saja yang sudah ditulis/dilaporkan oleh pihak lain (peneliti/Tugas Akhir/Tesis) tentang hasil penelitian/pekerjaan mereka yang sama atau mirip kaitannya dengan persoalan tugas akhir.
-\end{enumerate}
+Sistem komputer untuk permainan musik ekspresif (\textit{Computer Systems for Expressive Musical Performance} - CSEMP) adalah sistem yang dapat membangkitkan permainan musik yang ekspresif. Sebagai contoh, perangkat lunak \textit{typesetting} musik pada umumnya dapat memainkan musik secara "robotik". Sistem seperti ini bukan termasuk kategori sistem komputer untuk permainan musik ekspresif. Sistem komputer untuk permainan musik ekspresif mampu memainkan musik dengan sentuhan manusiawi. \parencite{miranda2010}
 
-\blindtext
+Ukuran yang digunakan untuk menentukan apakah suatu sistem komputer untuk permainan musik mampu memainkan musik dengan sentuhan manusiawi bermacam-macam, di antaranya kealamian \parencite{schubert2017test}, ekspresivitas, \textit{correctness}, dan kreativitas \parencite{miranda2010}. Kealamian atau \textit{humanness} merupakan ukuran seberapa pendengar manusia mampu membedakan permainan yang dibangkitkan sistem dari permainan manusia. Kealamian biasa diuji dengan tes buta pendengar atau tes Turing \parencite{schubert2017test}, baik dengan pendengar ahli maupun pendengar umum. Ukuran kinerja ekspresivitas dan \textit{correctness} dapat dilakuan dnegan tes buta dengan pendengar ahli. Adapun kreativitas dapat diuji dengan menghitung banyaknya interpretasi berbeda yang dibangkitkan \parencite{miranda2010}. Umumnya, penelitian sistem permainan musik ekspresif saat ini berusaha meningkatkan kealamian.
 
-\blindtext
+Tujuan akhir dari sistem komputer untuk permainan musik ekspresif adalah membangkitkan suara yang memiliki gestur-gestur ekspresif dari musik yang dideskripsikan dalam partitur. Komponen sistem ini dapat dibagi menjadi sistem perencana gestur dan pembangkit suara \parencite{Thippur2013ProbabilisticMO} seperti pada gambar \ref{thippurcomponents}. Keluaran dari sistem perencana gestur adalah rencana gestur ekspresif seperti keras-lemah suara, deskripsi timbre, deskripsi tempo, dan deskripsi teknik permainan spesifik alat musik. Komponen-komponen sistem ini dapat pula dipisahkan menjadi sistem perencana ekspresi, perencana gestur, dan pembangkit suara \parencite{yu2017bowing} seperti terlihat pada gambar \ref{yucomponents}. Perencana ekspresi bertugas membaca partitur dan menentukan rencana ekspresi dalam permainan tersebut. Contoh rencana ekspresi adalah \textit{espressivo} (ekspresif), \textit{scherzando} (melawak), \textit{tranquillo}, dan sebagainya \parencite{yang2016synthesis}. Pembagian ini tidak mutlak. Terdapat sistem yang langsung membangkitkan suara dari partitur tanpa adanya keluaran antara. 
 
-\section{Dasar Teori}
-Perujukan literatur dapat dilakukan dengan menambahkan entri baru di berkas. Tulisan ini merujuk pada \parencite{knuth2001art}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{resources/CSEMP-Components-Thippur.eps}
+    \caption{Komponen-Komponen CSEMP Berdasarkan \parencite{Thippur2013ProbabilisticMO}} \label{thippurcomponents}
+\end{figure}
 
-    \subsection{Subbab}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{resources/CSEMP-Components-Yu.eps}
+    \caption{Komponen-Komponen CSEMP Berdasarkan \parencite{yu2017bowing}}\label{yucomponents}
+\end{figure}
 
-    \blindtext
+\textit{Scope} dari penelitian-penelitian sebelumnya bermacam-macam. Terdapat sistem permainan music ekspresif yang bersifat \textit{end-to-end}, yaitu membangkitkan suara ekspresif dari masukan partitur. Penelitian bonada \parencite{bonada2017singing} membangkitkan suara vokal ekspresif dari partitur. Meski jangkauan konteks temporal yang dipertimbangkan dalam sistem Bonada hanya meliputi waktu yang dekat (dengan medan reseptif 100ms jaringan syaraf tiruan dengan konvousi terdilasi), suara yang dibangkitkan memiliki ekspresi dengan taraf tertentu. Suara yang dibangkitkan dengan sistem Bonada telah diujikan pula kepada pendengar manusia, meski belum mencapai tingkat kealamian seperti pemain manusia.
 
-    \begin{figure}[h]
-        \centering
-        \includegraphics[width=0.8\textwidth]{resources/chapter-2-infrastructure-diagram.png}
-        \caption{Contoh gambar}
-    \end{figure}
+Sistem lainnya yang telah mampu membangkitkan suara dari partitur saja (\textit{end-to-end}) adalah CaRo \parencite{canazza2015}. Untuk memainkan partitur dan membangkitkan suara, CaRo mengirimkan sinyal perintah permainan kepada mesin piano akustik. Dalam uji pendengar manusia \parencite{schubert2017test}, dibuktikan bahwa permainan CaRo tidak dapat dibedakan dari permainan manusia oleh pendengar manusia.
 
-    \subsubsection{Subsubbab}
+Terdapat penelitian lain yang hanya melingkupi sistem perencanaan gestur saja. Salah satunya adalah sistem perencanaan gestur untuk alat musik dengan eksitasi diskrit \parencite{miranda2010}. Ukuran kinerja dari sistem seperti ini hanya berupa akurasi dari data gestur ekspresi.
 
-    \blindtext
+Terdapat penelitian lain yang hanya melingkupi sintesis suara saja. Nsynth \parencite{nsynth2017} mampu membangkitkan alat musik secara umum. Namun, suara yang dihasilkan hanya berupa suara satu not.
 
-\section{Studi Terkait}
-\blindtext
+\section{Sistem Permainan dan Sintesis Musik Ekspresif Alat Musik Gesek}
+
+Belum ada sistem permainan dan sintesis ekspresif untuk alat musik gesek yang mampu membangkitkan dari masukan partitur saja menjadi suara ekspresif. Telah ada penelitian-penelitian yang mengajukan komponen dari CSEMP untuk alat musik gesek.
+
+Telah ada teknik sintesis yang mampu menghasilkan suara berbagai instrumen - termasuk alat musik gesek - dengan frasa yang natural, yaitu teknik \textit{Reconstructive Phrase Modeling} \parencite{lindemann2007rpm}. Input dari sistem ini adalah partitur dan gestur ekspresif. Gestur ekspresif yang menjadi masukan terdiri dari kontrol tiap not dan kontrol kontinu. Kontrol tiap not terdiri dari \textit{pitch} dan intensitas not. Kontrol kontinu terdiri dari intensitas \textit{vibrato}, tingkat keras instrumen, timbre, dan \textit{pitch-bend}. Keluaran dari sistem ini adalah prediksi harmonik, yang kemudian dapat langsung digunakan untuk sintesis suara.
+
+Meski sudah dapat menghasilkan suara, penelitian Lindemann belum menyediakan hasil uji pendengar manusia. Pengujian untuk sistem ini dilakukan dengan perbandingan grafik harmonik secara visual antara suara bangkitan dan suara referensi. Uji pendengar manusia tidak dilakukan karena sistem ini masih membutuhkan masukan gestur ekspresif yang memiliki beberapa  masalah. Masalah pertama adalah format dari deskripsi gestur tidak didasarkan pada cara permainan alat musik gesek melainkan \textit{keyboard}. Masalah kedua, yang juga disebabkan masalah pertama, adalah besarnya kemungkinan kesalahan masukan gestur ekspresi baik pada data latih maupun pada pengujian/penggunaan sistem. Masalah lainnya adalah tidak tidak fleksibelnya keluaran yang dihasilkan, karena teknik \textit{Reconstructive Phrase Modeling} mencocokkan masukan dengan basis data frasa dan memainkan serupa dengan frasa yang telah ada di basis data.
+
+Terdapat sistem lain yang membangkitkan \textit{waveform} secara langsung tanpa melalui prediksi harmonik. Nsynth \parencite{nsynth2017} mampu menghasilkan satu not saja. Meski suara yang dihasilkan diklaim berupa suara natural, namun karena yang dibangkitkan hanya satu not, sistem ini belum mampu membangkitkan suara musik dari partitur yang mengandung satu lagu lebih dari satu not secara ekspresif. Suara yang dihasilkan akan memiliki gestur ekspresi yang sama untuk setiap not.
+
+Terdapat sistem serupa menghasilkan suara yang tidak mempertimbangkan konteks not \parencite{yang2016synthesis}. Namun, sistem ini mampu mempertimbangkan \textit{term} ekspresi musik yang diberikan sebagai input. Sistem ini mampu menghasilkan suara dengan manipulasi durasi, vibrato, dan dinamika. Pengujiannya dilakukan dengan kemiripan visual spektogram. Kekurangannya adalah di satu karya dengan satu ekspresi musik, not yang memiliki panjang sama akan diberi gestur yang sama.
+
+Beberapa sistem lain hanya memberikan perencanaan gestur alat musik gesek. Terdapat sistem yang mampu memberikan rencana gestur untuk kuartet alat musik gesek. \parencite{marchini2014quartet} Sistem ini mampu membangkitkan rencana gestur berupa tingkat keras suara, kecepatan \textit{bow}, jangkauan \textit{vibrato}, dan perpanjangan not. Pengujian dalam penelitian tersebut hanya dilakukan terhadap satu kutipan karya yang sama dengan data latih dengan ukuran kinerja koefisien korelasi.
+
+Terdapat sistem perencanaan gestur lainnya untuk alat musik violin dan viola \parencite{yu2017bowing}, namun gestur yang dihasilkan hanya berupa posisi \textit{bowing}. Sistem tersebut mampu menerima masukan partitur dan menghasilkan posisi \textit{bowing} tiap not seperenambelasan. Pengujian sistem ini telah dilakukan hanya terhadap satu kutipan karya dengan data latih berupa kutipan karya lain. Kinerja sistem ini diukur dengan koefisien korelasi dan akurasi.
+
+Meski terdapat komponen-komponen CSEMP alat musik gesek, terdapat masalah dalam penggabungan komponen sistem yang telah ada. Pertama, output dari sistem yang telah ada bisa jadi tidak lengkap \parencite{yu2017bowing}. Kedua, sistem yang ada tidak kompatibel untuk langsung digabungkan. Input untuk sistem sintesis yang telah ada \parencite{lindemann2007rpm} menerima masukan dari pemain \textit{keyboard}. Sistem sintesis tersebut tidak mendukung masukan kecepatan \textit{bow} \parencite{marchini2014quartet}\parencite{yu2017bowing} dan posisi \textit{bow}\parencite{yu2017bowing}. Gestur \textit{vibrato} dalam alat musik gesek terdiri dari jangkauan dan kerapatan, sementara dalam masukan \textit{keyboard} disederhanakan menjadi intensitas saja.
+
+Terdapat sebuah CSEMP alat musik gesek \textit{end-to-end} \parencite{perez2015} menggunakan pemodelan instrumen, pemain dan akustik. Namun, sistem ini hanya berupa \textit{framework} umum yang perlu didetilkan kembali. Selain itu, pemisahan pemodelan ini meniscayakan kebutuhan anotasi gestur secara manual.
+
+Sistem permainan musik ekspresif untuk alat musik gesek tertinggal dari sistem untuk alat musik lain seperti piano. Belum ada CSEMP alat musik gesek yang mencapai tahapan pengujian kepada pendengar manusia. Hal ini karena komponen sistem tidak dapat digabungkan secara langsung. \textit{framework} sistem \textit{end-to-end} yang telah ada pun belum dapat direalisasi karena masalah anotasi data.

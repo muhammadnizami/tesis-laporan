@@ -2,11 +2,11 @@
 
 \section{Latar Belakang}
 
-Sistem komputer untuk permainan musik ekspresif (CSEMP) merupakan sebuah topik yang terus diteliti selama beberapa dekade terakhir. Berbeda dengan sistem sintesis musik yang "robotik", sistem permainan musik ekspresif memberikan suara musik yang memiliki gestur-gestur ekspresi layaknya pemain manusia. Terdapat beberapa hal yang menjadi alasan pengembangan sistem komputer untuk permainan musik ekspresif. Alasan-alasan tersebut adalah menginvestigasi permainan ekspresif manusa dengan mengembangkan model komputasional , pemutaran realistis pada kakas komposisi, memainkan musik yang dibangkitkan komputer secara ekspresif, memainkan berkas data, dan iringan musik komputer. \parencite{Kirke:2009:SCS:1592451.1592454}
+Sistem komputer untuk permainan musik ekspresif (CSEMP) merupakan sebuah topik yang terus diteliti selama beberapa dekade terakhir. Berbeda dengan sistem sintesis musik yang "robotik", sistem permainan musik ekspresif memberikan suara musik yang memiliki gestur-gestur ekspresi layaknya pemain manusia. Terdapat beberapa hal yang menjadi alasan pengembangan sistem komputer untuk permainan musik ekspresif. Alasan-alasan tersebut adalah menginvestigasi permainan ekspresif manusa dengan mengembangkan model komputasional, pemutaran realistis pada kakas komposisi, memainkan musik yang dibangkitkan komputer secara ekspresif, memainkan berkas data, dan iringan musik komputer. \parencite{Kirke:2009:SCS:1592451.1592454}
 
 Sebuah sistem komputer untuk permainan musik ekspresif dianggap mampu menghasilkan suara musik alami apabila pendengar manusia tidak mampu membedakan antara suara yang dihasilkan oleh sistem komputer tersebut dari suara yang dihasilkan pemain manusia. Pengujian kepada pendengar manusia merupakan hal yang penting untuk membuktikan kealamian dari suara yang dihasilkan CSEMP. Untuk beberapa alat musik, CSEMP telah diujikan kepada pendengar manusia. Dalam riset \parencite{schubert2017test}, permainan beberapa CSEMP untuk piano telah terbukti tidak dapat dibedakan dari pemain manusia oleh pendengar manusia. Meski hasil tersebut diperoleh dalam berbagai batasan, riset tersebut menunjukkan bahwa CSEMP dapat mencapai tingkat kealamian yang tinggi. Sistem lain yang diberikan dalam riset \parencite{bonada2017singing} untuk suara vokal juga telah diujikan kepada pendengar manusia dan terdapat peningkatan dari sistem-sistem sebelumnya.
 
-Meski telah banyak riset terkait CSEMP untuk alat musik gesek, belum ada yang mencapai pengujian kepada pendengar manusia. Riset-riset yang ada terkait CSEMP alat musik gesek baru berupa riset terhadap komponen-komponen dari CSEMP. Namun, komponen-komponen tersebut sulit digabungkan karena output dari satu komponen tidak dapat langsung dijadikan input komponen lain. Akibatnya, belum ada CSEMP alat musik gesek yang utuh dan dapat menghasilkan suara siap uji dari partitur.
+Meski telah banyak riset terkait CSEMP untuk alat musik gesek, belum ada yang mencapai pengujian kepada pendengar manusia. Riset-riset yang ada terkait CSEMP alat musik gesek baru berupa riset terhadap komponen-komponen dari CSEMP. Namun, komponen-komponen tersebut sulit digabungkan karena output dari satu komponen tidak dapat langsung dijadikan input komponen lain. Akibatnya, belum ada CSEMP alat musik gesek yang utuh dan dapat menghasilkan suara ekspresif siap uji dari partitur.
 
 Di antara riset terkait CSEMP alat musik gesek hanya memberikan komponen perencana gestur ekspresif. Dalam \parencite{marchini2014quartet}, diberikan sistem yang mampu memprediksi tingkat keras suara, kecepatan bow, jangkauan vibrato, dan perpanjangan not dari partitur untuk kuartet gesek. Sistem ini hanya diuji dengan satu karya yang sama dengan data latih dan hanya menggunakan metrik kinerja koefisien korelasi. Dalam \parencite{yu2017bowing}, diberikan sistem yang mampu memprediksi posisi bow untuk tiap not seperenambelasan dari partitur. Sistem ini hanya diuji dengan metrik koefisien korelasi dan akurasi.
 
@@ -17,13 +17,15 @@ Terdapat framework yang menyediakan CSEMP alat musik gesek secara utuh. \parenci
 
 \section{Rumusan Masalah}
 
-Pengembangan CSEMP merupakan hal yang dibutuhkan. Salah satu alat musik yang menjadi perhatian pengembangan CSEMP adalah alat musik gesek. Saat ini, CSEMP alat musik gesek yang ada belum diujikan kepada pendengar manusia. Komponen CSEMP alat musik gesek dan framework yang ada belum mampu menyediakan CSEMP alat musik gesek yang utuh. Karenanya, dibutuhkan sebuah CSEMP alat musik gesek utuh yang mampu menghasilkan suara ekspresif dari partitur yang kemudian dapat diujikan terhadap pendengar manusia.
+Telah ada berbagai penelitian tentang berbagai komponen CSEMP alat musik gesek, baik komponen pembangkit suara dari gestur/ekspresi ataupun pembangkit gestur/ekspresi dari partitur. Untuk alat musik lainnya, beberapa penelitian telah mencapai tahap pengujian kealamian CSEMP lengkap kepada pendengar manusia. Namun, belum ada CSEMP alat musik gesek yang mampu menghasilkan suara ekspresif dari partitur yang teruji kealamiannya terhadap pendengar manusia. Hal ini karena komponen-komponen CSEMP alat musik gesek tidak kompatibel untuk digabungkan satu sama lain, ataupun karena framework CSEMP utuh yang ada terhambat masalah anotasi data.
+
+Dibutuhkan CSEMP alat musik gesek partitur-ke-suara-ekspresif yang teruji kealamiannya terhadap pendengar manusia sebelum ia dapat dikembangkan kepada tujuan kinerja lainnya atau digunakan oleh pengguna akhir dalam berbagai bidang. Akan dibangun CSEMP yang mampu membangkitkan suara dengan gestur ekspresifnya dari partitur, dengan teknik pembangkitan suara nyanyian yang disesuaikan untuk alat musik gesek.
 
 \section{Tujuan}
 
 Penelitian ini bertujuan untuk mengembangkan sebuah sistem komputer untuk permainan ekspresif alat musik gesek yang teruji kepada pendengar. Untuk itu, hal-hal berikut ini perlu dicapai dalam penelitian ini:
 \begin{enumerate}
-	\item Menghasilkan sebuah sistem permainan ekspresif alat musik gesek yang mampu menghasilkan rekaman musik ekspresif dari partitur musik
+	\item Menghasilkan sebuah sistem permainan ekspresif alat musik gesek yang mampu menghasilkan rekaman musik ekspresif hanya dari partitur musik
 	\item Melakukan pengujian rekaman kepada pendengar
 \end{enumerate}
 
