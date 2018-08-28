@@ -43,19 +43,21 @@
     \input{chapters/abstract-en}
     \input{chapters/forewords}
 
-    \titleformat*{\section}{\centering\bfseries\Large\MakeUpperCase}
+    \titleformat*{\section}{\centering\bfseries\normalsize\MakeUpperCase}
 
     \tableofcontents
     \listoffigures
     \listoftables
 
-    \titleformat*{\section}{\bfseries\Large}
+    \titleformat*{\section}{\bfseries\normalsize}
+    \titleformat*{\subsection}{\bfseries\normalsize}
+    \cleardoublepage
     \pagenumbering{arabic}
 
     %----------------------------------------------------------------%
     % Konfigurasi Bab
     %----------------------------------------------------------------%
-    \setcounter{page}{0}
+    \setcounter{page}{1}
     \renewcommand{\chaptername}{BAB}
     \renewcommand{\thechapter}{\Roman{chapter}}
     %----------------------------------------------------------------%

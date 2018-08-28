@@ -14,7 +14,7 @@
 \special{papersize=210mm,297mm}
 
 % Setting margin
-\usepackage[top=3cm,bottom=2.5cm,left=4cm,right=2.5cm]{geometry}
+\usepackage[top=3cm,bottom=3cm,left=4cm,right=3cm]{geometry}
 
 \usepackage{mathptmx}
 
@@ -23,6 +23,8 @@
 
 % Format citation
 \usepackage[backend=bibtex,bibstyle=__if-itb-thesis,citestyle=authoryear, maxbibnames=999, maxcitenames=2]{biblatex}
+\renewcommand*{\nameyeardelim}{\addcomma\space}
+\setlength{\bibhang}{1.27cm}
 
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
@@ -34,16 +36,18 @@
 \usepackage{hyperref}       % Package untuk link di daftar isi.
 \usepackage{titlesec}       % Package Format judul
 \usepackage{parskip}
+\usepackage{mfirstuc}
 
 % Line satu setengah spasi
 \renewcommand{\baselinestretch}{1.5}
+\usepackage{setspace}
 
 % Setting judul
-\chapterfont{\centering \Large}
-\titleformat{\chapter}[display]
-  {\Large\centering\bfseries}
-  {\chaptertitlename\ \thechapter}{0pt}
-    {\Large\bfseries\uppercase}
+\chapterfont{\centering \large}
+\titleformat{\chapter}[block]
+  {\large\centering\bfseries}
+  {\chaptertitlename\ \thechapter}{6pt}
+    {\large\bfseries\capitalisewords}
 
 % Setting nomor pada subbsubsubbab
 \setcounter{secnumdepth}{3}
