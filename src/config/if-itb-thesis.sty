@@ -59,3 +59,10 @@
 % Counter untuk figure dan table.
 \counterwithin{figure}{section}
 \counterwithin{table}{section}
+
+% Add new commands
+\providecommand\citet[1]{%
+  \citeauthor{#1} (%
+    \citeyear{#1}%
+  )
+}
