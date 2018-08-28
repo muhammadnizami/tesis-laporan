@@ -35,17 +35,18 @@
 \usepackage{hyperref}       % Package untuk link di daftar isi.
 \usepackage{titlesec}       % Package Format judul
 \usepackage{parskip}
+\usepackage{mfirstuc}
 
 % Line satu setengah spasi
 \renewcommand{\baselinestretch}{1.5}
 \usepackage{setspace}
 
 % Setting judul
-\chapterfont{\centering \Large}
-\titleformat{\chapter}[display]
-  {\Large\centering\bfseries}
-  {\chaptertitlename\ \thechapter}{0pt}
-    {\Large\bfseries\uppercase}
+\chapterfont{\centering \large}
+\titleformat{\chapter}[block]
+  {\large\centering\bfseries}
+  {\chaptertitlename\ \thechapter}{6pt}
+    {\large\bfseries\capitalisewords}
 
 % Setting nomor pada subbsubsubbab
 \setcounter{secnumdepth}{3}
