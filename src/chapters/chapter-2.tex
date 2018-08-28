@@ -6,7 +6,35 @@ Sistem komputer untuk permainan musik ekspresif (\textit{Computer Systems for Ex
 
 Ukuran yang digunakan untuk menentukan apakah suatu sistem komputer untuk permainan musik mampu memainkan musik dengan sentuhan manusiawi bermacam-macam, di antaranya kealamian \parencite{schubert2017test}, ekspresivitas, \textit{correctness}, dan kreativitas \parencite{miranda2010}. Kealamian atau \textit{humanness} merupakan ukuran seberapa pendengar manusia mampu membedakan permainan yang dibangkitkan sistem dari permainan manusia. Kealamian biasa diuji dengan tes buta pendengar atau tes Turing \parencite{schubert2017test}, baik dengan pendengar ahli maupun pendengar umum. Ukuran kinerja ekspresivitas dan \textit{correctness} dapat dilakuan dnegan tes buta dengan pendengar ahli. Adapun kreativitas dapat diuji dengan menghitung banyaknya interpretasi berbeda yang dibangkitkan \parencite{miranda2010}. Umumnya, penelitian sistem permainan musik ekspresif saat ini berusaha meningkatkan kealamian.
 
-Tujuan akhir dari sistem komputer untuk permainan musik ekspresif adalah membangkitkan suara yang memiliki gestur-gestur ekspresif dari musik yang dideskripsikan dalam partitur. Komponen sistem ini dapat dibagi menjadi sistem perencana gestur dan pembangkit suara \parencite{Thippur2013ProbabilisticMO} seperti pada gambar \ref{thippurcomponents}. Keluaran dari sistem perencana gestur adalah rencana gestur ekspresif seperti keras-lemah suara, deskripsi timbre, deskripsi tempo, dan deskripsi teknik permainan spesifik alat musik. Komponen-komponen sistem ini dapat pula dipisahkan menjadi sistem perencana ekspresi, perencana gestur, dan pembangkit suara \parencite{yu2017bowing} seperti terlihat pada gambar \ref{yucomponents}. Perencana ekspresi bertugas membaca partitur dan menentukan rencana ekspresi dalam permainan tersebut. Contoh rencana ekspresi adalah \textit{espressivo} (ekspresif), \textit{scherzando} (melawak), \textit{tranquillo}, dan sebagainya \parencite{yang2016synthesis}. Pembagian ini tidak mutlak. Terdapat sistem yang langsung membangkitkan suara dari partitur tanpa adanya keluaran antara. 
+Tujuan akhir dari sistem komputer untuk permainan musik ekspresif adalah membangkitkan suara yang memiliki gestur-gestur ekspresif dari not-not yang dideskripsikan dalam partitur. Masukan dari sistem ini adalah partitur. Partitur merupakan representasi dari sekumpulan not, yang mengindikasikan nada yang dimainkan beserta ritmenya. Contoh dari partitur tampak pada gambar \ref{humanmusicsheet} dan gambar \ref{midimusicsheet}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{resources/sheet-example-human.png}
+    \caption{Contoh partitur dengan notasi not balok} \label{humanmusicsheet}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{resources/sheet-example-midi.png}
+    \caption{Contoh partitur dalam representasi midi} \label{midimusicsheet}
+\end{figure}
+
+Keluaran dari sistem ini adalah suara yang di dalamnya terkandung gestur-gestur ekspresif. Contoh representasi suara terlihat pada gambar \ref{waveformexample} dan gambar \ref{spectogramexample}. Gestur ekspresif implisit terkandung dalam suara yang dihasilkan, berupa distorsi waktu, distorsi \textit{pitch}, variasi dinamika, variasi timbre, dan fitur-fitur suara lainnya.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{resources/waveform-example.png}
+    \caption{Contoh representasi bentuk gelombang dari suara keluaran} \label{waveformexample}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{resources/spectogram-example.png}
+    \caption{Contoh representasi spektogram dari suara keluaran} \label{spectogramexample}
+\end{figure}
+
+Komponen sistem ini dapat dibagi menjadi sistem perencana gestur dan pembangkit suara \parencite{Thippur2013ProbabilisticMO} seperti pada gambar \ref{thippurcomponents}. Keluaran dari sistem perencana gestur adalah rencana gestur ekspresif seperti keras-lemah suara, deskripsi timbre, deskripsi tempo, dan deskripsi teknik permainan spesifik alat musik. Komponen-komponen sistem ini dapat pula dipisahkan menjadi sistem perencana ekspresi, perencana gestur, dan pembangkit suara \parencite{yu2017bowing} seperti terlihat pada gambar \ref{yucomponents}. Perencana ekspresi bertugas membaca partitur dan menentukan rencana ekspresi dalam permainan tersebut. Contoh rencana ekspresi adalah \textit{espressivo} (ekspresif), \textit{scherzando} (melawak), \textit{tranquillo}, dan sebagainya \parencite{yang2016synthesis}. Contoh rencana gestur adalah spesifikasi energi tiap not, penekanan not, vibrato, posisi bowing, kecepatan bowing, pemilihan warna suara, pelambatan ritme, percepatan ritme, dan sebagainya. Pembagian ini tidak mutlak. Selain sistem yang membuat rencana-rencana ekspresi dan gestur terlebih dahulu sebelum dieksekusi menjadi suara, terdapat pula sistem yang langsung membangkitkan suara dari partitur tanpa adanya keluaran antara.
 
 \begin{figure}[h]
     \centering
@@ -34,7 +62,7 @@ Belum ada sistem permainan dan sintesis ekspresif untuk alat musik gesek yang ma
 
 Telah ada teknik sintesis yang mampu menghasilkan suara berbagai instrumen - termasuk alat musik gesek - dengan frasa yang natural, yaitu teknik \textit{Reconstructive Phrase Modeling} \parencite{lindemann2007rpm}. Input dari sistem ini adalah partitur dan gestur ekspresif. Gestur ekspresif yang menjadi masukan terdiri dari kontrol tiap not dan kontrol kontinu. Kontrol tiap not terdiri dari \textit{pitch} dan intensitas not. Kontrol kontinu terdiri dari intensitas \textit{vibrato}, tingkat keras instrumen, timbre, dan \textit{pitch-bend}. Keluaran dari sistem ini adalah prediksi harmonik, yang kemudian dapat langsung digunakan untuk sintesis suara.
 
-Meski sudah dapat menghasilkan suara, penelitian Lindemann belum menyediakan hasil uji pendengar manusia. Pengujian untuk sistem ini dilakukan dengan perbandingan grafik harmonik secara visual antara suara bangkitan dan suara referensi. Uji pendengar manusia tidak dilakukan karena sistem ini masih membutuhkan masukan gestur ekspresif yang memiliki beberapa  masalah. Masalah pertama adalah format dari deskripsi gestur tidak didasarkan pada cara permainan alat musik gesek melainkan \textit{keyboard}. Masalah kedua, yang juga disebabkan masalah pertama, adalah besarnya kemungkinan kesalahan masukan gestur ekspresi baik pada data latih maupun pada pengujian/penggunaan sistem. Masalah lainnya adalah tidak tidak fleksibelnya keluaran yang dihasilkan, karena teknik \textit{Reconstructive Phrase Modeling} mencocokkan masukan dengan basis data frasa dan memainkan serupa dengan frasa yang telah ada di basis data.
+Meski sudah dapat menghasilkan suara, penelitian \citet{lindemann2007rpm} belum menyediakan hasil uji pendengar manusia. Pengujian untuk sistem ini dilakukan dengan perbandingan grafik harmonik secara visual antara suara bangkitan dan suara referensi. Uji pendengar manusia tidak dilakukan karena sistem ini masih membutuhkan masukan gestur ekspresif yang memiliki beberapa  masalah. Masalah pertama adalah format dari deskripsi gestur tidak didasarkan pada cara permainan alat musik gesek melainkan \textit{keyboard}. Masalah kedua, yang juga disebabkan masalah pertama, adalah besarnya kemungkinan kesalahan masukan gestur ekspresi baik pada data latih maupun pada pengujian/penggunaan sistem. Masalah lainnya adalah tidak tidak fleksibelnya keluaran yang dihasilkan, karena teknik \textit{Reconstructive Phrase Modeling} mencocokkan masukan dengan basis data frasa dan memainkan serupa dengan frasa yang telah ada di basis data.
 
 Terdapat sistem lain yang membangkitkan \textit{waveform} secara langsung tanpa melalui prediksi harmonik. Nsynth \parencite{nsynth2017} mampu menghasilkan satu not saja. Meski suara yang dihasilkan diklaim berupa suara natural, namun karena yang dibangkitkan hanya satu not, sistem ini belum mampu membangkitkan suara musik dari partitur yang mengandung satu lagu lebih dari satu not secara ekspresif. Suara yang dihasilkan akan memiliki gestur ekspresi yang sama untuk setiap not.
 
@@ -46,6 +74,44 @@ Terdapat sistem perencanaan gestur lainnya untuk alat musik violin dan viola \pa
 
 Meski terdapat komponen-komponen CSEMP alat musik gesek, terdapat masalah dalam penggabungan komponen sistem yang telah ada. Pertama, output dari sistem yang telah ada bisa jadi tidak lengkap \parencite{yu2017bowing}. Kedua, sistem yang ada tidak kompatibel untuk langsung digabungkan. Input untuk sistem sintesis yang telah ada \parencite{lindemann2007rpm} menerima masukan dari pemain \textit{keyboard}. Sistem sintesis tersebut tidak mendukung masukan kecepatan \textit{bow} \parencite{marchini2014quartet}\parencite{yu2017bowing} dan posisi \textit{bow}\parencite{yu2017bowing}. Gestur \textit{vibrato} dalam alat musik gesek terdiri dari jangkauan dan kerapatan, sementara dalam masukan \textit{keyboard} disederhanakan menjadi intensitas saja.
 
-Terdapat sebuah CSEMP alat musik gesek \textit{end-to-end} \parencite{perez2015} menggunakan pemodelan instrumen, pemain dan akustik. Namun, sistem ini hanya berupa \textit{framework} umum yang perlu didetilkan kembali. Selain itu, pemisahan pemodelan ini meniscayakan kebutuhan anotasi gestur secara manual.
+Terdapat sebuah \textit{framework} CSEMP alat musik gesek untuk pembangkitan suara dari partitur non-expresif \parencite{perez2015} menggunakan pemodelan instrumen, pemain dan akustik. Namun, sistem ini hanya berupa \textit{framework} umum yang perlu didetilkan kembali. Selain itu, pemisahan pemodelan ini meniscayakan kebutuhan anotasi gestur secara manual.
 
-Sistem permainan musik ekspresif untuk alat musik gesek tertinggal dari sistem untuk alat musik lain seperti piano. Belum ada CSEMP alat musik gesek yang mencapai tahapan pengujian kepada pendengar manusia. Hal ini karena komponen sistem tidak dapat digabungkan secara langsung. \textit{framework} sistem \textit{end-to-end} yang telah ada pun belum dapat direalisasi karena masalah anotasi data.
+\section{Sintesis Parametrik Neural}
+
+\citet{bonada2017singing} mengajukan sebuah teknik untuk sintesis suara nyanyian ekspresif. Suara nyanyian dibangkitkan dengan sebuah \textit{vocoder} dengan parameter-parameter \textit{timing} fonetik, \textit{timbre}, dan \textit{pitch}. Parameter-parameter ini dibangkitkan dengan model \textit{timing} fonetik, model \textit{timbre}, dan model \textit{pitch} yang dilatih dengan data latih partitur non ekspresif dan suara nyanyian ekspresif. Arsitektur sistem ini tampak pada gambar \ref{fig-system-overview-bonada}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{resources/system-overview.eps}
+    \caption{Arsitektur sistem sintesis parametrik neural untuk nyanyian \parencite{bonada2017singing}}\label{fig-system-overview-bonada}
+\end{figure}
+
+Dalam sistem ini, terdapat tiga model, yang menghasilkan parameter-parameter yang kemudian digunakan \textit{vocoder} untuk menghasilkan suara nyanyian ekspresif. Model-model ini dilatih menggunakan data latih berupa partitur, label \textit{timing} fonetik, dan rekaman penyanyi profesional yang bersesuaian. Rekaman penyanyi dianalisis dengan vocoder untuk mendapatkan representasi \textit{pitch} dan \textit{timbre}. Masukan dan keluaran tiap model tercantum dalam tabel \ref{tab-models-in-out-bonada}
+
+\begin{table}[h]
+	\centering
+    \caption{Masukan dan Keluaran Tiap Model dalam Sistem Sintesis Parametrik Neural Suara Nyanyian \parencite{bonada2017singing}}\label{tab-models-in-out-bonada}
+	\begin{tabular}{ |c|c|c| } 
+	 \hline
+	 Model & Masukan & Keluaran \\
+	 \hline 
+	 Model \textit{timing} & partitur & \textit{timing} not (dengan penyimpangan) \\ 
+	 fonetik  & urutan fonetik & \textit{timing} fonetik \\ 
+	 \hline
+	 Model \textit{pitch} & partitur & F0 \\ 
+	  & \textit{timing} (terdistorsi) not  & \\ 
+	 \hline
+	 Model \textit{timbre} &  \textit{timing} fonetik & V/UV \\ 
+	  & F0 & Komponen harmonik\\ 
+	  &   & Komponen aperiodisitas\\ 
+	 \hline
+	\end{tabular}
+\end{table}
+
+Untuk model \textit{timing} not, digunakan jaringan syaraf tiruan \textit{feedforward} dengan fitur kontekstual untuk tiap not dalam partitur. Untuk model \textit{durasi} fonem, digunakan jaringan syaraf tiruan konvolusional. \parencite{bonada2017singing} Untuk model \textit{pitch} dan model \textit{timbre}, digunakan jaringan syaraf tiruan dengan elemen rekuren, dengan konvolusi terdilasi \parencite{Oord2016WaveNetAG}, yang terlihat pada gambar \ref{fig-dilated-cnn}. Jaringan syaraf tiruan seperti ini memungkinkan model mempertimbangkan keluaran-keluaran sebelumnya. Medan reseptif konteks temporal dari jaringan syaraf tiruan ini mencapai 100ms. \parencite{bonada2017singing}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{resources/dilated-cnn.eps}
+    \caption{Arsitektur jaringan syaraf tiruan konvolusional terdilasi \parencite{Oord2016WaveNetAG}}\label{fig-dilated-cnn}
+\end{figure}
