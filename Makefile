@@ -1,6 +1,8 @@
 all: clean install
 
+TEXMFHOME = ~/texmf/
 install:
+	cp src/texmffiles/* -r $(TEXMFHOME)
 	mkdir -p output
 	mkdir -p build
 	latexmk -pdf -bibtex -outdir=build -cd src/thesis.tex
