@@ -37,6 +37,11 @@
 \usepackage{titlesec}       % Package Format judul
 \usepackage{parskip}
 \usepackage{mfirstuc}
+\usepackage{colortbl}
+\usepackage{amsmath}
+
+% Disable hyphenation
+\usepackage[none]{hyphenat}
 
 % Line satu setengah spasi
 \renewcommand{\baselinestretch}{1.5}
@@ -57,8 +62,8 @@
 \makeatother
 
 % Counter untuk figure dan table.
-\counterwithin{figure}{section}
-\counterwithin{table}{section}
+\counterwithin{figure}{chapter}
+\counterwithin{table}{chapter}
 
 % Add new commands
 \providecommand\citet[1]{%
