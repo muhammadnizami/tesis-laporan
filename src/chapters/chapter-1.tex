@@ -2,7 +2,7 @@
 
 \section{Latar Belakang}
 
-Adanya pensintesis suara alat musik memungkinan musik dimainkan dari partitur dengan biaya lebih rendah, tanpa perlu melibatkan pemain manusia. Permainan ini dapat digunakan baik untuk kakas komposisi, memainkan musik yang dibangkitkan komputer, maupun menyediakan iringan bagi musisi manusia. Dalam mensintesis suara alat musik, terdapat dua pendekatan yaitu pendekatan yang tidak ekspresif dan pendekatan ekspresif. Dengan pendekatan non-ekspresif, pensintesis suara memainkan musik dari partitur dengan waktu yang tepat metronomik, serta hanya memainkan sesuai dengan partitur. Pendekatan lainnya adalah pendekatan ekspresif, yaitu seperti permainan manusia, memberikan perubahan atau tambahan interpretasi yang tidak tertulis dalam partitur, misalnya perubahan tempo, dinamika, dan artikulasi. Secara lebih umum, sistem komputer untuk menghasilkan suara ekspresif, baik dengan sintesis atau dengan alat musik akustik yang dimainkan oleh kontroler yang terhubung komputer, disebut sebagai sistem komputer untuk permainan musik ekspresif (CSEMP). Meski permainan dan sintesis non-ekspresif lebih populer untuk ragam synth-pop dan dance music, untuk genre lain seperti musik klasik permainan yang non-ekspresif kurang disukai. Untuk genre seperti ini, pendengar dan penerbit musik lebih memilih permainan ekspresif, baik permainan musisi manusia atau sintesis seperti musisi manusia.\parencite{Kirke:2009:SCS:1592451.1592454}
+Adanya pensintesis suara alat musik memungkinan musik dimainkan dari partitur dengan biaya lebih rendah, tanpa perlu melibatkan pemain manusia. Permainan ini dapat digunakan baik untuk kakas komposisi, memainkan musik yang dibangkitkan komputer, maupun menyediakan iringan bagi musisi manusia. Dalam mensintesis suara alat musik, terdapat dua pendekatan yaitu pendekatan yang tidak ekspresif dan pendekatan ekspresif. Dengan pendekatan non-ekspresif, pensintesis suara memainkan musik dari partitur dengan waktu yang tepat metronomik, serta hanya memainkan sesuai dengan partitur. Pendekatan lainnya adalah pendekatan ekspresif, yaitu seperti permainan manusia, memberikan perubahan atau tambahan interpretasi yang tidak tertulis dalam partitur, misalnya perubahan tempo, dinamika, dan artikulasi. Secara lebih umum, sistem komputer untuk menghasilkan suara ekspresif, baik dengan sintesis atau dengan alat musik akustik yang dimainkan oleh kontroler yang terhubung komputer, disebut sebagai sistem komputer untuk permainan musik ekspresif (CSEMP). Meski permainan dan sintesis non-ekspresif lebih populer untuk ragam synth-pop dan dance music, untuk genre lain seperti musik klasik permainan yang non-ekspresif kurang disukai. Untuk genre seperti ini, pendengar dan penerbit musik lebih memilih permainan ekspresif, baik permainan musisi manusia atau sintesis dengan tingkat kealamian yang tinggi seperti musisi manusia.\parencite{Kirke:2009:SCS:1592451.1592454}
 
 Untuk beberapa alat musik, telah dikembangkan sistem untuk permainan musik ekspresif yang terotomasi sepenuhnya, menerima partitur dan menghasilkan suara ekspresif. Dalam riset \citet{schubert2017test}, dirangkumkan beberapa CSEMP untuk piano yang mampu menerima masukan partitur non-ekspresif dan menghasilkan suara piano, dengan bantuan piano akustik berkontroler. Permainan beberapa CSEMP untuk piano dalam penelitian \citet{schubert2017test} telah terbukti setara dengan pemain manusia oleh pendengar manusia, dari sisi ukuran kealamian maupun preferensi pendengar. Meski hasil tersebut diperoleh dalam berbagai batasan, riset tersebut menunjukkan bahwa CSEMP dapat mencapai tingkat kealamian dan preferensi yang tinggi. Sistem lain yang diberikan dalam riset \citet{bonada2017singing} untuk suara vokal juga mampu menerima partitur non-ekspresif dan menghasilkan suara ekspresif, dengan peningkatan kealamian dari sistem-sistem sebelumnya.
 
@@ -18,27 +18,30 @@ Terdapat pula framework untuk membangun CSEMP alat musik gesek yang mampu mengha
 
 Begitu pula apabila hendak digunakan perencana gestur ekspresif yang telah ada \parencite{marchini2014quartet}\parencite{yu2017bowing} dan dibangun pensintesis suara baru yang menerima gestur tersebut, ataupun dibuat perencana gestur untuk masukan sistem pensintesis seperti sistem \citet{lindemann2007rpm}, akan dibutuhkan anotasi gestur pada data latih secara manual. Cara seperti ini rentan dengan kesalahan anotasi dan membutuhkan usaha sangat besar.
 
-Karenanya, perlu dibangun sistem yang mampu menghasilkan suara ekspresif dari partitur ekspresif, tanpa perlu anotasi gestur secara manual dalam data latih. Teknik untuk sistem ini dapat diadopsi dari teknik yang telah digunakan dalam sistem pensintesis suara ekspresif untuk alat musik lainnya. Teknik dengan bantuan alat akustik yang digunakan dalam CSEMP piano yang disebutkan dalam \citet{schubert2017test} tidak dapat digunakan karena belum tersedia perangkat keras alat gesek akustik yang mampu menerima gestur ekspresif dari komputer.
+Karenanya, perlu dibangun sistem yang mampu menghasilkan suara ekspresif dari partitur non-ekspresif, tanpa perlu anotasi gestur secara manual dalam data latih. Teknik untuk sistem ini dapat diadopsi dari teknik yang telah digunakan dalam sistem pensintesis suara ekspresif untuk alat musik lainnya. Teknik dengan bantuan alat akustik yang digunakan dalam CSEMP piano yang disebutkan dalam \citet{schubert2017test} tidak dapat digunakan karena belum tersedia perangkat keras alat gesek akustik yang mampu menerima gestur ekspresif dari komputer.
 
-Pilihan lainnya adalah menggunakan teknik dari sintesis suara nyanyian. Teknik suara nyanyian yang dapat diadopsi adalah teknik parametrik neural. Teknik ini mengatasi kelemahan-kelemahan yang ada pada teknik konkatenatif dan teknik parametrik statistikal\parencite{bonada2017singing}. Teknik-teknik konkatenatif \parencite{Bonada2016ExpressiveSS}\parencite{Bonada2007SynthesisOT} biasanya tidak fleksibel, dan memaksa timbre dilatih terpisah dari ekspresi \parencite{bonada2017singing}. Padahal, pada musik, khususnya alat musik dengan timbre bervariasi seperti vokal atau alat musik gesek, variasi timbre merupakan bagian dari parameter ekspresi. Teknik-teknik parametrik statistikal lebih fleksibel, namun tidak dapat mencapai kualitas suara seperti teknik konkatenatif.
+Pilihan lainnya adalah menggunakan teknik dari sintesis suara nyanyian. Teknik suara nyanyian yang dapat diadopsi adalah teknik neural parametrik. Teknik ini mengatasi kelemahan-kelemahan yang ada pada teknik konkatenatif dan teknik parametrik statistikal\parencite{bonada2017singing}. Teknik-teknik konkatenatif \parencite{Bonada2016ExpressiveSS}\parencite{Bonada2007SynthesisOT} biasanya tidak fleksibel, dan memaksa timbre dilatih terpisah dari ekspresi \parencite{bonada2017singing}. Padahal, pada musik, khususnya alat musik dengan timbre bervariasi seperti vokal atau alat musik gesek, variasi timbre merupakan bagian dari parameter ekspresi. Teknik-teknik parametrik statistikal lebih fleksibel, namun tidak dapat mencapai kualitas suara seperti teknik konkatenatif.
 
 Teknik sintesis untuk nyanyian ini dapat diadopsi kepada alat musik gesek karena keduanya memiliki kesamaan. Kesamaan alat musik gesek dan nyanyian adalah keduanya bersifat eksitasi-kontinu/\textit{sustained}. Berbeda dengan alat musik eksitasi-spontan seperti piano, penentuan variasi suara alat musik eksitasi-kontinu dilakukan secara terus-menerus sepanjang pembangkitan sinyal suara \parencite{Maestre2010StatisticalMO}. Selain itu, pada sebagian besar waktu, suatu sistem alat musik gesek hanya memainkan satu not, walaupun pada kasus yang sangat jarang alat musik gesek mungkin memainkan dua not dalam satu waktu. Nyanyian memiliki sifat yang mirip tersebut yaitu hanya memainkan satu not dalam satu waktu. Atas dasar kemiripan-kemiripan ini, adopsi teknik nyanyian kepada alat musik gesek menjadi lebih mungkin dilakukan daripada menggunakan komponen, \textit{framework}, dan teknik yang telah ada untuk alat musik gesek, dengan kelemahan-kelemahan yang telah disebutkan pada beberapa paragraf sebelumnya.
 
 \section{Rumusan Masalah}
 
-Untuk sebagian genre musik, dibutuhkan pensintesis yang mampu menghasilkan suara ekspresif. Untuk alat musik gesek, belum ada CSEMP yang mampu menghasilkan suara ekspresif dari partitur non-ekspresif saja. Hal ini karena komponen-komponen CSEMP alat musik gesek tidak kompatibel untuk digabungkan satu sama lain, ataupun karena framework CSEMP utuh yang ada terhambat masalah anotasi data. Teknik sintesis neural parametrik untuk nyanyian telah mampu menghasilkan suara dari partitur ekspresif saja, dan suara nyanyian memiliki beberapa kemiripan dengan alat musik gesek yang memungkinkan adopsi tekniknya kepada sistem untuk sintesis dan permainan alat musik gesek.
+Untuk sebagian genre musik, dibutuhkan pensintesis yang mampu menghasilkan suara ekspresif. Pensintesis suara dengan tingkat kealamian yang lebih tinggi lebih diharapkan. Untuk alat musik gesek, belum ada CSEMP yang mampu menghasilkan suara ekspresif dari partitur non-ekspresif saja. Hal ini karena komponen-komponen CSEMP alat musik gesek tidak kompatibel untuk digabungkan satu sama lain, ataupun karena framework CSEMP utuh yang ada terhambat masalah anotasi data. Teknik sintesis neural parametrik untuk nyanyian telah mampu menghasilkan suara dari partitur non-ekspresif saja, dan suara nyanyian memiliki beberapa kemiripan dengan alat musik gesek yang memungkinkan adopsi tekniknya kepada sistem untuk sintesis dan permainan alat musik gesek.
 
-Perlu dibangun sebuah CSEMP alat musik gesek yang mampu menghasilkan suara ekspresif dari partitur non-ekspresif saja. Untuk membangun sistem tersebut, perlu dilakukan modifikasi dari teknik sintesis neural parametrik suara nyanyian untuk menyesuaikan dengan domain alat musik gesek.
+Perlu dibangun sebuah CSEMP alat musik gesek yang mampu menghasilkan suara ekspresif dari partitur non-ekspresif saja. Untuk membangun sistem tersebut, perlu dilakukan modifikasi dan penyempurnaan dari teknik sintesis neural parametrik suara nyanyian untuk menyesuaikan dengan domain alat musik gesek dan meningkatkan tingkat kealamiannya.
 
 \section{Tujuan}
 
-Penelitian ini bertujuan untuk mengembangkan sebuah sistem komputer untuk permainan ekspresif alat musik gesek yang mampu menghasilkan suara ekspresif dari partitur non ekspresif. Untuk itu, akan dibangun sebuah sistem permainan ekspresif alat musik gesek partitur-ke-suara dengan teknik sintesis neural parametrik.
+Penelitian ini bertujuan untuk mengembangkan sebuah sistem komputer untuk permainan ekspresif alat musik gesek yang mampu menghasilkan suara ekspresif dari partitur non ekspresif dan meningkatkan kealamiannya. Untuk itu, dalam penelitian ini:
+\begin{enumerate}
+	\item akan dibangun sebuah sistem permainan ekspresif alat musik gesek partitur-ke-suara dengan teknik sintesis neural parametrik.
+	\item akan dilakukan penyempurnaan terhadap teknik yang digunakan dalam sistem permainan ekspresif alat musik gesek dalam rangka meningkatkan kealamiannya.
+\end{enumerate}
 
 \section{Batasan Masalah}
 
 \begin{enumerate}
 	\item Sistem hanya memainkan satu instrumen, satu baris melodi pada satu waktu
-	\item Sistem memungkinkan memainkan paling banyak \textit{double-stop} (dua not) dalam satu waktu
 	\item Alat musik gesek yang dimaksud adalah violin, viola, atau cello
 	\item Kinerja CSEMP yang diukur dan diuji hanya koefisien korelasi terhadap referensi dan kealamian subjektif pendengar
 \end{enumerate}
@@ -49,8 +52,12 @@ Dalam penelitian ini, akan dilakukan langkah-langkah berikut ini:
 \begin{enumerate}
 	\item Menganalisis kekurangan dan batasan sistem-sistem permainan musik ekspresif neural parametrik yang sudah ada, serta perancangan solusi berupa modifikasi dan penyesuaian teknik untuk sistem permainan musik ekspresif alat musik gesek.
 	\item Implementasi sistem permainan musik ekspresif alat musik gesek, yang meliputi implementasi program, pengumpulan data, dan pelatihan model
-	\item Melakukan pengujian korelasi referensi dan kealamian. Untuk kealamian, pengujian yang dilakukan adalah uji Turing dan uji preferensi kepada pendengar.
+	\item Melakukan pengujian korelasi referensi dan kealamian.
 \end{enumerate}
+
+\section{Hipotesis}
+
+Dengan mempertimbangkan bahwa teknik neural parametrik telah berhasil membangkitkan suara nyanyian ekspresif serupa alami dari partitur non-ekspresif saja, maka hipotesis penelitian ini adalah bahwa teknik neural parametrik dapat membangkitkan suara ekspresif serupa alami untuk alat musik gesek dari partitur non ekspresif saja.
 
 \section{Jadwal Pelaksanaan Penelitian}
 
@@ -61,7 +68,7 @@ Jadwal pelaksanaan penelitian ini tertuang dalam tabel \ref{tab-schedule}. Ketig
     \caption{Jadwal Pelaksanaan Penelitian}\label{tab-schedule}
 	\begin{tabular}{ |c|l|p{5px}|p{5px}|p{5px}|p{5px}|p{5px}|p{5px}|p{5px}|p{5px}|p{5px}|p{5px}|p{5px}|p{5px}| } 
 	\hline
-	No & Tahapan & \multicolumn{2}{c|}{Ag} & \multicolumn{2}{c|}{Sep} & \multicolumn{2}{c|}{Okt} & \multicolumn{2}{c|}{Nov} & \multicolumn{2}{c|}{Des}  & \multicolumn{2}{c|}{Jan} \\
+	No & Tahapan & \multicolumn{2}{p{10px}|}{Ag 2018} & \multicolumn{2}{p{10px}|}{Sep 2018} & \multicolumn{2}{p{10px}|}{Okt 2018} & \multicolumn{2}{p{10px}|}{Nov 2018} & \multicolumn{2}{p{10px}|}{Des 2018}  & \multicolumn{2}{p{10px}|}{Jan 2019} \\
 	\hline
 	1 & Analisis dan Perancangan Solusi & \fillcell & \fillcell & \fillcell & \fillcell & & & & & & & & \\
 	\hline
