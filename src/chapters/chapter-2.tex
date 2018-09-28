@@ -84,7 +84,7 @@ Terdapat sebuah \textit{framework} CSEMP alat musik gesek untuk pembangkitan sua
 
 \section{Sintesis Parametrik Neural} \label{literature-neural-parametric}
 
-\citet{bonada2017singing} mengajukan sebuah teknik untuk sintesis suara nyanyian ekspresif. Suara nyanyian dibangkitkan dengan sebuah \textit{vocoder} dengan parameter-parameter \textit{timing} fonetik, \textit{timbre}, dan \textit{pitch}. Parameter-parameter ini dibangkitkan dengan model \textit{timing} fonetik, model \textit{timbre}, dan model \textit{pitch} yang dilatih dengan data latih partitur non ekspresif dan suara nyanyian ekspresif. Arsitektur sistem ini tampak pada gambar \ref{fig-system-overview-bonada}. Pemisahan model ini dilakukan untuk mengatasi lambatnya pembangkitan 	extit{waveform} secara langsung menggunakan satu model tunggal pada WaveNet\parencite{Oord2016WaveNetAG}. Pemisahan model memungkinkan pembangkitan parameter akustik per \textit{frame} yang \textit{rate}-nya jauh lebih sedikit daripada \textit{sample rate} pada \textit{waveform}.
+\citet{bonada2017singing} mengajukan sebuah teknik untuk sintesis suara nyanyian ekspresif. Ide dari teknik parametrik neural \parencite{bonada2017singing} adalah membangkitkan suara dalam representasi yang \textit{rate}-nya jauh lebih kecil dibandingkan dengan teknik WaveNet\parencite{Oord2016WaveNetAG} yang membangkitkan\textit{waveform} secara langsung, sehingga pembangkitan dapat berjalan lebih cepat. Dalam riset \citet{bonada2017singing}, representasi yang digunakan adalah parameter \textit{vocoder}. Suara nyanyian dibangkitkan oleh sebuah \textit{vocoder} dari parameter-parameter \textit{timing} fonetik, \textit{timbre}, dan \textit{pitch}. Parameter-parameter ini dibangkitkan dengan model \textit{timing} fonetik, model \textit{timbre}, dan model \textit{pitch} yang dilatih dengan data latih partitur non ekspresif dan suara nyanyian ekspresif. Arsitektur sistem ini tampak pada gambar \ref{fig-system-overview-bonada}.
 
 \begin{figure}[h]
     \centering
@@ -173,3 +173,13 @@ Kemudian, parameter-parameter Gaussian $w_k$, $\mu_k$, dan $\sigma_k$ dihitung s
 \end{equation}
 
 dengan konstanta $\gamma_u$, $\gamma_s$, dan $\gamma_y$ di-$tune$ secara manual.
+
+%\subsection{\textit{Vocoder} dan Pemodelan Spektral}
+
+%Vocoder adalah ......
+
+%Pemodelan spektral .....
+
+%Model sinusoidal ...
+
+%Nunggu dicoba dulu
