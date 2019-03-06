@@ -92,7 +92,7 @@ Terdapat sebuah \textit{framework} CSEMP alat musik gesek untuk pembangkitan sua
     \caption{Arsitektur sistem sintesis parametrik neural untuk nyanyian \parencite{bonada2017singing}}\label{fig-system-overview-bonada}
 \end{figure}
 
-Dalam sistem ini, terdapat tiga model, yang menghasilkan parameter-parameter yang kemudian digunakan \textit{vocoder} untuk menghasilkan suara nyanyian ekspresif. Model-model ini dilatih menggunakan data latih berupa partitur, label \textit{timing} fonetik, dan rekaman nyanyian partitur yang bersesuaian oleh penyanyi profesional. Rekaman penyanyi dianalisis dengan vocoder untuk mendapatkan representasi \textit{pitch} dan \textit{timbre}. Masukan dan keluaran tiap model tercantum dalam tabel \ref{tab-models-in-out-bonada}. \ref{bonada2017singing}
+Dalam sistem ini, terdapat tiga model, yang menghasilkan parameter-parameter yang kemudian digunakan \textit{vocoder} untuk menghasilkan suara nyanyian ekspresif. Model-model ini dilatih menggunakan data latih berupa partitur, label \textit{timing} fonetik, dan rekaman nyanyian partitur yang bersesuaian oleh penyanyi profesional. Rekaman penyanyi dianalisis dengan vocoder untuk mendapatkan representasi \textit{pitch} dan \textit{timbre}. Masukan dan keluaran tiap model tercantum dalam tabel \ref{tab-models-in-out-bonada}. \parencite{bonada2017singing}
 
 \begin{table}[h]
 	\centering
@@ -140,11 +140,11 @@ dengan $*$ menunjukkan operator konvolusi, $\odot$ menunjukkan operasi perkalian
 
 Dari satu lapisan ke lapisan lain, diberikan koneksi residual. Serta, dari tiap lapisan, terdapat koneksi skip menuju lapisan output. Dengan cara ini, dapat dilatih jaringan syaraf tiruan yang memiliki lebih banyak lapisan. \parencite{He2016DeepRL}
 
-Pada lapisan output, output tiap lapisan kembali dijumlahkan dengan masukan kontrol. Setelah itu, kembali dikenakan fungsi $tanh$\parencite{bonada2017singing}. Berbeda dengan WaveNet \parencite{Oord2016WaveNetAG} yang menggunakan distribusi keluaran SoftMax, pada teknik neural parametrik digunakan distribusi keluaran \textit{multivariate mixture density}. \textit{Mixture density} yang digunakan adalah Constrained Gaussian Mixture dengan $K=4$ Gaussian: \parencite{bonada2017singing}
+Pada lapisan output, output tiap lapisan kembali dijumlahkan dengan masukan kontrol. Setelah itu, kembali dikenakan fungsi $tanh$\parencite{bonada2017singing}. Berbeda dengan WaveNet \parencite{Oord2016WaveNetAG} yang menggunakan distribusi keluaran SoftMax, pada teknik neural parametrik digunakan distribusi keluaran \textit{multivariate mixture density}. \textit{Mixture density} yang digunakan adalah Constrained Gaussian Mixture. Hal ini karena dalam riset sebelumnya dengan distribusi softmax bentuk distribusi keluaran jejaring mirip dengan Constrained Gaussian Mixture. dengan $K=4$ Gaussian: \parencite{bonada2017singing}
 
 \begin{equation}
     p(x) = \sum\limits_{k=0}^{K-1}w_k\mathcal{N}(x;\mu_k,\sigma_k^2)
-\end{equation}\label{eq-gated-activation}
+\end{equation}\label{eq-cgm}
 
 Dengan parameter-parameter $w_k$, $\mu_k$, $\sigma_k$ untuk $k=0,1,...,K-1$ dihitung dari empat parameter bebas: $\xi$, skala $\omega$, kemencengan $\alpha$, dan bentuk $\beta$. Bila jaringan memprediksi empat keluaran dengan aktivasi linear, $a_0$, $a_1$, $a_2$, $a_3$, parameter bebas ini diperoleh dengan cara sebagai berikut: \parencite{bonada2017singing}
 
@@ -172,7 +172,7 @@ Kemudian, parameter-parameter Gaussian $w_k$, $\mu_k$, dan $\sigma_k$ dihitung s
     w_k = \dfrac{\alpha^{2k}\beta{k}\gamma_w^k}{\Sigma_{j=0}{K-1}\alpha^{2i}\beta{i}\gamma_w^i}
 \end{equation}
 
-dengan konstanta $\gamma_u$, $\gamma_s$, dan $\gamma_y$ di-$tune$ secara manual.
+dengan konstanta $\gamma_u$, $\gamma_s$, dan $\gamma_y$ di-\textit{tune} secara manual.
 
 %\subsection{\textit{Vocoder} dan Pemodelan Spektral}
 

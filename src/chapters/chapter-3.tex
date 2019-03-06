@@ -2,39 +2,43 @@
 
 \section{Analisis Masalah}\label{section-problem-analysis}
 
-Akan digunakan teknik parametrik neural untuk membangkitkan suara alat musik gesek. Hal ini karena penggabungan komponen-komponen CSEMP alat musik gesek yang ada tidak memungkinkan karena masalah kompatibilitas. Selain itu, terdapat beberapa kemiripan dengan penerapan teknik parametrik neural untuk sintesis suara nyanyian dari sisi kontinuitas eksitasi dan jumlah not pada satu waktu. Teknik neural parametrik juga lebih baik dari sisi waktu eksekusi dibandingkan dengan teknik pembangkitan \textit{waveform} secara langsung. Untuk teknik neural parametrik ini, terdapat beberapa perbedaan masalah dengan penelitian sebelumnya\parencite{bonada2017singing}. Perbedaan masalah yang terjadi terdapat pada data input untuk sintesis, data latih, \textit{timing}, dan konteks. Perbedaan masalah-masalah ini adalah:
+Akan digunakan teknik parametrik neural untuk membangkitkan suara alat musik gesek. Hal ini karena penggabungan komponen-komponen CSEMP alat musik gesek yang ada tidak memungkinkan karena masalah kompatibilitas. Selain itu, terdapat beberapa kemiripan dengan penerapan teknik parametrik neural untuk sintesis suara nyanyian dari sisi kontinuitas eksitasi dan jumlah not pada satu waktu. Teknik neural parametrik juga lebih baik dari sisi waktu eksekusi dibandingkan dengan teknik pembangkitan \textit{waveform} secara langsung. Untuk teknik neural parametrik ini, terdapat beberapa perbedaan masalah dengan penelitian sebelumnya\parencite{bonada2017singing}. Perbedaan masalah yang terjadi terdapat pada karakteristik suara alat musik, data input untuk sintesis, \textit{timing}. Perbedaan masalah-masalah ini adalah:
 
 \begin{enumerate}
 
-\item Perbedaan masalah untuk data input sintesis terkait dengan \textit{timbre}. Dalam pembangkitan suara alat musik gesek, \textit{timbre} ditentukan oleh konteks. Hal ini berbeda dengan penelitian sebelumnya, di mana \textit{timbre} ditentukan dari rangkaian fonem yang terdapat dalam data input.
-
-\item Perbedaan masalah terkait dengan data latih terdapat pada pewaktuan. Dalam penelitian ini, pewaktuan tidak terdapat pada data input.
+\item Perbedaan karakteristik suara alat musik gesek dan suara nyanyian terletak pada gaung. Suara nyanyian memiliki gaung yang sedikit, sehingga tidak terdapat polifoni yang signifikan. Pada alat musik gesek, gaung sangat banyak digunakan sebagai bentuk ekspresi, sehingga terjadi polifoni akibat gaung.
 
 \item \textit{Timing} not dalam alat musik gesek memiliki karakteristik yang berbeda dengan suara nyanyian. Dalam sistem \textit{baseline} untuk suara nyanyian, terdapat \textit{timing} fonetik. Dalam sistem ini, tidak ada \textit{timing} fonetik. Hanya dibutuhkan \textit{timing} not saja.
 
-\item Perbedaan masalah terkait konteks yaitu pada medan reseptif dari jaringan syaraf tiruan pada \textit{baseline}. \textit{Baseline} yang digunakan memiliki medan reseptif 100ms. Kecilnya medan reseptif ini berpengaruh kepada suara ekspresif secara umum, dan juga khususnya kepada penentuan \textit{pitch} dan \textit{timbre}. Untuk membangkitkan suara ekspresif, dibutuhkan konteks global dan konteks lokal dari not. Selain itu, konteks juga dibutuhkan dalam \textit{timbre}, yang dalam sintesis suara alat musik gesek tidak dipandu oleh rangkaian fonem.
+\item Perbedaan masalah untuk data input sintesis terkait dengan \textit{timbre}. Dalam pembangkitan suara alat musik gesek, \textit{timbre} ditentukan oleh konteks. Hal ini berbeda dengan penelitian sebelumnya, di mana \textit{timbre} ditentukan dari rangkaian fonem yang terdapat dalam data input.
 
 \end{enumerate}
 
 \section{Rancangan Umum Sistem}
 
-Untuk sekedar menerapkan sistem \textit{baseline} yang dijelaskan pada subbab \ref{literature-neural-parametric} ke alat musik gesek agar dapat dijalankan dan menghasilkan suara, cukup dilakukan penghapusan aspek fonetik. Dengan demikian, model \textit{timing} yang dibuat hanya model \textit{timing} not. Selain itu, untuk masukan kontrol model \textit{pitch} dan model \textit{timbre} tidak digunakan masukan kontrol berupa \textit{timing} fonetik dan urutan fonetik.
+Arsitektur sistem perbaikan terlihat pada gambar \ref{fig-system-overview}, sebagai modifikasi dari gambar \ref{fig-system-overview-bonada}. \ref{tab-models-in-out} Untuk menerapkan sistem yang dijelaskan pada subbab \ref{literature-neural-parametric} ke alat musik gesek agar dapat dijalankan dan menghasilkan suara alat musik gesek, Dilakukan beberapa penyesuaian agar masalah-masalah pada subbab \ref{section-problem-analysis} dapat diatasi:
 
-Dalam sistem ini, tidak ada masukan \textit{timing} fonetik untuk pelatihan. Partitur yang menjadi masukan pun tidak memiliki deskripsi fonem dan lirik. Model \textit{timing} fonetik diganti menjadi model \textit{timing}. Dalam sistem ini, ada komponen tambahan yaitu alignment dan analisis \textit{timing}.
+\begin{enumerate}
 
-Dalam sistem ini, \textit{timing} tidak diberikan dari data latih. Karenanya, \textit{timing} harus mampu diinferensi dari masukan partitur dan audio saja. Untuk inferensi \textit{timing} dari audio dan partitur, digunakan teknik alignment menggunakan masukan partitur dan hasil analisis vocoder dari audio. Hasil analisis vocoder yang digunakan adalah frekuensi fundamental dan kesunyian.
+    \item Perbedaan karakteristik suara alat musik diatasi dengan mengganti vocoder dengan teknik kompresi audio yang sesuai dengan alat musik gesek
+    \item Aspek fonetik ditiadakan dari data \textit{timing} dan masukan kontrol untuk model \textit{timbre}
+    \item Agar penentuan \textit{timbre} mempertimbangkan konteks, masukan model \textit{timbre} ditambahkan dengan masukan partitur dan \textit{timing} not
 
-Model \textit{timing} dalam sistem ini dilatih menggunakan partitur dan hasil analisis \textit{timing}. Dengan demikian, diharapkan model \textit{timing} dapat memprediksi \textit{timing} dari not dalam partitur.
+\end{enumerate}
 
-Model \textit{pitch} dalam sistem ini dilatih untuk menghasilkan F0. Masukan model ini adalah partitur dan \textit{timing}. Dalam pelatihan, masukan partitur diambil dari data latih, \textit{timing} diambil dari hasil alignment dan analisis \textit{timing}, dan parameter vocoder diambil dari hasil analisis vocoder terhadap audio.
+Dalam sistem ini, pengkodean dan sintesis suara audio tidak digunakan dengan vocoder. Pengkodean dan sintesis suara audio dilakukan dengan pengkodean harmonik terarah plus stokastik dan sintesis harmonik plus stokastik. Teknik ini diharapkan mampu mengatasi adanya gaung.
+
+Dalam sistem ini, seperti pada sistem pembangkit nyanyian, memiliki tiga model yang dilatih dengan data latih. Model-model itu adalah model \textit{timing}, model \textit{pitch}, dan model \textit{timbre}. Masukan dan keluaran setiap model tertulis pada tabel \ref{tab-models-in-out}
+
+Model \textit{timing} dalam sistem ini dilatih menggunakan partitur dan \textit{timing} not. Dengan demikian, diharapkan model \textit{timing} dapat memprediksi \textit{timing} dari not dalam partitur.
+
+Model \textit{pitch} dalam sistem ini dilatih untuk menghasilkan F0. Masukan model ini adalah partitur dan \textit{timing}. Dalam pelatihan, masukan partitur dan \textit{timing} not diambil dari data latih, dan parameter vocoder diambil dari hasil pengkodean harmonik terarah plus stokastik terhadap audio.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\textwidth]{resources/system-overview-baseline.eps}
-    \caption{Adopsi teknik neural parametrik untuk permainan musik ekspresif alat musik gesek (modifikasi gambar \ref{fig-system-overview-baseline})}\label{fig-system-overview-baseline}
+    \includegraphics[width=0.8\textwidth]{resources/system-overview.eps}
+    \caption{Adopsi teknik neural parametrik untuk permainan musik ekspresif alat musik gesek (modifikasi gambar \ref{fig-system-overview-bonada})}\label{fig-system-overview}
 \end{figure}
-
-Dengan demikian, penyesuaian yang dilakukan agar teknik neural parametrik dapat digunakan untuk alat musik gesek tampak pada gambar \ref{fig-system-overview-baseline}, sebagai modifikasi dari gambar \ref{fig-system-overview-bonada}. Masukan dan keluaran tiap model pada sistem ini tercantum pada tabel \ref{tab-models-in-out-baseline}. Perbedaan dengan masukan dan keluaran model-model pada tabel \ref{tab-models-in-out-bonada} yaitu tidak ada masukan dan keluaran terkait fonetik. Sistem ini akan digunakan sebagai \textit{baseline} terhadap perbaikan-perbaikan selanjutnya.
 
 Pada tahap pembangkitan, sistem ini mampu menerima partitur dan menghasilkan audio. Keluaran perantara yang dihasilkan adalah parameter vocoder, yang kemudian digunakan oleh vocoder untuk menghasilkan audio.
 
@@ -48,82 +52,126 @@ Masukan dari partitur dapat menunjukkan kondisi sesaat dan konteks. Kondisi sesa
 
 \begin{table}[h]
     \centering
-    \caption{Masukan dan Keluaran Tiap Model dalam Sistem Sintesis Parametrik Neural Suara Alat Musik Gesek }\label{tab-models-in-out-baseline}
+    \caption{Masukan dan Keluaran Tiap Model dalam Sistem Sintesis Parametrik Neural Suara Alat Musik Gesek }\label{tab-models-in-out}
     \begin{tabular}{ |c|c|c| } 
      \hline
      Model & Masukan & Keluaran \\
      \hline 
-     Model \textit{timing} & partitur & \textit{timing} not (dengan penyimpangan) \\ 
+     Model \textit{timing} & partitur & \textit{timing} not  \\ 
      \hline
      Model \textit{pitch} & partitur & F0 \\ 
-      & \textit{timing} (terdistorsi) not  & \\ 
+      & \textit{timing} not  & \\ 
      \hline
-     Model \textit{timbre} & \textit{timing} (terdistorsi not) & V/UV \\ 
-      & F0& Komponen harmonik\\ 
-      &   & Komponen aperiodisitas\\ 
+     Model \textit{timbre} & \textit{timing} not & Komponen harmonik \\ 
+      & F0& Komponen aperiodisitas\\ 
      \hline
     \end{tabular}
 \end{table}
 
-Untuk perbaikan sistem agar suara yang dihasilkan memiliki gestur-gestur ekspresif yang sesuai dengan konteks karya, perlu diatasi masalah-masalah yang disebutkan dalam subbab \ref{section-problem-analysis}.
-Untuk mengatasi masalah-masalah yang telah disebutkan, akan digunakan teknik neural parametrik serupa dengan \textit{baseline}\parencite{bonada2017singing} dengan modifikasi. Modifikasi pertama yang diajukan adalah modifikasi pada arsitektur umum sistem. Modifikasi kedua yang diajukan dilakukan kepada arsitektur jaringan syaraf tiruan.
+\section{Pengkodean Harmonik Terarah Plus Stokastik}
 
-Arsitektur sistem perbaikan terlihat pada gambar \ref{fig-system-overview-improvement}, sebagai modifikasi dari gambar \ref{fig-system-overview-baseline}. Berbeda dengan sistem \textit{baseline}, model \textit{timbre} yang diajukan dalam sistem ini harus mampu menentukan \textit{timbre} dari konteks partitur. Karenanya, model \textit{timbre} dalam pelatihan menerima masukan kontrol dari partitur, lalu dilatih untuk memprediksi data analisis vocoder. Parameter analisis vocoder yang diprediksi oleh model \textit{timbre} adalah spectral envelope dan komponen aperiodic.
+Yang menyebabkan vocoder tidak dapat digunakan adalah penetapan frekuensi fundamental yang tidak menekankan not yang sedang berbunyi, serta penggunaan amplop spektral untuk merepresentasikan timbre. Dengan adanya gaung, terutama pada gaung yang lebih rendah daripada not yang sedang dibunyikan, vocoder akan banyak mendeteksi frekuensi fundamental gaung dan mengabaikan frekuensi fundamental not. Gaung pada spektrum-spektrum di luar frekuensi fundamental dan frekuensi harmonik juga akan mempengaruhi estimasi amplop spektral. Estimasi amplop spektral menggunakan asumsi bahwa suara dihasilkan dari gelombang glottal yang disaring dengan sebuah amplop spektral yang kontinu.
 
-Masukan dan keluaran tiap-tiap model ini tertulis dalam tabel \ref{tab-models-in-out-improvement}. Terdapat perbedaan dari masukan dan keluaran model-model \textit{baseline} pada tabel \ref{tab-models-in-out-baseline}, yaitu model \textit{timbre} menerima masukan partitur.
+Agar penentuan frekuensi fundamental dari audio tidak dipengaruhi oleh gaung, pendeteksian frekuensi fundamental pada tiap langkah waktu dibatasi pada sekitar kemungkinan frekuensi fundamental not yang sedang dibunyikan pada langkah waktu tersebut. Untuk itu, diasumsikan bahwa frekuensi fundamental not yang sedang dibunyikan berada di sekitar frekuensi standar not dalam \textit{equal-temperament tuning}.
 
-\begin{table}[h]
-    \centering
-    \caption{Masukan dan Keluaran Tiap Model dalam Sistem Sintesis Parametrik Neural Suara Alat Musik Gesek }\label{tab-models-in-out-improvement}
-    \begin{tabular}{ |c|c|c| } 
-     \hline
-     Model & Masukan & Keluaran \\
-     \hline 
-     Model \textit{timing} & partitur & \textit{timing} not (dengan penyimpangan) \\ 
-     \hline
-     Model \textit{pitch} & partitur & F0 \\ 
-      & \textit{timing} (terdistorsi) not  & \\ 
-     \hline
-     Model \textit{timbre} & partitur & V/UV \\ 
-      & \textit{timing} (terdistorsi not)  & Komponen harmonik\\ 
-      & F0  & Komponen aperiodisitas\\ 
-     \hline
-    \end{tabular}
-\end{table}
+Pencarian frekuensi fundamental dilakukan dengan batas bawah dan batas atas yang bergantung pada not yang sedang dibunyikan (terarah oleh partitur dan \textit{timing not}). Batas bawah dan batas atas pencarian frekuensi fundamental terlihat pada pertidaksamaan \ref{eq-f0-bounds}. Di sini $note[t]$ adalah not yang dibunyikan pada waktu $t$. ${f_0}_{eq}(note[t])$ adalah frekuensi standar not $note[t]$ dalam \textit{equal-temperament tuning}. $f_0[t]$ adalah frekuensi fundamental sinyal suara pada waktu $t$. $pbt$ adalah \textit{threshold} deviasi \textit{pitch} dalam satuan \textit{semitone}.
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\textwidth]{resources/system-overview.eps}
-    \caption{Arsitektur sistem permainan musik ekspresif alat musik gesek yang diperbaiki (modifikasi gambar \ref{fig-system-overview-bonada})}\label{fig-system-overview-improvement}
-\end{figure}
+\begin{equation}
+    \dfrac{{f_0}_{eq}(note[t])}{2^{(pbt/12)}} \leq f_0[t] \leq 2^{(pbt/12)}{f_0}_{eq}(note[t])
+\end{equation}\label{eq-f0-bounds}
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\textwidth]{resources/sparse-dense-dilated-cnn.eps}
-    \caption{Visualisasi tumpukan lapisan-lapisan tumpukan konvolusi kausal terdilasi jarang-padat (modifikasi arsitektur pada gambar \ref{fig-dilated-cnn})}\label{fig-sparsedilated-cnn}
-\end{figure}
+Agar gaung tidak mempengaruhi estimasi timbre, asumsi gelombang glottal dan amplop spektral tidak digunakan. Suara alat musik gesek diasumsikan berupa kumpulan gelombang-gelombang sinusoidal pada frekuensi-frekuensi harmonik saja, dengan tiap harmonik memiliki kemungkinan pergeseran. Pada tiap langkah waktu, setelah ditemukan frekuensi fundamental pada langkah waktu tersebut, dilakukan estimasi frekuensi-frekuensi harmonik dan ukuran tiap harmonik. Adapun fase dari tiap gelombang harmonik diabaikan.
 
-Untuk mengatasi masalah medan reseptif dari model \textit{baseline}, diajukan dilasi jarang-padat. Arsitektur jaringan syaraf tiruan yang merupakan modifikasi arsitektur pada gambar \ref{fig-dilated-cnn} terlihat pada gambar \ref{fig-sparsedilated-cnn}. Untuk simpul-simpul masukan yang dekat dengan \textit{frame} yang sedang dibangkitkan, digunakan faktor dilasi sedemikian hingga semua simpul terlingkupi. Untuk simpul-simpul masukan yang jauh dari \textit{frame} yang sedang dibangkitkan, digunakan faktor dilasi yang lebih besar. Dengan demikian, medan reseptif dapat ditingkatkan tanpa menambah jumlah simpul tersembunyi dan ukuran vektor bobot yang diestimasi.
+Sisa spektrum yang tidak dapat dikodekan dengan gelombang-gelombang sinusoidal pada tiap harmonik tersebut kemudian dikodekan dengan model stokastik. Model ini merepresentasikan aperiodisitas.
 
-Pada bagian dengan dilasi jarang, ada simpul-simpul yang dilewat. Dalam permasalahan suara alat musik gesek, hal ini tidak menjadi masalah. Karakteristik fitur akustik yang menjadi masukan banyak redundan. Adapun masukan kontrol untuk simpul-simpul yang berdekatan akan sama karena satu not dapat menjadi banyak \textit{frame} di mana tiap \textit{frame} menjadi simpul masukan.
+Dengan demikian, hasil pengkodean harmonik terarah plus stokastik memiliki format yang sama dengan pengkodean harmonik plus stokastik. Hasilnya berupa deskripsi frekuensi fundamental, frekuensi dan ukuran harmonik, dan stokastik untuk setiap langkah waktu. Yang membedakan keduanya adalah adanya batasan frekuensi fundamental yang diarahkan oleh data partitur dan \textit{timing not}
 
-Untuk melatih sistem ini, dibutuhkan data latih berupa partitur dan rekaman audio. Data yang dibutuhkan adalah data berpasangan. Detil pengumpulan data latih ini dijelaskan dalam subbab selanjutnya.
+Pengkodean dengan cara ini mampu mengatasi polifoni yang diakibatkan oleh gaung. Polifoni yang diakibatkan karena dua atau lebih not berbunyi sekaligus tidak dapat diatasi dengan cara ini. Cara ini hanya mampu mengekstrak satu frekuensi fundamental dari setiap langkah waktu.
 
-\section{Tahapan Pembangunan Sistem}
+\section{Model \textit{Timing}}
 
-Terdapat empat tahapan pembangunan sistem:
+Model \textit{timing} berfungsi menentukan panjang aktual dari tiap not. Panjang aktual dari tiap not ini kemudian digunakan untuk menentukan waktu-waktu pergantian satu not ke not berikutnya.
+
+Model \textit{timing} dilatih dengan pasangan data latih fitur-fitur not dalam partitur dan \textit{timing} not tersebut. Sebuah jaringan syaraf tiruan \textit{feedforward} terhubung penuh digunakan untuk membangun model \textit{timing}. Keluaran yang diharapkan dari model ini adalah deviasi panjang not. Untuk tiap not, berikut ini adalah fitur-fitur not yang digunakan:
 
 \begin{enumerate}
-    \item Pengumpulan data
-    \item Implementasi program untuk pelatihan dan pembangkitan
-    \item Pelatihan model
-    \item Pengujian
+    \item panjang not yang tertulis dalam partitur
+    \item panjang not sebelumnya yang tertulis dalam partitur
+    \item posisi not dalam bar
+    \item apakah not merupakan tanda istirahat
+    \item apakah not sebelumnya merupakan tanda istirahat
 \end{enumerate}
 
-Pada tahap pengumpulan data yang dibutuhkan berupa data latih dan data uji. Dalam pengumpulan, data akan dihimpun menjadi satu kumpulan data. Kumpulan data tersebut akan dipisahkan menjadi data latih dan data uji setelah pengumpulan data selesai.
+\section{Model \textit{Pitch}}
 
-Untuk pengumpulan data, akan dicari partitur dan rekaman audio yang telah terpublikasi. Akan disaring instans data yang memiliki pasangan yang sesuai. Data rekaman audio tanpa partitur atau data partitur tanpa audio tidak akan dimasukkan kepada kumpulan data akhir. Kemudian, penyalin akan mendengarkan rekaman audio dan mencocokkan dengan partitur untuk memastikan bahwa rekaman audio sesuai dengan partitur. Partitur yang dikumpulkan akan disalin/dikonversi menjadi format teks (MusicXML/MIDI).
+Model \textit{pitch} berfungsi membangkitkan frekuensi fundamental untuk tiap langkah waktu. Digunakan jaringan syaraf tiruan dengan arsitektur yang tampak pada gambar \ref{fig-network-architecture}.
 
-Karena pengujian yang akan dilakukan adalah pengujian pendengar manusia, data uji yang dibutuhkan berukuran kecil. Pemisahan data uji dari data latih dilakukan secara acak. Data uji akan diambil sejumlah 3-5 karya.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{resources/network-architecture.eps}
+    \caption{Arsitektur jaringan syaraf tiruan modifikasi WaveNet yang digunakan pada sintesis neural parametrik untuk alat musik gesek (modifikasi dari gambar \ref{fig-network-architecture-bonada})}\label{fig-network-architecture}
+\end{figure} 
 
-Implementasi program untuk pelatihan dan pembangkitan dilakukan menggunakan kakas-kakas \textit{vocoder} dan jaringan syaraf tiruan. Kakas jaringan syaraf tiruan yang digunakan adalah kakas yang mendukung jaringan syaraf tiruan \textit{feedforward}, konvolusi, dan dilasi. Hasil implementasi ini dapat digunakan untuk melatih model, yang kemudian digunakan untuk membangkitkan suara untuk diujikan kepada pendengar manusia.
+Jaringan syaraf tiruan ini memiliki lapisan keluaran linear. Berbeda dengan sintesis nyanyian, distribusi keluaran dari jejaring ini belum diketahui. Karena keluaran linear merupakan keluaran paling sederhana untuk regresi, maka digunakan keluaran ini.
+
+Input jaringan syaraf tiruan ini terdiri dari dua, yaitu input fitur akustik keluaran sebelumnya, dan input kontrol. Input kontrol berasal dari partitur.
+
+Pembangkitan dilakukan untuk tiap langkah waktu secara berurutan dari depan ke belakang. Untuk tiap langkah waktu, keluaran dari beberapa langkah waktu sebelumnya, sepanjang medan reseptif, menjadi masukan pada langkah ini.
+
+Fitur akustik yang dibangkitkan dan menjadi input fitur akustik berikutnya adalah deviasi f0, bukan f0 sebenarnya. Hal ini untuk menjaga konteks deviasi antar not. Deviasi f0 pada suatu not dipengaruhi oleh deviasi f0 pada not sebelumnya. Lebih lanjut, deviasi ini dihitung dalam skala logaritmik. Hubungan antara deviasi f0 dengan f0 ditunjukkan dalam persamaan \ref{f0-deviation}, dengan $\Delta_{f_0}[t]$ adalah deviasi f0. Pada tahap pembangkitan, f0 dihitung dari persamaan ini.
+
+\begin{equation}
+    \Delta_{f_0}[t] = ln(f_0[t]) - ln({f_0}_{eq}(note[t]))
+\end{equation}\label{f0-deviation}
+
+Input kontrol yang digunakan berasal dari partitur dan estimasi \textit{timing} keluaran model \textit{timing}. Berdasarkan keluaran model \textit{timing}, dapat diketahui not pada partitur yang dibunyikan pada satu langkah waktu. Berdasarkan not tersebut, input kontrol ini adalah sebagai berikut:
+
+\begin{enumerate}
+    \item \textit{pitch} $k$ not sebelumnya (one-hot posisi dalam oktaf dan nomor oktaf, relatif terhadap tanda kunci)
+    \item \textit{pitch} not saat ini (one-hot posisi dalam oktaf dan nomor oktaf, relatif terhadap tanda kunci)
+    \item \textit{pitch} $k$ not sesudahnya (one-hot posisi dalam oktaf dan nomor oktaf, relatif terhadap tanda kunci)
+    \item tanda kunci
+    \item durasi $k$ not sebelumnya
+    \item durasi not saat ini
+    \item durasi $k$ not sesudahnya
+    \item posisi dalam not
+\end{enumerate}
+
+\section{Model \textit{Timbre}}
+
+Model \textit{timbre} berfungsi membangkitkan representasi \textit{timbre}. Serupa dengan model \textit{pitch}, representasi \textit{timbre} untuk tiap langkah waktu dibangkitkan dengan input fitur akustik keluaran langkah-langkah waktu sebelumnya dan input kontrol. Digunakan jaringan syaraf tiruan dengan arsitektur pada gambar \ref{fig-network-architecture}.
+
+Representasi \textit{timbre} yang menjadi keluaran dan input fitur akustik model ini adalah sebagai berikut:
+
+\begin{enumerate}
+    \item $ln(f_h)$: frekuensi harmonik ke-$h$ dalam skala logaritmik, untuk semua komponen harmonik
+    \item $mag_h$: ukuran (desibel) komponen harmonik ke-$h$, untuk semua komponen harmonik
+    \item $stoc_s$: ukuran komponen stokastik ke-$s$
+\end{enumerate}
+
+Frekuensi fundamental keluaran model \textit{pitch} juga menjadi masukan model \text{timbre}. Input kontrol untuk model ini adalah sebagai berikut:
+\begin{enumerate}
+    \item frekuensi fundamental ($f_0$)
+    \item \textit{pitch} $k$ not sebelumnya (one-hot posisi dalam oktaf dan nomor oktaf, relatif terhadap tanda kunci)
+    \item \textit{pitch} not saat ini (one-hot posisi dalam oktaf dan nomor oktaf, relatif terhadap tanda kunci)
+    \item \textit{pitch} $k$ not sesudahnya (one-hot posisi dalam oktaf dan nomor oktaf, relatif terhadap tanda kunci)
+    \item tanda kunci
+    \item durasi $k$ not sebelumnya
+    \item durasi not saat ini
+    \item durasi $k$ not sesudahnya
+    \item posisi dalam not
+\end{enumerate}
+
+\section{Data Partitur, \textit{Timing}, dan Audio}
+
+Untuk melatih sistem ini, dibutuhkan data latih berupa partitur, \textit{timing} dan rekaman audio. Untuk itu, dibutuhkan partitur dan rekaman audio yang bersesuaian. Data dikumpulkan secara manual.
+
+Partitur didapatkan dari Petrucci Music Library, dengan memilih secara berurutan dari daftar lagu untuk satu alat musik gesek. Dari daftar lagu tersebut, dipilih lagu yang dapat ditemukan rekaman audionya pada situs \textit{media sharing} publik.
+
+Tidak semua lagu yang memiliki rekaman audio bersesuaian digunakan. Partitur dikumpulkan berurutan secara alfabetis dengan kriteria minimal total durasi 30 menit. Minimal total durasi ini didasarkan kepada riset neural parametrik nyanyian oleh Bonada.
+
+Partitur terkumpul kemudian disalin dari format gambar atau PDF ke dalam format MIDI. Penyalinan ke dalam format MIDI dilakukan secara manual
+
+Karena pengkodean harmonik plus sinusoidal hanya mampu menghasilkan suara monofonik, maka partitur dan rekaman tersebut kemudian dipotong-potong ke segmen-segmen yang monofonik. Segmen-segmen polifonik tidak digunakan.
+
+Data \textit{timing} dibuat secara manual dari rekaman audio. Anotator mencatat waktu-waktu perubahan not dengan cara mendengarkan rekaman suara, dibantu dengan tampilan spektogram.
