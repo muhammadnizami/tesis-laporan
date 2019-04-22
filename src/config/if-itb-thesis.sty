@@ -39,6 +39,8 @@
 \usepackage{mfirstuc}
 \usepackage{colortbl}
 \usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{tabularx}
 
 % Disable hyphenation
 \usepackage[none]{hyphenat}
@@ -71,6 +73,8 @@
     \citeyear{#1}%
   )
 }
+
+\newcommand*{\fillcell}{\cellcolor[cmyk]{0,0,0,0.75}}
 
 \widowpenalty10000
 \clubpenalty10000
