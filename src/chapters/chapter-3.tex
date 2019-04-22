@@ -1,4 +1,4 @@
-\chapter{Analisis dan Perancangan}
+\chapter{Analisis dan Perancangan} \label{design-chapter}
 
 \section{Analisis Masalah}\label{section-problem-analysis}
 
@@ -16,7 +16,7 @@ Akan digunakan teknik parametrik neural untuk membangkitkan suara alat musik ges
 
 \section{Rancangan Umum Sistem}
 
-Arsitektur sistem perbaikan terlihat pada gambar \ref{fig-system-overview}, sebagai modifikasi dari gambar \ref{fig-system-overview-bonada}. \ref{tab-models-in-out} Untuk menerapkan sistem yang dijelaskan pada subbab \ref{literature-neural-parametric} ke alat musik gesek agar dapat dijalankan dan menghasilkan suara alat musik gesek, Dilakukan beberapa penyesuaian agar masalah-masalah pada subbab \ref{section-problem-analysis} dapat diatasi:
+Arsitektur sistem perbaikan terlihat pada Gambar \ref{fig-system-overview}, sebagai modifikasi dari Gambar \ref{fig-system-overview-bonada}. \ref{tab-models-in-out} Untuk menerapkan sistem yang dijelaskan pada Subbab \ref{literature-neural-parametric} ke alat musik gesek agar dapat dijalankan dan menghasilkan suara alat musik gesek, Dilakukan beberapa penyesuaian agar masalah-masalah pada Subbab \ref{section-problem-analysis} dapat diatasi:
 
 \begin{enumerate}
 
@@ -37,7 +37,7 @@ Model \textit{pitch} dalam sistem ini dilatih untuk menghasilkan F0. Masukan mod
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{resources/system-overview.eps}
-    \caption{Adopsi teknik neural parametrik untuk permainan musik ekspresif alat musik gesek (modifikasi gambar \ref{fig-system-overview-bonada})}\label{fig-system-overview}
+    \caption{Adopsi teknik neural parametrik untuk permainan musik ekspresif alat musik gesek (modifikasi Gambar \ref{fig-system-overview-bonada})}\label{fig-system-overview}
 \end{figure}
 
 Pada tahap pembangkitan, sistem ini mampu menerima partitur dan menghasilkan audio. Keluaran perantara yang dihasilkan adalah parameter vocoder, yang kemudian digunakan oleh vocoder untuk menghasilkan audio.
@@ -104,12 +104,12 @@ Model \textit{timing} dilatih dengan pasangan data latih fitur-fitur not dalam p
 
 \section{Model \textit{Pitch}}
 
-Model \textit{pitch} berfungsi membangkitkan frekuensi fundamental untuk tiap langkah waktu. Digunakan jaringan syaraf tiruan dengan arsitektur yang tampak pada gambar \ref{fig-network-architecture}.
+Model \textit{pitch} berfungsi membangkitkan frekuensi fundamental untuk tiap langkah waktu. Digunakan jaringan syaraf tiruan dengan arsitektur yang tampak pada Gambar \ref{fig-network-architecture}.
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{resources/network-architecture.eps}
-    \caption{Arsitektur jaringan syaraf tiruan modifikasi WaveNet yang digunakan pada sintesis neural parametrik untuk alat musik gesek (modifikasi dari gambar \ref{fig-network-architecture-bonada})}\label{fig-network-architecture}
+    \caption{Arsitektur jaringan syaraf tiruan modifikasi WaveNet yang digunakan pada sintesis neural parametrik untuk alat musik gesek (modifikasi dari Gambar \ref{fig-network-architecture-bonada})}\label{fig-network-architecture}
 \end{figure} 
 
 Jaringan syaraf tiruan ini memiliki lapisan keluaran linear. Berbeda dengan sintesis nyanyian, distribusi keluaran dari jejaring ini belum diketahui. Karena keluaran linear merupakan keluaran paling sederhana untuk regresi, maka digunakan keluaran ini.
@@ -139,7 +139,7 @@ Input kontrol yang digunakan berasal dari partitur dan estimasi \textit{timing} 
 
 \section{Model \textit{Timbre}}
 
-Model \textit{timbre} berfungsi membangkitkan representasi \textit{timbre}. Serupa dengan model \textit{pitch}, representasi \textit{timbre} untuk tiap langkah waktu dibangkitkan dengan input fitur akustik keluaran langkah-langkah waktu sebelumnya dan input kontrol. Digunakan jaringan syaraf tiruan dengan arsitektur pada gambar \ref{fig-network-architecture}.
+Model \textit{timbre} berfungsi membangkitkan representasi \textit{timbre}. Serupa dengan model \textit{pitch}, representasi \textit{timbre} untuk tiap langkah waktu dibangkitkan dengan input fitur akustik keluaran langkah-langkah waktu sebelumnya dan input kontrol. Digunakan jaringan syaraf tiruan dengan arsitektur pada Gambar \ref{fig-network-architecture}.
 
 Representasi \textit{timbre} yang menjadi keluaran dan input fitur akustik model ini adalah sebagai berikut:
 
@@ -175,3 +175,16 @@ Partitur terkumpul kemudian disalin dari format gambar atau PDF ke dalam format 
 Karena pengkodean harmonik plus sinusoidal hanya mampu menghasilkan suara monofonik, maka partitur dan rekaman tersebut kemudian dipotong-potong ke segmen-segmen yang monofonik. Segmen-segmen polifonik tidak digunakan.
 
 Data \textit{timing} dibuat secara manual dari rekaman audio. Anotator mencatat waktu-waktu perubahan not dengan cara mendengarkan rekaman suara, dibantu dengan tampilan spektogram.
+
+\section{Sintesis HPS Terbatas}
+
+Untuk melakukan listening test, output dari model-model harus disintesis menjadi sebuah file audio. Di antara masalah yang muncul adalah output yang dihasilkan model magnitudo memiliki range yang berlebihan, dari magnitudo sangat kecil ke magnitudo sangat besar. Akibatnya, pada bagian-bagian dengan magnitudo besar cukup banyak terjadi clipping.
+
+Scaling pada sinyal hasil tidak mungkin dilakukan karena akan menyebabkan sinyal dengan magnitudo rendah hilang oleh galat presisi. Karenanya, digunakan fungsi transformasi pada persamaan \ref{eq-hmag-limit} berikut ini untuk membatas magnitudo harmonik. Fungsi ini digunakan juga terhadap amplop stokastik
+
+\begin{equation}
+    limit(A) = -\dfrac{1}{0.05} log(e^{-0.05*A}+e^{-0.05\times(0)})
+\end{equation}\label{eq-hmag-limit}
+
+
+%TODO tambahkan soal kinerja yang menurun apabila data ditambah, skema fold selection, dll.

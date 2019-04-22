@@ -1,13 +1,371 @@
-\chapter{Evaluasi dan Pembahasan}
+\chapter{Eksperimen Sistem Permainan Musik Ekspresif untuk Alat Musik Gesek}
 
-\section{Tujuan Pengujian}
-\blindtext
+\section{Tujuan Eksperimen}
+Eksperimen dilakukan untuk menunjukkan kinerja sistem permainan musik ekspresif untuk alat musik gesek yang telah dibangun. Sistem permainan musik ekspresif diimplementasi berdasarkan hasil perancangan pada Bab \ref{design-chapter}. Kinerja yang akan diukur adalah kealamian ekspresi hasil sintesis suara oleh sistem tersebut. Kealamian memiliki makna seberapa mirip ekspresi pada permainan yang dihasilkan terhadap ekspresi permainan manusia.
 
-\section{Skenario Pengujian}
-\blindtext
+\section{Skenario Eksperimen}
+Eksperimen dilakukan untuk menilai tingkat kealamian dari ekspresi permainan musik yang dihasilkan. Penilaian dilakukan dengan uji korelasi dan uji persepsi kealamian pendengar.
 
-\section{Hasil Pengujian}
-\blindtext
+Eksperimen diawali dengan eksperimen komponen sistem untuk menyetel parameter dan menguji korelasi tiap-tiap model yang menjadi komponen dari sistem ini. Setelah itu, eksperimen dilakukan dengan eksperimen uji korelasi sistem utuh.
 
-\section{Pembahasan}
+Pada eksperimen komponen, model-model \textit{timing}, \textit{pitch} yang terdiri dari model deviasi F0, dan \textit{timbre} yang terdiri dari model frekuensi harmonik, magnitudo harmonik, serta amplop stokastik disetel parameternya dan diuji korelasinya.
+
+Untuk penyetelan parameter model-model, dilakukan validasi silang dengan $k=5$. Berikut ini adalah langkah-langkah validasi silang:
+\begin{enumerate}
+	\item data dibagi menjadi $k$ bagian
+	\item untuk tiap bagian, gunakan bagian tersebut untuk memvalidasi model yang dilatih dengan komplemennya
+	\item rata-ratakan metrik kinerja terhadap semua bagian tersebut
+\end{enumerate}
+
+Parameter-parameter model yang disetel berbeda-beda untuk tiap modelnya. Untuk model \textit{timing}, sebelum penyetelan parameter, dilakukan pemilihan teknik antara ANN dan regresi DT. Setelah itu, apabila teknik yang terpilih adalah DT, parameter yang disetel adalah jumlah not konteks yang menjadi fitur dan kedalaman maksimum.
+
+Untuk model-model F0, frekuensi harmonik, magnitudo harmonik, dan amplop stokastik, terdapat empat kelompok parameter:
+\begin{itemize}
+	\item parameter-parameter yang diambil dari riset neural parametrik nyanyian, yaitu:
+	\begin{itemize}
+		\item ukuran konvolusi kausal awal
+		\item ukuran kanal residual
+		\item ukuran konvolusi terdilasi
+		\item ukuran \textit{batch}
+		\item jumlah \textit{frame} keluaran \textit{valid}
+		\item \textit{learning rate} (awal, \textit{decay}, interval)
+	\end{itemize}
+	\item parameter-parameter yang bukan dari riset neural parametrik nyanyian, namun tidak disetel dengan validasi silang, yaitu:
+	\begin{itemize}
+		\item \textit{output stage}: tetap CGM, namun dimensi disesuaikan
+		\item temperatur pembangkitan $\tau$: bilangan kecil, dimensi disesuaikan
+		\item Jumlah \textit{epoch}: sedikit di atas jumlah epoch pada neural parametrik nyanyian, namun dibatasi dengan \textit{early stopping}
+	\end{itemize}
+	\item parameter yang disetel dengan validasi silang, yaitu:
+	\begin{itemize}
+		\item faktor dilasi
+		\item tingkat \textit{noise} pada masukan $\lambda$
+		\item \textit{early stopping patience}
+	\end{itemize}
+	\item parameter terikat, berubah apabila faktor dilasi berubah, yaitu:
+	\begin{itemize}
+		\item jumlah lapisan
+		\item jumlah lapisan per \textit{stage}
+		\item medan reseptif
+	\end{itemize}
+\end{itemize}
+
+Untuk model F0, parameter yang diambil dari riset neural parametrik nyanyian diambil dari model F0 pada riset neural parametrik nyanyian. Untuk model frekuensi harmonik dan model magnitudo harmonik, parameter disesuaikan dari model amplop harmonik pada riset neural parametrik nyanyian. Untuk model amplop stokastik, parameter disesuaikan dari model aperiodisitas pada riset neural parametrik nyanyian
+
+Setelah parameter telah disetel, model dilatih dengan keseluruhan data latih. Namun, model ini tidak langsung diujikan terhadap data uji. Kinerja model ini dibandingkan terlebih dahulu dengan kinerja model yang telah dilatih pada tahapan validasi silang. Hal ini dilakukan untuk memilih model terbaik, karena mungkin saja model yang dilatih dengan data latih lebih besar memiliki kinerja yang lebih buruk. Hal ini dilakukan untuk model \textit{pitch} dan model \textit{timbre}. Adapun untuk model \textit{timing} akan digunakan model yang dilatih dengan keseluruhan data latih. Setelah dipilih model yang terbaik terhadap data latih, model diujikan terhadap data uji.
+
+Validasi, pengujian, dan pengukuran kinerja tiap-tiap model dilakukan sesuai dengan masukan dan keluaran model-model tersebut. Model \textit{timing} diberi masukan partitur dan divalidasi \textit{timing} hasilnya. Model F0 diberi masukan partitur dan \textit{timing} dan divalidasi F0 hasilnya. Demikian pula, serupa pada model frekuensi harmonik, magnitudo harmonik, hingga amplop stokastik.
+
+Metrik yang digunakan adalah koefisien korelasi Pearson yang dituliskan pada persamaan \ref{pearson-corrcoef-eq}. Untuk model-model F0, frekuensi harmonik, magnitudo harmonik, dan amplop stokastik, koefisien korelasi dihitung pasangan nilai-nilai pada keluaran dan nilai-nilai pada data tiap \textit{frame}. Untuk model \textit{timing}, koefisien korelasi dihitung terhadap nilai nada, dalam skala nomor not midi, untuk tiap \textit{frame} berdasarkan \textit{timing} yang dihasilkan, berpasangan dengan nilai nada berdasarkan \textit{timing} data.
+
+Model-model dengan parameter yang telah disetel dan dilatih dalam tahapan eksperimen komponen kemudian digabungkan untuk membentuk sistem utuh. Setelah itu, sistem utuh digunakan untuk membangkitkan suara dengan masukan partitur pada data uji. Keluaran akhirnya --sebelum diubah menjadi sinyal gelombang-- berupa frekuensi harmonik, magnitudo harmonik, serta amplop stokastik divalidasi dengan frekuensi harmonik, magnitudo harmonik, serta amplom stokastik pada data uji.
+
+Pada bagian terakhir eksperimen, yaitu uji persepsi, dilakukan pengujian kepada sejumlah responden. Sebelum dilakukan uji pendengaran, ditanyakan kepada responden data pengalaman responden terkait musik. Pada uji pendengaran, responden diberikan 18 pasang segmen audio. Tiap pasang terdiri dari 10 detik segmen keluaran sistem yang telah dibangun dan 10 detik segmen keluaran sistem \textit{baseline}. Untuk tiap pasang, responden diminta untuk memilih segmen audio yang lebih alami. Dari hasil ini, dapat dihitung Mean Preference Score (MPS) sistem ini terhadap sistem \textit{baseline}.
+
+Sistem yang dijadikan \textit{baseline} sebagai perbandingan adalah sistem Synful RPM. Untuk menghasilkan suara ekspresif, seharusnya sistem ini diberikan masukan partitur ekspresif. Namun, sebagai \textit{baseline} terhadap sistem yang dibangun, sistem ini diberi masukan yang sama dengan sistem yang telah dibangun yaitu partitur tanpa ekspresi.
+
+\section{Hasil Eksperimen Komponen Sistem}
+
+Hasil eksperimen komponen sistem terdiri dari eksperimen model \textit{timing}, \textit{pitch} yang terdiri dari model deviasi F0, dan \textit{timbre} yang terdiri dari model frekuensi harmonik, magnitudo harmonik, serta amplop stokastik. Eksperimen tiap-tiap model terdiri dari penyetelan parameter dan pengujian.
+
+\subsection{Hasil penyetelan parameter}
+
+Eksperimen model \textit{timing} dimulai dengan pemilihan teknik menggunakan validasi silang. Sebagaimana tampak pada Tabel \ref{tab-timing-model-tuning-results}, tampak bahwa teknik \textit{decision tree regression} memiliki kinerja yang lebih baik daripada ANN. Analisis lebih lanjut terhadap \textit{output} ANN tersebut menunjukkan bahwa deviasi \textit{timing} yang dihasilkan ANN adalah konstan. Hal ini menunjukkan bahwa ANN tidak dapat mempelajari pola deviasi \textit{timing} pada data latih.
+
+\begin{table}[h]
+    \centering
+    \caption{Hasil Validasi Silang untuk Penyetelan Parameter Model \textit{Timing}}\label{tab-timing-model-tuning-results}
+    \begin{tabular}{ |l|r| } 
+     \hline
+     Parameter & Pearson r untuk Nada Tiap \textit{Frame} \\
+     \hline 
+     \multicolumn{2}{|l|}{model regresi}\\ \hline
+	 ann    &-0.03684115\\ \hline
+	 dt, konteks=10, kedalaman=300     & 0.09796566\\ \hline
+	 \multicolumn{2}{|l|}{penyetelan jumlah not konteks fitur}\\ \hline
+	 dt, konteks=20, kedalaman=300       &0.07746795\\ \hline
+	 dt, konteks=10, kedalaman=300      &0.09796566\\ \hline
+	 dt, konteks=5, kedalaman=300     &0.14187831\\ \hline
+	 dt, konteks=3, kedalaman=300     &\textbf{0.16475536}\\ \hline
+	 dt, konteks=1, kedalaman=300      &0.10598458\\ \hline
+	 \multicolumn{2}{|l|}{penyetelan kedalaman pohon}\\ \hline
+	 dt, konteks=3, kedalaman=25 	 &0.15163629\\\hline
+	 dt, konteks=3, kedalaman=50     &0.1326507\\\hline
+	 dt, konteks=3, kedalaman=100      &0.12941929\\\hline
+	 dt, konteks=3, kedalaman=300     &\textbf{0.16475536}\\ \hline
+	 dt, konteks=3, kedalaman=600     &0.11958923\\\hline
+	 dt, konteks=3, kedalaman=1000     &0.1351192   \\  \hline
+    \end{tabular}
+\end{table}
+
+Hasil penyetelan parameter jumlah not konteks fitur dan kedalaman pohon juga terdapat pada Tabel \ref{tab-timing-model-tuning-results}. Parameter terbaik diperoleh dengan 3 not konteks fitur dan kedalaman pohon 300.
+
+Penyetelan model berikutnya adalah penyetelan model F0. Tabel \ref{tab-f0-model-tuning-results} menunjukkan hasil validasi silang untuk penyetelan parameter model F0, dengan metrik berupa koefisien korelasi Pearson dari frekuensi fundamental hasil pembangkitan terhadap frekuensi fundamental pada data. Faktor dilasi yang menghasilkan kinerja terbaik adalah $1,2,4,8,16,32,1,2,4,8,16$. Faktor dilasi ini memiliki medan reseptif terhadap output sebelum yang lebih pendek daripada faktor dilasi pada riset neural parametrik nyanyian. Adapun tingkat \textit{noise} $\lambda$ terbaik didapatkan dengan nilai $0.4$, sama dengan pada riset neural parametrik nyanyian.
+
+Pelatihan model F0 dengan \textit{early stopping} memiliki kinerja yang sama dengan pelatihan tanpa \textit{early stopping}. Hal ini karena dengan \textit{patience} 100, \textit{early stopping} tidak menghentikan pelatihan hingga jumlah \textit{epoch} maksimal yang bernilai 300. Karenanya, tanpa \textit{early stopping} ataupun dengan \textit{early stopping}, model F0 ini tetap dilatih dengan 300 \textit{epoch}.
+
+\begin{table}[h]
+    \centering
+    \caption{Hasil Validasi Silang untuk Penyetelan Parameter Model F0}\label{tab-f0-model-tuning-results}
+    \begin{tabular}{ |l|l|l|r| } 
+     \hline
+     \multicolumn{3}{|l|}{Parameter} & Pearson r\\
+     \cline{1-3}
+     faktor dilasi & $\lambda$ & \textit{patience} & F0\\
+     \hline 
+	1,2,4,8,16,32,64,1,2,4,8,16,32 & 0.4 &100      &0.9525\\\hline
+	1,2,4,8,16,32,1,2,4,8,16 & 0.4 &100            &0.9526\\\hline
+	1,2,4,8,16,32,64,1,2,4,8,16,32 & 0.01 &100     &0.9516\\\hline
+	1,2,4,8,16,32,1,2,4,8,16 & 0.01 &100           &0.9507\\\hline
+	1,2,4,8,16,32,1,2,4,8,16 & 0.4 &tanpa \textit{early stopping}    &0.9526\\\hline
+    \end{tabular}
+\end{table}
+
+Hasil penyetelan parameter model frekuensi harmonik tampak pada Tabel \ref{tab-freq-model-tuning-results}. Faktor dilasi yang memiliki kinerja terbaik adalah $1,2,4,1,2$, sama dengan pada riset sintesis neural parametrik nyanyian. Tingkat \textit{noise} $\lambda$ terbaik adalah $0.4$, sama dengan pada riset sintesis neural parametrik nyanyian. Model yang dilatih dengan \textit{early stopping} memiliki kinerja lebih baik daripada tanpa \textit{early stopping}.
+
+\begin{table}[h]
+    \centering
+    \caption{Hasil Validasi Silang untuk Penyetelan Parameter Model Frekuensi Harmonik}\label{tab-freq-model-tuning-results}
+    \begin{tabular}{ |l|l|l|r| } 
+     \hline
+     \multicolumn{3}{|l|}{Parameter} & Rata-Rata Pearson r\\
+     \cline{1-3}
+     faktor dilasi & $\lambda$ & \textit{patience} &Frekuensi Harmonik \\
+	 \hline 
+	1,2,4,1,2 & 0.4 &100           &0.9888\\\hline
+	1,2,4 & 0.4 &100               &0.9874\\\hline
+	1,2,4,8,1,2,4 & 0.4 &100       &0.9884\\\hline
+	1,2,4,1,2 & 0.01 &100          &0.9830\\\hline
+	1,2,4 & 0.01 &100              &0.9884\\\hline
+	1,2,4,8,1,2,4 & 0.01 &100      &0.9864\\\hline
+	1,2,4,1,2 & 0.4 &tanpa \textit{early stopping}   &0.9839\\\hline
+    \end{tabular}
+\end{table}
+
+Hasil penyetelan parameter model magnitudo harmonik tampak pada Tabel \ref{tab-mag-model-tuning-results}. Faktor dilasi yang memiliki kinerja terbaik adalah $1,2,4,8,1,2,4$. Faktor dilasi ini memiliki medan reseptif terhadap output sebelum yang lebih panjang daripada faktor dilasi pada riset neural parametrik nyanyian. Hal ini menunjukkan bahwa unsur magnitudo harmonik pada sintesis alat musik gesek membutuhkan konteks yang lebih luas daripada konteks pada sintesis suara nyanyian. Tingkat \textit{noise} $\lambda$ terbaik adalah $0.4$, sama dengan pada riset sintesis neural parametrik nyanyian. Model yang dilatih dengan \textit{early stopping} memiliki kinerja lebih baik daripada tanpa \textit{early stopping}.
+
+\begin{table}[h]
+    \centering
+    \caption{Hasil Validasi Silang untuk Penyetelan Parameter Model Magnitudo Harmonik}\label{tab-mag-model-tuning-results}
+    \begin{tabular}{ |l|l|l|r| } 
+     \hline
+     \multicolumn{3}{|l|}{Parameter} & Rata-Rata Pearson r\\
+     \cline{1-3}
+     faktor dilasi & $\lambda$ & \textit{patience} & Magnitudo Harmonik\\
+	 \hline 
+	1,2,4,1,2 & 0.4 &100           &0.1717\\\hline
+	1,2,4,8,1,2,4 & 0.4 &100       &0.2002\\\hline
+	1,2,4 & 0.4 &100               &0.0980\\\hline
+	1,2,4,1,2 & 0.01 &100          &0.1338\\\hline
+	1,2,4,8,1,2,4 & 0.01 &100      &0.0592\\\hline
+	1,2,4 & 0.01 &100              &0.0556\\\hline
+	1,2,4 & 0.4 &tanpa \textit{early stopping}       &0.1704\\\hline
+    \end{tabular}
+\end{table}
+
+Hasil penyetelan parmeter model amplop stokastik tampak pada Tabel \ref{tab-stoc-model-tuning-results}. Faktor dilasi yang memiliki kinerja terbaik adalah $1,2,4,1,2$, sama dengan pada riset sintesis neural parametrik nyanyian. Tingkat \textit{noise} $\lambda$ terbaik adalah $0.4$, sama dengan pada riset sintesis neural parametrik nyanyian. Model yang dilatih dengan \textit{early stopping} memiliki kinerja lebih baik daripada tanpa \textit{early stopping}.
+
+\begin{table}[h]
+    \centering
+    \caption{Hasil Validasi Silang untuk Penyetelan Parameter Model Amplop Stokastik}\label{tab-stoc-model-tuning-results}
+    \begin{tabular}{ |l|l|l|r| } 
+     \hline
+     \multicolumn{3}{|l|}{Parameter} & Rata-Rata Pearson r\\
+     \cline{1-3}
+     faktor dilasi & $\lambda$ & \textit{patience} & Amplop Stokastik\\
+	 \hline 
+	1,2,4,1,2& 0.4& 100           & 0.0391\\\hline
+	1,2,4& 0.4& 100               & 0.0729\\\hline
+	1,2,4,8,1,2,4& 0.4& 100       &-0.0028\\\hline
+	1,2,4,1,2& 0.01& 100          &-0.0328\\\hline
+	1,2,4& 0.01& 100              &-0.0884\\\hline
+	1,2,4,8,1,2,4& 0.01& 100      &-0.1304\\\hline
+	1,2,4& 0.4& tanpa \textit{early stopping}       & 0.0493\\\hline
+    \end{tabular}
+\end{table}
+
+Dengan demikian, 
+
+\begin{table}[h]
+	\centering
+	\caption{Nilai parameter-Parameter Model \textit{Pitch} dan Model Timbre}
+	\begin{tabularx}{\textwidth}{|X|X|X|X|X|}
+	\hline
+	\multirow{2}{*}{Parameter}&\multicolumn{3}{|X|}{Timbre Model}&{Pitch Model}\\\cline{2-5}
+	&Deviasi Frekuensi Harmonik&Magnitudo Harmonik (ternormalisasi minmax)&Amplop Stokastik (ternormalisasi minmax)&Deviasi F0 (skala: \textit{semitone})\\
+	\hline
+	\end{tabularx}
+
+\end{table}
+
+\subsection{Perbandingan kinerja model dari keseluruhan data latih dengan model dari sebagian data latih}
+
+Tabel \ref{tab-timing-model-subset-results} menunjukkan \blindtext
+\begin{table}[h]
+    \centering
+    \caption{Kinerja Model Timing dengan Berbagai Subset Data Latih}\label{tab-timing-model-subset-results}
+    \begin{tabular}{ |l|r|r| } 
+     \hline
+     \multirow{2}{*}{Subset data latih} & \multicolumn{2}{l|}{Pearson r untuk Nada Tiap \textit{Frame}} \\
+     \cline{2-3}
+     & terhadap data latih & terhadap data uji \\\hline
+
+	\textit{fold}-1          &0.1816  &0.0528\\\hline
+	\textit{fold}-2          &0.2049 &-0.0252\\\hline
+	\textit{fold}-3          &0.2009  &0.1483\\\hline
+	\textit{fold}-4          &0.2515  &0.0187\\\hline
+	\textit{fold}-5          &0.2868  &0.0001\\\hline
+	data latih utuh			 &0.2511  &0.2213\\\hline
+    \end{tabular}
+\end{table}
+
+Tabel \ref{tab-f0-model-subset-results} menunjukkan \blindtext
+\begin{table}[h]
+    \centering
+    \caption{Kinerja Model F0 dengan Berbagai Subset Data Latih}\label{tab-f0-model-subset-results}
+    \begin{tabular}{ |l|r|r| } 
+     \hline
+     \multirow{2}{*}{Subset data latih} & \multicolumn{2}{l|}{Pearson r untuk F0 Tiap \textit{Frame}} \\
+     \cline{2-3}
+     & terhadap data latih & terhadap data uji \\\hline
+	\textit{fold}-1          &0.9529  & 0.9551\\\hline
+	\textit{fold}-2          &0.9511  &-0.9534\\\hline
+	\textit{fold}-3          &0.9520  &0.9534\\\hline
+	\textit{fold}-4          &0.9512  &0.9547\\\hline
+	\textit{fold}-5          &0.9513  &0.9547\\\hline
+	data latih utuh			 &0.9514  &0.9547\\\hline
+    \end{tabular}
+\end{table}
+
+Tabel \ref{tab-freq-model-subset-results} menunjukkan \blindtext
+\begin{table}[h]
+    \centering
+    \caption{Kinerja Model Frekuensi Harmonik dengan Berbagai Subset Data Latih}\label{tab-freq-model-subset-results}
+    \begin{tabular}{ |l|r|r| } 
+     \hline
+     \multirow{2}{*}{Subset data latih} & \multicolumn{2}{l|}{Pearson r untuk Frekuensi Harmonik Tiap \textit{Frame}} \\
+     \cline{2-3}
+     & terhadap data latih & terhadap data uji \\\hline
+	\textit{fold}-1      &0.9897  &0.9924\\\hline
+	\textit{fold}-2      &0.9898  &0.9917\\\hline
+	\textit{fold}-3      &0.9909  &0.9924\\\hline
+	\textit{fold}-4      &0.9868  &0.9930\\\hline
+	\textit{fold}-5      &0.9896  &0.9932\\\hline
+	data latih utuh      &0.9920  &0.9935\\\hline
+    \end{tabular}
+\end{table}
+
+Tabel \ref{tab-mag-model-subset-results} menunjukkan \blindtext
+\begin{table}[h]
+    \centering
+    \caption{Kinerja Model Magnitudo Harmonik dengan Berbagai Subset Data Latih}\label{tab-mag-model-subset-results}
+    \begin{tabular}{ |l|r|r| } 
+     \hline
+     \multirow{2}{*}{Subset data latih} & \multicolumn{2}{l|}{Pearson r untuk Magnitudo Harmonik Tiap \textit{Frame}} \\
+     \cline{2-3}
+     & terhadap data latih & terhadap data uji \\\hline
+	\textit{fold}-1      &0.3997  &0.3031\\\hline
+	\textit{fold}-2      &0.3846  &0.2725\\\hline
+	\textit{fold}-3      &0.4118  &0.2469\\\hline
+	\textit{fold}-4      &0.3886  &0.2972\\\hline
+	\textit{fold}-5      &0.4469  &0.3211\\\hline
+	data latih utuh    	 &0.3050  &0.2534\\\hline
+    \end{tabular}
+\end{table}
+
+Tabel \ref{tab-stoc-model-subset-results} menunjukkan \blindtext
+\begin{table}[h]
+    \centering
+    \caption{Kinerja Model Amplop Stokastik dengan Berbagai Subset Data Latih}\label{tab-stoc-model-subset-results}
+    \begin{tabular}{ |l|r|r| } 
+     \hline
+     \multirow{2}{*}{Subset data latih} & \multicolumn{2}{l|}{Pearson r untuk Amplop Stokastik Tiap \textit{Frame}} \\
+     \cline{2-3}
+     & terhadap data latih & terhadap data uji \\\hline
+	\textit{fold}-1       &0.2471  &0.0211\\\hline
+	\textit{fold}-2       &0.5555  &0.0508\\\hline
+	\textit{fold}-3       &0.2820  &0.0355\\\hline
+	\textit{fold}-4       &0.5925  &0.0640\\\hline
+	\textit{fold}-5       &0.5598  &0.1240\\\hline
+	data latih utuh       &0.4303  &0.0552\\\hline
+    \end{tabular}
+\end{table}
+
+\subsection{Hasil Uji Korelasi Tiap Komponen}
+
+Tabel \ref{tab-timing-testing-results} \blindtext
+\begin{table}[h]
+    \centering
+    \caption{Hasil Pengujian Model Timing}\label{tab-timing-testing-results}
+    \begin{tabular}{ |l|r|r| } 
+     \cline{2-3}
+     \multicolumn{1}{l|}{}&Terhadap data latih&Terhadap data uji\\\hline
+	 Pearson r&0.2511  &0.2213\\\hline
+    \end{tabular}
+\end{table}
+
+Tabel \ref{tab-f0-testing-results} \blindtext
+\begin{table}[h]
+    \centering
+    \caption{Hasil Pengujian Model F0}\label{tab-f0-testing-results}
+    \begin{tabular}{ |l|r|r| } 
+     \cline{2-3}
+     \multicolumn{1}{l|}{}&Terhadap data latih&Terhadap data uji\\\hline
+	 Pearson r&0.9529  &0.9550\\\hline
+    \end{tabular}
+\end{table}
+
+Tabel \ref{tab-freq-testing-results} \blindtext
+\begin{table}[h]
+    \centering
+    \caption{Hasil Pengujian Model Frekuensi Harmonik}\label{tab-freq-testing-results}
+    \begin{tabular}{ |l|r|r| } 
+     \cline{2-3}
+     \multicolumn{1}{l|}{}&Terhadap data latih&Terhadap data uji\\\hline
+	 Pearson r&0.9920  &0.9935\\\hline
+    \end{tabular}
+\end{table}
+
+Tabel \ref{tab-mag-testing-results} \blindtext
+\begin{table}[h]
+    \centering
+    \caption{Hasil Pengujian Model Magnitudo Harmonik}\label{tab-mag-testing-results}
+    \begin{tabular}{ |l|r|r| } 
+     \cline{2-3}
+     \multicolumn{1}{l|}{}&Terhadap data latih&Terhadap data uji\\\hline
+	 Pearson r&0.4469  &0.3211\\\hline
+    \end{tabular}
+\end{table}
+
+Tabel \ref{tab-stoc-testing-results} \blindtext
+\begin{table}[h]
+    \centering
+    \caption{Hasil Pengujian Model Amplop Stokastik}\label{tab-stoc-testing-results}
+    \begin{tabular}{ |l|r|r| } 
+     \cline{2-3}
+     \multicolumn{1}{l|}{}&Terhadap data latih&Terhadap data uji\\\hline
+	 Pearson r&0.5925  &0.0640\\\hline
+    \end{tabular}
+\end{table}
+
+\section{Hasil Uji Korelasi Sistem Utuh}
+Tabel \ref{tab-system-testing-results}\blindtext
+
+Tabel \ref{tab-stoc-testing-results} \blindtext
+\begin{table}[h]
+    \centering
+    \caption{Hasil Pengujian Model Amplop Stokastik}\label{tab-stoc-testing-results}
+    \begin{tabular}{ |l|r|r| } 
+     \cline{2-3}
+     \multicolumn{1}{l|}{}&\multicolumn{2}{|l|}{Rata-Rata Pearson r Semua Komponen}\\\hline
+     Sistem&Terhadap data latih&Terhadap data uji\\\hline
+	 RPM&-0.2380* &-0.0020\\\hline
+	 DT-Neural Parametrik& 0.1188**&0.1133\\\hline
+	 \multicolumn{3}{l|}{*RPM tidak dilatih dengan data latih ini}\\
+	 \multicolumn{3}{l|}{**DT-Neural Parametrik dilatih dengan subset yang telah dipilih}\\
+    \end{tabular}
+\end{table}
+
+
+\section{Hasil Uji Preferensi}
 \blindtext
