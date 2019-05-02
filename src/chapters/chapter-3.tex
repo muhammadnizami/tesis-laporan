@@ -124,17 +124,21 @@ Fitur akustik yang dibangkitkan dan menjadi input fitur akustik berikutnya adala
     \Delta_{f_0}[t] = ln(f_0[t]) - ln({f_0}_{eq}(note[t]))
 \end{equation}\label{f0-deviation}
 
-Input kontrol yang digunakan berasal dari partitur dan estimasi \textit{timing} keluaran model \textit{timing}. Berdasarkan keluaran model \textit{timing}, dapat diketahui not pada partitur yang dibunyikan pada satu langkah waktu. Berdasarkan not tersebut, input kontrol ini adalah sebagai berikut:
+Input kontrol yang digunakan berasal dari partitur dan estimasi \textit{timing} keluaran model \textit{timing}. Berdasarkan keluaran model \textit{timing}, dapat diketahui not pada partitur yang dibunyikan pada satu langkah waktu. Berdasarkan not tersebut, input kontrol ini terdiri dari fitur not tersebut, not sebelumnya, dan not sesudahnya. Fitur tiap not adalah sebagai berikut:
 
 \begin{enumerate}
-    \item \textit{pitch} $k$ not sebelumnya (one-hot posisi dalam oktaf dan nomor oktaf, relatif terhadap tanda kunci)
-    \item \textit{pitch} not saat ini (one-hot posisi dalam oktaf dan nomor oktaf, relatif terhadap tanda kunci)
-    \item \textit{pitch} $k$ not sesudahnya (one-hot posisi dalam oktaf dan nomor oktaf, relatif terhadap tanda kunci)
-    \item tanda kunci
-    \item durasi $k$ not sebelumnya
-    \item durasi not saat ini
-    \item durasi $k$ not sesudahnya
-    \item posisi dalam not
+  \item nada tertulis absolut 
+  \item durasi tertulis
+  \item durasi aktual
+  \item kunci tertulis (\textit{onehot})
+  \item nada relatif terhadap kunci (\textit{onehot}, dalam 1 oktaf/12 \textit{semitone})
+  \item not adalah \textit{grace}
+  \item not memiliki tanda \textit{trill}
+  \item tanda istirahat
+  \item bukan tanda istirahat (not)
+  \item posisi not dalam bar
+  \item \textit{beat strength}
+  \item \textit{quarter length}
 \end{enumerate}
 
 \section{Model \textit{Timbre}}
@@ -168,7 +172,7 @@ Untuk melatih sistem ini, dibutuhkan data latih berupa partitur, \textit{timing}
 
 Partitur didapatkan dari Petrucci Music Library, dengan memilih secara berurutan dari daftar lagu untuk satu alat musik gesek. Dari daftar lagu tersebut, dipilih lagu yang dapat ditemukan rekaman audionya pada situs \textit{media sharing} publik.
 
-Tidak semua lagu yang memiliki rekaman audio bersesuaian digunakan. Partitur dikumpulkan berurutan secara alfabetis dengan kriteria minimal total durasi 30 menit. Minimal total durasi ini didasarkan kepada riset neural parametrik nyanyian oleh Bonada.
+Tidak semua lagu yang memiliki rekaman audio bersesuaian digunakan. Partitur dikumpulkan berurutan secara alfabetis dengan kriteria minimal total durasi 30 menit. Minimal total durasi ini didasarkan kepada riset neural parametrik nyanyian oleh.
 
 Partitur terkumpul kemudian disalin dari format gambar atau PDF ke dalam format MIDI. Penyalinan ke dalam format MIDI dilakukan secara manual
 

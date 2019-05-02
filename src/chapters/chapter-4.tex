@@ -42,7 +42,7 @@ Untuk model-model F0, frekuensi harmonik, magnitudo harmonik, dan amplop stokast
 		\item tingkat \textit{noise} pada masukan $\lambda$
 		\item \textit{early stopping patience}
 	\end{itemize}
-	\item parameter terikat, berubah apabila faktor dilasi berubah, yaitu:
+	\item parameter terikat, berubah apabila faktor dilasi dan ukuran konvolusi berubah, yaitu:
 	\begin{itemize}
 		\item jumlah lapisan
 		\item jumlah lapisan per \textit{stage}
@@ -50,7 +50,7 @@ Untuk model-model F0, frekuensi harmonik, magnitudo harmonik, dan amplop stokast
 	\end{itemize}
 \end{itemize}
 
-Untuk model F0, parameter yang diambil dari riset neural parametrik nyanyian diambil dari model F0 pada riset neural parametrik nyanyian. Untuk model frekuensi harmonik dan model magnitudo harmonik, parameter disesuaikan dari model amplop harmonik pada riset neural parametrik nyanyian. Untuk model amplop stokastik, parameter disesuaikan dari model aperiodisitas pada riset neural parametrik nyanyian
+Untuk model F0, parameter yang diambil dari riset neural parametrik nyanyian diambil dari model F0 pada riset neural parametrik nyanyian. Untuk model frekuensi harmonik dan model magnitudo harmonik, parameter disesuaikan dari model amplop harmonik pada riset neural parametrik nyanyian. Untuk model amplop stokastik, parameter disesuaikan dari model aperiodisitas pada riset neural parametrik nyanyian.
 
 Setelah parameter telah disetel, model dilatih dengan keseluruhan data latih. Namun, model ini tidak langsung diujikan terhadap data uji. Kinerja model ini dibandingkan terlebih dahulu dengan kinerja model yang telah dilatih pada tahapan validasi silang. Hal ini dilakukan untuk memilih model terbaik, karena mungkin saja model yang dilatih dengan data latih lebih besar memiliki kinerja yang lebih buruk. Hal ini dilakukan untuk model \textit{pitch} dan model \textit{timbre}. Adapun untuk model \textit{timing} akan digunakan model yang dilatih dengan keseluruhan data latih. Setelah dipilih model yang terbaik terhadap data latih, model diujikan terhadap data uji.
 
@@ -72,7 +72,7 @@ Hasil eksperimen komponen sistem terdiri dari eksperimen model \textit{timing}, 
 
 Eksperimen model \textit{timing} dimulai dengan pemilihan teknik menggunakan validasi silang. Sebagaimana tampak pada Tabel \ref{tab-timing-model-tuning-results}, tampak bahwa teknik \textit{decision tree regression} memiliki kinerja yang lebih baik daripada ANN. Analisis lebih lanjut terhadap \textit{output} ANN tersebut menunjukkan bahwa deviasi \textit{timing} yang dihasilkan ANN adalah konstan. Hal ini menunjukkan bahwa ANN tidak dapat mempelajari pola deviasi \textit{timing} pada data latih.
 
-\begin{table}[h]
+\begin{table}[htbp]
     \centering
     \caption{Hasil Validasi Silang untuk Penyetelan Parameter Model \textit{Timing}}\label{tab-timing-model-tuning-results}
     \begin{tabular}{ |l|r| } 
@@ -104,7 +104,7 @@ Penyetelan model berikutnya adalah penyetelan model F0. Tabel \ref{tab-f0-model-
 
 Pelatihan model F0 dengan \textit{early stopping} memiliki kinerja yang sama dengan pelatihan tanpa \textit{early stopping}. Hal ini karena dengan \textit{patience} 100, \textit{early stopping} tidak menghentikan pelatihan hingga jumlah \textit{epoch} maksimal yang bernilai 300. Karenanya, tanpa \textit{early stopping} ataupun dengan \textit{early stopping}, model F0 ini tetap dilatih dengan 300 \textit{epoch}.
 
-\begin{table}[h]
+\begin{table}[htbp]
     \centering
     \caption{Hasil Validasi Silang untuk Penyetelan Parameter Model F0}\label{tab-f0-model-tuning-results}
     \begin{tabular}{ |l|l|l|r| } 
@@ -123,7 +123,7 @@ Pelatihan model F0 dengan \textit{early stopping} memiliki kinerja yang sama den
 
 Hasil penyetelan parameter model frekuensi harmonik tampak pada Tabel \ref{tab-freq-model-tuning-results}. Faktor dilasi yang memiliki kinerja terbaik adalah $1,2,4,1,2$, sama dengan pada riset sintesis neural parametrik nyanyian. Tingkat \textit{noise} $\lambda$ terbaik adalah $0.4$, sama dengan pada riset sintesis neural parametrik nyanyian. Model yang dilatih dengan \textit{early stopping} memiliki kinerja lebih baik daripada tanpa \textit{early stopping}.
 
-\begin{table}[h]
+\begin{table}[htbp]
     \centering
     \caption{Hasil Validasi Silang untuk Penyetelan Parameter Model Frekuensi Harmonik}\label{tab-freq-model-tuning-results}
     \begin{tabular}{ |l|l|l|r| } 
@@ -144,7 +144,7 @@ Hasil penyetelan parameter model frekuensi harmonik tampak pada Tabel \ref{tab-f
 
 Hasil penyetelan parameter model magnitudo harmonik tampak pada Tabel \ref{tab-mag-model-tuning-results}. Faktor dilasi yang memiliki kinerja terbaik adalah $1,2,4,8,1,2,4$. Faktor dilasi ini memiliki medan reseptif terhadap output sebelum yang lebih panjang daripada faktor dilasi pada riset neural parametrik nyanyian. Hal ini menunjukkan bahwa unsur magnitudo harmonik pada sintesis alat musik gesek membutuhkan konteks yang lebih luas daripada konteks pada sintesis suara nyanyian. Tingkat \textit{noise} $\lambda$ terbaik adalah $0.4$, sama dengan pada riset sintesis neural parametrik nyanyian. Model yang dilatih dengan \textit{early stopping} memiliki kinerja lebih baik daripada tanpa \textit{early stopping}.
 
-\begin{table}[h]
+\begin{table}[htbp]
     \centering
     \caption{Hasil Validasi Silang untuk Penyetelan Parameter Model Magnitudo Harmonik}\label{tab-mag-model-tuning-results}
     \begin{tabular}{ |l|l|l|r| } 
@@ -165,7 +165,7 @@ Hasil penyetelan parameter model magnitudo harmonik tampak pada Tabel \ref{tab-m
 
 Hasil penyetelan parmeter model amplop stokastik tampak pada Tabel \ref{tab-stoc-model-tuning-results}. Faktor dilasi yang memiliki kinerja terbaik adalah $1,2,4,1,2$, sama dengan pada riset sintesis neural parametrik nyanyian. Tingkat \textit{noise} $\lambda$ terbaik adalah $0.4$, sama dengan pada riset sintesis neural parametrik nyanyian. Model yang dilatih dengan \textit{early stopping} memiliki kinerja lebih baik daripada tanpa \textit{early stopping}.
 
-\begin{table}[h]
+\begin{table}[htbp]
     \centering
     \caption{Hasil Validasi Silang untuk Penyetelan Parameter Model Amplop Stokastik}\label{tab-stoc-model-tuning-results}
     \begin{tabular}{ |l|l|l|r| } 
@@ -184,24 +184,57 @@ Hasil penyetelan parmeter model amplop stokastik tampak pada Tabel \ref{tab-stoc
     \end{tabular}
 \end{table}
 
-Dengan demikian, 
-
-\begin{table}[h]
+Dengan demikian, nilai parameter-parameter model yang telah disetel terdapat pada Tabel \ref{tab-timbre-pitch-model-parameters} dan Tabel \ref{tab-timing-model-parameters}. Nilai parameter-parameter model \textit{timing} terdapat pada Tabel \ref{tab-timing-model-parameters}. Nilai parameter-parameter model \textit{pitch} dan model timbre terdapat pada Tabel \ref{tab-timbre-pitch-model-parameters}.
+\begin{table}[htbp]
 	\centering
-	\caption{Nilai parameter-Parameter Model \textit{Pitch} dan Model Timbre}
-	\begin{tabularx}{\textwidth}{|X|X|X|X|X|}
+	\caption{Nilai Parameter-Parameter Model \textit{Timing}}\label{tab-timing-model-parameters}
+	\begin{tabular}{|l|l|}
 	\hline
-	\multirow{2}{*}{Parameter}&\multicolumn{3}{|X|}{Timbre Model}&{Pitch Model}\\\cline{2-5}
-	&Deviasi Frekuensi Harmonik&Magnitudo Harmonik (ternormalisasi minmax)&Amplop Stokastik (ternormalisasi minmax)&Deviasi F0 (skala: \textit{semitone})\\
-	\hline
-	\end{tabularx}
-
+	Parameter&Nilai \\\hline
+	Fitur not konteks & 3 sebelum, 3 sesudah\\\hline
+	Kedalaman maksimal pohon & 300\\\hline
+	\end{tabular}
 \end{table}
 
+
+\begin{table}[htbp]
+	\newlength\colwidth
+	\setlength\colwidth{\dimexpr.2\columnwidth-2\tabcolsep-0.2\arrayrulewidth\relax}
+	\centering
+	\caption{Nilai Parameter-Parameter Model \textit{Pitch} dan Model Timbre}\label{tab-timbre-pitch-model-parameters}
+	\begin{tabular}{|p{\colwidth}|p{\colwidth}|p{\colwidth}|p{\colwidth}|p{\colwidth}|}
+	\hline
+	\multirow{2}{*}{Parameter}&\multicolumn{3}{|p{\dimexpr 3\colwidth}|}{Model Timbre}&{Model Pitch}\\\cline{2-5}
+	&Deviasi Frekuensi Harmonik&Magnitudo Harmonik (ternormalisasi minmax)&Amplop Stokastik (ternormalisasi minmax)&Deviasi F0 (skala: \textit{semitone})\\\hline
+	Dimensi fitur&20&20&6&1\\\hline
+	Input tambahan (dim.)& Deviasi F0 (1) & Deviasi F0 (1) \newline Dev. HFreq (20) & Deviasi F0 (1) \newline Dev. HFreq (20) \newline Hmag (20) & - \\
+	\hline
+	Not konteks input kontrol & \multicolumn{4}{|p{\dimexpr 4\colwidth}|}{
+	Not sebelum dan not sesudah
+	}\\\hline
+	Tingkat \textit{noise} $\lambda$ & 0.4&0.4&0.4&0.4\\\hline
+	Temperatur pembangkitan & 0. (harmonik terendah) – 0.0001 (harmonik tertinggi) & 0. (harmonik terendah) – 0.01 (harmonik tertinggi) & 0.001 & 0.001 \\\hline
+	Konvolusi kausal awal & $10 \times 1$ & $10 \times 1$ & $10 \times 1 $ & $20 \times 1 $\\\hline
+	Kanal residual & 20 & 130 & 20 & 100 \\\hline
+	Konvolusi terdilasi & $2\times 1$ & $2\times 1$ & $2\times 1$ & $2\times 1$ \\\hline
+	Jumlah lapisan & 5 & 7 & 3 & 11\\\hline
+	Lapisan per \textit{stage} & 3 & 4 & 3 & 6\\\hline
+	Faktor dilasi & 1,2,4,1,2 & 1,2,4,8,1,2,4 & 1,2,4 & 1,2,4,8,16,32, 1,2,4,8,16\\\hline
+	Medan reseptif&58 ms & 93 ms & 49 ms & 33 ms\\\hline
+	Kanal \textit{skip}&16&240&20&100\\\hline
+	\textit{Output stage}&Tanh$\rightarrow 1\times 1 \rightarrow 20\times CGM_{K=4}$&Tanh$\rightarrow 1\times 1 \rightarrow 20\times CGM_{K=4}$&Tanh$\rightarrow 1\times 1 \rightarrow 6\times CGM_{K=4}$&Tanh$\rightarrow 1\times 1 \rightarrow 1\times CGM_{K=4}$\\\hline
+	Ukuran \textit{batch} &32&32&32& 64\\\hline
+	Jumlah \textit{frame} output valid & 101 & 101 & 101 & 101 \\\hline
+	\textit{Learning rate} & default & default & default & default\\\hline
+	Jumlah \textit{epoch} maksimal & 2000 & 2000 & 2000 & 300 \\\hline
+	\textit{Patience} & 100 & 100 & 100 & 100 \\\hline
+	\end{tabular}
+\end{table}
 \subsection{Perbandingan kinerja model dari keseluruhan data latih dengan model dari sebagian data latih}
 
-Tabel \ref{tab-timing-model-subset-results} menunjukkan \blindtext
-\begin{table}[h]
+Tabel \ref{tab-timing-model-subset-results} menunjukkan perbandingan kinerja model \textit{timing} yang dilatih dengan keseluruhan data latih dan model yang dilatih dengan sebagian data latih. Hasil ini membuktikan bahwa untuk model \textit{timing}, model yang dilatih dengan keseluruhan data latih memiliki kinerja lebih baik. Adapun model yang dilatih dengan sebagian data latih, umumnya memiliki kinerja terhadap data uji yang lebih buruk. Hal ini karena model \textit{timing} tidak mengalami anomali yang dialami oleh model-model yang menggunakan arsitektur Wavenet yang dimodifikasi.
+
+\begin{table}[htbp]
     \centering
     \caption{Kinerja Model Timing dengan Berbagai Subset Data Latih}\label{tab-timing-model-subset-results}
     \begin{tabular}{ |l|r|r| } 
@@ -219,8 +252,11 @@ Tabel \ref{tab-timing-model-subset-results} menunjukkan \blindtext
     \end{tabular}
 \end{table}
 
-Tabel \ref{tab-f0-model-subset-results} menunjukkan \blindtext
-\begin{table}[h]
+Tabel \ref{tab-f0-model-subset-results} menunjukkan perbandingan kinerja model F0 yang dilatih dengan keseluruhan data latih dan model yang dilatih dengan sebagian data latih. Perhatikan bahwa kinerja tertinggi terhadap data latih diperoleh dengan subset \textit{fold}-1. Kinerja model yang dilatih dengan subset ini terhadap data uji lebih baik daripada kinerja model yang dilatih dengan keseluruhan data latih. Hal ini menunjukkan bahwa untuk model F0, dengan memilih subset data latih dengan kinerja terhadap data latih tertinggi, kinerjanya kepada data uji lebih baik daripada model yang dilatih dengan data latih utuh. 
+
+Terdapat dua kemungkinan yang menyebabkan hal ini. Kemungkinan pertama, penambahan data latih menurunkan kinerja. Kemungkinan kedua adalah kualitas data latih tidak merata.
+
+\begin{table}[htbp]
     \centering
     \caption{Kinerja Model F0 dengan Berbagai Subset Data Latih}\label{tab-f0-model-subset-results}
     \begin{tabular}{ |l|r|r| } 
@@ -237,8 +273,11 @@ Tabel \ref{tab-f0-model-subset-results} menunjukkan \blindtext
     \end{tabular}
 \end{table}
 
-Tabel \ref{tab-freq-model-subset-results} menunjukkan \blindtext
-\begin{table}[h]
+Tabel \ref{tab-freq-model-subset-results} menunjukkan  perbandingan kinerja model frekuensi harmonik yang dilatih dengan keseluruhan data latih dan model yang dilatih dengan sebagian data latih. Perhatikan bahwa kinerja tertinggi terhadap data latih diperoleh dengan data latih utuh. Kinerja tertinggi terhadap data uji juga didapatkan dengan model yang dilatih dengan data latih utuh. 
+
+Hal ini menunjukkan bahwa untuk model frekuensi harmonik, penambahan data latih meningkatkan kinerja model. Selain itu, ditunjukkan pula bahwa untuk model frekuensi harmonik, pemilihan kumpulan data latih berdasarkan kinera terhadap data latih utuh akan menghasilkan kinerja tertinggi terhadap data uji.
+
+\begin{table}[htbp]
     \centering
     \caption{Kinerja Model Frekuensi Harmonik dengan Berbagai Subset Data Latih}\label{tab-freq-model-subset-results}
     \begin{tabular}{ |l|r|r| } 
@@ -255,8 +294,13 @@ Tabel \ref{tab-freq-model-subset-results} menunjukkan \blindtext
     \end{tabular}
 \end{table}
 
-Tabel \ref{tab-mag-model-subset-results} menunjukkan \blindtext
-\begin{table}[h]
+% TODO pola frekuensi yang belum dapat dipelajari
+
+Tabel \ref{tab-mag-model-subset-results} menunjukkan perbandingan kinerja model magnitudo harmonik yang dilatih dengan keseluruhan data latih dan model yang dilatih dengan sebagian data latih. Perhatikan bahwa kinerja tertinggi terhadap data latih diperoleh dengan subset \textit{fold}-5. Kinerja model yang dilatih dengan subset ini terhadap data uji lebih baik daripada kinerja model yang dilatih dengan keseluruhan data latih. Hal ini menunjukkan bahwa untuk model magnitudo harmonik, dengan memilih subset data latih dengan kinerja terhadap data latih tertinggi, kinerjanya kepada data uji lebih baik daripada model yang dilatih dengan data latih utuh. 
+
+Perhatikan pula bahwa kinerja model yang dilatih dengan subset \textit{fold}-1 hingga \textit{fold}-5 memiliki kinerja terhadap data latih utuh yang lebih tinggi dibandingkan dengan model yang dilatih dengan data latih utuh. Begitu pula kinerja terhadap data uji dari model yang dilatih dengan subset \textit{fold}-1 hingga \textit{fold}-5 secara umum lebih baik daripada model yang dilatih dengan data latih utuh. Hal ini menunjukkan bahwa untuk model magnitudo harmonik, data latih yang berukuran lebih besar memiliki kinerja lebih rendah.
+
+\begin{table}[htbp]
     \centering
     \caption{Kinerja Model Magnitudo Harmonik dengan Berbagai Subset Data Latih}\label{tab-mag-model-subset-results}
     \begin{tabular}{ |l|r|r| } 
@@ -273,8 +317,13 @@ Tabel \ref{tab-mag-model-subset-results} menunjukkan \blindtext
     \end{tabular}
 \end{table}
 
-Tabel \ref{tab-stoc-model-subset-results} menunjukkan \blindtext
-\begin{table}[h]
+%Pola magnitudo harmonik yang belum dapat dipelajari
+
+Tabel \ref{tab-stoc-model-subset-results} menunjukkan perbandingan kinerja model stokastik yang dilatih dengan keseluruhan data latih dan model yang dilatih dengan sebagian data latih. Perhatikan bahwa kinerja tertinggi terhadap data latih diperoleh dengan subset \textit{fold}-1. Kinerja model yang dilatih dengan subset ini terhadap data uji lebih baik daripada kinerja model yang dilatih dengan keseluruhan data latih. Hal ini menunjukkan bahwa untuk model stokastik, dengan memilih subset data latih dengan kinerja terhadap data latih tertinggi, kinerjanya kepada data uji lebih baik daripada model yang dilatih dengan data latih utuh. 
+
+Terdapat dua kemungkinan yang menyebabkan hal ini. Kemungkinan pertama, penambahan data latih menurunkan kinerja. Kemungkinan kedua adalah kualitas data latih tidak merata.
+
+\begin{table}[htbp]
     \centering
     \caption{Kinerja Model Amplop Stokastik dengan Berbagai Subset Data Latih}\label{tab-stoc-model-subset-results}
     \begin{tabular}{ |l|r|r| } 
@@ -291,10 +340,13 @@ Tabel \ref{tab-stoc-model-subset-results} menunjukkan \blindtext
     \end{tabular}
 \end{table}
 
+%kesalahan pada model stokastik
+
 \subsection{Hasil Uji Korelasi Tiap Komponen}
 
-Tabel \ref{tab-timing-testing-results} \blindtext
-\begin{table}[h]
+Tabel \ref{tab-timing-testing-results} menunjukkan korelasi nada tiap-tiap \textit{frame} dengan \textit{timing} not keluaran model \textit{timing}. Korelasi ini diukur terhadap nada tiap-tiap \textit{frame} dengan \textit{timing} ekspresif pada data. Nilai koefisien korelasi di atas 0 menunjukkan bahwa model berhasil mempelajari pola \textit{timing}. Namun, koefisien korelasi ini masih bernilai rendah. Kinerja model ini rendah baik terhadap data latih maupun data uji. Hal ini menunjukkan adanya \textit{underfitting}.
+
+\begin{table}[htbp]
     \centering
     \caption{Hasil Pengujian Model Timing}\label{tab-timing-testing-results}
     \begin{tabular}{ |l|r|r| } 
@@ -304,8 +356,8 @@ Tabel \ref{tab-timing-testing-results} \blindtext
     \end{tabular}
 \end{table}
 
-Tabel \ref{tab-f0-testing-results} \blindtext
-\begin{table}[h]
+Tabel \ref{tab-f0-testing-results} menunjukkan koefisien korelasi f0 tiap-tiap \textit{frame} keluaran model f0 terhadap f0 pada data. Nilai koefisien korelasi di atas 0 menunjukkan bahwa model berhasil mempelajari pola f0. Koefisien korelasi model ini tidak mencapai nilai 1, namun sudah mencapai 0.9550 terhadap data uji. Tidak terjadi \texit{overfitting} di sini.
+\begin{table}[htbp]
     \centering
     \caption{Hasil Pengujian Model F0}\label{tab-f0-testing-results}
     \begin{tabular}{ |l|r|r| } 
@@ -315,8 +367,7 @@ Tabel \ref{tab-f0-testing-results} \blindtext
     \end{tabular}
 \end{table}
 
-Tabel \ref{tab-freq-testing-results} \blindtext
-\begin{table}[h]
+Tabel \ref{tab-freq-testing-results} menunjukkan koefisien korelasi frekuensi harmonik tiap-tiap \textit{frame} keluaran model frekuensi harmonik terhadap frekuensi harmonik pada data. Nilai koefisien korelasi di atas 0 menunjukkan bahwa model berhasil mempelajari pola frekuensi harmonik. Koefisien korelasi model ini tidak mencapai nilai 1, namun sudah mencapai 0.9550 terhadap data uji. Tidak terjadi \texit{overfitting} di sini.
     \centering
     \caption{Hasil Pengujian Model Frekuensi Harmonik}\label{tab-freq-testing-results}
     \begin{tabular}{ |l|r|r| } 
@@ -326,8 +377,9 @@ Tabel \ref{tab-freq-testing-results} \blindtext
     \end{tabular}
 \end{table}
 
-Tabel \ref{tab-mag-testing-results} \blindtext
-\begin{table}[h]
+Tabel \ref{tab-mag-testing-results} menunjukkan koefisien korelasi magnitudo harmonik tiap-tiap \textit{frame} keluaran model magnitudo harmonik terhadap magnitudo harmonik pada data. Nilai koefisien korelasi di atas 0 menunjukkan bahwa model berhasil mempelajari pola magnitudo harmonik. Namun, koefisien korelasi ini masih bernilai rendah. Kinerja model ini rendah baik terhadap data latih maupun data uji. Hal ini menunjukkan adanya \textit{underfitting}.
+
+\begin{table}[htbp]
     \centering
     \caption{Hasil Pengujian Model Magnitudo Harmonik}\label{tab-mag-testing-results}
     \begin{tabular}{ |l|r|r| } 
@@ -337,8 +389,9 @@ Tabel \ref{tab-mag-testing-results} \blindtext
     \end{tabular}
 \end{table}
 
-Tabel \ref{tab-stoc-testing-results} \blindtext
-\begin{table}[h]
+Tabel \ref{tab-stoc-testing-results} menunjukkan koefisien korelasi amplop stokastik tiap-tiap \textit{frame} keluaran model amplop stokastik terhadap amplop stokastik pada data. Nilai koefisien korelasi di atas 0 menunjukkan bahwa model berhasil mempelajari pola amplop stokastik. Namun, koefisien korelasi ini masih bernilai rendah. Kinerja model ini rendah baik terhadap data latih maupun data uji. Namun, kinerja terhadap data uji jauh lebih rendah daripada kinerja terhadap data latih. Hal ini menunjukkan bahwa baik galat pelatihan maupun galat generalisasi pada model ini masih sangat tinggi.
+
+\begin{table}[htbp]
     \centering
     \caption{Hasil Pengujian Model Amplop Stokastik}\label{tab-stoc-testing-results}
     \begin{tabular}{ |l|r|r| } 
@@ -348,21 +401,24 @@ Tabel \ref{tab-stoc-testing-results} \blindtext
     \end{tabular}
 \end{table}
 
-\section{Hasil Uji Korelasi Sistem Utuh}
-Tabel \ref{tab-system-testing-results}\blindtext
+%TODO perbandingan hasil,
+%TODO pola-pola yang tidak tertangkap oleh koefisien korelasi
+%bahwa RPM mungkin saja memiliki nilai lebih tinggi dalam uji persepsi kealamian
 
-Tabel \ref{tab-stoc-testing-results} \blindtext
-\begin{table}[h]
+\section{Hasil Uji Korelasi Sistem Utuh}
+Tabel \ref{tab-system-testing-results} menunjukkan hasil uji korelasi sistem DT-Neural Parametrik dan perbandingannya dengan sistem \textit{baseline} yaitu RPM. Sistem DT-Neural Parametrik berhasil mencapai koefisien korelasi di atas nol, yang artinya sistem ini berhasil mempelajari sebagian pola-pola ekspresi. Namun, nilai koefisien korelasi ini masih rendah, artinya tidak semua pola-pola ekspresi berhasil dipelajari dengan benar. Meski demikian, Nilai koefisien korelasi yang dicapai oleh sistem ini lebih tinggi daripada sistem RPM.
+
+\begin{table}[htbp]
     \centering
-    \caption{Hasil Pengujian Model Amplop Stokastik}\label{tab-stoc-testing-results}
+    \caption{Hasil Pengujian Korelasi Sistem Utuh}\label{tab-system-testing-results}
     \begin{tabular}{ |l|r|r| } 
      \cline{2-3}
      \multicolumn{1}{l|}{}&\multicolumn{2}{|l|}{Rata-Rata Pearson r Semua Komponen}\\\hline
      Sistem&Terhadap data latih&Terhadap data uji\\\hline
 	 RPM&-0.2380* &-0.0020\\\hline
 	 DT-Neural Parametrik& 0.1188**&0.1133\\\hline
-	 \multicolumn{3}{l|}{*RPM tidak dilatih dengan data latih ini}\\
-	 \multicolumn{3}{l|}{**DT-Neural Parametrik dilatih dengan subset yang telah dipilih}\\
+	 \multicolumn{3}{l}{*RPM tidak dilatih dengan data latih ini}\\
+	 \multicolumn{3}{l}{**Model komponen dilatih dengan subset yang telah dipilih}\\
     \end{tabular}
 \end{table}
 
