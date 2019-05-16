@@ -1,7 +1,32 @@
 \chapter{Eksperimen Sistem Permainan Musik Ekspresif untuk Alat Musik Gesek}
 
 \section{Tujuan Eksperimen}
+
 Eksperimen dilakukan untuk menunjukkan kinerja sistem permainan musik ekspresif untuk alat musik gesek yang telah dibangun. Sistem permainan musik ekspresif diimplementasi berdasarkan hasil perancangan pada Bab \ref{design-chapter}. Kinerja yang akan diukur adalah kealamian ekspresi hasil sintesis suara oleh sistem tersebut. Kealamian memiliki makna seberapa mirip ekspresi pada permainan yang dihasilkan terhadap ekspresi permainan manusia.
+
+Meski tujuan utama eksperimen ini adalah menunjukkan kinerja sistem utuh, eksperimen juga dilakukan lebih detil untuk mengetahui kinerja komponen dan teknik yang digunakan. Secara ringkas, hal-hal yang diujikan tertulis dalam Tabel \ref{tab-experiment-list}.
+
+Sebelum pengujian untuk menunjukkan kinerja sistem permainan musik ekspresif untuk alat musik gesek, dilakukan eksperimen penyetelan parameter untuk menentukan parameter-parameter terbaik. Hal ini karena arsitektur model dan pelatihannya dipengaruhi oleh berbagai parameter.
+
+Selain itu, dilakukan juga pengujian untuk membuktikan bahwa skema pemilihan subset data latih yang diuraikan dalam Subbab \ref{subsetselectionsection} mampu menghasilkan model dengan kinerja lebih baik daripada model yang dilatih langsung menggunakan keseluruhan data latih untuk model-model yang menggunakan arsitektur Wavenet yang dimodifikasi. Hal ini akan dibuktikan untuk model-model \textit{pitch} dan \textit{timbre}. Adapun untuk model \textit{timing}, dilakukan pengujian untuk membuktikan bahwa skema pemilihan subset data latih tidak menghasilkan model dengan kinerja yang lebih baik daripada model yang dilatih langsung menggunakan keseluruhan data latih.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Tujuan Eksperimen yang Dilakukan}\label{tab-experiment-list}
+    \begin{tabular}{ |p{0.2\textwidth}|p{0.325\textwidth}|p{0.325\textwidth}|p{0.15\textwidth}| }
+    \hline
+    &\textbf{Tujuan}&\textbf{Hipotesis}&\textbf{Metrik}\\\hline
+    \multicolumn{4}{|p{\textwidth}|}{Eksperimen komponen}\\\hline
+    Penyetelan parameter&Menentukan parameter terbaik&-&Koefisien korelasi\\\hline
+    Uji pemilihan subset&Membuktikan hipotesis&
+    - Model \text{pitch} dan \textit{timbre}: kinerja dengan pemilihan subset $>$ kinerja tanpa pemilihan subset&Koefisien korelasi \\
+    && - model \text{textit}: kinerja dengan pemilihan subset $<$ kinerja tanpa pemilihan subset& \\hline
+    Uji korelasi komponen&Mengetahui kinerja masing-masing komponen & - & koefisien korelasi \\\hline
+    \multicolumn{4}{|p{\textwidth}|}{Eksperimen sistem utuh}\\\hline
+    Uji korelasi sistem utuh&Membuktikan hipotesis & Kinerja teknik yang diajukan $>$ kinerja korelasi teknik \textit{baseline}& Koefisien korelasi\\\hline
+    Uji preferensi kealamian&Membuktikan hipotesis & Pendengar manusia menganggap permainan dari sistem yang diajukan lebih alami daripada sistem \textit{baseline}& Preferensi kealamian subjektif \\\hline
+    \end{tabular}
+\end{table}
 
 \section{Skenario Eksperimen}
 Eksperimen dilakukan untuk menilai tingkat kealamian dari ekspresi permainan musik yang dihasilkan. Penilaian dilakukan dengan uji korelasi dan uji persepsi kealamian pendengar.
@@ -294,8 +319,6 @@ Hal ini menunjukkan bahwa untuk model frekuensi harmonik, penambahan data latih 
     \end{tabular}
 \end{table}
 
-% TODO pola frekuensi yang belum dapat dipelajari
-
 Tabel \ref{tab-mag-model-subset-results} menunjukkan perbandingan kinerja model magnitudo harmonik yang dilatih dengan keseluruhan data latih dan model yang dilatih dengan sebagian data latih. Perhatikan bahwa kinerja tertinggi terhadap data latih diperoleh dengan subset \textit{fold}-5. Kinerja model yang dilatih dengan subset ini terhadap data uji lebih baik daripada kinerja model yang dilatih dengan keseluruhan data latih. Hal ini menunjukkan bahwa untuk model magnitudo harmonik, dengan memilih subset data latih dengan kinerja terhadap data latih tertinggi, kinerjanya kepada data uji lebih baik daripada model yang dilatih dengan data latih utuh. 
 
 Perhatikan pula bahwa kinerja model yang dilatih dengan subset \textit{fold}-1 hingga \textit{fold}-5 memiliki kinerja terhadap data latih utuh yang lebih tinggi dibandingkan dengan model yang dilatih dengan data latih utuh. Begitu pula kinerja terhadap data uji dari model yang dilatih dengan subset \textit{fold}-1 hingga \textit{fold}-5 secara umum lebih baik daripada model yang dilatih dengan data latih utuh. Hal ini menunjukkan bahwa untuk model magnitudo harmonik, data latih yang berukuran lebih besar memiliki kinerja lebih rendah.
@@ -317,7 +340,13 @@ Perhatikan pula bahwa kinerja model yang dilatih dengan subset \textit{fold}-1 h
     \end{tabular}
 \end{table}
 
-%Pola magnitudo harmonik yang belum dapat dipelajari
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{resources/Analisis_Hmag_subset.png}
+    \caption{Contoh Perbandingan Keluaran Model Magnitudo Harmonik yang Dilatih dengan Subset dan Keseluruhan Data Latih (4 Harmonik Pertama), dengan Masukan \textit{Timing}, F0, dan Hfreq dari Dataset}\label{fig-hmag-subset-output-sample}
+\end{figure}
+
+Gambar \ref{fig-hmag-subset-output-sample} menujukkan contoh perbandingan keluaran model magnitudo harmonik yang dilatih dengan subset dan yang dilatih dengan keseluruhan data latih. Grafik paling atas menunjukkan referensi pada data, grafik tengah menunjukkan keluaran dari model yang dilatih dengan subset \textit{fold}-5, dan grafik paling bawah menunjukkan keluaran dari model yang dilatih dengan keseluruhan data latih. Tampak bahwa model yang dilatih dengan keseluruhan data latih lebih banyak menghasilkan magnitudo kecil. Pada taraf magnitudo -100 hingga -120 dB seperti pada gambar tersebut, pendengar akan mendengar seolah-olah tidak ada suara.
 
 Tabel \ref{tab-stoc-model-subset-results} menunjukkan perbandingan kinerja model stokastik yang dilatih dengan keseluruhan data latih dan model yang dilatih dengan sebagian data latih. Perhatikan bahwa kinerja tertinggi terhadap data latih diperoleh dengan subset \textit{fold}-1. Kinerja model yang dilatih dengan subset ini terhadap data uji lebih baik daripada kinerja model yang dilatih dengan keseluruhan data latih. Hal ini menunjukkan bahwa untuk model stokastik, dengan memilih subset data latih dengan kinerja terhadap data latih tertinggi, kinerjanya kepada data uji lebih baik daripada model yang dilatih dengan data latih utuh. 
 
@@ -340,7 +369,9 @@ Terdapat dua kemungkinan yang menyebabkan hal ini. Kemungkinan pertama, penambah
     \end{tabular}
 \end{table}
 
-%kesalahan pada model stokastik
+Dengan demikian, dapat diambil kesimpulan untuk skema pemilihan subset. Untuk model \textit{timing}, kinerja model yang dilatih dengan keseluruhan dataset lebih besar daripada model yang dilatih dengan subset yang dipilih dengan skema tersebut. Untuk model frekuensi harmonik, dari skema pemilihan tersebut dipilih data latih utuh, sehingga kinerja dengan skema tersebut sama dengan apabila model dilatih tanpa skema pemilihan subset data latih. Untuk model F0, magnitudo harmonik, dan amplop stokastik, model yang dilatih dengan dataset yang dipilih dengan skema pemilihan subset menghasilkan kinerja yang lebih baik daripada model yang dilatih dengan data latih utuh.
+
+Dengan demikian, pernyataan pada riset neural parametrik nyanyian bahwa penambahan data latih dapat menurunkan kinerja. Untuk jaringan syaraf tiruan dengan arsitektur Wavenet yang dimodifikasi, penambahan data latih dapat menurunkan kinerja. Adapun untuk model \textit{timing} yang tidak menggunakan arsitektur tersebut, penambahan data latih tetap meningkatkan kinerja.
 
 \subsection{Hasil Uji Korelasi Tiap Komponen}
 
@@ -348,18 +379,19 @@ Tabel \ref{tab-timing-testing-results} menunjukkan korelasi nada tiap-tiap \text
 
 \begin{table}[htbp]
     \centering
-    \caption{Hasil Pengujian Model Timing}\label{tab-timing-testing-results}
+    \caption{Hasil Uji Korelasi Model Timing}\label{tab-timing-testing-results}
     \begin{tabular}{ |l|r|r| } 
      \cline{2-3}
      \multicolumn{1}{l|}{}&Terhadap data latih&Terhadap data uji\\\hline
 	 Pearson r&0.2511  &0.2213\\\hline
     \end{tabular}
 \end{table}
+%TODO analisis hasil eksperimen model timing
 
-Tabel \ref{tab-f0-testing-results} menunjukkan koefisien korelasi f0 tiap-tiap \textit{frame} keluaran model f0 terhadap f0 pada data. Nilai koefisien korelasi di atas 0 menunjukkan bahwa model berhasil mempelajari pola f0. Koefisien korelasi model ini tidak mencapai nilai 1, namun sudah mencapai 0.9550 terhadap data uji. Tidak terjadi \texit{overfitting} di sini.
+Tabel \ref{tab-f0-testing-results} menunjukkan koefisien korelasi f0 tiap-tiap \textit{frame} keluaran model f0 terhadap f0 pada data. Nilai koefisien korelasi di atas 0 menunjukkan bahwa model berhasil mempelajari pola f0. Koefisien korelasi model ini tidak mencapai nilai 1, namun sudah mencapai 0.9550 terhadap data uji. Tidak terjadi \textit{overfitting} di sini.
 \begin{table}[htbp]
     \centering
-    \caption{Hasil Pengujian Model F0}\label{tab-f0-testing-results}
+    \caption{Hasil Uji Korelasi Model F0}\label{tab-f0-testing-results}
     \begin{tabular}{ |l|r|r| } 
      \cline{2-3}
      \multicolumn{1}{l|}{}&Terhadap data latih&Terhadap data uji\\\hline
@@ -367,9 +399,20 @@ Tabel \ref{tab-f0-testing-results} menunjukkan koefisien korelasi f0 tiap-tiap \
     \end{tabular}
 \end{table}
 
-Tabel \ref{tab-freq-testing-results} menunjukkan koefisien korelasi frekuensi harmonik tiap-tiap \textit{frame} keluaran model frekuensi harmonik terhadap frekuensi harmonik pada data. Nilai koefisien korelasi di atas 0 menunjukkan bahwa model berhasil mempelajari pola frekuensi harmonik. Koefisien korelasi model ini tidak mencapai nilai 1, namun sudah mencapai 0.9550 terhadap data uji. Tidak terjadi \texit{overfitting} di sini.
+\begin{figure}[h]
     \centering
-    \caption{Hasil Pengujian Model Frekuensi Harmonik}\label{tab-freq-testing-results}
+    \includegraphics[width=0.8\textwidth]{resources/Analisis_F0.png}
+    \caption{Contoh Keluaran Model F0, dengan Masukan \textit{Timing} dari Dataset}\label{fig-f0-output-sample}
+\end{figure}
+
+Kekurangan yang masih terjadi di model F0 adalah menganggap perubahan jangka-pendek dari F0 sebagai \textit{noise} dan hanya dirata-ratakan oleh model. Hal ini tampak pada contoh keluaran model F0 pada Gambar \ref{fig-f0-output-sample}. Pada bagian atas terlihat contoh F0 dari dataset, sedangkan pada bagian bawah terlihat F0 prediksi untuk sampel tersebut. Pada kedua bagian tersebut, terdapat bagian yang diperbesar untuk melihat perubahan jangka-pendek F0 tersebut. 
+
+Pada bagian yang diperbesar pada gambar tersebut, terlihat dua jenis perubahan jangka-pendek F0 yang dianggap sebagai \textit{noise} oleh model. Pada bagian kiri, terlihat \textit{spike} pada data dianggap sebagai \textit{noise} oleh model, dan pada F0 prediksi hal tersebut hilang. Pada bagian kanan dari perbesaran tersebut pada F0 dari data, terlihat pola osilasi yang menunukkan \textit{vibrato}. Pada F0 prediksi hal tersebut hilang dan dirata-ratakan.
+
+Tabel \ref{tab-freq-testing-results} menunjukkan koefisien korelasi frekuensi harmonik tiap-tiap \textit{frame} keluaran model frekuensi harmonik terhadap frekuensi harmonik pada data. Nilai koefisien korelasi di atas 0 menunjukkan bahwa model berhasil mempelajari pola frekuensi harmonik. Koefisien korelasi model ini tidak mencapai nilai 1, namun sudah mencapai 0.9550 terhadap data uji. Tidak terjadi \textit{overfitting} di sini.
+\begin{table}[htbp]
+    \centering
+    \caption{Hasil Uji Korelasi Model Frekuensi Harmonik}\label{tab-freq-testing-results}
     \begin{tabular}{ |l|r|r| } 
      \cline{2-3}
      \multicolumn{1}{l|}{}&Terhadap data latih&Terhadap data uji\\\hline
@@ -377,11 +420,21 @@ Tabel \ref{tab-freq-testing-results} menunjukkan koefisien korelasi frekuensi ha
     \end{tabular}
 \end{table}
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{resources/Analisis_Hfreq.png}
+    \caption{Contoh Keluaran Model Frekuensi Harmonik (4 Harmonik Pertama), dengan Masukan \textit{Timing} dan F0 dari Dataset}\label{fig-hfreq-output-sample}
+\end{figure}
+
+Kekurangan yang masih terjadi di model frekuensi harmonik adalah menganggap perubahan jangka-pendek dari frekuensi harmonik sebagai \textit{noise} dan hanya dirata-ratakan oleh model. Hal ini tampak pada contoh keluaran model frekuensi harmonik pada Gambar \ref{fig-hfreq-output-sample}. Pada bagian atas terlihat contoh frekuensi harmonik dari dataset, sedangkan pada bagian bawah terlihat frekuensi harmonik prediksi untuk sampel tersebut. Pada kedua bagian tersebut, terdapat bagian yang diperbesar untuk melihat perubahan jangka-pendek frekuensi harmonik tersebut. 
+
+Pada bagian yang diperbesar pada gambar tersebut, terlihat bahwa pola \textit{spike} dari deviasi frekuensi harmonik hilang, dan hanya dirata-ratakan saja. Padahal, pada dataset, untuk harmonik tinggi, terdapat pola seperti \textit{spike}. Adapun \textit{vibrato} dari F0 diteruskan ke harmonik selanjutnya, tanpa deviasi.
+
 Tabel \ref{tab-mag-testing-results} menunjukkan koefisien korelasi magnitudo harmonik tiap-tiap \textit{frame} keluaran model magnitudo harmonik terhadap magnitudo harmonik pada data. Nilai koefisien korelasi di atas 0 menunjukkan bahwa model berhasil mempelajari pola magnitudo harmonik. Namun, koefisien korelasi ini masih bernilai rendah. Kinerja model ini rendah baik terhadap data latih maupun data uji. Hal ini menunjukkan adanya \textit{underfitting}.
 
 \begin{table}[htbp]
     \centering
-    \caption{Hasil Pengujian Model Magnitudo Harmonik}\label{tab-mag-testing-results}
+    \caption{Hasil Uji Korelasi Model Magnitudo Harmonik}\label{tab-mag-testing-results}
     \begin{tabular}{ |l|r|r| } 
      \cline{2-3}
      \multicolumn{1}{l|}{}&Terhadap data latih&Terhadap data uji\\\hline
@@ -389,11 +442,38 @@ Tabel \ref{tab-mag-testing-results} menunjukkan koefisien korelasi magnitudo har
     \end{tabular}
 \end{table}
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{resources/Analisis_Hmag.png}
+    \caption{Contoh Keluaran Model Magnitudo Harmonik (4 Harmonik Pertama), dengan Masukan \textit{Timing}, F0, dan Hfreq dari Dataset}\label{fig-hmag-output-sample}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{resources/Analisis_Hmag_zoomed.png}
+    \caption{(Diperbesar ke Satu Not) Contoh Keluaran Model Magnitudo Harmonik (4 Harmonik Pertama), dengan Masukan \textit{Timing}, F0, dan Hfreq dari Dataset}\label{fig-hmag-output-sample-zoomed}
+\end{figure}
+
+Kekurangan yang masih terjadi di model magnitudo harmonik adalah menganggap perubahan jangka-pendek dari magnitudo harmonik sebagai \textit{noise} dan hanya dirata-ratakan oleh model. Hal ini tampak pada contoh keluaran model magnitudo harmonik pada Gambar \ref{fig-hmag-output-sample}. Pada bagian atas terlihat contoh magnitudo harmonik dari dataset, sedangkan pada bagian bawah terlihat magnitudo harmonik prediksi untuk sampel tersebut. Tampilan yang diperbesar tampak pada gambar \ref{fig-hmag-output-sample-zoomed}.
+
+Tampak bahwa model ini mampu membangkitkan ekspresi naik turunnya magnitudo secara umum. Namun, pola jangka-pendek yang dihasilkan berbeda dengan dataset. Terdapat beberapa perbedaan antara magnitudo harmonik pada dataset dan magnitudo harmonik yang dibangkitkan dengan model:
+
+\begin{itemize}
+	\item magnitudo harmonik pada dataset saling menyeberangi satu sama lain, sedangkan magnitudo harmonik bangkitan berurutan
+	\item magnitudo harmonik pada dataset memiliki pola \textit{spike} yang jarang namun besar, sedangkan magnitudo harmonik bangkitan memiliki \textit{noise} yang kecil namun ada di semua tempat
+	\item magnitudo harmonik pada dataset memiliki bukit-bukit/punuk-punuk sedangkan magnitudo harmonik bangkitan tidak memilikinya
+	\item magnitudo harmonik pada dataset memiliki bentuk yang berbeda pada transisi not, sedangkan magnitudo harmonik bangkitan memiliki bentuk yang serupa sepanjang not
+\end{itemize}
+
+Perbedaan-perbedaan ini terjadi karena model tidak cukup kompleks untuk menangkap pola detil jangka-pendek dari magnitudo harmonik dataset. Alih-alih mendapatkan pola magnitudo harmonik yang saling menyeberangi satu sama lain, model hanya menangkap pola umum rata-rata rasio magnitudo antar harmonik. Bentuk bukit-bukit/punuk-punuk dan \textit{spike} yang jarang ditangkap sebagai \textit{noise} yang direpresentasikan dengan nilai variansi pada keluaran CGM.
+
+Model ini juga tidak mampu memisahkan antara transisi not, awal not, akhir not, dan pertengahan not dari sisi bentuk. Ia hanya mampu mempelajari pola naik turun magnitudo secara umum. Pada hasil uji persepsi kealamian, akan tampak apakah perbedaan bentuk ini mempengaruhi persepsi kealamian.
+
 Tabel \ref{tab-stoc-testing-results} menunjukkan koefisien korelasi amplop stokastik tiap-tiap \textit{frame} keluaran model amplop stokastik terhadap amplop stokastik pada data. Nilai koefisien korelasi di atas 0 menunjukkan bahwa model berhasil mempelajari pola amplop stokastik. Namun, koefisien korelasi ini masih bernilai rendah. Kinerja model ini rendah baik terhadap data latih maupun data uji. Namun, kinerja terhadap data uji jauh lebih rendah daripada kinerja terhadap data latih. Hal ini menunjukkan bahwa baik galat pelatihan maupun galat generalisasi pada model ini masih sangat tinggi.
 
 \begin{table}[htbp]
     \centering
-    \caption{Hasil Pengujian Model Amplop Stokastik}\label{tab-stoc-testing-results}
+    \caption{Hasil Uji Korelasi Model Amplop Stokastik}\label{tab-stoc-testing-results}
     \begin{tabular}{ |l|r|r| } 
      \cline{2-3}
      \multicolumn{1}{l|}{}&Terhadap data latih&Terhadap data uji\\\hline
@@ -401,12 +481,37 @@ Tabel \ref{tab-stoc-testing-results} menunjukkan koefisien korelasi amplop stoka
     \end{tabular}
 \end{table}
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{resources/Analisis_StocEnv.png}
+    \caption{Contoh Keluaran Model Amplop Stokastik, dengan Masukan \textit{Timing}, F0, dan Hfreq dari Dataset}\label{fig-stocenv-output-sample}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{resources/Analisis_StocEnv_zoomed.png}
+    \caption{(Diperbesar) Contoh Keluaran Model Amplop Stokastik, dengan Masukan \textit{Timing}, F0, dan Hfreq dari Dataset}\label{fig-stocenv-output-sample-zoomed}
+\end{figure}
+
+Kekurangan yang masih terjadi di model amplop stokastik adalah menganggap perubahan jangka-pendek dari amplop stokastik sebagai \textit{noise} dan hanya dirata-ratakan oleh model. Hal ini tampak pada contoh keluaran model amplop stokastik pada Gambar \ref{fig-stocenv-output-sample}. Pada bagian atas terlihat contoh amplop stokastik dari dataset, sedangkan pada bagian bawah terlihat amplop stokastik prediksi untuk sampel tersebut. Tampilan yang diperbesar tampak pada gambar \ref{fig-stocenv-output-sample-zoomed}.
+
+Terdapat perbedaan antara amplop stokastik data dan amplop stokastik bangkitan:
+
+\begin{itemize}
+	\item Amplop stokastik data memiliki naik-turun dan \textit{spike} yang lebih besar
+	\item Pada beberapa bagian, perubahan amplop stokastik bangkitan terbalik apabila dibandingkan dengan data
+\end{itemize}
+
+Amplop stokastik bangkitan memiliki naik-turun dan \textit{spike} yang kurang besar karena sebagian besar naik turun dan \textit{spike} tersebut dianggap sebagai \textit{noise} oleh model. Jaringan syaraf tiruan yang digunakan kemudian merata-ratakannya dan merepresentasikan perubahannya dalam keluaran variansi CGM, yang kemudian dikurangi dengan parameter temperatur.
+
+Pada beberapa bagian, perubahan amplop stokastik bangkitan terbalik apabila dibandingkan dengan data. Di sebagian tempat, besaran amplop stokastik bangkitan turun padahal amplop stokastik pada data naik. Begitu pula sebaliknya, amplop stokastik bangkitan naik padahal amplop stokastik pada data turun. %TODO kenapa? kapan ia terbalik?
+
 %TODO perbandingan hasil,
 %TODO pola-pola yang tidak tertangkap oleh koefisien korelasi
 %bahwa RPM mungkin saja memiliki nilai lebih tinggi dalam uji persepsi kealamian
 
 \section{Hasil Uji Korelasi Sistem Utuh}
-Tabel \ref{tab-system-testing-results} menunjukkan hasil uji korelasi sistem DT-Neural Parametrik dan perbandingannya dengan sistem \textit{baseline} yaitu RPM. Sistem DT-Neural Parametrik berhasil mencapai koefisien korelasi di atas nol, yang artinya sistem ini berhasil mempelajari sebagian pola-pola ekspresi. Namun, nilai koefisien korelasi ini masih rendah, artinya tidak semua pola-pola ekspresi berhasil dipelajari dengan benar. Meski demikian, Nilai koefisien korelasi yang dicapai oleh sistem ini lebih tinggi daripada sistem RPM.
+Tabel \ref{tab-system-testing-results} menunjukkan hasil uji korelasi sistem DT-Neural Parametrik dan perbandingannya dengan sistem \textit{baseline} yaitu RPM. Sistem DT-Neural Parametrik berhasil mencapai koefisien korelasi di atas nol, yang artinya sistem ini berhasil mempelajari sebagian pola-pola ekspresi. Namun, nilai koefisien korelasi ini masih rendah, artinya tidak semua pola-pola ekspresi berhasil dipelajari dengan benar.
 
 \begin{table}[htbp]
     \centering
@@ -422,6 +527,11 @@ Tabel \ref{tab-system-testing-results} menunjukkan hasil uji korelasi sistem DT-
     \end{tabular}
 \end{table}
 
+Nilai koefisien korelasi yang dicapai oleh sistem ini lebih tinggi daripada sistem RPM. Sistem yang diajukan menghasilkan keluaran dengan koefisien korelasi 0.1188 terhadap data latih, sementara RPM hanya menghasilkan -0.2380, dengan catatan bahwa sistem RPM memang tidak dilatih menggunakan data latih ini. Untuk membandingkan kinerja generalisasi kedua sistem, dibandingkan kinerjanya terhadap data uji. Sistem yang diajukan menghasilkan koefisien korelasi 0.1133 terhadap data uji, sementara sistem RPM hanya menghasilkan koefisien  korelasi -0.0020.
+
+
+
+%TODO analisis, contoh perbandingan output RPM dan DT-Neural Parametrik
 
 \section{Hasil Uji Preferensi}
 \blindtext

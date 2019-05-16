@@ -92,7 +92,7 @@ Terdapat sebuah \textit{framework} CSEMP alat musik gesek untuk pembangkitan sua
     \caption{Arsitektur sistem sintesis parametrik neural untuk nyanyian \parencite{bonada2017singing}}\label{fig-system-overview-bonada}
 \end{figure}
 
-Dalam sistem ini, terdapat tiga model, yang menghasilkan parameter-parameter yang kemudian digunakan \textit{vocoder} untuk menghasilkan suara nyanyian ekspresif. Model-model ini dilatih menggunakan data latih berupa partitur, label \textit{timing} fonetik, dan rekaman nyanyian partitur yang bersesuaian oleh penyanyi profesional. Rekaman penyanyi dianalisis dengan vocoder untuk mendapatkan representasi \textit{pitch} dan \textit{timbre}. Masukan dan keluaran tiap model tercantum dalam tabel \ref{tab-models-in-out-bonada}. \parencite{bonada2017singing}
+Dalam sistem ini, terdapat tiga model, yang menghasilkan parameter-parameter yang kemudian digunakan \textit{vocoder} untuk menghasilkan suara nyanyian ekspresif. Model-model ini dilatih menggunakan data latih berupa partitur, label \textit{timing} fonetik, dan rekaman nyanyian partitur yang bersesuaian oleh penyanyi profesional. Rekaman penyanyi dianalisis dengan \textit{vocoder} untuk mendapatkan representasi \textit{pitch} dan \textit{timbre}. Masukan dan keluaran tiap model tercantum dalam tabel \ref{tab-models-in-out-bonada}. \parencite{bonada2017singing}
 
 \begin{table}[h]
 	\centering
@@ -114,7 +114,11 @@ Dalam sistem ini, terdapat tiga model, yang menghasilkan parameter-parameter yan
 	\end{tabular}
 \end{table}
 
-Untuk model \textit{timing} not, digunakan jaringan syaraf tiruan \textit{feedforward} dengan fitur kontekstual untuk tiap not dalam partitur. Untuk model \textit{durasi} fonem, digunakan jaringan syaraf tiruan konvolusional. \parencite{bonada2017singing} Untuk model \textit{pitch} dan model \textit{timbre}, digunakan jaringan syaraf tiruan dengan arsitektur yang didasarkan kepada WaveNet \parencite{Oord2016WaveNetAG}, yang tampak pada Gambar \ref{fig-network-architecture-bonada}. \parencite{bonada2017singing}
+Untuk model \textit{timing} not, digunakan jaringan syaraf tiruan \textit{feedforward} dengan fitur kontekstual untuk tiap not dalam partitur, dengan keluaran \textit{softmax} dengan \textit{range} deviasi $-15$ \textit{frame} () hingga $+14$ \textit{frame}. Untuk model \textit{durasi} fonem, digunakan jaringan syaraf tiruan konvolusional. \parencite{bonada2017singing} Untuk model \textit{pitch} dan model \textit{timbre}, digunakan jaringan syaraf tiruan dengan arsitektur yang didasarkan kepada WaveNet \parencite{Oord2016WaveNetAG} yang dimodifikasi.
+
+\section{Jaringan Syaraf Tiruan Modifikasi WaveNet}
+
+Jaringan syaraf tiruan modifikasi wavenet yang digunakan pada sintesis neural parametrik nyanyian tampak pada Gambar \ref{fig-network-architecture-bonada}. \parencite{bonada2017singing} Model ini menggunakan jaringan syaraf tiruan dengan teknik konvolusi dan dilasi.
 
 \begin{figure}[h]
     \centering
@@ -174,16 +178,26 @@ Kemudian, parameter-parameter Gaussian $w_k$, $\mu_k$, dan $\sigma_k$ dihitung s
 
 dengan konstanta $\gamma_u$, $\gamma_s$, dan $\gamma_y$ di-\textit{tune} secara manual.
 
+Pelatihan jaringan syaraf tiruan ini menggunakan fungsi objektif \textit{log likelihood} dengan \textit{denoising} Gaussian:\parencite{bonada2017singing}
+
+\begin{equation}
+    \Lambda = -log p(\mathbf{x}_t|\mathbf{\tilde{x}}_{<t},\mathbf{c}) \text{dengan} \mathbf{\tilde{x}}_{<t} \sim \mathcal{N}(\mathbf{\tilde{x}}_{<t}; \mathbf{x}_{<t},\lambda I )
+\end{equation}
+
+Di antara masalah yang dihadapi model-model dengan arsitektur ini adalah terkait data latih. Apabila data latih ditambah melebihi durasi 30 menit, kinerja sistem sintesis neural parametrik untuk nyanyian menurun. \parencite{bonada2017singing}
+
 \section{Pengkodean Suara} \label{voice coding}
-%\subsection{\textit{Vocoder} dan Pemodelan Spektral}
 
-%Vocoder adalah ......
+Sintesis neural parametrik nyanyian \parencite{bonada2017singing} menggunakan \textit{vocoder} WORLD \parencite{morise2016world}. Sebagaimana \textit{vocoder} pada umumnya, WORLD mengkodekan sinyal suara menjadi \textit{pitch}/f0 dan amplop spektral \parencite{dudley1939vocoder}. WORLD mengasumsikan bahwa sinyal suara diproduksi dengan sinyal eksitasi yang dihitung langsung dari \textit{waveform}, F0, dan amplop spektral \parencite{morise2016world}.
 
+Dalam \textit{vocoder} WORLD, \textit{waveform} diasumsikan berasal dari getaran pita suara. Algoritma estimasi F0 yang digunakan adalah algoritma DIO \parencite{morise2009fast} yang menggunakan \textit{zero-crossing interval} dari sinyal sinus hasil penerapan \textit{low-pass filter} dari sinyal suara. Estimasi amplop spektral pada \textit{vocoder} WORLD menggunakan algoritma CheapTrick \parencite{}, yang menggunakan informasi \textit{waveform} dan F0.
+
+Terdapat pengkodean lain yang biasa digunakan untuk mengkodekan sinyal suara alat musik, yaitu pengkodean harmonik. Dalam pengkodean harmonik, %TODO
 %Pemodelan spektral .....
 
-%Model sinusoidal ...
+%Model harmonik ...
 
-%Nunggu dicoba dulu
+%TODO proses produksi suara pada alat musik gesek
 
 \section{Metriks Kinerja}
 
@@ -193,3 +207,5 @@ Koefisien korelasi Pearson:
 \begin{equation}
     r_{xy}=\dfrac{\sum^n_{i=1}(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum^n_{i=1}(x_i-\bar{x})^2}{\sqrt{\sum^n_{i=1}(y_i-\bar{y})^2}}}
 \end{equation}\label{pearson-corrcoef-eq}
+
+%TODO Decision tree...

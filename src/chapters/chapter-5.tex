@@ -1,7 +1,26 @@
 \chapter{Penutup}
 
 \section{Kesimpulan}
-\blindtext
+
+% masalah:Untuk sebagian genre musik, dibutuhkan pensintesis yang mampu menghasilkan suara ekspresif. Pensintesis suara dengan taraf kealamian yang lebih tinggi lebih diharapkan. Untuk alat musik gesek, belum ada CSEMP yang mampu menghasilkan suara ekspresif dari partitur non-ekspresif saja. Hal ini karena komponen-komponen CSEMP alat musik gesek tidak kompatibel untuk digabungkan satu sama lain, ataupun karena framework CSEMP utuh yang ada terhambat masalah anotasi data. Teknik sintesis neural parametrik untuk nyanyian telah mampu menghasilkan suara dari partitur non-ekspresif saja, dan suara nyanyian memiliki beberapa kemiripan dengan alat musik gesek yang memungkinkan adopsi tekniknya kepada sistem untuk sintesis dan permainan alat musik gesek.
+
+% Perlu dibangun sebuah CSEMP alat musik gesek yang mampu menghasilkan suara ekspresif dari partitur non-ekspresif saja. Untuk membangun sistem tersebut, perlu dilakukan modifikasi dari teknik sintesis neural parametrik suara nyanyian untuk menyesuaikan dengan domain alat musik gesek.
+
+% tujuan penelitian: Penelitian ini bertujuan untuk mengembangkan sebuah sistem komputer untuk permainan ekspresif alat musik gesek yang mampu menghasilkan suara ekspresif dari partitur non ekspresif. Untuk itu, dalam penelitian ini akan dibangun sebuah sistem permainan ekspresif alat musik gesek partitur-ke-suara dengan teknik sintesis neural parametrik.
+
+Telah dibangun sebuah sistem komputer untuk permainan ekspresif alat musik gesek yang mampu menghasilkan suara ekspresif dari partitur non-ekspresif. Sistem permainan ekspresif alat musik gesek partitur-ke-suara dibangun dengan teknik sintesis neural parametrik. Modifikasi yang digunakan terdapat pada pengkodean yang digunakan, komponen model \textit{timing} dan \textit{timbre}, arsitektur model \textit{timing}, serta fitur-fitur masukan untuk model-model \textit{timing}, \textit{pitch}, dan \textit{timbre}.
+
+Uji korelasi sistem ini menunjukkan bahwa sistem ini memiliki kinerja -dengan metrik koefisien korelasi- lebih baik daripada sistem pensintesis \textit{baseline} yaitu RPM tanpa masukan gestur ekspresi. Koefisien korelasi sistem ini bernilai 0.1133, sedangkan RPM memiliki koefisien korelasi -0.0020.
+
+Kealamian sistem permainan musik ekspresif nyanyian dengan teknik neural parametrik lebih .... daripada sistem RPM.%TODO uji persepsi kealamian
+
+Kealamian sistem permainan musik ekspresif nyanyian dengan teknik gabungan gestur ekspresi neural parametrik dan pensintesis RPM menghasilkan kealamian yang .... daripada sistem RPM. %TODO uji persepsi kealamian
 
 \section{Saran}
-\blindtext
+
+Dari penelitian ini, terdapat beberapa saran baik untuk memperbaiki sistem yang digunakan maupun validitas hasil penelitian-penelitian serupa:
+\begin{enumerate}
+	\item Perlu dibuat arsitektur model yang mampu menangkap pola lebih kompleks dan lebih detil agar ekspresi terkait \textit{pitch} dan \textit{timbre} dari data latih benar-benar dapat direproduksi oleh model. Penambahan data latih tanpa perbaikan arsitektur model \textit{pitch} dan \textit{timbre} justru akan menurunkan kinerja.
+	\item Data latih untuk model \textit{timing} perlu ditambah.
+	\item Perlu dibuat metrik yang mampu menilai kemiripan bentuk variasi jangka-pendek dari keluaran model-model. Variasi ini meliputi \textit{spike}, osilasi, saling silang antar fitur dan sebagainya.
+\end{enumerate}
