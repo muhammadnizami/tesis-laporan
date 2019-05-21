@@ -82,21 +82,21 @@ Meski terdapat komponen-komponen CSEMP alat musik gesek, terdapat masalah dalam 
 
 Terdapat sebuah \textit{framework} CSEMP alat musik gesek untuk pembangkitan suara dari partitur non-expresif \parencite{perez2015} menggunakan pemodelan instrumen, pemain dan akustik. Namun, sistem ini hanya berupa \textit{framework} umum yang perlu didetilkan kembali. Selain itu, pemisahan pemodelan ini meniscayakan kebutuhan anotasi gestur secara manual.
 
-\section{Sintesis Parametrik Neural} \label{literature-neural-parametric}
+\section{Sintesis Neural Parametrik} \label{literature-neural-parametric}
 
-\citet{bonada2017singing} mengajukan sebuah teknik untuk sintesis suara nyanyian ekspresif. Ide dari teknik parametrik neural \parencite{bonada2017singing} adalah membangkitkan suara dalam representasi yang \textit{rate}-nya jauh lebih kecil dibandingkan dengan teknik WaveNet\parencite{Oord2016WaveNetAG} yang membangkitkan\textit{waveform} secara langsung, sehingga pembangkitan dapat berjalan lebih cepat. Dalam riset \citet{bonada2017singing}, representasi yang digunakan adalah parameter \textit{vocoder}. Suara nyanyian dibangkitkan oleh sebuah \textit{vocoder} dari parameter-parameter \textit{timing} fonetik, \textit{timbre}, dan \textit{pitch}. Parameter-parameter ini dibangkitkan dengan model \textit{timing} fonetik, model \textit{timbre}, dan model \textit{pitch} yang dilatih dengan data latih partitur non ekspresif dan suara nyanyian ekspresif. Arsitektur sistem ini tampak pada Gambar \ref{fig-system-overview-bonada}.
+\citet{bonada2017singing} mengajukan sebuah teknik untuk sintesis suara nyanyian ekspresif. Ide dari teknik neural parametrik \parencite{bonada2017singing} adalah membangkitkan suara dalam representasi yang \textit{rate}-nya jauh lebih kecil dibandingkan dengan teknik WaveNet\parencite{Oord2016WaveNetAG} yang membangkitkan \textit{waveform} secara langsung, sehingga pembangkitan dapat berjalan lebih cepat. Dalam riset \citet{bonada2017singing}, representasi yang digunakan adalah parameter \textit{vocoder}. Suara nyanyian dibangkitkan oleh sebuah \textit{vocoder} dari parameter-parameter \textit{timing} fonetik, \textit{timbre}, dan \textit{pitch}. Parameter-parameter ini dibangkitkan dengan model \textit{timing} fonetik, model \textit{timbre}, dan model \textit{pitch} yang dilatih dengan data latih partitur non ekspresif dan suara nyanyian ekspresif. Arsitektur sistem ini tampak pada Gambar \ref{fig-system-overview-bonada}.
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{resources/system-overview-bonada.eps}
-    \caption{Arsitektur sistem sintesis parametrik neural untuk nyanyian \parencite{bonada2017singing}}\label{fig-system-overview-bonada}
+    \caption{Arsitektur sistem sintesis neural parametrik untuk nyanyian \parencite{bonada2017singing}}\label{fig-system-overview-bonada}
 \end{figure}
 
 Dalam sistem ini, terdapat tiga model, yang menghasilkan parameter-parameter yang kemudian digunakan \textit{vocoder} untuk menghasilkan suara nyanyian ekspresif. Model-model ini dilatih menggunakan data latih berupa partitur, label \textit{timing} fonetik, dan rekaman nyanyian partitur yang bersesuaian oleh penyanyi profesional. Rekaman penyanyi dianalisis dengan \textit{vocoder} untuk mendapatkan representasi \textit{pitch} dan \textit{timbre}. Masukan dan keluaran tiap model tercantum dalam Tabel \ref{tab-models-in-out-bonada}. \parencite{bonada2017singing}
 
 \begin{table}[h]
 	\centering
-    \caption{Masukan dan Keluaran Tiap Model dalam Sistem Sintesis Parametrik Neural Suara Nyanyian \parencite{bonada2017singing}}\label{tab-models-in-out-bonada}
+    \caption{Masukan dan keluaran tiap model dalam sistem sintesis neural parametrik suara nyanyian \parencite{bonada2017singing}}\label{tab-models-in-out-bonada}
 	\begin{tabular}{ |c|c|c| } 
 	 \hline
 	 Model & Masukan & Keluaran \\
@@ -181,7 +181,7 @@ dengan konstanta $\gamma_u$, $\gamma_s$, dan $\gamma_y$ di-\textit{tune} secara 
 Pelatihan jaringan syaraf tiruan ini menggunakan fungsi objektif \textit{log likelihood} dengan \textit{denoising} Gaussian:\parencite{bonada2017singing}
 
 \begin{equation}
-    \Lambda = -log p(\mathbf{x}_t|\mathbf{\tilde{x}}_{<t},\mathbf{c}) \text{dengan} \mathbf{\tilde{x}}_{<t} \sim \mathcal{N}(\mathbf{\tilde{x}}_{<t}; \mathbf{x}_{<t},\lambda I )
+    \Lambda = -log p(\mathbf{x}_t|\mathbf{\tilde{x}}_{<t},\mathbf{c}) \text{ dengan } \mathbf{\tilde{x}}_{<t} \sim \mathcal{N}(\mathbf{\tilde{x}}_{<t}; \mathbf{x}_{<t},\lambda I )
 \end{equation}
 
 Di antara masalah yang dihadapi model-model dengan arsitektur ini adalah terkait data latih. Apabila data latih ditambah melebihi durasi 30 menit, kinerja sistem sintesis neural parametrik untuk nyanyian menurun. \parencite{bonada2017singing}
@@ -198,7 +198,7 @@ Terdapat pengkodean lain yang biasa digunakan untuk mengkodekan sinyal suara ala
 s(t)=\Sigma_{r=1}^{R} A_r(t) cos (\int_0^t\omega_(t))+e(t)
 \end{equation}
 
-Di sini, komponen deterministik berupa penjumlahan gelombang sinusoidal dengan amplitudo $A_r(t)$ dan frekuensi sudut $omega_r(t)$ untuk harmonik ke-$1$ s.d. $R$. Komponen stokastik $e(t)$ berupa \textit{white noise} $u(\tau)$ yang di-\textit{filter} dengan \textit{filter} yang bervariasi sepanjang waktu $h(t,\tau)$: \parencite{serra1997sineplusnoise}
+Di sini, komponen deterministik berupa penjumlahan gelombang sinusoidal dengan amplitudo $A_r(t)$ dan frekuensi sudut $\omega_r(t)$ untuk harmonik ke-$1$ s.d. $R$. Komponen stokastik $e(t)$ berupa \textit{white noise} $u(\tau)$ yang di-\textit{filter} dengan \textit{filter} yang bervariasi sepanjang waktu $h(t,\tau)$: \parencite{serra1997sineplusnoise}
 
 \begin{equation}
 e(t)=\int_0^t h(t,\tau)u(\tau)d\tau

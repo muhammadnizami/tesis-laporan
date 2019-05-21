@@ -2,7 +2,7 @@
 
 \section{Analisis Masalah}\label{section-problem-analysis}
 
-Akan digunakan teknik parametrik neural untuk membangkitkan suara alat musik gesek. Hal ini karena penggabungan komponen-komponen CSEMP alat musik gesek yang ada tidak memungkinkan karena masalah kompatibilitas. Selain itu, terdapat beberapa kemiripan dengan penerapan teknik parametrik neural untuk sintesis suara nyanyian dari sisi kontinuitas eksitasi dan jumlah not pada satu waktu. Teknik neural parametrik juga lebih baik dari sisi waktu eksekusi dibandingkan dengan teknik pembangkitan \textit{waveform} secara langsung. Untuk teknik neural parametrik ini, terdapat beberapa perbedaan masalah dengan penelitian sebelumnya\parencite{bonada2017singing}. Perbedaan masalah yang terjadi terdapat pada karakteristik suara alat musik, data input untuk sintesis, \textit{timing}. Perbedaan masalah-masalah ini adalah:
+Digunakan teknik neural parametrik untuk membangkitkan suara alat musik gesek. Hal ini karena penggabungan komponen-komponen CSEMP alat musik gesek yang ada tidak memungkinkan karena masalah kompatibilitas. Selain itu, terdapat beberapa kemiripan dengan penerapan teknik neural parametrik untuk sintesis suara nyanyian dari sisi kontinuitas eksitasi dan jumlah not pada satu waktu. Teknik neural parametrik juga lebih baik dari sisi waktu eksekusi dibandingkan dengan teknik pembangkitan \textit{waveform} secara langsung. Untuk teknik neural parametrik ini, terdapat beberapa perbedaan masalah dengan penelitian sebelumnya\parencite{bonada2017singing}. Perbedaan masalah yang terjadi terdapat pada karakteristik suara alat musik, data input untuk sintesis, \textit{timing}. Perbedaan masalah-masalah ini adalah:
 
 \begin{enumerate}
 
@@ -20,7 +20,7 @@ Arsitektur sistem perbaikan terlihat pada Gambar \ref{fig-system-overview}, seba
 
 \begin{enumerate}
 
-    \item Perbedaan karakteristik suara alat musik diatasi dengan mengganti vocoder dengan teknik kompresi audio yang sesuai dengan alat musik gesek
+    \item Perbedaan karakteristik suara alat musik diatasi dengan mengganti vocoder dengan teknik pengkodeansuara yang sesuai dengan alat musik gesek
     \item Aspek fonetik ditiadakan dari data \textit{timing} dan masukan kontrol untuk model \textit{timbre}
     \item Agar penentuan \textit{timbre} mempertimbangkan konteks, masukan model \textit{timbre} ditambahkan dengan masukan partitur dan \textit{timing} not
 
@@ -48,11 +48,11 @@ Tiap model dari model-model ini adalah model regresi. Untuk model \textit{timing
 
 Masukan kontrol jaringan syaraf tiruan ini berasal dari partitur dan dari \textit{timing}. Untuk model \textit{timing}, masukan kontrol hanya berasal dari partitur. Untuk model \textit{pitch} dan model \textit{timbre}, masukan kontrol berasal dari partitur dan berasal dari \textit{timing}.
 
-Masukan dari partitur dapat menunjukkan kondisi sesaat dan konteks. Kondisi sesaat berupa \textit{pitch} asli, panjang not, dan waktu dalam not. Kondisi konteks dapat berupa not sebelum dan sesudah, interval, ataupun kondisi-kondisi lainnya hasil analisis karya. Namun, kakas analisis karya mungkin tidak akan digunakan karena riset terkait analisis karya menggunakan komputer masih minim.
+Masukan dari partitur dapat menunjukkan kondisi sesaat dan konteks. Kondisi sesaat berupa \textit{pitch} asli, panjang not, dan waktu dalam not. Kondisi konteks dapat berupa not sebelum dan sesudah, interval, ataupun kondisi-kondisi lainnya hasil analisis karya. Namun, kakas analisis karya mungkin tida digunakan karena riset terkait analisis karya menggunakan komputer masih minim.
 
 \begin{table}[h]
     \centering
-    \caption{Masukan dan Keluaran Tiap Model dalam Sistem Sintesis Parametrik Neural Suara Alat Musik Gesek }\label{tab-models-in-out}
+    \caption{Masukan dan keluaran tiap model dalam sistem sintesis neural parametrik suara alat musik gesek }\label{tab-models-in-out}
     \begin{tabular}{ |c|c|c| } 
      \hline
      Model & Masukan & Keluaran \\
@@ -80,7 +80,7 @@ Hasil pengkodean seperti ini akan menghasilkan rekonstruksi sinyal yang jauh ber
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{resources/Analisis_vocoder.png}
-    \caption{Hasil Pengkodean Salah Satu Segmen Data Latih dengan Vocoder WORLD} \label{vocoderanalysisresultexample}
+    \caption{Hasil pengkodean salah satu segmen data latih dengan vocoder WORLD} \label{vocoderanalysisresultexample}
 \end{figure}
 
 Asumsi sumber eksitasi plus amplop spektral seperti yang digunakan pada vocoder WORLD tidak dapat digunakan untuk alat musik gesek karena alat musik gesek menghasilkan suara dengan sumber eksitasi berupa gesekan antara \textit{bow} dan senar yang menghasilkan gelombang harmonik dan sedikit \textit{noise}, serta badan alat musik yang menghasilkan gaung. Selain badan alat musik, keberadaan beberapa senar juga memungkinkan gaung yang berasal dari senar-senar yang tidak sedang digesek.
@@ -114,7 +114,7 @@ Pengkodean dengan cara ini mampu mengatasi polifoni yang diakibatkan oleh gaung.
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{resources/Analisis_guidedtwmhps.png}
-    \caption{Hasil Pengkodean Salah Satu Segmen Data Latih dengan Pengkodean Harmonik Terarah Plus Stokastik} \label{guidedtwmhpsanalysisresultexample}
+    \caption{Hasil pengkodean salah satu segmen data latih dengan pengkodean harmonik terarah plus stokastik} \label{guidedtwmhpsanalysisresultexample}
 \end{figure}
 
 Apabila dibandingkan dengan hasil pengkodean dengan vocoder WORLD pada Gambar \ref{vocoderanalysisresultexample}, analisis harmonik terarah plus stokastik memiliki hasil pengkodean yang lebih baik. Gambar \ref{guidedtwmhpsanalysisresultexample} menunjukkan contoh hasil pengkodean dengan cara ini. Tampak bahwa data F0 dapat diperoleh dari keseluruhan keseluruhan sinyal.
@@ -178,7 +178,7 @@ Model \textit{timbre} berfungsi membangkitkan representasi \textit{timbre}. Seru
 Representasi \textit{timbre} yang menjadi keluaran dan input fitur akustik model ini adalah sebagai berikut:
 
 \begin{enumerate}
-    \item $\delta ln(f_h)$: deviasi frekuensi harmonik ke-$h$ dalam skala logaritmik, untuk semua komponen harmonik
+    \item $\Delta ln(f_h)$: deviasi frekuensi harmonik ke-$h$ dalam skala logaritmik, untuk semua komponen harmonik
     \item $mag_h$: ukuran/magnitudo (desibel) komponen harmonik ke-$h$, untuk semua komponen harmonik
     \item $stoc_s$: ukuran komponen stokastik ke-$s$, disebut juga amplop stokastik
 \end{enumerate}
@@ -202,7 +202,7 @@ Untuk melatih sistem ini, dibutuhkan data latih berupa partitur, \textit{timing}
 
 Partitur didapatkan dari Petrucci Music Library, dengan memilih secara berurutan dari daftar lagu untuk satu alat musik gesek. Dari daftar lagu tersebut, dipilih lagu yang dapat ditemukan rekaman audionya pada situs \textit{media sharing} publik.
 
-Tidak semua lagu yang memiliki rekaman audio bersesuaian digunakan. Partitur dikumpulkan berurutan secara alfabetis dengan kriteria minimal total durasi 30 menit. Minimal total durasi ini didasarkan kepada riset neural parametrik nyanyian oleh.
+Tidak semua lagu yang memiliki rekaman audio bersesuaian digunakan. Partitur dikumpulkan berurutan secara alfabetis dengan kriteria tidak memiliki gaung terlalu besar seperti gaung ruangan. Minimal total durasi seluruh data yang dikumpulkan adalah 30 menit. Minimal total durasi ini didasarkan kepada riset neural parametrik nyanyian oleh.
 
 Partitur terkumpul kemudian disalin dari format gambar atau PDF ke dalam format MIDI. Penyalinan ke dalam format MIDI dilakukan secara manual
 
@@ -213,7 +213,7 @@ Data \textit{timing} dibuat dengan teknik DTW lalu diperbaiki secara manual dari
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.8\textwidth]{resources/DTW-transition.eps}
-    \caption{Pembatasan Transisi DTW untuk Pembuatan Data \textit{Timing}}\label{fig-dtw-transition}
+    \caption{Pembatasan transisi DTW untuk ekstraksi data \textit{timing}}\label{fig-dtw-transition}
 \end{figure}
 
 Dengan didahului DTW tersebut, anotator hanya perlu mengoreksi keluaran dari DTW pada bagian-bagian yang salah. Anotator memperbaiki waktu-waktu perubahan not dengan cara mendengarkan rekaman suara, dibantu dengan tampilan spektogram. Gambar \ref{dtw-output-example} menunjukkan contoh keluaran DTW yang kemudian diperbaiki. Contoh perbaikan oleh anotator tampak pada Gambar \ref{dtw-output-example-corrected}. Bagian atas menunjukkan spektogram yang digunakan oleh anotator untuk memperbaiki \textit{timing}, dan bagian bawah menunjukkan \textit{timing} pergantian not.
@@ -221,13 +221,13 @@ Dengan didahului DTW tersebut, anotator hanya perlu mengoreksi keluaran dari DTW
 \begin{figure}[htb]
   \centering
   \includegraphics[width=0.8\textwidth]{resources/DTW-output-example.png}
-  \caption{Contoh \textit{Timing} Pergantian Not Keluaran DTW yang Memiliki Kesalahan} \label{dtw-output-example}
+  \caption{Contoh \textit{timing} pergantian not keluaran DTW yang memiliki kesalahan} \label{dtw-output-example}
 \end{figure}
 
 \begin{figure}[htb]
   \centering
   \includegraphics[width=0.8\textwidth]{resources/DTW-output-corrected-example.png}
-  \caption{Contoh \textit{Timing} Pergantian Not Keluaran DTW yang Telah Diperbaiki Anotator} \label{dtw-output-example-corrected}
+  \caption{Contoh \textit{timing} pergantian not keluaran dTW yang telah diperbaiki anotator} \label{dtw-output-example-corrected}
 \end{figure}
 
 Untuk kebutuhan eksperimen, data yang dikumpulkan terdiri dari dua bagian. Bagian pertama, data latih, digunakan untuk melatih model. Data uji digunakan untuk menguji model.
@@ -251,7 +251,7 @@ Untuk mengatasi hal tersebut, dapat digunakan teknik lain yang warna suara alat 
 \begin{figure}[htb]
   \centering
   \includegraphics[width=\textwidth]{resources/DTNP-as-gesture-planner.eps}
-  \caption{Penggunaan Teknik Neural Parametrik sebagai Perencana Gestur Ekspresi}\label{fig-dtnp-as-gesture-planner}
+  \caption{Penggunaan teknik neural parametrik untuk perencana gestur ekspresi}\label{fig-dtnp-as-gesture-planner}
 \end{figure}
 
 Deviasi \textit{pitch} diambil dari perbedaan antara \textit{pitch} keluaran model dan \textit{pitch} non-ekspresif yang tertulis dalam partitur. Perbedaan ini dihitung dalam skala \textit{semitone}. Dinamika dihitung dari keseluruhan magnitudo harmonik. Magnitudo total dari keseluruhan harmonik dihitung dengan cara menjumlahkan \textit{pressure/voltage level}.

@@ -95,7 +95,7 @@ Yang diuji dengan uji persepsi adalah sistem dengan teknik neural parametrik seb
 \begin{figure}
 \centering
     \includegraphics[width=0.8\textwidth]{resources/questionnaire_screenshot.png}
-    \caption{Tampilan Cuplikan Kuesioner yang Digunakan Untuk Uji Preferensi Kealamian}\label{fig-questionnaire-sample}
+    \caption{Tampilan cuplikan kuesioner yang digunakan untuk uji preferensi kealamian}\label{fig-questionnaire-sample}
 \end{figure}
 
 Urutan pasangan segmen-segmen ini diacak, kemudian urutan segmen tiap pasang juga diacak. Untuk tiap pasang, responden diminta untuk memilih segmen audio yang lebih alami. Dari hasil ini, dapat dihitung persentase preferensi sistem ini terhadap sistem \textit{baseline}. Selain itu, responden juga dapat menyebutkan pertimbangan memilih segmen suara tersebut. Responden dapat memilih pertimbangan dari daftar yang telah ada ataupun menuliskan pertimbangan baru. Cuplikan kuesioner yang digunakan dapat dilihat pada Gambar \ref{fig-questionnaire-sample}. %TODO Mean Preference Score dibenerin
@@ -110,7 +110,7 @@ Eksperimen model \textit{timing} dimulai dengan pemilihan teknik menggunakan val
 
 \begin{table}[htbp]
     \centering
-    \caption{Hasil Validasi Silang untuk Penyetelan Parameter Model \textit{Timing}}\label{tab-timing-model-tuning-results}
+    \caption{Hasil validasi silang untuk penyetelan parameter model \textit{timing}}\label{tab-timing-model-tuning-results}
     \begin{tabular}{ |l|r| } 
      \hline
      Parameter & Pearson r untuk Nada Tiap \textit{Frame} \\
@@ -142,7 +142,7 @@ Pelatihan model F0 dengan \textit{early stopping} memiliki kinerja yang sama den
 
 \begin{table}[htbp]
     \centering
-    \caption{Hasil Validasi Silang untuk Penyetelan Parameter Model F0}\label{tab-f0-model-tuning-results}
+    \caption{Hasil validasi silang untuk penyetelan parameter model f0}\label{tab-f0-model-tuning-results}
     \begin{tabular}{ |l|l|l|r| } 
      \hline
      \multicolumn{3}{|l|}{Parameter} & Pearson r\\
@@ -161,7 +161,7 @@ Hasil penyetelan parameter model frekuensi harmonik tampak pada Tabel \ref{tab-f
 
 \begin{table}[htbp]
     \centering
-    \caption{Hasil Validasi Silang untuk Penyetelan Parameter Model Frekuensi Harmonik}\label{tab-freq-model-tuning-results}
+    \caption{Hasil validasi silang untuk penyetelan parameter model frekuensi harmonik}\label{tab-freq-model-tuning-results}
     \begin{tabular}{ |l|l|l|r| } 
      \hline
      \multicolumn{3}{|l|}{Parameter} & Rata-Rata Pearson r\\
@@ -182,7 +182,7 @@ Hasil penyetelan parameter model magnitudo harmonik tampak pada Tabel \ref{tab-m
 
 \begin{table}[htbp]
     \centering
-    \caption{Hasil Validasi Silang untuk Penyetelan Parameter Model Magnitudo Harmonik}\label{tab-mag-model-tuning-results}
+    \caption{Hasil validasi silang untuk penyetelan parameter model magnitudo harmonik}\label{tab-mag-model-tuning-results}
     \begin{tabular}{ |l|l|l|r| } 
      \hline
      \multicolumn{3}{|l|}{Parameter} & Rata-Rata Pearson r\\
@@ -203,7 +203,7 @@ Hasil penyetelan parmeter model amplop stokastik tampak pada Tabel \ref{tab-stoc
 
 \begin{table}[htbp]
     \centering
-    \caption{Hasil Validasi Silang untuk Penyetelan Parameter Model Amplop Stokastik}\label{tab-stoc-model-tuning-results}
+    \caption{Hasil validasi silang untuk penyetelan parameter model amplop stokastik}\label{tab-stoc-model-tuning-results}
     \begin{tabular}{ |l|l|l|r| } 
      \hline
      \multicolumn{3}{|l|}{Parameter} & Rata-Rata Pearson r\\
@@ -223,7 +223,7 @@ Hasil penyetelan parmeter model amplop stokastik tampak pada Tabel \ref{tab-stoc
 Dengan demikian, nilai parameter-parameter model yang telah disetel terdapat pada Tabel \ref{tab-timbre-pitch-model-parameters} dan Tabel \ref{tab-timing-model-parameters}. Nilai parameter-parameter model \textit{timing} terdapat pada Tabel \ref{tab-timing-model-parameters}. Nilai parameter-parameter model \textit{pitch} dan model timbre terdapat pada Tabel \ref{tab-timbre-pitch-model-parameters}.
 \begin{table}[htbp]
 	\centering
-	\caption{Nilai Parameter-Parameter Model \textit{Timing}}\label{tab-timing-model-parameters}
+	\caption{Nilai parameter-parameter model \textit{timing}}\label{tab-timing-model-parameters}
 	\begin{tabular}{|l|l|}
 	\hline
 	Parameter&Nilai \\\hline
@@ -237,7 +237,7 @@ Dengan demikian, nilai parameter-parameter model yang telah disetel terdapat pad
 	\newlength\colwidth
 	\setlength\colwidth{\dimexpr.2\columnwidth-2\tabcolsep-0.2\arrayrulewidth\relax}
 	\centering
-	\caption{Nilai Parameter-Parameter Model \textit{Pitch} dan Model Timbre}\label{tab-timbre-pitch-model-parameters}
+	\caption{Nilai parameter-parameter model \textit{pitch} dan model timbre}\label{tab-timbre-pitch-model-parameters}
 	\begin{tabular}{|p{\colwidth}|p{\colwidth}|p{\colwidth}|p{\colwidth}|p{\colwidth}|}
 	\hline
 	\multirow{2}{*}{Parameter}&\multicolumn{3}{|p{\dimexpr 3\colwidth}|}{Model Timbre}&{Model Pitch}\\\cline{2-5}
@@ -272,7 +272,7 @@ Tabel \ref{tab-timing-model-subset-results} menunjukkan perbandingan kinerja mod
 
 \begin{table}[htbp]
     \centering
-    \caption{Kinerja Model Timing dengan Berbagai Subset Data Latih}\label{tab-timing-model-subset-results}
+    \caption{Kinerja model timing dengan berbagai subset data latih}\label{tab-timing-model-subset-results}
     \begin{tabular}{ |l|r|r| } 
      \hline
      \multirow{2}{*}{Subset data latih} & \multicolumn{2}{l|}{Pearson r untuk Nada Tiap \textit{Frame}} \\
@@ -294,7 +294,7 @@ Terdapat dua kemungkinan yang menyebabkan hal ini. Kemungkinan pertama, penambah
 
 \begin{table}[htbp]
     \centering
-    \caption{Kinerja Model F0 dengan Berbagai Subset Data Latih}\label{tab-f0-model-subset-results}
+    \caption{Kinerja model f0 dengan berbagai subset data latih}\label{tab-f0-model-subset-results}
     \begin{tabular}{ |l|r|r| } 
      \hline
      \multirow{2}{*}{Subset data latih} & \multicolumn{2}{l|}{Pearson r untuk F0 Tiap \textit{Frame}} \\
@@ -315,7 +315,7 @@ Hal ini menunjukkan bahwa untuk model frekuensi harmonik, penambahan data latih 
 
 \begin{table}[htbp]
     \centering
-    \caption{Kinerja Model Frekuensi Harmonik dengan Berbagai Subset Data Latih}\label{tab-freq-model-subset-results}
+    \caption{Kinerja model frekuensi harmonik dengan berbagai subset data latih}\label{tab-freq-model-subset-results}
     \begin{tabular}{ |l|r|r| } 
      \hline
      \multirow{2}{*}{Subset data latih} & \multicolumn{2}{l|}{Pearson r untuk Frekuensi Harmonik Tiap \textit{Frame}} \\
@@ -336,7 +336,7 @@ Perhatikan pula bahwa kinerja model yang dilatih dengan subset \textit{fold}-1 h
 
 \begin{table}[htbp]
     \centering
-    \caption{Kinerja Model Magnitudo Harmonik dengan Berbagai Subset Data Latih}\label{tab-mag-model-subset-results}
+    \caption{Kinerja model magnitudo harmonik dengan berbagai subset data latih}\label{tab-mag-model-subset-results}
     \begin{tabular}{ |l|r|r| } 
      \hline
      \multirow{2}{*}{Subset data latih} & \multicolumn{2}{l|}{Pearson r untuk Magnitudo Harmonik Tiap \textit{Frame}} \\
@@ -354,7 +354,7 @@ Perhatikan pula bahwa kinerja model yang dilatih dengan subset \textit{fold}-1 h
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{resources/Analisis_Hmag_subset.png}
-    \caption{Contoh Perbandingan Keluaran Model Magnitudo Harmonik yang Dilatih dengan Subset dan Keseluruhan Data Latih (4 Harmonik Pertama), dengan Masukan \textit{Timing}, F0, dan Hfreq dari Dataset}\label{fig-hmag-subset-output-sample}
+    \caption{Contoh perbandingan keluaran model magnitudo harmonik yang dilatih dengan subset dan keseluruhan data latih (4 harmonik pertama), dengan masukan \textit{timing}, f0, dan hfreq dari dataset}\label{fig-hmag-subset-output-sample}
 \end{figure}
 
 Gambar \ref{fig-hmag-subset-output-sample} menujukkan contoh perbandingan keluaran model magnitudo harmonik yang dilatih dengan subset dan yang dilatih dengan keseluruhan data latih. Grafik paling atas menunjukkan referensi pada data, grafik tengah menunjukkan keluaran dari model yang dilatih dengan subset \textit{fold}-5, dan grafik paling bawah menunjukkan keluaran dari model yang dilatih dengan keseluruhan data latih. Tampak bahwa model yang dilatih dengan keseluruhan data latih lebih banyak menghasilkan magnitudo kecil. Pada taraf magnitudo -100 hingga -120 dB seperti pada gambar tersebut, pendengar akan mendengar seolah-olah tidak ada suara.
@@ -365,7 +365,7 @@ Terdapat dua kemungkinan yang menyebabkan hal ini. Kemungkinan pertama, penambah
 
 \begin{table}[htbp]
     \centering
-    \caption{Kinerja Model Amplop Stokastik dengan Berbagai Subset Data Latih}\label{tab-stoc-model-subset-results}
+    \caption{Kinerja model amplop stokastik dengan berbagai subset data latih}\label{tab-stoc-model-subset-results}
     \begin{tabular}{ |l|r|r| } 
      \hline
      \multirow{2}{*}{Subset data latih} & \multicolumn{2}{l|}{Pearson r untuk Amplop Stokastik Tiap \textit{Frame}} \\
@@ -390,7 +390,7 @@ Tabel \ref{tab-timing-testing-results} menunjukkan korelasi nada tiap-tiap \text
 
 \begin{table}[htbp]
     \centering
-    \caption{Hasil Uji Korelasi Model Timing}\label{tab-timing-testing-results}
+    \caption{Hasil uji korelasi model timing}\label{tab-timing-testing-results}
     \begin{tabular}{ |l|r|r| } 
      \cline{2-3}
      \multicolumn{1}{l|}{}&Terhadap data latih&Terhadap data uji\\\hline
@@ -402,7 +402,7 @@ Tabel \ref{tab-timing-testing-results} menunjukkan korelasi nada tiap-tiap \text
 Tabel \ref{tab-f0-testing-results} menunjukkan koefisien korelasi f0 tiap-tiap \textit{frame} keluaran model f0 terhadap f0 pada data. Nilai koefisien korelasi di atas 0 menunjukkan bahwa model berhasil mempelajari pola f0. Koefisien korelasi model ini tidak mencapai nilai 1, namun sudah mencapai 0.9550 terhadap data uji. Tidak terjadi \textit{overfitting} di sini.
 \begin{table}[htbp]
     \centering
-    \caption{Hasil Uji Korelasi Model F0}\label{tab-f0-testing-results}
+    \caption{Hasil uji korelasi model f0}\label{tab-f0-testing-results}
     \begin{tabular}{ |l|r|r| } 
      \cline{2-3}
      \multicolumn{1}{l|}{}&Terhadap data latih&Terhadap data uji\\\hline
@@ -413,7 +413,7 @@ Tabel \ref{tab-f0-testing-results} menunjukkan koefisien korelasi f0 tiap-tiap \
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{resources/Analisis_F0.png}
-    \caption{Contoh Keluaran Model F0, dengan Masukan \textit{Timing} dari Dataset}\label{fig-f0-output-sample}
+    \caption{Contoh keluaran model f0, dengan masukan \textit{timing} dari dataset}\label{fig-f0-output-sample}
 \end{figure}
 
 Kekurangan yang masih terjadi di model F0 adalah menganggap perubahan jangka-pendek dari F0 sebagai \textit{noise} dan hanya dirata-ratakan oleh model. Hal ini tampak pada contoh keluaran model F0 pada Gambar \ref{fig-f0-output-sample}. Pada bagian atas terlihat contoh F0 dari dataset, sedangkan pada bagian bawah terlihat F0 prediksi untuk sampel tersebut. Pada kedua bagian tersebut, terdapat bagian yang diperbesar untuk melihat perubahan jangka-pendek F0 tersebut. 
@@ -423,7 +423,7 @@ Pada bagian yang diperbesar pada gambar tersebut, terlihat dua jenis perubahan j
 Tabel \ref{tab-freq-testing-results} menunjukkan koefisien korelasi frekuensi harmonik tiap-tiap \textit{frame} keluaran model frekuensi harmonik terhadap frekuensi harmonik pada data. Nilai koefisien korelasi di atas 0 menunjukkan bahwa model berhasil mempelajari pola frekuensi harmonik. Koefisien korelasi model ini tidak mencapai nilai 1, namun sudah mencapai 0.9550 terhadap data uji. Tidak terjadi \textit{overfitting} di sini.
 \begin{table}[htbp]
     \centering
-    \caption{Hasil Uji Korelasi Model Frekuensi Harmonik}\label{tab-freq-testing-results}
+    \caption{Hasil uji korelasi model frekuensi harmonik}\label{tab-freq-testing-results}
     \begin{tabular}{ |l|r|r| } 
      \cline{2-3}
      \multicolumn{1}{l|}{}&Terhadap data latih&Terhadap data uji\\\hline
@@ -434,7 +434,7 @@ Tabel \ref{tab-freq-testing-results} menunjukkan koefisien korelasi frekuensi ha
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{resources/Analisis_Hfreq.png}
-    \caption{Contoh Keluaran Model Frekuensi Harmonik (4 Harmonik Pertama), dengan Masukan \textit{Timing} dan F0 dari Dataset}\label{fig-hfreq-output-sample}
+    \caption{Contoh keluaran model frekuensi harmonik (4 harmonik pertama), dengan masukan \textit{timing} dan f0 dari dataset}\label{fig-hfreq-output-sample}
 \end{figure}
 
 Kekurangan yang masih terjadi di model frekuensi harmonik adalah menganggap perubahan jangka-pendek dari frekuensi harmonik sebagai \textit{noise} dan hanya dirata-ratakan oleh model. Hal ini tampak pada contoh keluaran model frekuensi harmonik pada Gambar \ref{fig-hfreq-output-sample}. Pada bagian atas terlihat contoh frekuensi harmonik dari dataset, sedangkan pada bagian bawah terlihat frekuensi harmonik prediksi untuk sampel tersebut. Pada kedua bagian tersebut, terdapat bagian yang diperbesar untuk melihat perubahan jangka-pendek frekuensi harmonik tersebut. 
@@ -445,7 +445,7 @@ Tabel \ref{tab-mag-testing-results} menunjukkan koefisien korelasi magnitudo har
 
 \begin{table}[htbp]
     \centering
-    \caption{Hasil Uji Korelasi Model Magnitudo Harmonik}\label{tab-mag-testing-results}
+    \caption{Hasil uji korelasi model magnitudo harmonik}\label{tab-mag-testing-results}
     \begin{tabular}{ |l|r|r| } 
      \cline{2-3}
      \multicolumn{1}{l|}{}&Terhadap data latih&Terhadap data uji\\\hline
@@ -456,13 +456,13 @@ Tabel \ref{tab-mag-testing-results} menunjukkan koefisien korelasi magnitudo har
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{resources/Analisis_Hmag.png}
-    \caption{Contoh Keluaran Model Magnitudo Harmonik (4 Harmonik Pertama), dengan Masukan \textit{Timing}, F0, dan Hfreq dari Dataset}\label{fig-hmag-output-sample}
+    \caption{Contoh keluaran model magnitudo harmonik (4 harmonik pertama), dengan masukan \textit{timing}, f0, dan hfreq dari dataset}\label{fig-hmag-output-sample}
 \end{figure}
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{resources/Analisis_Hmag_zoomed.png}
-    \caption{(Diperbesar ke Satu Not) Contoh Keluaran Model Magnitudo Harmonik (4 Harmonik Pertama), dengan Masukan \textit{Timing}, F0, dan Hfreq dari Dataset}\label{fig-hmag-output-sample-zoomed}
+    \caption{(Diperbesar ke satu not) Contoh keluaran model magnitudo harmonik (4 harmonik pertama), dengan masukan \textit{timing}, f0, dan hfreq dari dataset}\label{fig-hmag-output-sample-zoomed}
 \end{figure}
 
 Kekurangan yang masih terjadi di model magnitudo harmonik adalah menganggap perubahan jangka-pendek dari magnitudo harmonik sebagai \textit{noise} dan hanya dirata-ratakan oleh model. Hal ini tampak pada contoh keluaran model magnitudo harmonik pada Gambar \ref{fig-hmag-output-sample}. Pada bagian atas terlihat contoh magnitudo harmonik dari dataset, sedangkan pada bagian bawah terlihat magnitudo harmonik prediksi untuk sampel tersebut. Tampilan yang diperbesar tampak pada Gambar \ref{fig-hmag-output-sample-zoomed}.
@@ -484,7 +484,7 @@ Tabel \ref{tab-stoc-testing-results} menunjukkan koefisien korelasi amplop stoka
 
 \begin{table}[htbp]
     \centering
-    \caption{Hasil Uji Korelasi Model Amplop Stokastik}\label{tab-stoc-testing-results}
+    \caption{Hasil uji korelasi model amplop stokastik}\label{tab-stoc-testing-results}
     \begin{tabular}{ |l|r|r| } 
      \cline{2-3}
      \multicolumn{1}{l|}{}&Terhadap data latih&Terhadap data uji\\\hline
@@ -495,13 +495,13 @@ Tabel \ref{tab-stoc-testing-results} menunjukkan koefisien korelasi amplop stoka
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{resources/Analisis_StocEnv.png}
-    \caption{Contoh Keluaran Model Amplop Stokastik, dengan Masukan \textit{Timing}, F0, dan Hfreq dari Dataset}\label{fig-stocenv-output-sample}
+    \caption{Contoh keluaran model amplop stokastik, dengan masukan \textit{timing}, f0, dan hfreq dari dataset}\label{fig-stocenv-output-sample}
 \end{figure}
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{resources/Analisis_StocEnv_zoomed.png}
-    \caption{(Diperbesar) Contoh Keluaran Model Amplop Stokastik, dengan Masukan \textit{Timing}, F0, dan Hfreq dari Dataset}\label{fig-stocenv-output-sample-zoomed}
+    \caption{(Diperbesar) Contoh keluaran model amplop stokastik, dengan masukan \textit{timing}, f0, dan hfreq dari dataset}\label{fig-stocenv-output-sample-zoomed}
 \end{figure}
 
 Kekurangan yang masih terjadi di model amplop stokastik adalah menganggap perubahan jangka-pendek dari amplop stokastik sebagai \textit{noise} dan hanya dirata-ratakan oleh model. Hal ini tampak pada contoh keluaran model amplop stokastik pada Gambar \ref{fig-stocenv-output-sample}. Pada bagian atas terlihat contoh amplop stokastik dari dataset, sedangkan pada bagian bawah terlihat amplop stokastik prediksi untuk sampel tersebut. Tampilan yang diperbesar tampak pada Gambar \ref{fig-stocenv-output-sample-zoomed}.
@@ -526,7 +526,7 @@ Tabel \ref{tab-system-testing-results} menunjukkan hasil uji korelasi sistem DT-
 
 \begin{table}[htbp]
     \centering
-    \caption{Hasil Pengujian Korelasi Sistem Utuh}\label{tab-system-testing-results}
+    \caption{Hasil pengujian korelasi sistem utuh}\label{tab-system-testing-results}
     \begin{tabular}{ |l|r|r| } 
      \cline{2-3}
      \multicolumn{1}{l|}{}&\multicolumn{2}{|l|}{Rata-Rata Pearson r Semua Komponen}\\\hline
@@ -550,7 +550,7 @@ Tabel \ref{tab-preference} menunjukkan hasil uji preferensi kealamian sistem yan
 
 \begin{table}[htbp] %TODO update data
   \begin{center}
-    \caption{Hasil Uji Preferensi Kealamian dari Sistem Neural Parametrik dan Sistem Gabungan}
+    \caption{Hasil uji preferensi kealamian dari sistem neural parametrik dan sistem gabungan}
     \label{tab-preference}
     \begin{tabular}{|l|r|r|}
     \hline
@@ -569,7 +569,7 @@ Tabel \ref{tab-pertimbangan} menunjukkan pertimbangan-pertimbangan responden dal
 % \begin{table}[htbp] %TODO update data (proses terlebih dahulu agar jadi kecil)
 %   \begin{center}
 	\begin{longtable}{|p{0.6\textwidth}|r|r|r|r|r|}
-	\caption{Pertimbangan Responden Dalam Memilih}\label{tab-pertimbangan}\\
+	\caption{Pertimbangan responden dalam memilih}\label{tab-pertimbangan}\\
 	\hline
 Pertimbangan&	Total&	\multicolumn{4}{|c|}{Pasangan, Teknik yang Dipilih}\\
 \cline{3-6}
@@ -611,3 +611,11 @@ apa ini....&	2&	1&	0&	1&	0\\\hline
 	\end{longtable}
 %   \end{center}
 % \end{table}
+
+Jawaban-jawaban pertimbangan yang diberikan oleh responden digunakan untuk mencari penyebab-penyebab rendahnya nilai preferensi persepsi kealamian dari sistem neural parametrik dan juga sistem gabungan. Karena data ini masih berupa kemunculan pertimbangan-pertimbangan yang bermacam-macam pada data preferensi tertentu, sebagian data ini tidak dapat secara langsung menunjukkan pada teknik mana fenomena yang disebutkan terjadi, dan apakah fenomena tersebut menyebabkan terdengar lebih alami atau sebaliknya.
+
+Sebagian jawaban pertimbangan menunjukkan pada teknik mana fenomena ini terjadi, dengan kata-kata "audio yang dipilih" dan "audio yang tidak dipilih". Kemudian, sebagian jawaban pertimbangan juga menunjukkan apakah hal tersebut membuat terdengar lebih alami atau tidak, dengan kata-kata "lebih natural" atau semacamnya.
+
+Untuk jawaban-jawaban yang lebih umum seperti variasi warna suara, variasi dinamika dan semacamnya, perlu dilakukan analisis hubungan sebab akibat secara lebih dalam. Analisis ini dapat dilakukan baik secara statistik dari data tersebut ataupun dengan heuristik. Cara heuristik misalnya berdasarkan visualisasi keluaran sistem pada Gambar \ref{fig-f0-output-sample}, \textit{vibrato} tidak ada dalam keluaran sistem neural parametrik.
+
+Dari hasil analisis hubungan sebab akibat ini, dapat dilacak aspek-aspek mana saja dari sistem ini yang menyebabkan suara dipersepsi tidak alami. Dari sana, dengan membandingkan dengan visualisasi keluaran sistem, dapat dilihat kekurangan-kekurangan sistem dan hal-hal yang harus diperbaiki.
