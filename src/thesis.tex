@@ -17,8 +17,10 @@
 \makeatletter
 
 \makeatother
+\makeglossaries
 
 \bibliography{references}
+\loadglsentries{glossaries}
 
 \begin{document}
 \sloppy
@@ -49,6 +51,8 @@
     \tableofcontents
     \listoffigures
     \listoftables
+    \glsaddall
+    \printglossary[nonumberlist]
 
     \titleformat*{\section}{\bfseries\normalsize}
     \titleformat*{\subsection}{\bfseries\normalsize}
