@@ -6,13 +6,11 @@ Akan digunakan teknik parametrik neural untuk membangkitkan suara alat musik ges
 
 \begin{enumerate}
 
-\item Perbedaan karakteristik suara alat musik gesek dan suara nyanyian terletak pada gaung. Suara nyanyian memiliki gaung yang sedikit, sehingga tidak terdapat polifoni yang signifikan. Pada alat musik gesek, gaung sangat banyak digunakan sebagai bentuk ekspresi, sehingga terjadi polifoni akibat gaung.
+\item Perbedaan karakteristik suara alat musik gesek dan suara nyanyian terletak pada cara produksi suara dan gaung. Suara nyanyian memiliki gaung yang sedikit, sehingga tidak terdapat polifoni yang signifikan. Pada alat musik gesek, gaung sangat banyak digunakan sebagai bentuk ekspresi, sehingga terjadi polifoni akibat gaung. Selain itu, terdapat gaung yang secara intrinsik selalu muncul dari badan alat musik dan mempengaruhi warna suara.
 
 \item \textit{Timing} not dalam alat musik gesek memiliki karakteristik yang berbeda dengan suara nyanyian. Dalam sistem \textit{baseline} untuk suara nyanyian, terdapat \textit{timing} fonetik. Dalam sistem ini, tidak ada \textit{timing} fonetik. Hanya dibutuhkan \textit{timing} not saja.
 
 \item Perbedaan masalah untuk data input sintesis terkait dengan \textit{timbre}. Dalam pembangkitan suara alat musik gesek, \textit{timbre} ditentukan oleh konteks. Hal ini berbeda dengan penelitian sebelumnya, di mana \textit{timbre} ditentukan dari rangkaian fonem yang terdapat dalam data input.
-
-%lengkapi
 
 \end{enumerate}
 
@@ -39,7 +37,7 @@ Model \textit{pitch} dalam sistem ini dilatih untuk menghasilkan F0. Masukan mod
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{resources/system-overview.eps}
-    \caption{Adopsi teknik neural parametrik untuk permainan musik ekspresif alat musik gesek (modifikasi Gambar \ref{fig-system-overview-bonada})}\label{fig-system-overview} %TODO perbaiki gambar
+    \caption{Adopsi teknik neural parametrik untuk permainan musik ekspresif alat musik gesek (modifikasi Gambar \ref{fig-system-overview-bonada})}\label{fig-system-overview}
 \end{figure}
 
 Pada tahap pembangkitan, sistem ini mampu menerima partitur dan menghasilkan audio. Keluaran perantara yang dihasilkan adalah parameter vocoder, yang kemudian digunakan oleh vocoder untuk menghasilkan audio.

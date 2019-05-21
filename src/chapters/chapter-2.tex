@@ -4,7 +4,7 @@
 
 Sistem komputer untuk permainan musik ekspresif (\textit{Computer Systems for Expressive Musical Performance} - CSEMP) adalah sistem yang dapat membangkitkan permainan musik yang ekspresif. Sebagai contoh, perangkat lunak \textit{typesetting} musik pada umumnya dapat memainkan musik secara "robotik". Sistem seperti ini bukan termasuk kategori sistem komputer untuk permainan musik ekspresif. Sistem komputer untuk permainan musik ekspresif mampu memainkan musik dengan sentuhan manusiawi. \parencite{miranda2010}
 
-Ukuran yang digunakan untuk menentukan apakah suatu sistem komputer untuk permainan musik mampu memainkan musik dengan sentuhan manusiawi bermacam-macam, di antaranya kealamian \parencite{schubert2017test}, ekspresivitas, \textit{correctness}, dan kreativitas \parencite{miranda2010}. Kealamian atau \textit{humanness} merupakan ukuran seberapa pendengar manusia mampu membedakan permainan yang dibangkitkan sistem dari permainan manusia. Kealamian biasa diuji dengan tes buta pendengar atau tes Turing \parencite{schubert2017test}, baik dengan pendengar ahli maupun pendengar umum. Ukuran kinerja ekspresivitas dan \textit{correctness} dapat dilakuan dengan tes buta dengan pendengar ahli. Adapun kreativitas dapat diuji dengan menghitung banyaknya interpretasi berbeda yang dibangkitkan \parencite{miranda2010}. Umumnya, penelitian sistem permainan musik ekspresif saat ini berusaha meningkatkan kealamian.
+Ukuran yang digunakan untuk menentukan apakah suatu sistem komputer untuk permainan musik mampu memainkan musik dengan sentuhan manusiawi bermacam-macam, di antaranya kealamian \parencite{schubert2017test}, ekspresivitas, \textit{correctness}, dan kreativitas \parencite{miranda2010}. Kealamian atau \textit{humanness} merupakan ukuran seberapa pendengar manusia mampu membedakan permainan yang dibangkitkan sistem dari permainan manusia. Kealamian biasa diuji dengan tes buta pendengar \parencite{schubert2017test}, baik dengan pendengar ahli maupun pendengar umum. Ukuran kinerja ekspresivitas dan \textit{correctness} dapat dilakuan dengan tes buta dengan pendengar ahli. Adapun kreativitas dapat diuji dengan menghitung banyaknya interpretasi berbeda yang dibangkitkan \parencite{miranda2010}. Umumnya, penelitian sistem permainan musik ekspresif saat ini berusaha meningkatkan kealamian.
 
 Tujuan akhir dari sistem komputer untuk permainan musik ekspresif adalah membangkitkan suara yang memiliki gestur-gestur ekspresif dari not-not yang dideskripsikan dalam partitur. Masukan dari sistem ini adalah partitur. Partitur merupakan representasi dari sekumpulan not, yang mengindikasikan nada yang dimainkan beserta ritmenya. Contoh dari partitur tampak pada Gambar \ref{humanmusicsheet} dan Gambar \ref{midimusicsheet}.
 
@@ -36,9 +36,9 @@ Dalam bentuk spektogram, atau fitur akustik lainnya, ataupun dalam bentuk repres
     \caption{Contoh representasi spektogram dari suara keluaran} \label{spectogramexample}
 \end{figure}
 
-Komponen sistem ini dapat dibagi menjadi sistem perencana gestur dan pembangkit suara \parencite{Thippur2013ProbabilisticMO} seperti pada Gambar \ref{thippurcomponents}. Keluaran dari sistem perencana gestur adalah rencana gestur ekspresif seperti keras-lemah suara, deskripsi timbre, deskripsi tempo, dan deskripsi teknik permainan spesifik alat musik. Komponen-komponen sistem ini dapat pula dipisahkan menjadi sistem perencana ekspresi, perencana gestur, dan pembangkit suara \parencite{yu2017bowing} seperti terlihat pada Gambar \ref{yucomponents}. Perencana ekspresi bertugas membaca partitur dan menentukan rencana ekspresi dalam permainan tersebut. Contoh rencana ekspresi adalah \textit{espressivo} (ekspresif), \textit{scherzando} (melawak), \textit{tranquillo} (tenteram), dan sebagainya \parencite{yang2016synthesis}.
+Komponen sistem ini dapat dibagi menjadi sistem perencana gestur dan pembangkit suara \parencite{Thippur2013ProbabilisticMO} seperti pada Gambar \ref{thippurcomponents}. Keluaran dari sistem perencana gestur adalah rencana gestur ekspresif seperti keras-lemah suara, deskripsi timbre, deskripsi tempo, dan deskripsi teknik permainan spesifik alat musik. Komponen-komponen sistem ini dapat pula dipisahkan menjadi sistem perencana ekspresi, perencana gestur, dan pembangkit suara \parencite{yu2017bowing} seperti terlihat pada Gambar \ref{yucomponents}. Perencana ekspresi bertugas membaca partitur dan menentukan rencana ekspresi dalam permainan tersebut. Contoh rencana ekspresi adalah \textit{espressivo}, \textit{scherzando}, \textit{tranquillo}, dan sebagainya \parencite{yang2016synthesis}.
 
-Suara yang dihasilkan dalam suatu permainan dipengaruhi oleh rencana gestur yang dieksekusi. Representasi rencana gestur dan informasi yang terkandung di dalamnya bergantung kepada jenis alat musik dan desain sistem. Spesifikasi energi tiap not, yang berhubungan dengan keras lemahnya not, lalu kepada alur perubahan dinamika sepanjang lagu, umum digunakan pada banyak alat musik. Spesifikasi energi di dalam not dan perubahannya sepanjang not mungkin hanya relevan untuk alat musik dengan eksitasi kontinu seperti alat gesek, alat tiup, dan nyanyian. Pada alat gesek, spesifikasi energi dan pilihan warna suara mungkin saja digantikan dengan spesifikasi cara menggesek (\textit{bowing}). Posisi \textit{bowing} dapat diubah, baik dari jarak dengan \textit{bridge} maupun pada bagian \textit{bow} mana senar tertempel. Begitu pula kecepatan dan tekanan \textit{bowing} dapat berpengaruh kepada \textit{timbre} dan dinamika. \parencite{yu2017bowing} Contoh gestur lainnya adalah \textit{vibrato}: naik turunnya \textit{pitch} (tinggi rendahnya frekuensi formant utama/\textit{f0}) dalam alat musik gesek atau naik turunnya amplitudo secara periodik dalam satu not. Gestur \textit{vibrato} mungkin saja sudah implisit terkandung dalam rencana realisasi \textit{pitch}. Dalam desain representasi rencana gestur, satu jenis gestur mungkin tidak digunakan karena sudah terkandung secara implisit dalam jenis gestur lain, data lain, atau bahkan mungkin pula diabaikan.
+Suara yang dihasilkan dalam suatu permainan dipengaruhi oleh rencana gestur yang dieksekusi. Representasi rencana gestur dan informasi yang terkandung di dalamnya bergantung kepada jenis alat musik dan desain sistem. Spesifikasi energi tiap not, yang berhubungan dengan keras lemahnya not, lalu kepada alur perubahan dinamika sepanjang lagu, umum digunakan pada banyak alat musik. Spesifikasi energi di dalam not dan perubahannya sepanjang not mungkin hanya relevan untuk alat musik dengan eksitasi kontinu seperti alat gesek, alat tiup, dan nyanyian. Pada alat gesek, spesifikasi energi dan pilihan warna suara mungkin saja digantikan dengan spesifikasi \textit{bowing}. Posisi \textit{bowing} dapat diubah, baik dari jarak dengan \textit{bridge} maupun pada bagian \textit{bow} mana senar tertempel. Begitu pula kecepatan dan tekanan \textit{bowing} dapat berpengaruh kepada \textit{timbre} dan dinamika. \parencite{yu2017bowing} Contoh gestur lainnya adalah \textit{vibrato}. Gestur \textit{vibrato} mungkin saja sudah implisit terkandung dalam rencana realisasi \textit{pitch}. Dalam desain representasi rencana gestur, satu jenis gestur mungkin tidak digunakan karena sudah terkandung secara implisit dalam jenis gestur lain, data lain, atau bahkan mungkin pula diabaikan.
 
 Dalam pembangunan CSEMP dan komponennya, pembagian ini tidak mutlak. Selain sistem yang membuat rencana-rencana ekspresi dan gestur terlebih dahulu sebelum dieksekusi menjadi suara, terdapat pula sistem yang langsung membangkitkan suara dari partitur tanpa adanya keluaran antara.
 
@@ -54,9 +54,9 @@ Dalam pembangunan CSEMP dan komponennya, pembagian ini tidak mutlak. Selain sist
     \caption{Komponen-komponen CSEMP berdasarkan \citet{yu2017bowing}}\label{yucomponents}
 \end{figure}
 
-\textit{Scope} dari penelitian-penelitian sebelumnya bermacam-macam. Terdapat sistem permainan music ekspresif yang bersifat \textit{end-to-end}, yaitu membangkitkan suara ekspresif dari masukan partitur. Penelitian bonada \parencite{bonada2017singing} membangkitkan suara vokal ekspresif dari partitur. Meski jangkauan konteks temporal yang dipertimbangkan dalam sistem Bonada hanya meliputi waktu yang dekat (dengan medan reseptif 100ms jaringan syaraf tiruan dengan konvousi terdilasi), suara yang dibangkitkan memiliki ekspresi dengan taraf tertentu. Suara yang dibangkitkan dengan sistem Bonada telah diujikan pula kepada pendengar manusia, meski belum mencapai taraf kealamian seperti pemain manusia.
+\textit{Scope} dari penelitian-penelitian sebelumnya bermacam-macam. Terdapat sistem permainan music ekspresif yang bersifat sepenuhnya otomatis partitur-ke-suara, yaitu membangkitkan suara ekspresif dari masukan partitur. Penelitian bonada \parencite{bonada2017singing} membangkitkan suara vokal ekspresif dari partitur. Meski jangkauan konteks temporal yang dipertimbangkan dalam sistem Bonada hanya meliputi waktu yang dekat (dengan medan reseptif 100ms jaringan syaraf tiruan dengan konvousi terdilasi), suara yang dibangkitkan memiliki ekspresi dengan taraf tertentu. Suara yang dibangkitkan dengan sistem Bonada telah diujikan pula kepada pendengar manusia, meski belum mencapai taraf kealamian seperti pemain manusia.
 
-Sistem lainnya yang telah mampu membangkitkan suara dari partitur saja (\textit{end-to-end}) adalah CaRo \parencite{canazza2015}. Untuk memainkan partitur dan membangkitkan suara, CaRo mengirimkan sinyal perintah permainan kepada mesin piano akustik. Dalam uji pendengar manusia \parencite{schubert2017test}, dibuktikan bahwa permainan CaRo tidak dapat dibedakan dari permainan manusia oleh pendengar manusia.
+Sistem lainnya yang telah mampu membangkitkan suara dari partitur saja adalah CaRo \parencite{canazza2015}. Untuk memainkan partitur dan membangkitkan suara, CaRo mengirimkan sinyal perintah permainan kepada mesin piano akustik. Dalam uji pendengar manusia \parencite{schubert2017test}, dibuktikan bahwa permainan CaRo tidak dapat dibedakan dari permainan manusia oleh pendengar manusia.
 
 Terdapat penelitian lain yang hanya melingkupi sistem perencanaan gestur saja. Salah satunya adalah sistem perencanaan gestur untuk alat musik dengan eksitasi diskrit \parencite{miranda2010}. Ukuran kinerja dari sistem seperti ini hanya berupa akurasi dari data gestur ekspresi.
 
@@ -114,7 +114,7 @@ Dalam sistem ini, terdapat tiga model, yang menghasilkan parameter-parameter yan
 	\end{tabular}
 \end{table}
 
-Untuk model \textit{timing} not, digunakan jaringan syaraf tiruan \textit{feedforward} dengan fitur kontekstual untuk tiap not dalam partitur, dengan keluaran \textit{softmax} dengan \textit{range} deviasi $-15$ \textit{frame} () hingga $+14$ \textit{frame}. Untuk model \textit{durasi} fonem, digunakan jaringan syaraf tiruan konvolusional. \parencite{bonada2017singing} Untuk model \textit{pitch} dan model \textit{timbre}, digunakan jaringan syaraf tiruan dengan arsitektur yang didasarkan kepada WaveNet \parencite{Oord2016WaveNetAG} yang dimodifikasi.
+Untuk model \textit{timing} not, digunakan jaringan syaraf tiruan \textit{feedforward} dengan fitur kontekstual untuk tiap not dalam partitur, dengan keluaran \textit{softmax} dengan \textit{range} deviasi $-15$ \textit{frame} hingga $+14$ \textit{frame}. Untuk model \textit{durasi} fonem, digunakan jaringan syaraf tiruan konvolusional. \parencite{bonada2017singing} Untuk model \textit{pitch} dan model \textit{timbre}, digunakan jaringan syaraf tiruan dengan arsitektur yang didasarkan kepada WaveNet \parencite{Oord2016WaveNetAG} yang dimodifikasi.
 
 \section{Jaringan Syaraf Tiruan Modifikasi WaveNet}
 
@@ -190,22 +190,37 @@ Di antara masalah yang dihadapi model-model dengan arsitektur ini adalah terkait
 
 Sintesis neural parametrik nyanyian \parencite{bonada2017singing} menggunakan \textit{vocoder} WORLD \parencite{morise2016world}. Sebagaimana \textit{vocoder} pada umumnya, WORLD mengkodekan sinyal suara menjadi \textit{pitch}/f0 dan amplop spektral \parencite{dudley1939vocoder}. WORLD mengasumsikan bahwa sinyal suara diproduksi dengan sinyal eksitasi yang dihitung langsung dari \textit{waveform}, F0, dan amplop spektral \parencite{morise2016world}.
 
-Dalam \textit{vocoder} WORLD, \textit{waveform} diasumsikan berasal dari getaran pita suara. Algoritma estimasi F0 yang digunakan adalah algoritma DIO \parencite{morise2009fast} yang menggunakan \textit{zero-crossing interval} dari sinyal sinus hasil penerapan \textit{low-pass filter} dari sinyal suara. Estimasi amplop spektral pada \textit{vocoder} WORLD menggunakan algoritma CheapTrick \parencite{}, yang menggunakan informasi \textit{waveform} dan F0.
+Dalam \textit{vocoder} WORLD, \textit{waveform} diasumsikan berasal dari getaran pita suara. Algoritma estimasi F0 yang digunakan adalah algoritma DIO \parencite{morise2009fast} yang menggunakan \textit{zero-crossing interval} dari sinyal sinus hasil penerapan \textit{low-pass filter} dari sinyal suara. Estimasi amplop spektral pada \textit{vocoder} WORLD menggunakan algoritma CheapTrick \parencite{morise2015cheaptrick}, yang menggunakan informasi \textit{waveform} dan F0.
 
-Terdapat pengkodean lain yang biasa digunakan untuk mengkodekan sinyal suara alat musik, yaitu pengkodean harmonik. Dalam pengkodean harmonik, %TODO
-%Pemodelan spektral .....
+Terdapat pengkodean lain yang biasa digunakan untuk mengkodekan sinyal suara alat musik, yaitu pengkodean harmonik plus stokastik. Dalam pengkodean harmonik plus stokastik, sinyal suara dimodelkan sebagai jumlah dari komponen deterministik dan stokastik sebagai berikut:\parencite{serra1997sineplusnoise}
 
-%Model harmonik ...
+\begin{equation}
+s(t)=\Sigma_{r=1}^{R} A_r(t) cos (\int_0^t\omega_(t))+e(t)
+\end{equation}
+
+Di sini, komponen deterministik berupa penjumlahan gelombang sinusoidal dengan amplitudo $A_r(t)$ dan frekuensi sudut $omega_r(t)$ untuk harmonik ke-$1$ s.d. $R$. Komponen stokastik $e(t)$ berupa \textit{white noise} $u(\tau)$ yang di-\textit{filter} dengan \textit{filter} yang bervariasi sepanjang waktu $h(t,\tau)$: \parencite{serra1997sineplusnoise}
+
+\begin{equation}
+e(t)=\int_0^t h(t,\tau)u(\tau)d\tau
+\end{equation}
+
+Proses pengkodean harmonik plus stokastik dari sinyal suara terdiri dari penghitungan spektral, deteksi puncak, deteksi \textit{pitch}/frekuensi fundamental, penentuan frekuensi-frekuensi harmonik, dan analisis stokastik. Hasil pengkodean ini direpresentasikan dengan nilai-nilai frekuensi harmonik (hZ), magnitudo harmonik (dB), dan amplop stokastik (dB). \parencite{serra1997sineplusnoise}
+
+Dengan asumsi bahwa sinyal suara terdiri dari kumpulan gelombang-gelombang harmonik, pencarian frekuensi fundamental dapat dilakukan dengan algoritma TWM. Algoritma TWM mengambil frekuensi dengan \textit{cost} terendah diantara kandidat-kandidat frekuensi harmonik. Kandidat-kandidat frekuensi harmonik yang digunakan adalah puncak-puncak spektral yang telah dideteksi. \textit{Cost} yang digunakan TWM adalah galat dua arah antara frekuensi harmonik yang diprediksi dan frekuensi puncak-puncak terdekat. \parencite{beauchamp1994twm}
+
+Kesulitan yang dialami dengan algoritma TWM ini adalah gaung dari not sebelum. Gaung dari not sebelum ini menyebabkan TWM memilih kandidat frekuensi yang sebenarnya adalah frekuensi not sebelumnya. \parencite{beauchamp1994twm}
+
+Frekuensi dan magnitudo harmonik diambil dari puncak-puncak yang telah terdeteksi. Diambil puncak-puncak yang memiliki deviasi kecil. \parencite{sierra1990sms}
 
 %TODO proses produksi suara pada alat musik gesek
 
-\section{Metriks Kinerja}
+% \section{Metriks Kinerja}
 
->>>TODO<<<
+% Di antara metrik yang dapat digunakan untuk mengukur kinerja sistem permainan musik ekspresif adalah koefisien korelasi \parencite{yu2017bowing}, seperti yang dituliskan pada persamaan \ref{pearson-corrcoef-eq}.
 
-Koefisien korelasi Pearson:
-\begin{equation}
-    r_{xy}=\dfrac{\sum^n_{i=1}(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum^n_{i=1}(x_i-\bar{x})^2}{\sqrt{\sum^n_{i=1}(y_i-\bar{y})^2}}}
-\end{equation}\label{pearson-corrcoef-eq}
+% \begin{equation}
+%     r_{xy}=\dfrac{\sum^n_{i=1}(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum^n_{i=1}(x_i-\bar{x})^2}{\sqrt{\sum^n_{i=1}(y_i-\bar{y})^2}}}
+% \end{equation}\label{pearson-corrcoef-eq}
 
+% Metrik lainnya, yaitu uji preferensi, diukur dengan meminta pendengar memilih di antara keluaran  
 %TODO Decision tree...

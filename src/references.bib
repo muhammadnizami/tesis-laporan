@@ -274,3 +274,60 @@ doi = {10.1121/1.1902137}
     year = {2009},
     url = {http://www.aes.org/e-lib/browse.cfm?elib=15165}
     }
+@inbook {serra1997sineplusnoise,
+  title = {Musical Sound Modeling with Sinusoids plus Noise},
+  booktitle = {Musical Signal Processing},
+  series = {Studies on New Music Research},
+  year = {1997},
+  pages = {91-122},
+  publisher = {Swets \& Zeitlinger},
+  organization = {Swets \& Zeitlinger},
+  abstract = {When generating musical sound on a digital computer, it is important to have a good model whose parameters provide a rich source of meaningful sound transformations. Three basic model types are in prevalent use today for musical sound generation instrument models, spectrum models, and abstract models. Instrument models attempt to parametrize a sound at its source, such as a violin, clarinet, or vocal tract. Spectrum models attempt to parametrize a sound at the basilar membrane of the ear, discarding whatever information the ear seems to discard in the spectrum. Abstract models, such as FM, attempt to provide musically useful parameters in an abstract formula. 
+<p>
+This article addresses the second category of synthesis techniques spectrum modeling. The main advantage of this group of techniques is the existence of analysis procedures that extract the synthesis parameters out of real sounds, thus being able to reproduce and modify actual sounds. Our particular approach is based on modeling sounds as stable sinusoids (partials) plus noise (residual component), therefore analyzing sounds with this model and generating new sounds from the analyzed data. The analysis procedure detects partials by studying the time-varying spectral characteristics of a sound and represents them with time-varying sinusoids. These partials are then subtracted from the original sound and the remaining \&quot;residual\&quot; is represented as a time-varying filtered white noise component. The synthesis procedure is a combination of additive synthesis for the sinusoidal part, and subtractive synthesis for the noise part.
+</p>
+},
+  isbn = {90 265 1482 4},
+  author = {Xavier Serra},
+  editor = {Roads, C. and Pope, S. and Picialli, A. and De Poli, G.}
+}
+@ARTICLE{beauchamp1994twm,
+   author = {{Maher}, R.~C. and {Beauchamp}, J.~W.},
+    title = "{Fundamental frequency estimation of musical signals using a two-way mismatch procedure}",
+  journal = {Acoustical Society of America Journal},
+     year = 1994,
+    month = apr,
+   volume = 95,
+    pages = {2254-2263},
+      doi = {10.1121/1.408685},
+   adsurl = {https://ui.adsabs.harvard.edu/abs/1994ASAJ...95.2254M},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@article {sierra1990sms,
+  title = {Spectral Modeling Synthesis: A Sound Analysis/Synthesis Based on a Deterministic plus Stochastic Decomposition},
+  journal = {Computer Music Journal},
+  volume = {14},
+  year = {1990},
+  note = {SMS},
+  pages = {12-24},
+  abstract = {When generating musical sound on a digital computer, it is important to have a good model whose parameters provide a rich source of meaningful sound transformations. Three basic model types are used widely today far musical sound generation: instrument models, spectrum models, and abstract models. Instrument models attempt to parameterize a sound at its source, such as a violin, clarinet, or vocal tract. Spectrum models attempt to parameterize a sound at the basilar membrane of the ear, discarding whatever information the ear seems to discard in the spectrum. Abstract models, such as FM, attempt to provide musically useful parameters in an abstract formula.
+ This paper addresses the second category of synthesis technique: spectrum modeling. It describes a technique called spectral modeling synthesis (SMS), that models time-varying spectra as (1) a collection of sinusoids controlled through time by piecewise linear amplitude and frequency envelopes ( the deterministic part), and (2) a time-varying filtered noise component ( the stochastic part). The analysis procedure first extracts the sinusoidal trajectories by tracking peaks in a sequence of short-time Fourier transforms. These peaks are then removed by spectral subtraction. The remaining "noise floor" is then modeled as white noise through a time-varying filter. A piecewise linear approximation to the upper spectral envelope of the noise is computed for each successive spectrum, and the stochastic part is synthesized by means of the overlap-add technique. The SMS technique has proved to give general, high-quality transformations far a wide variety of musical signals.},
+  doi = {http://doi.org/10.2307/3680788},
+  url = {http://hdl.handle.net/10230/33796},
+  author = {Xavier Serra and Smith, J.}
+}
+
+@article{morise2015cheaptrick,
+title = "CheapTrick, a spectral envelope estimator for high-quality speech synthesis",
+journal = "Speech Communication",
+volume = "67",
+pages = "1 - 7",
+year = "2015",
+issn = "0167-6393",
+doi = "https://doi.org/10.1016/j.specom.2014.09.003",
+url = "http://www.sciencedirect.com/science/article/pii/S0167639314000697",
+author = "Masanori Morise",
+keywords = "Speech synthesis, Speech analysis, Spectral envelope, Time-varying component",
+abstract = "A spectral envelope estimation algorithm is presented to achieve high-quality speech synthesis. The concept of the algorithm is to obtain an accurate and temporally stable spectral envelope. The algorithm uses fundamental frequency (F0) and consists of F0-adaptive windowing, smoothing of the power spectrum, and spectral recovery in the quefrency domain. Objective and subjective evaluations were carried out to demonstrate the effectiveness of the proposed algorithm. Results of both evaluations indicated that the proposed algorithm can obtain a temporally stable spectral envelope and synthesize speech with higher sound quality than speech synthesized with other algorithms."
+}

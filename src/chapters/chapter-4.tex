@@ -85,9 +85,19 @@ Metrik yang digunakan adalah koefisien korelasi Pearson yang dituliskan pada per
 
 Model-model dengan parameter yang telah disetel dan dilatih dalam tahapan eksperimen komponen kemudian digabungkan untuk membentuk sistem utuh. Setelah itu, sistem utuh digunakan untuk membangkitkan suara dengan masukan partitur pada data uji. Keluaran akhirnya --sebelum diubah menjadi sinyal gelombang-- berupa frekuensi harmonik, magnitudo harmonik, serta amplop stokastik divalidasi dengan frekuensi harmonik, magnitudo harmonik, serta amplom stokastik pada data uji.
 
-Pada bagian terakhir eksperimen, yaitu uji persepsi, dilakukan pengujian kepada sejumlah responden. Sebelum dilakukan uji pendengaran, ditanyakan kepada responden data pengalaman responden terkait musik. Pada uji pendengaran, responden diberikan 18 pasang segmen audio. Tiap pasang terdiri dari 10 detik segmen keluaran sistem yang telah dibangun dan 10 detik segmen keluaran sistem \textit{baseline}. Untuk tiap pasang, responden diminta untuk memilih segmen audio yang lebih alami. Dari hasil ini, dapat dihitung Mean Preference Score (MPS) sistem ini terhadap sistem \textit{baseline}.
+Pada bagian terakhir eksperimen, yaitu uji persepsi, dilakukan pengujian kepada sejumlah responden. Sebelum dilakukan uji pendengaran, ditanyakan kepada responden data pengalaman responden terkait musik. Pada uji pendengaran, responden diberikan 9 pasang segmen audio. Tiap pasang terdiri dari 10 detik segmen keluaran sistem yang telah dibangun dan 10 detik segmen keluaran sistem \textit{baseline}.
 
 Sistem yang dijadikan \textit{baseline} sebagai perbandingan adalah sistem Synful RPM. Untuk menghasilkan suara ekspresif, seharusnya sistem ini diberikan masukan partitur ekspresif. Namun, sebagai \textit{baseline} terhadap sistem yang dibangun, sistem ini diberi masukan yang sama dengan sistem yang telah dibangun yaitu partitur tanpa ekspresi.
+
+Yang diuji dengan uji persepsi adalah sistem dengan teknik neural parametrik sebagai sistem permainan musik ekspresif partitur-ke-suara dan sebagai sistem perencana gestur ekspresi. Sebagai sistem permainan musik ekspresif partitur-ke-suara, suara keluaran sistem ini yang diperdengarkan kepada pendengar bersama dengan suara keluaran RPM tanpa masukan gestur ekspresi untuk dibandingkan. Sebagai sistem perencana gestur ekspresi, keluaran sistem dengan teknik neural parametrik yang dikonversi menjadi partitur ekspresif dijadikan masukan kepada sistem RPM, dan diperdengarkan kepada pendengar bersama dengan suara keluaran RPM tanpa gestur ekspresi untuk dibandingkan. Dengan demikian, tiap pendengar akan mendengarkan 9 pasang keluaran sistem Neural Parametrik dan RPM tanpa gestur serta 9 pasang keluaran RPM dengan gestur dari sistem Neural Parametrik dan RPM tanpa gestur, sehingga total tiap pendengar mendengarkan 18 pasang segmen suara.
+
+\begin{figure}
+\centering
+    \includegraphics[width=0.8\textwidth]{resources/questionnaire_screenshot.png}
+    \caption{Tampilan Cuplikan Kuesioner yang Digunakan Untuk Uji Preferensi Kealamian}\label{fig-questionnaire-sample}
+\end{figure}
+
+Urutan pasangan segmen-segmen ini diacak, kemudian urutan segmen tiap pasang juga diacak. Untuk tiap pasang, responden diminta untuk memilih segmen audio yang lebih alami. Dari hasil ini, dapat dihitung persentase preferensi sistem ini terhadap sistem \textit{baseline}. Selain itu, responden juga dapat menyebutkan pertimbangan memilih segmen suara tersebut. Responden dapat memilih pertimbangan dari daftar yang telah ada ataupun menuliskan pertimbangan baru. Cuplikan kuesioner yang digunakan dapat dilihat pada Gambar \ref{fig-questionnaire-sample}. %TODO Mean Preference Score dibenerin
 
 \section{Hasil Eksperimen Komponen Sistem}
 
@@ -533,5 +543,70 @@ Nilai koefisien korelasi yang dicapai oleh sistem ini lebih tinggi daripada sist
 
 %TODO analisis, contoh perbandingan output RPM dan DT-Neural Parametrik
 
-\section{Hasil Uji Preferensi}
-\blindtext
+\section{Hasil Uji Preferensi Kealamian}
+
+Tabel \ref{tab-preference} menunjukkan hasil uji preferensi kealamian sistem yang diajukan. Sistem neural parametrik partitur-ke-suara memiliki nilai preferensi kealamian $17,17\%$. Nilai ini kurang dari $50\%$. Artinya, oleh persepsi pendengar, sistem ini dinilai kurang alami dibandingkan dengan sistem \textit{baseline}. Begitu pula sistem gabungan yang menggunakan teknik neural parametrik sebagai perencana gestur ekspresi memiliki nilai preferensi kealamian $29,29\%$. Meskipun nilai ini lebih tinggi bila dibandingkan dengan sistem neural parametrik partitur-ke-suara, nilai ini masih kurang dari $50\%$. Artinya, oleh persepsi pendengar, suara yang dihasilkan oleh sistem ini dinilai kurang alami juga dibandingkan dengan sistem \textit{baseline}.
+
+\begin{table}[htbp] %TODO update data
+  \begin{center}
+    \caption{Hasil Uji Preferensi Kealamian dari Sistem Neural Parametrik dan Sistem Gabungan}
+    \label{tab-preference}
+    \begin{tabular}{|l|r|r|}
+    \hline
+	Sistem&Jumlah Data Respon&Preferensi terhadap RPM$\pm$MoE(95$\%$ Confidence)\\
+	\hline
+	DT-NP	&99	&$17,17\%\pm11,01\%$\\
+	\hline
+	Gabungan	&99	&$29,29\%\pm21,24\%$\\
+	\hline
+    \end{tabular}
+  \end{center}
+\end{table}
+
+Tabel \ref{tab-pertimbangan} menunjukkan pertimbangan-pertimbangan responden dalam memilih segmen yang lebih alami. Untuk tiap isi pertimbangan pada tabel tersebut, ditunjukkan seberapa sering pertimbangan tersebut muncul. Ditunjukkan seberapa sering muncul secara total dan tiap pasangan segmen. Untuk tiap pasangan segmen suara, dituliskan jumlah kemunculan pertimbangan tersebut berbarengan dengan terpilihnya segmen suara dari tiap teknik.
+
+% \begin{table}[htbp] %TODO update data (proses terlebih dahulu agar jadi kecil)
+%   \begin{center}
+	\begin{longtable}{|p{0.6\textwidth}|r|r|r|r|r|}
+	\caption{Pertimbangan Responden Dalam Memilih}\label{tab-pertimbangan}\\
+	\hline
+Pertimbangan&	Total&	\multicolumn{4}{|c|}{Pasangan, Teknik yang Dipilih}\\
+\cline{3-6}
+&	&	\multicolumn{2}{|c|}{DTNP/RPM}	&\multicolumn{2}{|c|}{Gab./RPM}\\
+\cline{3-6}
+&	&	RPM&	DT-NP&	RPM&	Gab.\\\hline
+\endhead
+distorsi pada audio yang tidak dipilih&	202&	85&	11&	80&	26\\\hline
+variasi warna suara&	195&	75&	11&	71&	38\\\hline
+variasi dinamika&	159&	55&	13&	59&	32\\\hline
+variasi timing&	126&	34&	23&	41&	28\\\hline
+phrasing&	117&	51&	5&	51&	10\\\hline
+deviasi pitch&	112&	36&	13&	40&	23\\\hline
+vibrato&	98&	34&	9&	36&	19\\\hline
+pitch jelas&	75&	35&	1&	33&	6\\\hline
+ekualisasi di-bend&	75&	35&	1&	33&	6\\\hline
+keduanya tidak terdengar natural&	73&	27&	8&	24&	14\\\hline
+cara dinamikanya beda2&	67&	18&	8&	19&	22\\\hline
+audio yang tidak dipilih seperti di-bend equalization-nya&	66&	30&	3&	29&	4\\\hline
+audio yang tidak dipilih seperti didistorsi&	66&	30&	3&	29&	4\\\hline
+suara jelas&	64&	31&	0&	32&	1\\\hline
+tidak ada perubahan dinamika mendadak&	64&	31&	0&	32&	1\\\hline
+karena phrase tersebut terdengar lebih natural dengan timbre dari media yang digunakan pada audio yang saya pilih&	56&	21&	5&	21&	9\\\hline
+ada sedikit crescendo&	53&	13&	8&	18&	14\\\hline
+audio yang tidak dipilih seperti di-mixing pada aplikasi dengan timing yang salah&	53&	26&	0&	25&	2\\\hline
+Audio yang tidak dipilih terdengar noisy&	41&	18&	2&	17&	4\\\hline
+fingering seperti sedang meraih-raih nada&	38&	4&	9&	13&	12\\\hline
+fingering nadanya dan cara stroke-nya terdengar lebih manusiawi, walaupun terdengar seperti orang yang bermain asal dan terburu-buru&	34&	6&	8&	9&	11\\\hline
+permainan long bow-nya terasa alami&	33&	10&	3&	12&	8\\\hline
+trill-nya terdengar aneh tapi overall play-nya terdengar lebih natural&	28&	5&	6&	7&	10\\\hline
+pada audio yang tidak dipilih, terasa seperti decressendo, padahal lebih terdengar seperti gain-nya saja dikurangi&	26&	12&	0&	13&	1\\\hline
+pada audio yang tidak dipilih, perpindahan pitch dan "stroke"-nya seperti dimainkan pada aplikasi music sheet, tidak berekspresi sama sekali&	26&	7&	3&	7&	9\\\hline
+phrasing-nya mungkin terasa seperti "terlalu tepat", tapi jadinya lebih terdengar seperti pemusik yang bermain pada ketukan cepat dengan timing yang tepat&	22&	8&	3&	10&	1\\\hline
+walaupun di audio yang tidak dipilih terdengar seperti ada crossing senar&	19&	6&	1&	9&	3\\\hline
+adanya rubato yang sebenarnya memberikan sedikit ekspresi dibandingkan audio yang satunya, tapi entah kenapa masih ada yang mengganjal&	16&	2&	3&	3&	8\\\hline
+sebenernya saya lebih suka timbre dari audio yang tidak dipilih (untuk phrasing ini), tapi mainnya gak rapih jadi terganggu waktu mau menikmati suaranya&	15&	2&	5&	2&	6\\\hline
+bingung pisan denger apa yang salah satunya teh ?!?&	11&	5&	1&	4&	1\\\hline
+apa ini....&	2&	1&	0&	1&	0\\\hline
+	\end{longtable}
+%   \end{center}
+% \end{table}

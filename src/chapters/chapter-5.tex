@@ -12,9 +12,9 @@ Telah dibangun sebuah sistem komputer untuk permainan ekspresif alat musik gesek
 
 Uji korelasi sistem ini menunjukkan bahwa sistem ini memiliki kinerja -dengan metrik koefisien korelasi- lebih baik daripada sistem pensintesis \textit{baseline} yaitu RPM tanpa masukan gestur ekspresi. Koefisien korelasi sistem ini bernilai 0.1133, sedangkan RPM memiliki koefisien korelasi -0.0020.
 
-Kealamian sistem permainan musik ekspresif nyanyian dengan teknik neural parametrik lebih .... daripada sistem RPM.%TODO uji persepsi kealamian
-
-Kealamian sistem permainan musik ekspresif nyanyian dengan teknik gabungan gestur ekspresi neural parametrik dan pensintesis RPM menghasilkan kealamian yang .... daripada sistem RPM. %TODO uji persepsi kealamian
+Kealamian subjektif pendengar sistem permainan musik ekspresif alat musik gesek dengan teknik neural parametrik lebih rendah daripada sistem RPM. Nilai preferensi sistem permainan musik alat musik gesek dengan teknik neural parametrik terhadap RPM adalah $17,17\%$. %TODO analisis
+Sistem permainan musik ekspresif nyanyian dengan teknik gabungan gestur ekspresi neural parametrik dan pensintesis RPM menghasilkan kealamian subjektif pendengar yang lebih rendah daripada sistem RPM. Nilai preferensi sistem permainan musik alat musik gesek dengan teknik neural parametrik terhadap RPM adalah $29,29\%$. %TODO analisis
+Nilai preferensi untuk kealamian subjektif pendengar ini bertolak belakang dengan hasil uji korelasi sistem. Dengan uji korelasi, teknik neural parametrik memiliki kinerja lebih tinggi daripada RPM, sedangkan dengan uji preferensi kealamian, teknik neural parametrik memiliki kinerja lebih rendah daripada RPM.
 
 \section{Saran}
 
@@ -23,4 +23,5 @@ Dari penelitian ini, terdapat beberapa saran baik untuk memperbaiki sistem yang 
 	\item Perlu dibuat arsitektur model yang mampu menangkap pola lebih kompleks dan lebih detil agar ekspresi terkait \textit{pitch} dan \textit{timbre} dari data latih benar-benar dapat direproduksi oleh model. Penambahan data latih tanpa perbaikan arsitektur model \textit{pitch} dan \textit{timbre} justru akan menurunkan kinerja.
 	\item Data latih untuk model \textit{timing} perlu ditambah.
 	\item Perlu dibuat metrik yang mampu menilai kemiripan bentuk variasi jangka-pendek dari keluaran model-model. Variasi ini meliputi \textit{spike}, osilasi, saling silang antar fitur dan sebagainya.
+	\item Perlu dilakukan analisis terhadap hasil uji korelasi dan uji preferensi kealamian yang bertolak belakang.
 \end{enumerate}
