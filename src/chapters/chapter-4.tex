@@ -8,7 +8,7 @@ Meski tujuan utama eksperimen ini adalah menunjukkan kinerja sistem utuh, eksper
 
 Sebelum pengujian untuk menunjukkan kinerja sistem permainan musik ekspresif untuk alat musik gesek, dilakukan eksperimen penyetelan parameter untuk menentukan parameter-parameter terbaik. Hal ini karena arsitektur model dan pelatihannya dipengaruhi oleh berbagai parameter.
 
-Selain itu, dilakukan juga pengujian untuk membuktikan bahwa skema pemilihan subset data latih yang diuraikan dalam Subbab \ref{subsetselectionsection} mampu menghasilkan model dengan kinerja lebih baik daripada model yang dilatih langsung menggunakan keseluruhan data latih untuk model-model yang menggunakan arsitektur Wavenet yang dimodifikasi. Hal ini akan dibuktikan untuk model-model \textit{pitch} dan \textit{timbre}. Adapun untuk model \textit{timing}, dilakukan pengujian untuk membuktikan bahwa skema pemilihan subset data latih tidak menghasilkan model dengan kinerja yang lebih baik daripada model yang dilatih langsung menggunakan keseluruhan data latih.
+Selain itu, dilakukan juga pengujian untuk membuktikan bahwa skema pemilihan subset data latih yang diuraikan dalam SubBab \ref{subsetselectionsection} mampu menghasilkan model dengan kinerja lebih baik daripada model yang dilatih langsung menggunakan keseluruhan data latih untuk model-model yang menggunakan arsitektur Wavenet yang dimodifikasi. Hal ini akan dibuktikan untuk model-model \textit{pitch} dan \textit{timbre}. Adapun untuk model \textit{timing}, dilakukan pengujian untuk membuktikan bahwa skema pemilihan subset data latih tidak menghasilkan model dengan kinerja yang lebih baik daripada model yang dilatih langsung menggunakan keseluruhan data latih.
 
 \begin{table}[htbp]
     \centering
@@ -81,7 +81,7 @@ Setelah parameter telah disetel, model dilatih dengan keseluruhan data latih. Na
 
 Validasi, pengujian, dan pengukuran kinerja tiap-tiap model dilakukan sesuai dengan masukan dan keluaran model-model tersebut. Model \textit{timing} diberi masukan partitur dan divalidasi \textit{timing} hasilnya. Model F0 diberi masukan partitur dan \textit{timing} dan divalidasi F0 hasilnya. Demikian pula, serupa pada model frekuensi harmonik, magnitudo harmonik, hingga amplop stokastik.
 
-Metrik yang digunakan adalah koefisien korelasi Pearson yang dituliskan pada persamaan \ref{pearson-corrcoef-eq}. Untuk model-model F0, frekuensi harmonik, magnitudo harmonik, dan amplop stokastik, koefisien korelasi dihitung pasangan nilai-nilai pada keluaran dan nilai-nilai pada data tiap \textit{frame}. Untuk model \textit{timing}, koefisien korelasi dihitung terhadap nilai nada, dalam skala nomor not midi, untuk tiap \textit{frame} berdasarkan \textit{timing} yang dihasilkan, berpasangan dengan nilai nada berdasarkan \textit{timing} data.
+Metrik yang digunakan adalah koefisien korelasi Pearson yang dituliskan pada Persamaan \ref{pearson-corrcoef-eq}. Untuk model-model F0, frekuensi harmonik, magnitudo harmonik, dan amplop stokastik, koefisien korelasi dihitung pasangan nilai-nilai pada keluaran dan nilai-nilai pada data tiap \textit{frame}. Untuk model \textit{timing}, koefisien korelasi dihitung terhadap nilai nada, dalam skala nomor not midi, untuk tiap \textit{frame} berdasarkan \textit{timing} yang dihasilkan, berpasangan dengan nilai nada berdasarkan \textit{timing} data.
 
 Model-model dengan parameter yang telah disetel dan dilatih dalam tahapan eksperimen komponen kemudian digabungkan untuk membentuk sistem utuh. Setelah itu, sistem utuh digunakan untuk membangkitkan suara dengan masukan partitur pada data uji. Keluaran akhirnya --sebelum diubah menjadi sinyal gelombang-- berupa frekuensi harmonik, magnitudo harmonik, serta amplop stokastik divalidasi dengan frekuensi harmonik, magnitudo harmonik, serta amplom stokastik pada data uji.
 
@@ -464,7 +464,7 @@ Tabel \ref{tab-mag-testing-results} menunjukkan koefisien korelasi magnitudo har
     \caption{(Diperbesar ke Satu Not) Contoh Keluaran Model Magnitudo Harmonik (4 Harmonik Pertama), dengan Masukan \textit{Timing}, F0, dan Hfreq dari Dataset}\label{fig-hmag-output-sample-zoomed}
 \end{figure}
 
-Kekurangan yang masih terjadi di model magnitudo harmonik adalah menganggap perubahan jangka-pendek dari magnitudo harmonik sebagai \textit{noise} dan hanya dirata-ratakan oleh model. Hal ini tampak pada contoh keluaran model magnitudo harmonik pada Gambar \ref{fig-hmag-output-sample}. Pada bagian atas terlihat contoh magnitudo harmonik dari dataset, sedangkan pada bagian bawah terlihat magnitudo harmonik prediksi untuk sampel tersebut. Tampilan yang diperbesar tampak pada gambar \ref{fig-hmag-output-sample-zoomed}.
+Kekurangan yang masih terjadi di model magnitudo harmonik adalah menganggap perubahan jangka-pendek dari magnitudo harmonik sebagai \textit{noise} dan hanya dirata-ratakan oleh model. Hal ini tampak pada contoh keluaran model magnitudo harmonik pada Gambar \ref{fig-hmag-output-sample}. Pada bagian atas terlihat contoh magnitudo harmonik dari dataset, sedangkan pada bagian bawah terlihat magnitudo harmonik prediksi untuk sampel tersebut. Tampilan yang diperbesar tampak pada Gambar \ref{fig-hmag-output-sample-zoomed}.
 
 Tampak bahwa model ini mampu membangkitkan ekspresi naik turunnya magnitudo secara umum. Namun, pola jangka-pendek yang dihasilkan berbeda dengan dataset. Terdapat beberapa perbedaan antara magnitudo harmonik pada dataset dan magnitudo harmonik yang dibangkitkan dengan model:
 
@@ -503,7 +503,7 @@ Tabel \ref{tab-stoc-testing-results} menunjukkan koefisien korelasi amplop stoka
     \caption{(Diperbesar) Contoh Keluaran Model Amplop Stokastik, dengan Masukan \textit{Timing}, F0, dan Hfreq dari Dataset}\label{fig-stocenv-output-sample-zoomed}
 \end{figure}
 
-Kekurangan yang masih terjadi di model amplop stokastik adalah menganggap perubahan jangka-pendek dari amplop stokastik sebagai \textit{noise} dan hanya dirata-ratakan oleh model. Hal ini tampak pada contoh keluaran model amplop stokastik pada Gambar \ref{fig-stocenv-output-sample}. Pada bagian atas terlihat contoh amplop stokastik dari dataset, sedangkan pada bagian bawah terlihat amplop stokastik prediksi untuk sampel tersebut. Tampilan yang diperbesar tampak pada gambar \ref{fig-stocenv-output-sample-zoomed}.
+Kekurangan yang masih terjadi di model amplop stokastik adalah menganggap perubahan jangka-pendek dari amplop stokastik sebagai \textit{noise} dan hanya dirata-ratakan oleh model. Hal ini tampak pada contoh keluaran model amplop stokastik pada Gambar \ref{fig-stocenv-output-sample}. Pada bagian atas terlihat contoh amplop stokastik dari dataset, sedangkan pada bagian bawah terlihat amplop stokastik prediksi untuk sampel tersebut. Tampilan yang diperbesar tampak pada Gambar \ref{fig-stocenv-output-sample-zoomed}.
 
 Terdapat perbedaan antara amplop stokastik data dan amplop stokastik bangkitan:
 

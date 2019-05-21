@@ -16,7 +16,7 @@ Akan digunakan teknik parametrik neural untuk membangkitkan suara alat musik ges
 
 \section{Rancangan Umum Sistem}
 
-Arsitektur sistem perbaikan terlihat pada Gambar \ref{fig-system-overview}, sebagai modifikasi dari Gambar \ref{fig-system-overview-bonada}. \ref{tab-models-in-out} Untuk menerapkan sistem yang dijelaskan pada Subbab \ref{literature-neural-parametric} ke alat musik gesek agar dapat dijalankan dan menghasilkan suara alat musik gesek, Dilakukan beberapa penyesuaian agar masalah-masalah pada Subbab \ref{section-problem-analysis} dapat diatasi:
+Arsitektur sistem perbaikan terlihat pada Gambar \ref{fig-system-overview}, sebagai modifikasi dari Gambar \ref{fig-system-overview-bonada}. \ref{tab-models-in-out} Untuk menerapkan sistem yang dijelaskan pada SubBab \ref{literature-neural-parametric} ke alat musik gesek agar dapat dijalankan dan menghasilkan suara alat musik gesek, Dilakukan beberapa penyesuaian agar masalah-masalah pada SubBab \ref{section-problem-analysis} dapat diatasi:
 
 \begin{enumerate}
 
@@ -28,7 +28,7 @@ Arsitektur sistem perbaikan terlihat pada Gambar \ref{fig-system-overview}, seba
 
 Dalam sistem ini, pengkodean dan sintesis suara audio tidak dilakukan dengan vocoder WORLD. Pengkodean dan sintesis suara audio dilakukan dengan pengkodean harmonik terarah plus stokastik dan sintesis harmonik plus stokastik. Teknik ini diharapkan  lebih cocok dengan karakteristik alat musik gesek dan mampu mengatasi adanya gaung.
 
-Dalam sistem ini, seperti pada sistem pembangkit nyanyian, memiliki tiga model yang dilatih dengan data latih. Model-model itu adalah model \textit{timing}, model \textit{pitch}, dan model \textit{timbre}. Masukan dan keluaran setiap model tertulis pada tabel \ref{tab-models-in-out}
+Dalam sistem ini, seperti pada sistem pembangkit nyanyian, memiliki tiga model yang dilatih dengan data latih. Model-model itu adalah model \textit{timing}, model \textit{pitch}, dan model \textit{timbre}. Masukan dan keluaran setiap model tertulis pada Tabel \ref{tab-models-in-out}
 
 Model \textit{timing} dalam sistem ini dilatih menggunakan partitur dan \textit{timing} not. Dengan demikian, diharapkan model \textit{timing} dapat memprediksi \textit{timing} dari not dalam partitur.
 
@@ -71,7 +71,7 @@ Masukan dari partitur dapat menunjukkan kondisi sesaat dan konteks. Kondisi sesa
 
 \section{Pengkodean Harmonik Terarah Plus Stokastik}
 
-Asumsi sumber eksitasi plus amplop spektral seperti yang digunakan pada vocoder WORLD tidak dapat digunakan untuk alat musik gesek. Hal ini tampak pada hasil pengkodean menggunakan vocoder WORLD dari data suara alat musik gesek yang telah dikumpulkan dengan cara yang dijelaskan pada subbab \ref{datacollectionsection}.
+Asumsi sumber eksitasi plus amplop spektral seperti yang digunakan pada vocoder WORLD tidak dapat digunakan untuk alat musik gesek. Hal ini tampak pada hasil pengkodean menggunakan vocoder WORLD dari data suara alat musik gesek yang telah dikumpulkan dengan cara yang dijelaskan pada SubBab \ref{datacollectionsection}.
 
 Contoh hasil pengkodean dengan vocoder WORLD tampak pada Gambar \ref{vocoderanalysisresultexample}. Pada gambar ini, tampak bahwa pada banyak bagian, vocoder tidak dapat menyimpulkan frekuensi fundamental dari sinyal masukan. Begitu pula pada bagian amplop spektral dan aperiodistas, banyak bagian yang tidak dapat dideteksi amplop spektral dan aperiodisitasnya.
 
@@ -97,7 +97,7 @@ Pencarian frekuensi fundamental dilakukan dengan algoritma TWM dengan fungsi \te
   TWMError'(f0c) = \dfrac{TWMError(f0c)}{f_{gauss}(semitone(f0c);notenumber,1)}
 \end{equation}
 
-Di sini, $f0c$ adalah frekuensi kandidat. $semitone(f0c)$ adalah konversi $f0c$ ke skala semitone sesuai dengn skala nomor nada MIDI. $notenumber$ adalah nomor nada untuk not pada \textit{frame} yang sedang di kodekan. $f_{gauss}$ adalah fungsi Gaussian seperti yang tertulis di persamaan \ref{eq-gauss-func}. Pencarian frekuensi fundamental dengan cara ini mengasumsikan bahwa deviasi frekuensi fundamental -dalam skala semitone- berdistribusi Gaussian.
+Di sini, $f0c$ adalah frekuensi kandidat. $semitone(f0c)$ adalah konversi $f0c$ ke skala semitone sesuai dengn skala nomor nada MIDI. $notenumber$ adalah nomor nada untuk not pada \textit{frame} yang sedang di kodekan. $f_{gauss}$ adalah fungsi Gaussian seperti yang tertulis di Persamaan \ref{eq-gauss-func}. Pencarian frekuensi fundamental dengan cara ini mengasumsikan bahwa deviasi frekuensi fundamental -dalam skala semitone- berdistribusi Gaussian.
 
 \begin{equation}
  f_{gauss}(x;\mu,\sigma) = \dfrac{1}{\sigma \sqrt{2\pi}}e^{\dfrac{-(x-\mu)^2}{2 \sigma^2}} \label{eq-gauss-func}
@@ -134,7 +134,7 @@ Model \textit{timing} dilatih dengan pasangan data latih fitur-fitur not dalam p
     \item deviasi \textit{timing} not sebelumnya
 \end{enumerate}
 
-Apabila teknik neural parametrik nyanyian hendak diikuti, sebuah jaringan syaraf tiruan \textit{feedforward} terhubung penuh digunakan untuk membangun model \textit{timing}. Namun, terdapat perbedaan antara deviasi \textit{timing} pada nyanyian dengan deviasi \textit{timing} pada alat musik gesek. Permainan alat musik gesek memiliki \textit{range} deviasi \textit{timing} besar. Pada data yang dikumpulkan dengan langkah yang dijelaskan pada Subbab \ref{datacollectionsection}, \textit{range} deviasi \textit{timing} berkisar -4,44 s.d. 1,50 detik. Padahal, dengan arsitektur jaringan syaraf tiruan seperti model \textit{timing} nyanyian yang dijelaskan pada Subbab \ref{literature-neural-parametric}, \textit{range} deviasi \textit{timing} hanya dapat berkisar -0,15 s.d. 0,15 detik.
+Apabila teknik neural parametrik nyanyian hendak diikuti, sebuah jaringan syaraf tiruan \textit{feedforward} terhubung penuh digunakan untuk membangun model \textit{timing}. Namun, terdapat perbedaan antara deviasi \textit{timing} pada nyanyian dengan deviasi \textit{timing} pada alat musik gesek. Permainan alat musik gesek memiliki \textit{range} deviasi \textit{timing} besar. Pada data yang dikumpulkan dengan langkah yang dijelaskan pada SubBab \ref{datacollectionsection}, \textit{range} deviasi \textit{timing} berkisar -4,44 s.d. 1,50 detik. Padahal, dengan arsitektur jaringan syaraf tiruan seperti model \textit{timing} nyanyian yang dijelaskan pada SubBab \ref{literature-neural-parametric}, \textit{range} deviasi \textit{timing} hanya dapat berkisar -0,15 s.d. 0,15 detik.
 
 Apabila hendak digunakan jaringan syaraf tiruan dengan \textit{range} keluaran yang lebih besar, perlu dibuat model yang lebih kompleks. Padahal, data latih yang tersedia tidak cukup besar. Berbeda dengan model \textit{pitch} dan model \textit{timbre} dilatih \textit{frame} demi \textit{frame}, model \textit{timing} dilatih not demi not. Terdapat  1.064.100 \textit{frame} dalam data latih model \textit{pitch} dan model \textit{timbre}, sedangkan data latih model \textit{timing} hanya berisi 13.860 not dan tanda istirahat.
 
@@ -148,7 +148,7 @@ Input jaringan syaraf tiruan ini terdiri dari dua, yaitu input fitur akustik kel
 
 Pembangkitan dilakukan untuk tiap langkah waktu secara berurutan dari depan ke belakang. Untuk tiap langkah waktu, keluaran dari beberapa langkah waktu sebelumnya, sepanjang medan reseptif, menjadi masukan pada langkah ini.
 
-Fitur akustik yang dibangkitkan dan menjadi input fitur akustik berikutnya adalah deviasi f0, bukan f0 sebenarnya. Hal ini untuk menjaga konteks deviasi antar not. Deviasi f0 pada suatu not dipengaruhi oleh deviasi f0 pada not sebelumnya. Lebih lanjut, deviasi ini dihitung dalam skala logaritmik. Hubungan antara deviasi f0 dengan f0 ditunjukkan dalam persamaan \ref{f0-deviation}, dengan $\Delta_{f_0}[t]$ adalah deviasi f0. Pada tahap pembangkitan, f0 dihitung dari persamaan ini.
+Fitur akustik yang dibangkitkan dan menjadi input fitur akustik berikutnya adalah deviasi f0, bukan f0 sebenarnya. Hal ini untuk menjaga konteks deviasi antar not. Deviasi f0 pada suatu not dipengaruhi oleh deviasi f0 pada not sebelumnya. Lebih lanjut, deviasi ini dihitung dalam skala logaritmik. Hubungan antara deviasi f0 dengan f0 ditunjukkan dalam Persamaan \ref{f0-deviation}, dengan $\Delta_{f_0}[t]$ adalah deviasi f0. Pada tahap pembangkitan, f0 dihitung dari persamaan ini.
 
 \begin{equation}
     \Delta_{f_0}[t] = ln(f_0[t]) - ln({f_0}_{eq}(note[t]))
