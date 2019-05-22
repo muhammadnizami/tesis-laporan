@@ -16,23 +16,23 @@ Digunakan teknik neural parametrik untuk membangkitkan suara alat musik gesek. H
 
 \section{Rancangan Umum Sistem}
 
-Arsitektur sistem perbaikan terlihat pada Gambar \ref{fig-system-overview}, sebagai modifikasi dari Gambar \ref{fig-system-overview-bonada}. \ref{tab-models-in-out} Untuk menerapkan sistem yang dijelaskan pada SubBab \ref{literature-neural-parametric} ke alat musik gesek agar dapat dijalankan dan menghasilkan suara alat musik gesek, Dilakukan beberapa penyesuaian agar masalah-masalah pada SubBab \ref{section-problem-analysis} dapat diatasi:
+Arsitektur sistem perbaikan terlihat pada Gambar \ref{fig-system-overview}, sebagai modifikasi dari Gambar \ref{fig-system-overview-bonada}. \ref{tab-models-in-out} Untuk menerapkan sistem yang dijelaskan pada Subbab \ref{literature-neural-parametric} ke alat musik gesek agar dapat dijalankan dan menghasilkan suara alat musik gesek, Dilakukan beberapa penyesuaian agar masalah-masalah pada Subbab \ref{section-problem-analysis} dapat diatasi:
 
 \begin{enumerate}
 
-    \item Perbedaan karakteristik suara alat musik diatasi dengan mengganti vocoder dengan teknik pengkodeansuara yang sesuai dengan alat musik gesek
+    \item Perbedaan karakteristik suara alat musik diatasi dengan mengganti \textit{vocoder} dengan teknik pengkodean suara yang sesuai dengan alat musik gesek
     \item Aspek fonetik ditiadakan dari data \textit{timing} dan masukan kontrol untuk model \textit{timbre}
     \item Agar penentuan \textit{timbre} mempertimbangkan konteks, masukan model \textit{timbre} ditambahkan dengan masukan partitur dan \textit{timing} not
 
 \end{enumerate}
 
-Dalam sistem ini, pengkodean dan sintesis suara audio tidak dilakukan dengan vocoder WORLD. Pengkodean dan sintesis suara audio dilakukan dengan pengkodean harmonik terarah plus stokastik dan sintesis harmonik plus stokastik. Teknik ini diharapkan  lebih cocok dengan karakteristik alat musik gesek dan mampu mengatasi adanya gaung.
+Dalam sistem ini, pengkodean dan sintesis suara audio tidak dilakukan dengan \textit{vocoder} WORLD. Pengkodean dan sintesis suara audio dilakukan dengan pengkodean harmonik terarah plus stokastik dan sintesis harmonik plus stokastik. Teknik ini diharapkan  lebih cocok dengan karakteristik alat musik gesek dan mampu mengatasi adanya gaung.
 
 Dalam sistem ini, seperti pada sistem pembangkit nyanyian, memiliki tiga model yang dilatih dengan data latih. Model-model itu adalah model \textit{timing}, model \textit{pitch}, dan model \textit{timbre}. Masukan dan keluaran setiap model tertulis pada Tabel \ref{tab-models-in-out}
 
 Model \textit{timing} dalam sistem ini dilatih menggunakan partitur dan \textit{timing} not. Dengan demikian, diharapkan model \textit{timing} dapat memprediksi \textit{timing} dari not dalam partitur.
 
-Model \textit{pitch} dalam sistem ini dilatih untuk menghasilkan F0. Masukan model ini adalah partitur dan \textit{timing}. Dalam pelatihan, masukan partitur dan \textit{timing} not diambil dari data latih, dan parameter vocoder diambil dari hasil pengkodean harmonik terarah plus stokastik terhadap audio.
+Model \textit{pitch} dalam sistem ini dilatih untuk menghasilkan F0. Masukan model ini adalah partitur dan \textit{timing}. Dalam pelatihan, masukan partitur dan \textit{timing} not diambil dari data latih, dan parameter \textit{vocoder} diambil dari hasil pengkodean harmonik terarah plus stokastik terhadap audio.
 
 \begin{figure}[h]
     \centering
@@ -40,15 +40,15 @@ Model \textit{pitch} dalam sistem ini dilatih untuk menghasilkan F0. Masukan mod
     \caption{Adopsi teknik neural parametrik untuk permainan musik ekspresif alat musik gesek (modifikasi Gambar \ref{fig-system-overview-bonada})}\label{fig-system-overview}
 \end{figure}
 
-Pada tahap pembangkitan, sistem ini mampu menerima partitur dan menghasilkan audio. Keluaran perantara yang dihasilkan adalah parameter vocoder, yang kemudian digunakan oleh vocoder untuk menghasilkan audio.
+Pada tahap pembangkitan, sistem ini mampu menerima partitur dan menghasilkan audio. Keluaran perantara yang dihasilkan adalah parameter \textit{vocoder}, yang kemudian digunakan oleh \textit{vocoder} untuk menghasilkan audio.
 
-Hal pertama yang dilakukan dalam tahap pembangkitan adalah prediksi \textit{timing} not. Setelah itu, partitur dan \textit{timing} not digunakan untuk memprediksi \textit{pitch} dan \textit{timbre}, dengan model yang sesuai. Parameter \textit{pitch} dan parameter \textit{timbre} digunakan untuk sintesis vocoder.
+Hal pertama yang dilakukan dalam tahap pembangkitan adalah prediksi \textit{timing} not. Setelah itu, partitur dan \textit{timing} not digunakan untuk memprediksi \textit{pitch} dan \textit{timbre}, dengan model yang sesuai. Parameter \textit{pitch} dan parameter \textit{timbre} digunakan untuk sintesis \textit{vocoder}.
 
 Tiap model dari model-model ini adalah model regresi. Untuk model \textit{timing}, digunakan jaringan syaraf tiruan \textit{feedforward}. Untuk model \textit{pitch} dan model \textit{timbre}, digunakan jaringan syaraf tiruan dengan konvolusi kausal terdilasi. Masukan dari jaringan syaraf tiruan ini terdiri dari masukan fitur akustik output waktu sebelumnya dan masukan kontrol.
 
 Masukan kontrol jaringan syaraf tiruan ini berasal dari partitur dan dari \textit{timing}. Untuk model \textit{timing}, masukan kontrol hanya berasal dari partitur. Untuk model \textit{pitch} dan model \textit{timbre}, masukan kontrol berasal dari partitur dan berasal dari \textit{timing}.
 
-Masukan dari partitur dapat menunjukkan kondisi sesaat dan konteks. Kondisi sesaat berupa \textit{pitch} asli, panjang not, dan waktu dalam not. Kondisi konteks dapat berupa not sebelum dan sesudah, interval, ataupun kondisi-kondisi lainnya hasil analisis karya. Namun, kakas analisis karya mungkin tida digunakan karena riset terkait analisis karya menggunakan komputer masih minim.
+Masukan dari partitur dapat menunjukkan kondisi sesaat dan konteks. Kondisi sesaat berupa \textit{pitch} asli, panjang not, dan waktu dalam not. Kondisi konteks dapat berupa not sebelum dan sesudah, kunci, interval nada terhadap kunci, \textit{beat strength}, ataupun kondisi-kondisi lainnya hasil analisis karya. Namun, kakas analisis karya mungkin tida digunakan karena riset terkait analisis karya menggunakan komputer masih minim.
 
 \begin{table}[h]
     \centering
@@ -71,21 +71,21 @@ Masukan dari partitur dapat menunjukkan kondisi sesaat dan konteks. Kondisi sesa
 
 \section{Pengkodean Harmonik Terarah Plus Stokastik}
 
-Asumsi sumber eksitasi plus amplop spektral seperti yang digunakan pada vocoder WORLD tidak dapat digunakan untuk alat musik gesek. Hal ini tampak pada hasil pengkodean menggunakan vocoder WORLD dari data suara alat musik gesek yang telah dikumpulkan dengan cara yang dijelaskan pada SubBab \ref{datacollectionsection}.
+Asumsi sumber eksitasi plus amplop spektral seperti yang digunakan pada \textit{vocoder} WORLD tidak dapat digunakan untuk alat musik gesek. Hal ini tampak pada hasil pengkodean menggunakan \textit{vocoder} WORLD dari data suara alat musik gesek yang telah dikumpulkan dengan cara yang dijelaskan pada Subbab \ref{datacollectionsection}.
 
-Contoh hasil pengkodean dengan vocoder WORLD tampak pada Gambar \ref{vocoderanalysisresultexample}. Pada gambar ini, tampak bahwa pada banyak bagian, vocoder tidak dapat menyimpulkan frekuensi fundamental dari sinyal masukan. Begitu pula pada bagian amplop spektral dan aperiodistas, banyak bagian yang tidak dapat dideteksi amplop spektral dan aperiodisitasnya.
+Contoh hasil pengkodean dengan \textit{vocoder} WORLD tampak pada Gambar \ref{vocoderanalysisresultexample}. Pada gambar ini, tampak bahwa pada banyak bagian, \textit{vocoder} tidak dapat menyimpulkan frekuensi fundamental dari sinyal masukan. Begitu pula pada bagian amplop spektral dan aperiodistas, banyak bagian yang tidak dapat dideteksi amplop spektral dan aperiodisitasnya.
 
 Hasil pengkodean seperti ini akan menghasilkan rekonstruksi sinyal yang jauh berbeda dibandingkan dengan sinyal masukan apabila dilakukan resintesis. Bahkan, pada banyak bagian, sinyal rekonstruksi tidak akan mengandung suara alat musik gesek sama sekali. Lebih lanjut, karena hasil pengkodean ini akan menjadi contoh keluaran untuk melatih model-model, model-model yang dilatih akan menghasilkan keluaran sebagaiman contoh yang diberikan pada data latih. Hasil sintesis dari keluaran model-model ini akan berbeda atau tidak mengandung suara alat musik gesek.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{resources/Analisis_vocoder.png}
-    \caption{Hasil pengkodean salah satu segmen data latih dengan vocoder WORLD} \label{vocoderanalysisresultexample}
+    \caption{Hasil pengkodean salah satu segmen data latih dengan \textit{vocoder} WORLD} \label{vocoderanalysisresultexample}
 \end{figure}
 
-Asumsi sumber eksitasi plus amplop spektral seperti yang digunakan pada vocoder WORLD tidak dapat digunakan untuk alat musik gesek karena alat musik gesek menghasilkan suara dengan sumber eksitasi berupa gesekan antara \textit{bow} dan senar yang menghasilkan gelombang harmonik dan sedikit \textit{noise}, serta badan alat musik yang menghasilkan gaung. Selain badan alat musik, keberadaan beberapa senar juga memungkinkan gaung yang berasal dari senar-senar yang tidak sedang digesek.
+Asumsi sumber eksitasi plus amplop spektral seperti yang digunakan pada \textit{vocoder} WORLD tidak dapat digunakan untuk alat musik gesek karena alat musik gesek menghasilkan suara dengan sumber eksitasi berupa gesekan antara \textit{bow} dan senar yang menghasilkan gelombang harmonik dan sedikit \textit{noise}, serta badan alat musik yang menghasilkan gaung. Selain badan alat musik, keberadaan beberapa senar juga memungkinkan gaung yang berasal dari senar-senar yang tidak sedang digesek.
 
-Penentuan frekuensi fundamental pada vocoder dengan memanfaatkan \textit{waveform}, misalnya dengan teknik \textit{zero-crossing interval}, mengasumsikan bahwa hanya terdapat satu sumber eksitasi. Karenanya, ketika terdapat gaung yang menyebabkan polifoni, \textit{zero-crossing interval} tidak dapat mendeteksi kemungkinan-kemungkinan frekuensi fundamental. Teknik DIO akan mendapati \textit{zero-crossing interval} yang tidak periodik sehingga ia tidak dapat menyimpulkan F0.
+Penentuan frekuensi fundamental pada \textit{vocoder} dengan memanfaatkan \textit{waveform}, misalnya dengan teknik \textit{zero-crossing interval}, mengasumsikan bahwa hanya terdapat satu sumber eksitasi. Karenanya, ketika terdapat gaung yang menyebabkan polifoni, \textit{zero-crossing interval} tidak dapat mendeteksi kemungkinan-kemungkinan frekuensi fundamental. Teknik DIO akan mendapati \textit{zero-crossing interval} yang tidak periodik sehingga ia tidak dapat menyimpulkan F0.
 
 Berbeda dengan itu, teknik estimasi F0 dengan memanfaatkan puncak-puncak pada spektrum suara seperti TWM memilih F0 dari kandidat-kandidat dengan fungsi \textit{cost} tertentu. Karenanya, apabila pada satu \textit{frame} terdapat sinyal dari beberapa sumber suara, ia tetap dapat menyimpulkan beberapa kandidat F0 dan memilih salah satu di antaranya.
 
@@ -97,7 +97,7 @@ Pencarian frekuensi fundamental dilakukan dengan algoritma TWM dengan fungsi \te
   TWMError'(f0c) = \dfrac{TWMError(f0c)}{f_{gauss}(semitone(f0c);notenumber,1)}
 \end{equation}
 
-Di sini, $f0c$ adalah frekuensi kandidat. $semitone(f0c)$ adalah konversi $f0c$ ke skala semitone sesuai dengn skala nomor nada MIDI. $notenumber$ adalah nomor nada untuk not pada \textit{frame} yang sedang di kodekan. $f_{gauss}$ adalah fungsi Gaussian seperti yang tertulis di Persamaan \ref{eq-gauss-func}. Pencarian frekuensi fundamental dengan cara ini mengasumsikan bahwa deviasi frekuensi fundamental -dalam skala semitone- berdistribusi Gaussian.
+Di sini, $f0c$ adalah frekuensi kandidat. $semitone(f0c)$ adalah konversi $f0c$ ke skala \textit{semitone} sesuai dengan skala nomor nada MIDI. $notenumber$ adalah nomor nada untuk not pada \textit{frame} yang sedang di kodekan. $f_{gauss}$ adalah fungsi Gaussian seperti yang tertulis di Persamaan \ref{eq-gauss-func}. Pencarian frekuensi fundamental dengan cara ini mengasumsikan bahwa deviasi frekuensi fundamental --dalam skala \textit{semitone}-- berdistribusi Gaussian.
 
 \begin{equation}
  f_{gauss}(x;\mu,\sigma) = \dfrac{1}{\sigma \sqrt{2\pi}}e^{\dfrac{-(x-\mu)^2}{2 \sigma^2}} \label{eq-gauss-func}
@@ -107,7 +107,7 @@ Agar gaung tidak mempengaruhi estimasi timbre, asumsi gelombang glottal dan ampl
 
 Sisa spektrum yang tidak dapat dikodekan dengan gelombang-gelombang sinusoidal pada tiap harmonik tersebut kemudian dikodekan dengan model stokastik. Model ini merepresentasikan aperiodisitas.
 
-Dengan demikian, hasil pengkodean harmonik terarah plus stokastik memiliki format yang sama dengan pengkodean harmonik plus stokastik. Hasilnya berupa deskripsi frekuensi fundamental, frekuensi dan ukuran harmonik, dan stokastik untuk setiap langkah waktu. Yang membedakan keduanya adalah adanya batasan frekuensi fundamental yang diarahkan oleh data partitur dan \textit{timing not}
+Dengan demikian, hasil pengkodean harmonik terarah plus stokastik memiliki format yang sama dengan pengkodean harmonik plus stokastik. Hasilnya berupa deskripsi frekuensi fundamental, frekuensi dan ukuran harmonik, dan stokastik untuk setiap langkah waktu. Yang membedakan keduanya adalah adanya batasan frekuensi fundamental yang diarahkan oleh data partitur dan \textit{timing}.
 
 Pengkodean dengan cara ini mampu mengatasi polifoni yang diakibatkan oleh gaung. Polifoni yang diakibatkan karena dua atau lebih not berbunyi sekaligus tidak dapat diatasi dengan cara ini. Cara ini hanya mampu mengekstrak satu frekuensi fundamental dari setiap langkah waktu.
 
@@ -117,7 +117,7 @@ Pengkodean dengan cara ini mampu mengatasi polifoni yang diakibatkan oleh gaung.
     \caption{Hasil pengkodean salah satu segmen data latih dengan pengkodean harmonik terarah plus stokastik} \label{guidedtwmhpsanalysisresultexample}
 \end{figure}
 
-Apabila dibandingkan dengan hasil pengkodean dengan vocoder WORLD pada Gambar \ref{vocoderanalysisresultexample}, analisis harmonik terarah plus stokastik memiliki hasil pengkodean yang lebih baik. Gambar \ref{guidedtwmhpsanalysisresultexample} menunjukkan contoh hasil pengkodean dengan cara ini. Tampak bahwa data F0 dapat diperoleh dari keseluruhan keseluruhan sinyal.
+Apabila dibandingkan dengan hasil pengkodean dengan \textit{vocoder} WORLD pada Gambar \ref{vocoderanalysisresultexample}, analisis harmonik terarah plus stokastik memiliki hasil pengkodean yang lebih baik. Gambar \ref{guidedtwmhpsanalysisresultexample} menunjukkan contoh hasil pengkodean dengan cara ini. Tampak bahwa data F0 dapat diperoleh dari keseluruhan keseluruhan sinyal.
 
 \section{Model \textit{Timing}}
 
@@ -134,7 +134,7 @@ Model \textit{timing} dilatih dengan pasangan data latih fitur-fitur not dalam p
     \item deviasi \textit{timing} not sebelumnya
 \end{enumerate}
 
-Apabila teknik neural parametrik nyanyian hendak diikuti, sebuah jaringan syaraf tiruan \textit{feedforward} terhubung penuh digunakan untuk membangun model \textit{timing}. Namun, terdapat perbedaan antara deviasi \textit{timing} pada nyanyian dengan deviasi \textit{timing} pada alat musik gesek. Permainan alat musik gesek memiliki \textit{range} deviasi \textit{timing} besar. Pada data yang dikumpulkan dengan langkah yang dijelaskan pada SubBab \ref{datacollectionsection}, \textit{range} deviasi \textit{timing} berkisar -4,44 s.d. 1,50 detik. Padahal, dengan arsitektur jaringan syaraf tiruan seperti model \textit{timing} nyanyian yang dijelaskan pada SubBab \ref{literature-neural-parametric}, \textit{range} deviasi \textit{timing} hanya dapat berkisar -0,15 s.d. 0,15 detik.
+Apabila teknik neural parametrik nyanyian hendak diikuti, sebuah jaringan syaraf tiruan \textit{feedforward} terhubung penuh digunakan untuk membangun model \textit{timing}. Namun, terdapat perbedaan antara deviasi \textit{timing} pada nyanyian dengan deviasi \textit{timing} pada alat musik gesek. Permainan alat musik gesek memiliki \textit{range} deviasi \textit{timing} besar. Pada data yang dikumpulkan dengan langkah yang dijelaskan pada Subbab \ref{datacollectionsection}, \textit{range} deviasi \textit{timing} berkisar -4,44 s.d. 1,50 detik. Padahal, dengan arsitektur jaringan syaraf tiruan seperti model \textit{timing} nyanyian yang dijelaskan pada Subbab \ref{literature-neural-parametric}, \textit{range} deviasi \textit{timing} hanya dapat berkisar -0,15 s.d. 0,15 detik.
 
 Apabila hendak digunakan jaringan syaraf tiruan dengan \textit{range} keluaran yang lebih besar, perlu dibuat model yang lebih kompleks. Padahal, data latih yang tersedia tidak cukup besar. Berbeda dengan model \textit{pitch} dan model \textit{timbre} dilatih \textit{frame} demi \textit{frame}, model \textit{timing} dilatih not demi not. Terdapat  1.064.100 \textit{frame} dalam data latih model \textit{pitch} dan model \textit{timbre}, sedangkan data latih model \textit{timing} hanya berisi 13.860 not dan tanda istirahat.
 
@@ -183,18 +183,9 @@ Representasi \textit{timbre} yang menjadi keluaran dan input fitur akustik model
     \item $stoc_s$: ukuran komponen stokastik ke-$s$, disebut juga amplop stokastik
 \end{enumerate}
 
-Frekuensi fundamental keluaran model \textit{pitch} juga menjadi masukan model \text{timbre}. Input kontrol untuk model ini adalah sebagai berikut:
-\begin{enumerate}
-    \item frekuensi fundamental ($f_0$)
-    \item \textit{pitch} $k$ not sebelumnya (one-hot posisi dalam oktaf dan nomor oktaf, relatif terhadap tanda kunci)
-    \item \textit{pitch} not saat ini (one-hot posisi dalam oktaf dan nomor oktaf, relatif terhadap tanda kunci)
-    \item \textit{pitch} $k$ not sesudahnya (one-hot posisi dalam oktaf dan nomor oktaf, relatif terhadap tanda kunci)
-    \item tanda kunci
-    \item durasi $k$ not sebelumnya
-    \item durasi not saat ini
-    \item durasi $k$ not sesudahnya
-    \item posisi dalam not
-\end{enumerate}
+Input kontrol untuk model ini sama dengan input kontrol model \textit{pitch}. Input kontrol ini terdiri dari fitur-fitur not dan fitur not konteks. Fitur tiap not sama dengan fitur tiap not yang digunakan untuk model \textit{pitch}
+
+Terdapat input tambahan yang dimasukkan bersama dengan input fitur akustik untuk tiap model bagian model timbre. Semua model-model bagian model \textit{pitch} mendapat input tambahan deviasi f0. Model frekuensi harmonik menerima input tambahan deviasi f0. Model magnitudo harmonik menerima input tambahan deviasi f0 dan deviasi frekuensi harmonik. Model amplop stokastik menerima input tambahan deviasi f0, deviasi frekuensi harmonik, dan magnitudo harmonik.
 
 \section{Data Partitur, \textit{Timing}, dan Audio} \label{datacollectionsection}
 
@@ -202,7 +193,7 @@ Untuk melatih sistem ini, dibutuhkan data latih berupa partitur, \textit{timing}
 
 Partitur didapatkan dari Petrucci Music Library, dengan memilih secara berurutan dari daftar lagu untuk satu alat musik gesek. Dari daftar lagu tersebut, dipilih lagu yang dapat ditemukan rekaman audionya pada situs \textit{media sharing} publik.
 
-Tidak semua lagu yang memiliki rekaman audio bersesuaian digunakan. Partitur dikumpulkan berurutan secara alfabetis dengan kriteria tidak memiliki gaung terlalu besar seperti gaung ruangan. Minimal total durasi seluruh data yang dikumpulkan adalah 30 menit. Minimal total durasi ini didasarkan kepada riset neural parametrik nyanyian oleh.
+Tidak semua lagu yang memiliki rekaman audio bersesuaian digunakan. Partitur dikumpulkan berurutan secara alfabetis dengan kriteria tidak memiliki gaung terlalu besar seperti gaung ruangan. Minimal total durasi seluruh data yang dikumpulkan adalah 30 menit. Minimal total durasi ini didasarkan kepada riset neural parametrik nyanyian.
 
 Partitur terkumpul kemudian disalin dari format gambar atau PDF ke dalam format MIDI. Penyalinan ke dalam format MIDI dilakukan secara manual
 
@@ -256,4 +247,4 @@ Untuk mengatasi hal tersebut, dapat digunakan teknik lain yang warna suara alat 
 
 Deviasi \textit{pitch} diambil dari perbedaan antara \textit{pitch} keluaran model dan \textit{pitch} non-ekspresif yang tertulis dalam partitur. Perbedaan ini dihitung dalam skala \textit{semitone}. Dinamika dihitung dari keseluruhan magnitudo harmonik. Magnitudo total dari keseluruhan harmonik dihitung dengan cara menjumlahkan \textit{pressure/voltage level}.
 
-Dengan pendekatan ini, tidak semua ekspresi yang dihasilkan oleh teknik neural parametrik dapat digunakan. Pensintesis yang ada hanya menerima gestur deviasi \textit{pitch} dan dinamika. Variasi warna suara tidak diteruskan ke pensintesis. Variasi warna suara kemudian ditentukan oleh pensintesis.
+Dengan pendekatan ini, tidak semua ekspresi yang dihasilkan oleh teknik neural parametrik dapat digunakan. Pensintesis yang ada hanya menerima gestur deviasi \textit{pitch} dan dinamika. Variasi \textit{timbre} tidak diteruskan ke pensintesis. Variasi \textit{timbre} hanya ditentukan oleh pensintesis.

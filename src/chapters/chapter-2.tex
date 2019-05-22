@@ -204,7 +204,7 @@ Di sini, komponen deterministik berupa penjumlahan gelombang sinusoidal dengan a
 e(t)=\int_0^t h(t,\tau)u(\tau)d\tau
 \end{equation}
 
-Proses pengkodean harmonik plus stokastik dari sinyal suara terdiri dari penghitungan spektral, deteksi puncak, deteksi \textit{pitch}/frekuensi fundamental, penentuan frekuensi-frekuensi harmonik, dan analisis stokastik. Hasil pengkodean ini direpresentasikan dengan nilai-nilai frekuensi harmonik (hZ), magnitudo harmonik (dB), dan amplop stokastik (dB). \parencite{serra1997sineplusnoise}
+Proses pengkodean harmonik plus stokastik dari sinyal suara terdiri dari penghitungan spektral, deteksi puncak, deteksi \textit{pitch}/frekuensi fundamental, penentuan frekuensi-frekuensi harmonik, dan analisis stokastik. Hasil pengkodean ini direpresentasikan dengan nilai-nilai frekuensi harmonik (Hz), magnitudo harmonik (dB), dan amplop stokastik (dB). \parencite{serra1997sineplusnoise}
 
 Dengan asumsi bahwa sinyal suara terdiri dari kumpulan gelombang-gelombang harmonik, pencarian frekuensi fundamental dapat dilakukan dengan algoritma TWM. Algoritma TWM mengambil frekuensi dengan \textit{cost} terendah diantara kandidat-kandidat frekuensi harmonik. Kandidat-kandidat frekuensi harmonik yang digunakan adalah puncak-puncak spektral yang telah dideteksi. \textit{Cost} yang digunakan TWM adalah galat dua arah antara frekuensi harmonik yang diprediksi dan frekuensi puncak-puncak terdekat. \parencite{beauchamp1994twm}
 

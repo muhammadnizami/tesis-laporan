@@ -8,11 +8,11 @@ Meski tujuan utama eksperimen ini adalah menunjukkan kinerja sistem utuh, eksper
 
 Sebelum pengujian untuk menunjukkan kinerja sistem permainan musik ekspresif untuk alat musik gesek, dilakukan eksperimen penyetelan parameter untuk menentukan parameter-parameter terbaik. Hal ini karena arsitektur model dan pelatihannya dipengaruhi oleh berbagai parameter.
 
-Selain itu, dilakukan juga pengujian untuk membuktikan bahwa skema pemilihan subset data latih yang diuraikan dalam SubBab \ref{subsetselectionsection} mampu menghasilkan model dengan kinerja lebih baik daripada model yang dilatih langsung menggunakan keseluruhan data latih untuk model-model yang menggunakan arsitektur Wavenet yang dimodifikasi. Hal ini akan dibuktikan untuk model-model \textit{pitch} dan \textit{timbre}. Adapun untuk model \textit{timing}, dilakukan pengujian untuk membuktikan bahwa skema pemilihan subset data latih tidak menghasilkan model dengan kinerja yang lebih baik daripada model yang dilatih langsung menggunakan keseluruhan data latih.
+Selain itu, dilakukan juga pengujian untuk membuktikan bahwa skema pemilihan subset data latih yang diuraikan dalam Subbab \ref{subsetselectionsection} mampu menghasilkan model dengan kinerja lebih baik daripada model yang dilatih langsung menggunakan keseluruhan data latih untuk model-model yang menggunakan arsitektur Wavenet yang dimodifikasi. Hal ini akan dibuktikan untuk model-model \textit{pitch} dan \textit{timbre}. Adapun untuk model \textit{timing}, dilakukan pengujian untuk membuktikan bahwa skema pemilihan subset data latih tidak menghasilkan model dengan kinerja yang lebih baik daripada model yang dilatih langsung menggunakan keseluruhan data latih.
 
 \begin{table}[htbp]
     \centering
-    \caption{Tujuan Eksperimen yang Dilakukan}\label{tab-experiment-list}
+    \caption{Tujuan eksperimen yang dilakukan}\label{tab-experiment-list}
     \begin{tabular}{ |p{0.2\textwidth}|p{0.325\textwidth}|p{0.325\textwidth}|p{0.15\textwidth}| }
     \hline
     &\textbf{Tujuan}&\textbf{Hipotesis}&\textbf{Metrik}\\\hline
@@ -33,7 +33,7 @@ Eksperimen dilakukan untuk menilai tingkat kealamian dari ekspresi permainan mus
 
 Eksperimen diawali dengan eksperimen komponen sistem untuk menyetel parameter dan menguji korelasi tiap-tiap model yang menjadi komponen dari sistem ini. Setelah itu, eksperimen dilakukan dengan eksperimen uji korelasi sistem utuh.
 
-Pada eksperimen komponen, model-model \textit{timing}, \textit{pitch} yang terdiri dari model deviasi F0, dan \textit{timbre} yang terdiri dari model frekuensi harmonik, magnitudo harmonik, serta amplop stokastik disetel parameternya dan diuji korelasinya.
+Pada eksperimen komponen, model-model \textit{timing}, \textit{pitch} yang terdiri dari model deviasi f0, dan \textit{timbre} yang terdiri dari model frekuensi harmonik, magnitudo harmonik, serta amplop stokastik disetel parameternya dan diuji korelasinya.
 
 Untuk penyetelan parameter model-model, dilakukan validasi silang dengan $k=5$. Berikut ini adalah langkah-langkah validasi silang:
 \begin{enumerate}
@@ -44,7 +44,7 @@ Untuk penyetelan parameter model-model, dilakukan validasi silang dengan $k=5$. 
 
 Parameter-parameter model yang disetel berbeda-beda untuk tiap modelnya. Untuk model \textit{timing}, sebelum penyetelan parameter, dilakukan pemilihan teknik antara ANN dan regresi DT. Setelah itu, apabila teknik yang terpilih adalah DT, parameter yang disetel adalah jumlah not konteks yang menjadi fitur dan kedalaman maksimum.
 
-Untuk model-model F0, frekuensi harmonik, magnitudo harmonik, dan amplop stokastik, terdapat empat kelompok parameter:
+Untuk model-model f0, frekuensi harmonik, magnitudo harmonik, dan amplop stokastik, terdapat empat kelompok parameter:
 \begin{itemize}
 	\item parameter-parameter yang diambil dari riset neural parametrik nyanyian, yaitu:
 	\begin{itemize}
@@ -75,14 +75,14 @@ Untuk model-model F0, frekuensi harmonik, magnitudo harmonik, dan amplop stokast
 	\end{itemize}
 \end{itemize}
 
-Untuk model F0, parameter yang diambil dari riset neural parametrik nyanyian diambil dari model F0 pada riset neural parametrik nyanyian. Untuk model frekuensi harmonik dan model magnitudo harmonik, parameter disesuaikan dari model amplop harmonik pada riset neural parametrik nyanyian. Untuk model amplop stokastik, parameter disesuaikan dari model aperiodisitas pada riset neural parametrik nyanyian.
+Untuk model f0, parameter yang diambil dari riset neural parametrik nyanyian diambil dari model f0 pada riset neural parametrik nyanyian. Untuk model frekuensi harmonik dan model magnitudo harmonik, parameter disesuaikan dari model amplop harmonik pada riset neural parametrik nyanyian. Untuk model amplop stokastik, parameter disesuaikan dari model aperiodisitas pada riset neural parametrik nyanyian.
 
 Setelah parameter telah disetel, model dilatih dengan keseluruhan data latih. Namun, model ini tidak langsung diujikan terhadap data uji. Kinerja model ini dibandingkan terlebih dahulu dengan kinerja model yang telah dilatih pada tahapan validasi silang. Hal ini dilakukan untuk memilih model terbaik, karena mungkin saja model yang dilatih dengan data latih lebih besar memiliki kinerja yang lebih buruk. Hal ini dilakukan untuk model \textit{pitch} dan model \textit{timbre}. Adapun untuk model \textit{timing} akan digunakan model yang dilatih dengan keseluruhan data latih. Setelah dipilih model yang terbaik terhadap data latih, model diujikan terhadap data uji.
 
-Validasi, pengujian, dan pengukuran kinerja tiap-tiap model dilakukan sesuai dengan masukan dan keluaran model-model tersebut. Model \textit{timing} diberi masukan partitur dan divalidasi \textit{timing} hasilnya. Model F0 diberi masukan partitur dan \textit{timing} dan divalidasi F0 hasilnya. Demikian pula, serupa pada model frekuensi harmonik, magnitudo harmonik, hingga amplop stokastik.
+Validasi, pengujian, dan pengukuran kinerja tiap-tiap model dilakukan sesuai dengan masukan dan keluaran model-model tersebut. Model \textit{timing} diberi masukan partitur dan divalidasi \textit{timing} hasilnya. Model f0 diberi masukan partitur dan \textit{timing} dan divalidasi f0 hasilnya. Demikian pula, serupa pada model frekuensi harmonik, magnitudo harmonik, hingga amplop stokastik.
 
 %TODO koefisien korelasi Pearson yang dituliskan pada Persamaan \ref{pearson-corrcoef-eq}
-Metrik yang digunakan adalah koefisien korelasi Pearson. Untuk model-model F0, frekuensi harmonik, magnitudo harmonik, dan amplop stokastik, koefisien korelasi dihitung pasangan nilai-nilai pada keluaran dan nilai-nilai pada data tiap \textit{frame}. Untuk model \textit{timing}, koefisien korelasi dihitung terhadap nilai nada, dalam skala nomor not midi, untuk tiap \textit{frame} berdasarkan \textit{timing} yang dihasilkan, berpasangan dengan nilai nada berdasarkan \textit{timing} data.
+Metrik yang digunakan adalah koefisien korelasi Pearson. Untuk model-model f0, frekuensi harmonik, magnitudo harmonik, dan amplop stokastik, koefisien korelasi dihitung pasangan nilai-nilai pada keluaran dan nilai-nilai pada data tiap \textit{frame}. Untuk model \textit{timing}, koefisien korelasi dihitung terhadap nilai nada, dalam skala nomor not midi, untuk tiap \textit{frame} berdasarkan \textit{timing} yang dihasilkan, berpasangan dengan nilai nada berdasarkan \textit{timing} data.
 
 Model-model dengan parameter yang telah disetel dan dilatih dalam tahapan eksperimen komponen kemudian digabungkan untuk membentuk sistem utuh. Setelah itu, sistem utuh digunakan untuk membangkitkan suara dengan masukan partitur pada data uji. Keluaran akhirnya --sebelum diubah menjadi sinyal gelombang-- berupa frekuensi harmonik, magnitudo harmonik, serta amplop stokastik divalidasi dengan frekuensi harmonik, magnitudo harmonik, serta amplom stokastik pada data uji.
 
@@ -90,7 +90,7 @@ Pada bagian terakhir eksperimen, yaitu uji persepsi, dilakukan pengujian kepada 
 
 Sistem yang dijadikan \textit{baseline} sebagai perbandingan adalah sistem Synful RPM. Untuk menghasilkan suara ekspresif, seharusnya sistem ini diberikan masukan partitur ekspresif. Namun, sebagai \textit{baseline} terhadap sistem yang dibangun, sistem ini diberi masukan yang sama dengan sistem yang telah dibangun yaitu partitur tanpa ekspresi.
 
-Yang diuji dengan uji persepsi adalah sistem dengan teknik neural parametrik sebagai sistem permainan musik ekspresif partitur-ke-suara dan sebagai sistem perencana gestur ekspresi. Sebagai sistem permainan musik ekspresif partitur-ke-suara, suara keluaran sistem ini yang diperdengarkan kepada pendengar bersama dengan suara keluaran RPM tanpa masukan gestur ekspresi untuk dibandingkan. Sebagai sistem perencana gestur ekspresi, keluaran sistem dengan teknik neural parametrik yang dikonversi menjadi partitur ekspresif dijadikan masukan kepada sistem RPM, dan diperdengarkan kepada pendengar bersama dengan suara keluaran RPM tanpa gestur ekspresi untuk dibandingkan. Dengan demikian, tiap pendengar akan mendengarkan 9 pasang keluaran sistem Neural Parametrik dan RPM tanpa gestur serta 9 pasang keluaran RPM dengan gestur dari sistem Neural Parametrik dan RPM tanpa gestur, sehingga total tiap pendengar mendengarkan 18 pasang segmen suara.
+Yang diuji dengan uji persepsi adalah sistem dengan teknik neural parametrik sebagai sistem permainan musik ekspresif partitur-ke-suara dan sebagai sistem perencana gestur ekspresi. Sebagai sistem permainan musik ekspresif partitur-ke-suara, suara keluaran sistem ini yang diperdengarkan kepada pendengar bersama dengan suara keluaran RPM tanpa masukan gestur ekspresi untuk dibandingkan. Sebagai sistem perencana gestur ekspresi, keluaran sistem dengan teknik neural parametrik yang dikonversi menjadi partitur ekspresif dijadikan masukan kepada sistem RPM, dan diperdengarkan kepada pendengar bersama dengan suara keluaran RPM tanpa gestur ekspresi untuk dibandingkan. Dengan demikian, tiap pendengar akan mendengarkan 9 pasang keluaran sistem Neural Parametrik dan RPM tanpa gestur serta 9 pasang keluaran RPM dengan gestur dari sistem Neural Parametrik dan RPM tanpa gestur. Dengan demikian, tiap pendengar mendengarkan 18 pasang segmen suara.
 
 \begin{figure}
 \centering
@@ -102,7 +102,7 @@ Urutan pasangan segmen-segmen ini diacak, kemudian urutan segmen tiap pasang jug
 
 \section{Hasil Eksperimen Komponen Sistem}
 
-Hasil eksperimen komponen sistem terdiri dari eksperimen model \textit{timing}, \textit{pitch} yang terdiri dari model deviasi F0, dan \textit{timbre} yang terdiri dari model frekuensi harmonik, magnitudo harmonik, serta amplop stokastik. Eksperimen tiap-tiap model terdiri dari penyetelan parameter dan pengujian.
+Hasil eksperimen komponen sistem terdiri dari eksperimen model \textit{timing}, \textit{pitch} yang terdiri dari model deviasi f0, dan \textit{timbre} yang terdiri dari model frekuensi harmonik, magnitudo harmonik, serta amplop stokastik. Eksperimen tiap-tiap model terdiri dari penyetelan parameter dan pengujian.
 
 \subsection{Hasil penyetelan parameter}
 
@@ -136,9 +136,9 @@ Eksperimen model \textit{timing} dimulai dengan pemilihan teknik menggunakan val
 
 Hasil penyetelan parameter jumlah not konteks fitur dan kedalaman pohon juga terdapat pada Tabel \ref{tab-timing-model-tuning-results}. Parameter terbaik diperoleh dengan 3 not konteks fitur dan kedalaman pohon 300.
 
-Penyetelan model berikutnya adalah penyetelan model F0. Tabel \ref{tab-f0-model-tuning-results} menunjukkan hasil validasi silang untuk penyetelan parameter model F0, dengan metrik berupa koefisien korelasi Pearson dari frekuensi fundamental hasil pembangkitan terhadap frekuensi fundamental pada data. Faktor dilasi yang menghasilkan kinerja terbaik adalah $1,2,4,8,16,32,1,2,4,8,16$. Faktor dilasi ini memiliki medan reseptif terhadap output sebelum yang lebih pendek daripada faktor dilasi pada riset neural parametrik nyanyian. Adapun tingkat \textit{noise} $\lambda$ terbaik didapatkan dengan nilai $0.4$, sama dengan pada riset neural parametrik nyanyian.
+Penyetelan model berikutnya adalah penyetelan model f0. Tabel \ref{tab-f0-model-tuning-results} menunjukkan hasil validasi silang untuk penyetelan parameter model f0, dengan metrik berupa koefisien korelasi Pearson dari frekuensi fundamental hasil pembangkitan terhadap frekuensi fundamental pada data. Faktor dilasi yang menghasilkan kinerja terbaik adalah $1,2,4,8,16,32,1,2,4,8,16$. Faktor dilasi ini memiliki medan reseptif terhadap output sebelum yang lebih pendek daripada faktor dilasi pada riset neural parametrik nyanyian. Adapun tingkat \textit{noise} $\lambda$ terbaik didapatkan dengan nilai $0.4$, sama dengan pada riset neural parametrik nyanyian.
 
-Pelatihan model F0 dengan \textit{early stopping} memiliki kinerja yang sama dengan pelatihan tanpa \textit{early stopping}. Hal ini karena dengan \textit{patience} 100, \textit{early stopping} tidak menghentikan pelatihan hingga jumlah \textit{epoch} maksimal yang bernilai 300. Karenanya, tanpa \textit{early stopping} ataupun dengan \textit{early stopping}, model F0 ini tetap dilatih dengan 300 \textit{epoch}.
+Pelatihan model f0 dengan \textit{early stopping} memiliki kinerja yang sama dengan pelatihan tanpa \textit{early stopping}. Hal ini karena dengan \textit{patience} 100, \textit{early stopping} tidak menghentikan pelatihan hingga jumlah \textit{epoch} maksimal yang bernilai 300. Karenanya, tanpa \textit{early stopping} ataupun dengan \textit{early stopping}, model f0 ini tetap dilatih dengan 300 \textit{epoch}.
 
 \begin{table}[htbp]
     \centering
@@ -288,7 +288,7 @@ Tabel \ref{tab-timing-model-subset-results} menunjukkan perbandingan kinerja mod
     \end{tabular}
 \end{table}
 
-Tabel \ref{tab-f0-model-subset-results} menunjukkan perbandingan kinerja model F0 yang dilatih dengan keseluruhan data latih dan model yang dilatih dengan sebagian data latih. Perhatikan bahwa kinerja tertinggi terhadap data latih diperoleh dengan subset \textit{fold}-1. Kinerja model yang dilatih dengan subset ini terhadap data uji lebih baik daripada kinerja model yang dilatih dengan keseluruhan data latih. Hal ini menunjukkan bahwa untuk model F0, dengan memilih subset data latih dengan kinerja terhadap data latih tertinggi, kinerjanya kepada data uji lebih baik daripada model yang dilatih dengan data latih utuh. 
+Tabel \ref{tab-f0-model-subset-results} menunjukkan perbandingan kinerja model f0 yang dilatih dengan keseluruhan data latih dan model yang dilatih dengan sebagian data latih. Perhatikan bahwa kinerja tertinggi terhadap data latih diperoleh dengan subset \textit{fold}-1. Kinerja model yang dilatih dengan subset ini terhadap data uji lebih baik daripada kinerja model yang dilatih dengan keseluruhan data latih. Hal ini menunjukkan bahwa untuk model f0, dengan memilih subset data latih dengan kinerja terhadap data latih tertinggi, kinerjanya kepada data uji lebih baik daripada model yang dilatih dengan data latih utuh. 
 
 Terdapat dua kemungkinan yang menyebabkan hal ini. Kemungkinan pertama, penambahan data latih menurunkan kinerja. Kemungkinan kedua adalah kualitas data latih tidak merata.
 
@@ -380,7 +380,7 @@ Terdapat dua kemungkinan yang menyebabkan hal ini. Kemungkinan pertama, penambah
     \end{tabular}
 \end{table}
 
-Dengan demikian, dapat diambil kesimpulan untuk skema pemilihan subset. Untuk model \textit{timing}, kinerja model yang dilatih dengan keseluruhan dataset lebih besar daripada model yang dilatih dengan subset yang dipilih dengan skema tersebut. Untuk model frekuensi harmonik, dari skema pemilihan tersebut dipilih data latih utuh, sehingga kinerja dengan skema tersebut sama dengan apabila model dilatih tanpa skema pemilihan subset data latih. Untuk model F0, magnitudo harmonik, dan amplop stokastik, model yang dilatih dengan dataset yang dipilih dengan skema pemilihan subset menghasilkan kinerja yang lebih baik daripada model yang dilatih dengan data latih utuh.
+Dengan demikian, dapat diambil kesimpulan untuk skema pemilihan subset. Untuk model \textit{timing}, kinerja model yang dilatih dengan keseluruhan dataset lebih besar daripada model yang dilatih dengan subset yang dipilih dengan skema tersebut. Untuk model frekuensi harmonik, dari skema pemilihan tersebut dipilih data latih utuh, sehingga kinerja dengan skema tersebut sama dengan apabila model dilatih tanpa skema pemilihan subset data latih. Untuk model f0, magnitudo harmonik, dan amplop stokastik, model yang dilatih dengan dataset yang dipilih dengan skema pemilihan subset menghasilkan kinerja yang lebih baik daripada model yang dilatih dengan data latih utuh.
 
 Dengan demikian, pernyataan pada riset neural parametrik nyanyian bahwa penambahan data latih dapat menurunkan kinerja. Untuk jaringan syaraf tiruan dengan arsitektur Wavenet yang dimodifikasi, penambahan data latih dapat menurunkan kinerja. Adapun untuk model \textit{timing} yang tidak menggunakan arsitektur tersebut, penambahan data latih tetap meningkatkan kinerja.
 
@@ -416,9 +416,9 @@ Tabel \ref{tab-f0-testing-results} menunjukkan koefisien korelasi f0 tiap-tiap \
     \caption{Contoh keluaran model f0, dengan masukan \textit{timing} dari dataset}\label{fig-f0-output-sample}
 \end{figure}
 
-Kekurangan yang masih terjadi di model F0 adalah menganggap perubahan jangka-pendek dari F0 sebagai \textit{noise} dan hanya dirata-ratakan oleh model. Hal ini tampak pada contoh keluaran model F0 pada Gambar \ref{fig-f0-output-sample}. Pada bagian atas terlihat contoh F0 dari dataset, sedangkan pada bagian bawah terlihat F0 prediksi untuk sampel tersebut. Pada kedua bagian tersebut, terdapat bagian yang diperbesar untuk melihat perubahan jangka-pendek F0 tersebut. 
+Kekurangan yang masih terjadi di model f0 adalah menganggap perubahan jangka-pendek dari f0 sebagai \textit{noise} dan hanya dirata-ratakan oleh model. Hal ini tampak pada contoh keluaran model f0 pada Gambar \ref{fig-f0-output-sample}. Pada bagian atas terlihat contoh f0 dari dataset, sedangkan pada bagian bawah terlihat f0 prediksi untuk sampel tersebut. Pada kedua bagian tersebut, terdapat bagian yang diperbesar untuk melihat perubahan jangka-pendek f0 tersebut. 
 
-Pada bagian yang diperbesar pada gambar tersebut, terlihat dua jenis perubahan jangka-pendek F0 yang dianggap sebagai \textit{noise} oleh model. Pada bagian kiri, terlihat \textit{spike} pada data dianggap sebagai \textit{noise} oleh model, dan pada F0 prediksi hal tersebut hilang. Pada bagian kanan dari perbesaran tersebut pada F0 dari data, terlihat pola osilasi yang menunukkan \textit{vibrato}. Pada F0 prediksi hal tersebut hilang dan dirata-ratakan.
+Pada bagian yang diperbesar pada gambar tersebut, terlihat dua jenis perubahan jangka-pendek f0 yang dianggap sebagai \textit{noise} oleh model. Pada bagian kiri, terlihat \textit{spike} pada data dianggap sebagai \textit{noise} oleh model, dan pada f0 prediksi hal tersebut hilang. Pada bagian kanan dari perbesaran tersebut pada f0 dari data, terlihat pola osilasi yang menunukkan \textit{vibrato}. Pada f0 prediksi hal tersebut hilang dan dirata-ratakan.
 
 Tabel \ref{tab-freq-testing-results} menunjukkan koefisien korelasi frekuensi harmonik tiap-tiap \textit{frame} keluaran model frekuensi harmonik terhadap frekuensi harmonik pada data. Nilai koefisien korelasi di atas 0 menunjukkan bahwa model berhasil mempelajari pola frekuensi harmonik. Koefisien korelasi model ini tidak mencapai nilai 1, namun sudah mencapai 0.9550 terhadap data uji. Tidak terjadi \textit{overfitting} di sini.
 \begin{table}[htbp]
@@ -439,7 +439,7 @@ Tabel \ref{tab-freq-testing-results} menunjukkan koefisien korelasi frekuensi ha
 
 Kekurangan yang masih terjadi di model frekuensi harmonik adalah menganggap perubahan jangka-pendek dari frekuensi harmonik sebagai \textit{noise} dan hanya dirata-ratakan oleh model. Hal ini tampak pada contoh keluaran model frekuensi harmonik pada Gambar \ref{fig-hfreq-output-sample}. Pada bagian atas terlihat contoh frekuensi harmonik dari dataset, sedangkan pada bagian bawah terlihat frekuensi harmonik prediksi untuk sampel tersebut. Pada kedua bagian tersebut, terdapat bagian yang diperbesar untuk melihat perubahan jangka-pendek frekuensi harmonik tersebut. 
 
-Pada bagian yang diperbesar pada gambar tersebut, terlihat bahwa pola \textit{spike} dari deviasi frekuensi harmonik hilang, dan hanya dirata-ratakan saja. Padahal, pada dataset, untuk harmonik tinggi, terdapat pola seperti \textit{spike}. Adapun \textit{vibrato} dari F0 diteruskan ke harmonik selanjutnya, tanpa deviasi.
+Pada bagian yang diperbesar pada gambar tersebut, terlihat bahwa pola \textit{spike} dari deviasi frekuensi harmonik hilang, dan hanya dirata-ratakan saja. Padahal, pada dataset, untuk harmonik tinggi, terdapat pola seperti \textit{spike}. Adapun \textit{vibrato} dan \textit{spike} dari f0, bila ada, diteruskan ke harmonik selanjutnya, tanpa deviasi.
 
 Tabel \ref{tab-mag-testing-results} menunjukkan koefisien korelasi magnitudo harmonik tiap-tiap \textit{frame} keluaran model magnitudo harmonik terhadap magnitudo harmonik pada data. Nilai koefisien korelasi di atas 0 menunjukkan bahwa model berhasil mempelajari pola magnitudo harmonik. Namun, koefisien korelasi ini masih bernilai rendah. Kinerja model ini rendah baik terhadap data latih maupun data uji. Hal ini menunjukkan adanya \textit{underfitting}.
 
@@ -546,7 +546,17 @@ Nilai koefisien korelasi yang dicapai oleh sistem ini lebih tinggi daripada sist
 
 \section{Hasil Uji Preferensi Kealamian}
 
-Tabel \ref{tab-preference} menunjukkan hasil uji preferensi kealamian sistem yang diajukan. Sistem neural parametrik partitur-ke-suara memiliki nilai preferensi kealamian $17,17\%$. Nilai ini kurang dari $50\%$. Artinya, oleh persepsi pendengar, sistem ini dinilai kurang alami dibandingkan dengan sistem \textit{baseline}. Begitu pula sistem gabungan yang menggunakan teknik neural parametrik sebagai perencana gestur ekspresi memiliki nilai preferensi kealamian $29,29\%$. Meskipun nilai ini lebih tinggi bila dibandingkan dengan sistem neural parametrik partitur-ke-suara, nilai ini masih kurang dari $50\%$. Artinya, oleh persepsi pendengar, suara yang dihasilkan oleh sistem ini dinilai kurang alami juga dibandingkan dengan sistem \textit{baseline}.
+Uji pendengar telah dilakukan kepada 16 pendengar dari kalangan pemain musik. Gambar \ref{tab-respondent-characteristics} menunjukkan pengalaman dan alat musik yang digunakan. Responden memiliki pengalaman bermain musik dengan rentang 4 s.d. 17 tahun. Semua pemain musik yang mengisi adalah pemain alat musik gesek. Beberapa di antara pemain alat musik gesek tersebut juga merupakan pemain alat musik selain alat musik gesek yaitu piano.
+
+\begin{figure}[htbp]
+  \begin{center}
+  	\includegraphics[width=0.8\textwidth]{resources/Karakter_responden.png}
+    \caption{Karakteristik responden uji preferensi kealamian}
+    \label{tab-respondent-characteristics}
+  \end{center}
+\end{figure}
+
+Tabel \ref{tab-preference} menunjukkan hasil uji preferensi kealamian sistem yang diajukan. Sistem neural parametrik partitur-ke-suara memiliki nilai preferensi kealamian $19,44\%$. Nilai ini kurang dari $50\%$. Artinya, oleh persepsi pendengar, sistem ini dinilai kurang alami dibandingkan dengan sistem \textit{baseline}. Begitu pula sistem gabungan yang menggunakan teknik neural parametrik sebagai perencana gestur ekspresi memiliki nilai preferensi kealamian $31,25\%$. Meskipun nilai ini lebih tinggi bila dibandingkan dengan sistem neural parametrik partitur-ke-suara, nilai ini masih kurang dari $50\%$. Artinya, oleh persepsi pendengar, suara yang dihasilkan oleh sistem ini dinilai kurang alami juga dibandingkan dengan sistem \textit{baseline}.
 
 \begin{table}[htbp] %TODO update data
   \begin{center}
@@ -556,11 +566,9 @@ Tabel \ref{tab-preference} menunjukkan hasil uji preferensi kealamian sistem yan
     \hline
 	Sistem&Jumlah Data Respon&Preferensi terhadap RPM$\pm$MoE(95$\%$ Confidence)\\
 	\hline
-	DT-NP	&99	&$17,17\%\pm11,01\%$\\
-	\hline
-	Gabungan	&99	&$29,29\%\pm21,24\%$\\
-	\hline
-    \end{tabular}
+	dtnp&	144&	$19,44\%\pm13,81\%$\\\hline
+	hybrid&	144&	$31,25\%\pm24,25\%$\\\hline
+	\end{tabular}
   \end{center}
 \end{table}
 
