@@ -164,10 +164,10 @@ Input jaringan syaraf tiruan ini terdiri dari dua, yaitu input fitur akustik kel
 
 Pembangkitan dilakukan untuk tiap langkah waktu secara berurutan dari depan ke belakang. Untuk tiap langkah waktu, keluaran dari beberapa langkah waktu sebelumnya, sepanjang medan reseptif, menjadi masukan pada langkah ini.
 
-Fitur akustik yang dibangkitkan dan menjadi input fitur akustik berikutnya adalah deviasi f0, bukan f0 sebenarnya. Hal ini untuk menjaga konteks deviasi antar not. Deviasi f0 pada suatu not dipengaruhi oleh deviasi f0 pada not sebelumnya. Lebih lanjut, deviasi ini dihitung dalam skala logaritmik. Hubungan antara deviasi f0 dengan f0 ditunjukkan dalam Persamaan \ref{f0-deviation}, dengan $\Delta_{f_0}[t]$ adalah deviasi f0. Pada tahap pembangkitan, f0 dihitung dari persamaan ini.
+Fitur akustik yang dibangkitkan dan menjadi input fitur akustik berikutnya adalah deviasi f0, bukan f0 sebenarnya. Hal ini untuk menjaga konteks deviasi antar not. Deviasi f0 pada suatu not dipengaruhi oleh deviasi f0 pada not sebelumnya. Lebih lanjut, deviasi ini dihitung dalam skala logaritmik \textit{semitone}. Hubungan antara deviasi f0 dengan f0 ditunjukkan dalam Persamaan \ref{f0-deviation}, dengan ${\Delta_{semitone}}_{f_0}[t]$ adalah deviasi f0, $f_0[t]$ adalah frekuensi fundamental, dan ${f_0}_{eq}(note(t))$ adalah frekuensi standar \textit{equal temperament} untuk not pada saat $t$. Pada tahap pembangkitan, f0 dihitung dari persamaan ini.
 
 \begin{equation}
-    \Delta_{f_0}[t] = ln(f_0[t]) - ln({f_0}_{eq}(note[t]))
+    { \Delta_{semitone}}_{f_0}[t] = 12(log_2(f_0[t]) - log_2({f_0}_{eq}(note[t])))
 \end{equation}\label{f0-deviation}
 
 Input kontrol yang digunakan berasal dari partitur dan estimasi \textit{timing} keluaran model \textit{timing}. Berdasarkan keluaran model \textit{timing}, dapat diketahui not pada partitur yang dibunyikan pada satu langkah waktu. Berdasarkan not tersebut, input kontrol ini terdiri dari fitur not tersebut, not sebelumnya, dan not sesudahnya. Fitur tiap not adalah sebagai berikut:
@@ -201,7 +201,7 @@ Model \textit{timbre} berfungsi membangkitkan representasi \textit{timbre}. Seru
 Representasi \textit{timbre} yang menjadi keluaran dan input fitur akustik model ini adalah sebagai berikut:
 
 \begin{enumerate}
-    \item $\Delta ln(f_h)$: deviasi frekuensi harmonik ke-$h$ dalam skala logaritmik, untuk semua komponen harmonik
+    \item $\Delta_{semitone}(f_h)$: deviasi frekuensi harmonik ke-$h$ dalam skala logaritmik, untuk semua komponen harmonik
     \item $mag_h$: ukuran/magnitudo (desibel) komponen harmonik ke-$h$, untuk semua komponen harmonik
     \item $stoc_s$: ukuran komponen stokastik ke-$s$, disebut juga amplop stokastik
 \end{enumerate}
