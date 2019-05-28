@@ -616,7 +616,11 @@ Tabel pada Lampiran \ref{appendix-pertimbangan} menunjukkan pertimbangan-pertimb
 
 Jawaban-jawaban pertimbangan yang diberikan oleh responden digunakan untuk mencari penyebab-penyebab rendahnya nilai preferensi persepsi kealamian dari sistem neural parametrik dan juga sistem gabungan. Karena data ini masih berupa kemunculan pertimbangan-pertimbangan yang bermacam-macam pada data preferensi tertentu, data ini tidak dapat secara langsung menunjukkan pada teknik mana fenomena yang disebutkan terjadi, dan apakah fenomena tersebut menyebabkan terdengar lebih alami atau sebaliknya.
 
-Untuk melihat keterhubungan antara pertimbangan responden dan persepsi kealamiannya, digunakan \textit{odds ratio}. Nilai \textit{odds ratio} lebih dari 1 menunjukkan bahwa dengan pertimbangan tersebut, kealamian sistem yang diajukan dibandingkan dengan \textit{baseline} lebih tinggi daripada kealamian sistem ketika responden tidak mempertimbangkan pertimbangan tersebut. Nilai \textit{odds ratio} kurang dari 1 menunjukkan bahwa dengan pertimbangan tersebut, kealamian sistem yang diajukan dibandingkan dengan \textit{baseline} lebih rendah daripada kealamian sistem ketika responden tidak mempertimbangkan pertimbangan tersebut. Dapat dikatakan bahwa \textit{odds ratio} lebih dari 1 menunjukkan pertimbangan yang meningkatkan kealamian, dan \textit{odds ratio} kurang dari 1 menunjukkan pertimbangan yang menurunkan kealamian.
+Untuk melihat keterhubungan antara pertimbangan responden dan persepsi kealamiannya, digunakan \textit{odds ratio}. \textit{Odds ratio} adalah ukuran yang menggambarkan keterhubungan antara suatu paparan dan kejadian. \textit{Odds ratio} dinyatakan sebagai rasio antara peluang kejadian dengan paparan dan peluang kejadian tanpa paparan. \parencite{oddsratio}
+
+Dalam konteks preferensi kealamian, kejadian yang menjadi perhatian adalah ketika sistem yang diajukan dipilih. Paparan yang menjadi perhatian adalah pertimbangan responden. Sehingga, \textit{odds ratio} di sini adalah nilai preferensi kealamian dengan pertimbangan dibagi dengan nilai preferensi kealamian tanpa pertimbangan.
+
+Nilai \textit{odds ratio} lebih dari 1 menunjukkan bahwa dengan pertimbangan tersebut, kealamian sistem yang diajukan dibandingkan dengan \textit{baseline} lebih tinggi daripada kealamian sistem ketika responden tidak mempertimbangkan pertimbangan tersebut. Nilai \textit{odds ratio} kurang dari 1 menunjukkan bahwa dengan pertimbangan tersebut, kealamian sistem yang diajukan dibandingkan dengan \textit{baseline} lebih rendah daripada kealamian sistem ketika responden tidak mempertimbangkan pertimbangan tersebut. Dapat dikatakan bahwa \textit{odds ratio} lebih dari 1 menunjukkan pertimbangan yang meningkatkan kealamian, dan \textit{odds ratio} kurang dari 1 menunjukkan pertimbangan yang menurunkan kealamian.
 
 Dari data pertimbangan-pertimbangan, dilakukan penyortiran. Pertama, dipilih pertimbangan-pertimbangan dengan jumlah kemunculan minimal 10. Kemudian, pertimbangan-pertimbangan tersebut diurutkan berdasarkan \textit{odds ratio} kealamian sistem DT-Neural Parametrik. Tabel \ref{tab-pertimbangan-oddsratio-morenatural} menunjukkan pertimbangan-pertimbangan yang meningkatkan kealamian sistem DT-Neural Parametrik. Tabel \ref{tab-pertimbangan-oddsratio-lessnatural} menunjukkan pertimbangan-pertimbangan yang menurunkan kealamian sistem DT-Neural Parametrik.
 
@@ -705,7 +709,7 @@ Dengan demikian, sebenarnya gestur-gestur ekspresi \textit{timing}, \textit{pitc
 
 Kurangnya kealamian warna suara secara umum disebabkan oleh model \textit{timbre} yang tidak mampu menangkap pola-pola jangka pendek, sebagaimana dijelaskan pada Subbab \ref{section-wholesystem-corrcoef-test}, yang terlihat pada Gambar \ref{fig-wholesystem-hmag-output-sample-zoomed}. Pola jangka pendek pada keluaran sistem RPM, meski memiliki bentuk, ukuran, dan kerapatan yang berbeda dari dataset, menghasilkan efek perseptual yang terasa lebih mirip kepada suara alat musik asli apabila dibandingkan dengan keluaran sistem Neural Parametrik yang tidak memiliki pola jangka-pendek tersebut.
 
-Model \textit{timbre} tidak mampu mengikuti perubahan \textit{pitch} dan dinamika tampak pada Gambar \ref{fig-wholesystem-hfreq-output-sample} dan Gambar \ref{fig-wholesystem-hmag-output-sample}. Tampak bahwa jarak frekuensi harmonik terhadap frekuensi fundamental selalu sama. Tampak pula bahwa rasio magnitudo harmonik selalu sama walaupun tingkat keras suara secara keseluruhan berubah. Ketidakmampuan \textit{timbre} mengikuti perubahan \textit{pitch} dan perubahan dinamika juga disebabkan karena model tidak mampu menangkap pola-pola jangka pendek yang kompleks.
+Model \textit{timbre} tidak mampu mengikuti perubahan \textit{pitch} dan dinamika tampak pada Gambar \ref{fig-wholesystem-hfreq-output-sample} dan Gambar \ref{fig-wholesystem-hmag-output-sample}. Tampak bahwa jarak frekuensi harmonik terhadap frekuensi fundamental selalu sama. Tampak pula bahwa rasio magnitudo harmonik selalu sama walaupun tingkat keras suara secara keseluruhan berubah. Ketidakmampuan \textit{timbre} mengikuti perubahan \textit{pitch} dan perubahan dinamika bukan disebabkan oleh kurangnya fitur masukan, karena model \textit{timbre} sudah menerima deviasi \textit{pitch} sebagai masukan tambahan dan dinamika juga dibangkitkan secara implisit bersama dengan \textit{timbre}. Ketidakmampuan \textit{timbre} mengikuti perubahan \textit{pitch} dan perubahan dinamika disebabkan karena model tidak mampu menangkap pola-pola jangka pendek yang kompleks.
 
 Suara yang dihasilkan bersifat \textit{noisy} atau tidak jelas diakibatkan oleh model amplop stokastik yang membangkitkan amplop stokastik di luar \textit{range} yang wajar, sebagaimana tampak pada Gambar \ref{fig-wholesystem-stocenv-output-sample}. Hal ini karena jaringan syaraf tiruan Wavenet yang dimodifikasi memiliki kecenderungan untuk mengakumulasi galat dari input-input fitur akustik sebelum pada saat pembangkitan.
 
@@ -715,4 +719,36 @@ Dengan demikian, kekurangan jaringan syaraf tiruan yang digunakan untuk model in
 	\item Model mengakumulasi galat dan menghasilkan keluaran di luar \textit{range} yang wajar
 \end{enumerate}
 
-%TODO coba dikonfirmasi apakah Modified WaveNet benar demikian
+Ketidakmampuan menangkap pola ini terjadi secara merata dan bukan disebabkan oleh \textit{overfitting}. Hasil uji korelasi yang tertulis di Tabel \ref{tab-system-testing-results} pada Subbab \ref{section-wholesystem-corrcoef-test} menunjukkan kinerja yang tidak jauh berbeda antara data latih dan data uji. Pada contoh keluaran magnitudo harmonik dengan masukan partitur yang terdapat pada data latih, pada Gambar \ref{fig-wholesystem-hmag-output-sample-traindata-zoomed}, tampak pola yang sama dengan contoh keluaran dengan masukan partitur dari data uji. Terlihat bahwa sistem tidak mampu menghasilkan pola jangka-pendek yang sesuai baik pada data latih maupun data uji.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{resources/Analisis_wholesystem_Hmag_traindata_zoomed.png}
+    \caption{(Diperbesar) Contoh magnitudo harmonik (4 harmonik pertama) yang dihasilkan oleh sistem DT-Neural Parametrik utuh dan RPM dari partitur pada data latih}\label{fig-wholesystem-hmag-output-sample-traindata-zoomed}
+\end{figure}
+
+Untuk memastikan bahwa memang arsitektur Wavenet yang dimodifikasi kurang kompleks untuk menangkap pola-pola janga-pendek yang disebutkan, dilakukan percobaan \textit{curve-fitting} data sintetik kecil. Data sintetik kecil ini bukan data pengkodean suara, namun memiliki pola-pola yang telah disebutkan. Pola-pola ini adalah \textit{spike}, osilasi, bukit-bukit/punuk-punuk, dan saling menyilang antara dua output.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{resources/analisis_modified_wavenet.png}
+    \caption{Hasil percobaan \textit{curve-fitting} Wavenet yang dimodifikasi kepada data sintetik dengan satu output}\label{fig-curvefit-modified-wavenet}
+\end{figure}
+
+Gambar \ref{fig-curvefit-modified-wavenet} menunjukkan hasil \textit{curve-fitting} pola-pola detil pada satu output. Tampak bahwa apabila kurva hanya terdiri dari osilasi, jaringan syaraf tiruan Wavenet yang dimodifikasi ini dapat sedikit menangkap pola naik-turun output, meski tidak benar-benar \textit{fit} kepada kurva tersebut. Pada gambar kedua dari atas, tampak bahwa ketika pola osilasi muncul bersama pola lain yang lebih besar, pola osilasi detil menjadi hilang dan jaringan syaraf tiruan tersebut menganggap pola osilasi yang detil itu sebagai \textit{noise}.
+
+Pada \textit{curve-fitting} pola osilasi dan pola naik turun yang besar ditambahkan dengan pola \textit{spike}, selain pola osilasi menjadi hilang, pola \textit{spike} tidak dapat ditangkap dengan benar. Muncul \textit{spike} pada saat yang tidak tepat. Pada saat yang seharusnya, \textit{spike} yang kedua tidak muncul. \textit{Spike} yang pertama muncul dengan ukuran yang jauh lebih besar daripada yang seharusnya.
+
+Pola punuk-punuk, yang tampak pada grafik ketiga dari bawah, tidak dapat dipelajari dengan baik. Ukuran punuk berbeda dengan yang seharusnya. Bentuk pembalikan kemiringan yang tajam di bagian bawah berubah menjadi lebih halus. Setelah melewati 500 \textit{frame}, atau pada gambar ini posisi $x=10$, pola ini hilang. Pola punuk yang dipelajari semakin berbeda dari yang seharusnya ketika kerapatan punuk-punuk ini bermacam-macam.
+
+Ketika pola punuk ini digabung dengan pola lain yang lebih besar, sebagaimana tampak pada grafik paling bawah dalam Gambar \ref{fig-curvefit-modified-wavenet}, pola punuk ini tidak ditangkap oleh jaringan syaraf tiruan ini. Yang ditangkap hanya pola umum yang lebih besar saja. Selain itu, pada bagian awal muncul keluaran yang jauh di luar \textit{range} seharusnya.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{resources/analisis_modified_wavenet_two_outputs.png}
+    \caption{Hasil percobaan \textit{curve-fitting} Wavenet yang dimodifikasi kepada data sintetik dengan dua output}\label{fig-curvefit-modified-wavenet-two-outputs}
+\end{figure}
+
+Pola dua output yang saling menyilang terlihat pada Gambar \ref{fig-curvefit-modified-wavenet-two-outputs}. Pola ini hilang sama sekali. Memang pada bagian depan, terlihat ada saling menyilang, namun saling menyilang ini memiliki bentuk dan jarak yang berbeda dengan kurva target \textit{fitting}. Selain pada bagian depan tersebut, pada output jaringan syaraf tiruan ini tidak ada saling menyeberangi satu sama lain.
+
+Dengan demikian, jaringan syaraf tiruan Wavenet yang dimodifikasi sebagaimana disebutkan dalam riset neural parametrik nyanyian tidak dapat mempelajari pola-pola detil yang telah disebutkan tersebut. Hal ini karena model ini kurang kompleks untuk mempelajari pola-pola detil tersebut. Akibatnya, jaringan syaraf tiruan dengan arsitektur ini tidak cocok terhadap data kode harmonik plus stokastik alat musik gesek. Jadi, kurangnya kealamian sistem secara umum dan model \textit{timbre} secara khusus disebabkan oleh tidak cocoknya arsitektur jaringan syaraf tiruan yang digunakan dengan pengkodean suara harmonik plus stokastik dan domain alat musik gesek.
