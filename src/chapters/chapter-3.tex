@@ -97,7 +97,7 @@ Pencarian frekuensi fundamental dilakukan dengan algoritma TWM dengan fungsi \te
   TWMError'(f0c) = \dfrac{TWMError(f0c)}{f_{gauss}(semitone(f0c);notenumber,1)}
 \end{equation}
 
-Di sini, $f0c$ adalah frekuensi kandidat. $semitone(f0c)$ adalah konversi $f0c$ ke skala \textit{semitone} sesuai dengan skala nomor nada MIDI. $notenumber$ adalah nomor nada untuk not pada \textit{frame} yang sedang di kodekan. $f_{gauss}$ adalah fungsi Gaussian seperti yang tertulis di Persamaan \ref{eq-gauss-func}. Pencarian frekuensi fundamental dengan cara ini mengasumsikan bahwa deviasi frekuensi fundamental --dalam skala \textit{semitone}-- berdistribusi Gaussian.
+Di sini, $f0c$ adalah frekuensi kandidat. $semitone(f0c)$ adalah konversi $f0c$ ke skala \textit{semitone} sesuai dengan skala nomor nada MIDI. $notenumber$ adalah nomor nada untuk not pada \textit{frame} yang sedang di kodekan. $f_{gauss}$ adalah fungsi Gaussian seperti yang tertulis di Persamaan \ref{eq-gauss-func} \parencite{Walpole}. Pencarian frekuensi fundamental dengan cara ini mengasumsikan bahwa deviasi frekuensi fundamental --dalam skala \textit{semitone}-- berdistribusi Gaussian.
 
 \begin{equation}
  f_{gauss}(x;\mu,\sigma) = \dfrac{1}{\sigma \sqrt{2\pi}}e^{\dfrac{-(x-\mu)^2}{2 \sigma^2}} \label{eq-gauss-func}
