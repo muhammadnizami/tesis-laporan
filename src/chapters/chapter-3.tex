@@ -123,6 +123,14 @@ Apabila dibandingkan dengan hasil pengkodean dengan \textit{vocoder} WORLD pada 
 
 Model \textit{timing} berfungsi menentukan panjang aktual dari tiap not. Panjang aktual dari tiap not ini kemudian digunakan untuk menentukan waktu-waktu pergantian satu not ke not berikutnya.
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{resources/timing-model-in-out.eps}
+    \caption{Input dan output model \textit{timing}}\label{fig-timing-model-in-out}
+\end{figure}
+
+Input dan output model \textit{timing} ditunjukkan pada Gambar \ref{fig-timing-model-in-out}. Deviasi \textit{timing} dibangkitkan satu per satu secara berurutan dari not awal hingga not akhir.
+
 Model \textit{timing} dilatih dengan pasangan data latih fitur-fitur not dalam partitur dan \textit{timing} not tersebut. Keluaran yang diharapkan dari model ini adalah deviasi panjang not. Untuk tiap not, berikut ini adalah fitur-fitur not yang digunakan:
 
 \begin{enumerate}
@@ -143,6 +151,14 @@ Dengan kondisi demikian, jaringan syaraf tiruan tidak akan mampu menangkap pola,
 \section{Model \textit{Pitch}}
 
 Model \textit{pitch} berfungsi membangkitkan frekuensi fundamental untuk tiap langkah waktu. Digunakan jaringan syaraf tiruan dengan arsitektur yang sama dengan jaringan syaraf tiruan modifikasi Wavenet untuk sintesis neural parametrik nyanyan. Arsitektur ini tampak pada Gambar \ref{fig-network-architecture-bonada}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{resources/f0-model-in-out.eps}
+    \caption{Input dan output model f0}\label{fig-f0-model-in-out}
+\end{figure}
+
+Input dan output model f0 ditunjukkan pada Gambar \ref{fig-f0-model-in-out}.tersebut. Deviasi f0 dibangkitkan satu per satu secara berurutan dari \textit{frame} awal hingga \textit{frame} akhir.
 
 Input jaringan syaraf tiruan ini terdiri dari dua, yaitu input fitur akustik keluaran sebelumnya, dan input kontrol. Input kontrol berasal dari partitur.
 
@@ -171,6 +187,13 @@ Input kontrol yang digunakan berasal dari partitur dan estimasi \textit{timing} 
   \item \textit{quarter length}
 \end{enumerate}
 
+Selain itu, terdapat pula fitur yang menyatakan posisi \textit{frame} dalam not yang sedang berbunyi:
+
+\begin{enumerate}
+    \item posisi absolut dalam not
+    \item posisi dalam not, relatif terhadap panjang not
+\end{enumerate}
+
 \section{Model \textit{Timbre}}
 
 Model \textit{timbre} berfungsi membangkitkan representasi \textit{timbre}. Serupa dengan model \textit{pitch}, representasi \textit{timbre} untuk tiap langkah waktu dibangkitkan dengan input fitur akustik keluaran langkah-langkah waktu sebelumnya dan input kontrol. Digunakan jaringan syaraf tiruan dengan arsitektur pada Gambar \ref{fig-network-architecture-bonada}.
@@ -182,6 +205,30 @@ Representasi \textit{timbre} yang menjadi keluaran dan input fitur akustik model
     \item $mag_h$: ukuran/magnitudo (desibel) komponen harmonik ke-$h$, untuk semua komponen harmonik
     \item $stoc_s$: ukuran komponen stokastik ke-$s$, disebut juga amplop stokastik
 \end{enumerate}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{resources/hfreq-model-in-out.eps}
+    \caption{Input dan output model frekuensi harmonik}\label{fig-hfreq-model-in-out}
+\end{figure}
+
+Input dan output model frekuensi harmonik ditunjukkan pada Gambar \ref{fig-hfreq-model-in-out}. Deviasi frekuensi harmonik dibangkitkan satu per satu secara berurutan dari \textit{frame} awal hingga \textit{frame} akhir.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{resources/hmag-model-in-out.eps}
+    \caption{Input dan output model magnitudo harmonik}\label{fig-hmag-model-in-out}
+\end{figure}
+
+Input dan output model magnitudo harmonik ditunjukkan pada Gambar \ref{fig-hmag-model-in-out}. Deviasi magnitudo harmonik dibangkitkan satu per satu secara berurutan dari \textit{frame} awal hingga \textit{frame} akhir.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{resources/stocenv-model-in-out.eps}
+    \caption{Input dan output model amplop stokastik}\label{fig-stocenv-model-in-out}
+\end{figure}
+
+Input dan output model amplop stokastik ditunjukkan pada Gambar \ref{fig-stocenv-model-in-out}. Deviasi amplop stokastik dibangkitkan satu per satu secara berurutan dari \textit{frame} awal hingga \textit{frame} akhir.
 
 Input kontrol untuk model ini sama dengan input kontrol model \textit{pitch}. Input kontrol ini terdiri dari fitur-fitur not dan fitur not konteks. Fitur tiap not sama dengan fitur tiap not yang digunakan untuk model \textit{pitch}
 

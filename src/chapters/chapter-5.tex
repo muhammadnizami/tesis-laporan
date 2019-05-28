@@ -16,12 +16,15 @@ Kealamian subjektif pendengar sistem permainan musik ekspresif alat musik gesek 
 Sistem permainan musik ekspresif nyanyian dengan teknik gabungan gestur ekspresi neural parametrik dan pensintesis RPM menghasilkan kealamian subjektif pendengar yang lebih rendah daripada sistem RPM. Nilai preferensi sistem permainan musik alat musik gesek dengan teknik neural parametrik terhadap RPM adalah $31,25\%$. %TODO analisis
 Nilai preferensi untuk kealamian subjektif pendengar ini bertolak belakang dengan hasil uji korelasi sistem. Dengan uji korelasi, teknik neural parametrik memiliki kinerja lebih tinggi daripada RPM, sedangkan dengan uji preferensi kealamian, teknik neural parametrik memiliki kinerja lebih rendah daripada RPM.
 
+Untuk gestur-gestur ekspresi seperti \textit{timing}, deviasi \textit{pitch}, dan variasi dinamika, sistem ini sudah dianggap alami. Meski demikian, \textit{timbre} yang belum mirip dengan suara alat musik asli dan juga tidak ikut berubah mengikuti gestur-gestur ekspresi tersebut menyebabkan keluaran sistem neural parametrik secara keseluruhan dianggap kurang alami.
+
 \section{Saran}
 
 Dari penelitian ini, terdapat beberapa saran baik untuk memperbaiki sistem yang digunakan maupun validitas hasil penelitian-penelitian serupa:
 \begin{enumerate}
-	\item Perlu dibuat arsitektur model yang mampu menangkap pola lebih kompleks dan lebih detil agar ekspresi terkait \textit{pitch} dan \textit{timbre} dari data latih benar-benar dapat direproduksi oleh model. Penambahan data latih tanpa perbaikan arsitektur model \textit{pitch} dan \textit{timbre} justru akan menurunkan kinerja.
+	\item Peningkatan kealamian sistem dapat dilakukan apabila dibuat arsitektur model yang mampu menangkap pola lebih kompleks dan lebih detil agar ekspresi terkait \textit{pitch} dan \textit{timbre} dari data latih benar-benar dapat direproduksi oleh model. Penambahan data latih tanpa perbaikan arsitektur model \textit{pitch} dan \textit{timbre} justru akan menurunkan kinerja.
+	\item Peningkatan kealamian sistem juga dapat dilakukan dengan menggunakan, bila ada, atau membuat pengkodean suara yang lebih mulus dan tidak memiliki pola-pola jangka-pendek yang terlalu kompleks.
 	\item Data latih untuk model \textit{timing} perlu ditambah.
 	\item Perlu dibuat metrik yang mampu menilai kemiripan bentuk variasi jangka-pendek dari keluaran model-model. Variasi ini meliputi \textit{spike}, osilasi, saling silang antar fitur dan sebagainya.
-	\item Perlu dilakukan analisis terhadap hasil uji korelasi dan uji preferensi kealamian yang bertolak belakang.
+	\item Penelitian dapat dilanjutkan ke aspek \textit{correctness} dari sistem, terutama untuk gestur-gestur deviasi \textit{timing}, deviasi \textit{pitch}, dan dinamika.
 \end{enumerate}

@@ -521,7 +521,7 @@ Pada beberapa bagian, perubahan amplop stokastik bangkitan terbalik apabila diba
 %TODO pola-pola yang tidak tertangkap oleh koefisien korelasi
 %bahwa RPM mungkin saja memiliki nilai lebih tinggi dalam uji persepsi kealamian
 
-\section{Hasil Uji Korelasi Sistem Utuh}
+\section{Hasil Uji Korelasi Sistem Utuh} \label{section-wholesystem-corrcoef-test}
 Tabel \ref{tab-system-testing-results} menunjukkan hasil uji korelasi sistem DT-Neural Parametrik dan perbandingannya dengan sistem \textit{baseline} yaitu RPM. Sistem DT-Neural Parametrik berhasil mencapai koefisien korelasi di atas nol, yang artinya sistem ini berhasil mempelajari sebagian pola-pola ekspresi. Namun, nilai koefisien korelasi ini masih rendah, artinya tidak semua pola-pola ekspresi berhasil dipelajari dengan benar.
 
 \begin{table}[htbp]
@@ -538,15 +538,51 @@ Tabel \ref{tab-system-testing-results} menunjukkan hasil uji korelasi sistem DT-
     \end{tabular}
 \end{table}
 
-Nilai koefisien korelasi yang dicapai oleh sistem ini lebih tinggi daripada sistem RPM. Sistem yang diajukan menghasilkan keluaran dengan koefisien korelasi 0.1188 terhadap data latih, sementara RPM hanya menghasilkan -0.2380, dengan catatan bahwa sistem RPM memang tidak dilatih menggunakan data latih ini. Untuk membandingkan kinerja generalisasi kedua sistem, dibandingkan kinerjanya terhadap data uji. Sistem yang diajukan menghasilkan koefisien korelasi 0.1133 terhadap data uji, sementara sistem RPM hanya menghasilkan koefisien  korelasi -0.0020.
+Nilai koefisien korelasi yang dicapai oleh sistem ini lebih tinggi daripada sistem RPM. Sistem yang diajukan menghasilkan keluaran dengan koefisien korelasi 0.1188 terhadap data latih, sementara RPM hanya menghasilkan -0.2380, dengan catatan bahwa sistem RPM memang tidak dilatih menggunakan data latih ini. Untuk membandingkan kinerja generalisasi kedua sistem, dibandingkan kinerjanya terhadap data uji. Sistem yang diajukan menghasilkan koefisien korelasi 0.1133 terhadap data uji, sementara sistem RPM hanya menghasilkan koefisien korelasi -0.0020.
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{resources/Analisis_wholesystem_Hfreq.png}
+    \caption{Contoh frekuensi harmonik (4 harmonik pertama) yang dihasilkan oleh sistem DT-Neural Parametrik utuh dan RPM}\label{fig-wholesystem-hfreq-output-sample}
+\end{figure}
 
+Gambar \ref{fig-wholesystem-hfreq-output-sample} menunjukkan contoh frekuensi harmonik keluaran sistem Neural Parametrik dan keluaran \textit{baseline} RPM. Untuk pola jangka-pendek, teknik RPM tampak lebih mirip Tampak bahwa keluaran \textit{baseline} RPM memiliki pola osilasi (\textit{vibrato}) pada frekuensi fundamental dan keluaran teknik Neural Parametrik tidak memiliki pola osilasi (\textit{vibrato}). Pola \textit{spike} frekuensi fundamental tidak ada di keluaran kedua sistem. Begitu pula variasi keluaran frekuensi harmonik tidak ada di keluaran kedua sistem. Pola jangka-pendek ini tidak tertangkap oleh metrik koefisien korelasi.
 
-%TODO analisis, contoh perbandingan output RPM dan DT-Neural Parametrik
+Untuk pola-pola jangka-panjang, teknik Neural Parametrik mampu menghasilkan deviasi \textit{pitch} yang mirip dengan deviasi \textit{pitch} pada dataset. Pada contoh pada Gambar \ref{fig-wholesystem-hfreq-output-sample}, pada awal-awal permainan, frekuensi fundamental dari audio yang dihasilkan oleh teknik Neural Parametrik lebih tinggi daripada frekuensi fundamental standar untuk not yang sedang dimainkan. Pada dataset, frekuensi fundamental dari audio lebih tinggi daripada frekuensi fundamental standar. Adapun pada keluaran sistem RPM, frekuensi fundamental yang dihasilkan sama dengan frekuensi fundamental standar. Pola jangka-panjang inilah yang tertangkap oleh koefisien korelasi.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{resources/Analisis_wholesystem_Hmag.png}
+    \caption{Contoh magnitudo harmonik (4 harmonik pertama) yang dihasilkan oleh sistem DT-Neural Parametrik utuh dan RPM}\label{fig-wholesystem-hmag-output-sample}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{resources/Analisis_wholesystem_Hmag_zoomed.png}
+    \caption{(Diperbesar) Contoh magnitudo harmonik (4 harmonik pertama) yang dihasilkan oleh sistem DT-Neural Parametrik utuh dan RPM}\label{fig-wholesystem-hmag-output-sample-zoomed}
+\end{figure}
+
+Gambar \ref{fig-wholesystem-hmag-output-sample} menunjukkan contoh magnitudo harmonik keluaran sistem Neural Parametrik dan keluaran \textit{baseline} RPM. Gambar \ref{fig-wholesystem-hmag-output-sample-zoomed} menunjukkan versi yang diperbesar. Magnitudo harmonik keluaran sistem Neural Parametrik memiliki variasi jangka-panjang secara umum. Namun, untuk variasi jangka-pendek seperti pola bukit-bukit, punuk-punuk, serta saling menyilang antar harmonik, teknik Neural Parametrik tidak mampu menangkapnya. Berbeda dengan itu, magnitudo harmonik RPM tidak memiliki pola jangka-panjang. RPM mampu menghasilkan pola jangka-pendek seperti pola bukit-bukit, punuk-punuk, serta saling menyilang antar harmonik, namun tetap terdapat perbedaan dengan pola pada dataset. Bukit-bukit dan punuk-punuk pada magnitudo harmonik dataset memiliki kerapatan yang bermacam-macam, adapun pada keluaran RPM kerapatan bukit-bukit dan punuk-punuk ini tidak bermacam-macam.
+
+Dengan demikian, dapat dikatakan bahwa model magnitudo harmonik pada sistem Neural Parametrik mampu menangkap pola keras-lemah suara jangka-panjang. Ini yang menyebabkan koefisien korelasinya lebih tinggi daripada RPM. Pada pola jangka-panjang, RPM tidak memiliki variasi keras-lemah suara. Pada pola jangka-pendek, bentuk bukit-bukit serta kerapatannya pada keluaran RPM berbeda dengan pada dataset. Karenanya, kemiripannya tidak tertangkap pada koefisien korelasi. Untuk pola jangka-pendek, meski tidak tertangkap pada koefisien korelasi, terlihat bahwa RPM memiliki kemiripan dengan dataset sedangkan keluaran Neural Parametrik tidak.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{resources/Analisis_wholesystem_StocEnv.png}
+    \caption{Contoh amplop stokastik yang dihasilkan oleh sistem DT-Neural Parametrik utuh dan RPM}\label{fig-wholesystem-stocenv-output-sample}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{resources/Analisis_wholesystem_StocEnv_zoomed.png}
+    \caption{(Diperbesar) Contoh amplop stokastik yang dihasilkan oleh sistem DT-Neural Parametrik utuh dan RPM}\label{fig-wholesystem-stocenv-output-sample-zoomed}
+\end{figure}
+
+Gambar \ref{fig-wholesystem-stocenv-output-sample} menunjukkan contoh amplop stokastik keluaran sistem Neural Parametrik dan keluaran \textit{baseline} RPM. Gambar \ref{fig-wholesystem-stocenv-output-sample-zoomed} menunjukkan versi yang diperbesar. Amplop stokastik keluaran sistem Neural Parametrik memiliki variasi jangka-panjang secara umum. Namun, untuk variasi jangka-pendek, teknik Neural Parametrik tidak mampu menangkapnya. Berbeda dengan itu, amplop stokastik RPM tidak memiliki pola jangka-panjang. RPM mampu menghasilkan pola jangka-pendek, namun tetap terdapat perbedaan dengan pola pada dataset.
+
+Selain pola jangka-pendek, kekurangan lainnya dari teknik Neural Parametrik adalah \textit{range} dari output yang dihasilkan. Teknik Neural Parametrik menghasilkan amplop stokastik dengan \textit{range} mencapai 0dB, sementara pada dataset hanya mencapai -25dB. Akibatnya, suara yang dihasilkan akan terdengar memiliki \textit{noise} berlebih. Adapun teknik RPM tidak menghasilkan nilai amplop stokastik terlalu tinggi, sehingga suaranya akan terdengar lebih bersih.
 
 \section{Hasil Uji Preferensi Kealamian}
-
-Uji pendengar telah dilakukan kepada 16 pendengar dari kalangan pemain musik. Gambar \ref{tab-respondent-characteristics} menunjukkan pengalaman dan alat musik yang digunakan. Responden memiliki pengalaman bermain musik dengan rentang 4 s.d. 17 tahun. Semua pemain musik yang mengisi adalah pemain alat musik gesek. Beberapa di antara pemain alat musik gesek tersebut juga merupakan pemain alat musik selain alat musik gesek yaitu piano.
 
 \begin{figure}[htbp]
   \begin{center}
@@ -555,6 +591,10 @@ Uji pendengar telah dilakukan kepada 16 pendengar dari kalangan pemain musik. Ga
     \label{tab-respondent-characteristics}
   \end{center}
 \end{figure}
+
+Uji pendengar telah dilakukan kepada 17 pendengar dari kalangan pemain musik. Gambar \ref{tab-respondent-characteristics} menunjukkan pengalaman dan alat musik yang digunakan. Responden memiliki pengalaman bermain musik dengan rentang 4 s.d. 20 tahun. Semua pemain musik yang mengisi adalah pemain alat musik gesek. Beberapa di antara pemain alat musik gesek tersebut juga merupakan pemain alat musik selain alat musik gesek yaitu piano.
+
+Karena untuk tiap pasangan teknik tiap pendengar memilih di antara 9 pasang segmen suara, maka untuk tiap pasangan teknik total terdapat 153 datum preferensi kealamian. Untuk pasangan teknik DT-Neural Parametrik dan RPM terdapat 153 datum preferensi kealamian dan untuk pasangan teknik Gabungan dan RPM terdapat 153 datum preferensi kealamian. Total ukuran data preferensi kealamian kedua pasang teknik tersebut adalah sebesar 306.
 
 Tabel \ref{tab-preference} menunjukkan hasil uji preferensi kealamian sistem yang diajukan. Sistem neural parametrik partitur-ke-suara memiliki nilai preferensi kealamian $19,44\%$. Nilai ini kurang dari $50\%$. Artinya, oleh persepsi pendengar, sistem ini dinilai kurang alami dibandingkan dengan sistem \textit{baseline}. Begitu pula sistem gabungan yang menggunakan teknik neural parametrik sebagai perencana gestur ekspresi memiliki nilai preferensi kealamian $31,25\%$. Meskipun nilai ini lebih tinggi bila dibandingkan dengan sistem neural parametrik partitur-ke-suara, nilai ini masih kurang dari $50\%$. Artinya, oleh persepsi pendengar, suara yang dihasilkan oleh sistem ini dinilai kurang alami juga dibandingkan dengan sistem \textit{baseline}.
 
@@ -566,64 +606,113 @@ Tabel \ref{tab-preference} menunjukkan hasil uji preferensi kealamian sistem yan
     \hline
 	Sistem&Jumlah Data Respon&Preferensi terhadap RPM$\pm$MoE(95$\%$ Confidence)\\
 	\hline
-	dtnp&	144&	$19,44\%\pm13,81\%$\\\hline
-	hybrid&	144&	$31,25\%\pm24,25\%$\\\hline
+	dtnp&	153&	$18,95\%\pm13,53\%$\\\hline
+	hybrid&	153&	$29,41\%\pm22,77\%$\\\hline
 	\end{tabular}
   \end{center}
 \end{table}
 
-Tabel \ref{tab-pertimbangan} menunjukkan pertimbangan-pertimbangan responden dalam memilih segmen yang lebih alami. Untuk tiap isi pertimbangan pada tabel tersebut, ditunjukkan seberapa sering pertimbangan tersebut muncul. Ditunjukkan seberapa sering muncul secara total dan tiap pasangan segmen. Untuk tiap pasangan segmen suara, dituliskan jumlah kemunculan pertimbangan tersebut berbarengan dengan terpilihnya segmen suara dari tiap teknik.
+Tabel pada Lampiran \ref{appendix-pertimbangan} menunjukkan pertimbangan-pertimbangan responden dalam memilih segmen yang lebih alami. Untuk tiap isi pertimbangan pada tabel tersebut, ditunjukkan seberapa sering pertimbangan tersebut muncul. Ditunjukkan seberapa sering muncul secara total dan tiap pasangan segmen. Untuk tiap pasangan segmen suara, dituliskan jumlah kemunculan pertimbangan tersebut berbarengan dengan terpilihnya segmen suara dari tiap teknik.
 
-% \begin{table}[htbp] %TODO update data (proses terlebih dahulu agar jadi kecil)
-%   \begin{center}
-	\begin{longtable}{|p{0.6\textwidth}|r|r|r|r|r|}
-	\caption{Pertimbangan responden dalam memilih}\label{tab-pertimbangan}\\
+Jawaban-jawaban pertimbangan yang diberikan oleh responden digunakan untuk mencari penyebab-penyebab rendahnya nilai preferensi persepsi kealamian dari sistem neural parametrik dan juga sistem gabungan. Karena data ini masih berupa kemunculan pertimbangan-pertimbangan yang bermacam-macam pada data preferensi tertentu, data ini tidak dapat secara langsung menunjukkan pada teknik mana fenomena yang disebutkan terjadi, dan apakah fenomena tersebut menyebabkan terdengar lebih alami atau sebaliknya.
+
+Untuk melihat keterhubungan antara pertimbangan responden dan persepsi kealamiannya, digunakan \textit{odds ratio}. Nilai \textit{odds ratio} lebih dari 1 menunjukkan bahwa dengan pertimbangan tersebut, kealamian sistem yang diajukan dibandingkan dengan \textit{baseline} lebih tinggi daripada kealamian sistem ketika responden tidak mempertimbangkan pertimbangan tersebut. Nilai \textit{odds ratio} kurang dari 1 menunjukkan bahwa dengan pertimbangan tersebut, kealamian sistem yang diajukan dibandingkan dengan \textit{baseline} lebih rendah daripada kealamian sistem ketika responden tidak mempertimbangkan pertimbangan tersebut. Dapat dikatakan bahwa \textit{odds ratio} lebih dari 1 menunjukkan pertimbangan yang meningkatkan kealamian, dan \textit{odds ratio} kurang dari 1 menunjukkan pertimbangan yang menurunkan kealamian.
+
+Dari data pertimbangan-pertimbangan, dilakukan penyortiran. Pertama, dipilih pertimbangan-pertimbangan dengan jumlah kemunculan minimal 10. Kemudian, pertimbangan-pertimbangan tersebut diurutkan berdasarkan \textit{odds ratio} kealamian sistem DT-Neural Parametrik. Tabel \ref{tab-pertimbangan-oddsratio-morenatural} menunjukkan pertimbangan-pertimbangan yang meningkatkan kealamian sistem DT-Neural Parametrik. Tabel \ref{tab-pertimbangan-oddsratio-lessnatural} menunjukkan pertimbangan-pertimbangan yang menurunkan kealamian sistem DT-Neural Parametrik.
+
+\begin{table}[htbp]
+  \begin{center}
+	\caption{Pertimbangan-pertimbangan yang menyebabkan sistem yang diajukan lebih alami dibandingkan dengan \textit{baseline}}\label{tab-pertimbangan-oddsratio-morenatural}
+	\begin{tabular}{|p{0.69\textwidth}|r|r|r|}
 	\hline
-Pertimbangan&	Total&	\multicolumn{4}{|c|}{Pasangan, Teknik yang Dipilih}\\
-\cline{3-6}
-&	&	\multicolumn{2}{|c|}{DTNP/RPM}	&\multicolumn{2}{|c|}{Gab./RPM}\\
-\cline{3-6}
-&	&	RPM&	DT-NP&	RPM&	Gab.\\\hline
-\endhead
-distorsi pada audio yang tidak dipilih&	202&	85&	11&	80&	26\\\hline
-variasi warna suara&	195&	75&	11&	71&	38\\\hline
-variasi dinamika&	159&	55&	13&	59&	32\\\hline
-variasi timing&	126&	34&	23&	41&	28\\\hline
-phrasing&	117&	51&	5&	51&	10\\\hline
-deviasi pitch&	112&	36&	13&	40&	23\\\hline
-vibrato&	98&	34&	9&	36&	19\\\hline
-pitch jelas&	75&	35&	1&	33&	6\\\hline
-ekualisasi di-bend&	75&	35&	1&	33&	6\\\hline
-keduanya tidak terdengar natural&	73&	27&	8&	24&	14\\\hline
-cara dinamikanya beda2&	67&	18&	8&	19&	22\\\hline
-audio yang tidak dipilih seperti di-bend equalization-nya&	66&	30&	3&	29&	4\\\hline
-audio yang tidak dipilih seperti didistorsi&	66&	30&	3&	29&	4\\\hline
-suara jelas&	64&	31&	0&	32&	1\\\hline
-tidak ada perubahan dinamika mendadak&	64&	31&	0&	32&	1\\\hline
-karena phrase tersebut terdengar lebih natural dengan timbre dari media yang digunakan pada audio yang saya pilih&	56&	21&	5&	21&	9\\\hline
-ada sedikit crescendo&	53&	13&	8&	18&	14\\\hline
-audio yang tidak dipilih seperti di-mixing pada aplikasi dengan timing yang salah&	53&	26&	0&	25&	2\\\hline
-Audio yang tidak dipilih terdengar noisy&	41&	18&	2&	17&	4\\\hline
-fingering seperti sedang meraih-raih nada&	38&	4&	9&	13&	12\\\hline
-fingering nadanya dan cara stroke-nya terdengar lebih manusiawi, walaupun terdengar seperti orang yang bermain asal dan terburu-buru&	34&	6&	8&	9&	11\\\hline
-permainan long bow-nya terasa alami&	33&	10&	3&	12&	8\\\hline
-trill-nya terdengar aneh tapi overall play-nya terdengar lebih natural&	28&	5&	6&	7&	10\\\hline
-pada audio yang tidak dipilih, terasa seperti decressendo, padahal lebih terdengar seperti gain-nya saja dikurangi&	26&	12&	0&	13&	1\\\hline
-pada audio yang tidak dipilih, perpindahan pitch dan "stroke"-nya seperti dimainkan pada aplikasi music sheet, tidak berekspresi sama sekali&	26&	7&	3&	7&	9\\\hline
-phrasing-nya mungkin terasa seperti "terlalu tepat", tapi jadinya lebih terdengar seperti pemusik yang bermain pada ketukan cepat dengan timing yang tepat&	22&	8&	3&	10&	1\\\hline
-walaupun di audio yang tidak dipilih terdengar seperti ada crossing senar&	19&	6&	1&	9&	3\\\hline
-adanya rubato yang sebenarnya memberikan sedikit ekspresi dibandingkan audio yang satunya, tapi entah kenapa masih ada yang mengganjal&	16&	2&	3&	3&	8\\\hline
-sebenernya saya lebih suka timbre dari audio yang tidak dipilih (untuk phrasing ini), tapi mainnya gak rapih jadi terganggu waktu mau menikmati suaranya&	15&	2&	5&	2&	6\\\hline
-bingung pisan denger apa yang salah satunya teh ?!?&	11&	5&	1&	4&	1\\\hline
-apa ini....&	2&	1&	0&	1&	0\\\hline
-	\end{longtable}
-%   \end{center}
-% \end{table}
+Pertimbangan&	Total&	\multicolumn{2}{|c|}{\textit{Odds Ratio}}\\
+&	&	\multicolumn{2}{|c|}{Kealamian}\\
+\cline{3-4}
+&	&	DTNP	&Gab.
+\\\hline
+variasi timing&	119&	7.67&	1.82\\\hline
+fingering seperti sedang meraih-raih nada&	30&	4.40&	2.00\\\hline
+sebenernya saya lebih suka timbre dari audio yang tidak dipilih (untuk phrasing ini), tapi mainnya gak rapih jadi terganggu waktu mau menikmati suaranya&	15&	4.25&	2.62\\\hline
+fingering nadanya dan cara stroke-nya terdengar lebih manusiawi, walaupun terdengar seperti orang yang bermain asal dan terburu-buru&	32&	4.03&	2.13\\\hline
+adanya rubato yang sebenarnya memberikan sedikit ekspresi dibandingkan audio yang satunya, tapi entah kenapa masih ada yang mengganjal&	16&	3.34&	2.61\\\hline
+trill-nya terdengar aneh tapi overall play-nya terdengar lebih natural&	30&	3.00&	2.00\\\hline
+pada audio yang tidak dipilih, perpindahan pitch dan "stroke"-nya seperti dimainkan pada aplikasi music sheet, tidak berekspresi sama sekali&	25&	2.23&	2.15\\\hline
+ada sedikit crescendo&	38&	2.18&	1.58\\\hline
+cara dinamikanya beda2&	62&	1.90&	2.53\\\hline
+deviasi pitch&	104&	1.85&	1.42\\\hline
+keduanya tidak terdengar natural&	76&	1.37&	1.09\\\hline
+variasi dinamika&	130&	1.32&	1.60\\\hline
+permainan long bow-nya terasa alami&	30&	1.32&	1.51\\\hline
+vibrato&	88&	1.19&	1.38\\\hline
+karena phrase tersebut terdengar lebih natural dengan timbre dari media yang digunakan pada audio yang saya pilih&	56&	1.18&	0.99\\\hline
+phrasing-nya mungkin terasa seperti "terlalu tepat", tapi jadinya lebih terdengar seperti pemusik yang bermain pada ketukan cepat dengan timing yang tepat&	28&	1.11&	0.21\\\hline
+\end{tabular}
+  \end{center}
+\end{table}
 
-Jawaban-jawaban pertimbangan yang diberikan oleh responden digunakan untuk mencari penyebab-penyebab rendahnya nilai preferensi persepsi kealamian dari sistem neural parametrik dan juga sistem gabungan. Karena data ini masih berupa kemunculan pertimbangan-pertimbangan yang bermacam-macam pada data preferensi tertentu, sebagian data ini tidak dapat secara langsung menunjukkan pada teknik mana fenomena yang disebutkan terjadi, dan apakah fenomena tersebut menyebabkan terdengar lebih alami atau sebaliknya.
+Pertimbangan yang paling kuat meningkatkan kealamian teknik DT-Neural Parametrik adalah variasi \textit{timing}. Padahal, dalam uji korelasi komponen, model \textit{timing} memiliki koefisien korelasi yang rendah. Hal ini menunjukkan bahwa untuk \textit{timing}, kealamian telah dicapai meskipun \textit{correctness} masih rendah. Namun, sebagian responden juga menyatakan bahwa \textit{timing} yang salah menyebabkan terasa tidak alami, seperti terlihat pada Tabel \ref{tab-pertimbangan-oddsratio-lessnatural}.
 
-Sebagian jawaban pertimbangan menunjukkan pada teknik mana fenomena ini terjadi, dengan kata-kata "audio yang dipilih" dan "audio yang tidak dipilih". Kemudian, sebagian jawaban pertimbangan juga menunjukkan apakah hal tersebut membuat terdengar lebih alami atau tidak, dengan kata-kata "lebih natural" atau semacamnya.
+Aspek lainnya yang meningkatkan kealamian adalah \textit{pitch}. Kata kunci terkait \textit{pitch} pada Tabel \ref{tab-pertimbangan-oddsratio-morenatural} adalah \textit{fingering}, selain juga secara eksplisit dinyatakan deviasi \textit{pitch}. \textit{Fingering} yang terasa lebih alami berdasarkan persepsi pendengar disebabkan karena suaranya seperti sedang mencoba meraih-raih nada atau juga dinyatakan "lebih manusiawi" meskipun tidak dijelaskan lebih dalam seperti apa "lebih manusiawi" itu.
 
-Untuk jawaban-jawaban yang lebih umum seperti variasi warna suara, variasi dinamika dan semacamnya, perlu dilakukan analisis hubungan sebab akibat secara lebih dalam. Analisis ini dapat dilakukan baik secara statistik dari data tersebut ataupun dengan heuristik. Cara heuristik misalnya berdasarkan visualisasi keluaran sistem pada Gambar \ref{fig-f0-output-sample}, \textit{vibrato} tidak ada dalam keluaran sistem neural parametrik.
+Bersama dengan pertimbangan \textit{fingering} dinyatakan bahwa audio terdengar seperti orang yang bermain asal dan terburu-buru. Hal ini menunjukkan bahwa \textit{correctness} yang rendah namun sudah berbunyi seperti pemain manusia yang tidak bermain dengan baik.
 
-Dari hasil analisis hubungan sebab akibat ini, dapat dilacak aspek-aspek mana saja dari sistem ini yang menyebabkan suara dipersepsi tidak alami. Dari sana, dengan membandingkan dengan visualisasi keluaran sistem, dapat dilihat kekurangan-kekurangan sistem dan hal-hal yang harus diperbaiki.
+Meski aspek \textit{pitch} dinyatakan lebih alami, muncul pula pertimbangan yang menyatakan bahwa audio tersebut seperti audio yang sengaja didistorsi atau di-\textit{bend}. Audio yang didistorsi atau di-\textit{bend} memiliki makna bahwa audio tersebut seperti berasal dari audio tanpa deviasi \textit{pitch} lalu dilakukan \textit{post-process} pergeseran \textit{pitch}. Artinya, ada aspek lain yang seharusnya ikut berubah saat \textit{pitch} berubah, namun pada sistem ini aspek tersebut tidak menyesuaikan dengan \textit{pitch}. Sebagaimana dikaji dari literatur-literatur pada Subbab \ref{section-music-performance}, \textit{timbre} alat musik seharusnya berbeda apabila \textit{pitch} yang dimainkan berbeda.
+
+Aspek lainnya yang meningkatkan kealamian adalah variasi dinamika. Terkait dinamika, yang lebih meningkatkan kealamian adalah perubahan dinamika yang tidak mendadak seperti mengeras perlahan (\textit{crescendo}) atau melemah perlahan (\textit{decrescendo}). Perubahan dinamika yang secara mendadak lebih banyak menurunkan kealamian. Perubahan dinamika yang dilakukan hanya dengan mengubah \textit{gain} atau amplitudo dari sinyal suara menurunkan kealamian. Artinya, sebagaimana deviasi \textit{pitch}, perubahan dinamika juga seharusnya diikuti perubahan \textit{timbre}.
+
+\begin{table}[htbp]
+  \begin{center}
+	\caption{Pertimbangan-pertimbangan yang menyebabkan sistem yang diajukan kurang alami dibandingkan dengan \textit{baseline}}\label{tab-pertimbangan-oddsratio-lessnatural}
+	\begin{tabular}{|p{0.69\textwidth}|r|r|r|}
+	\hline
+Pertimbangan&	Total&	\multicolumn{2}{|c|}{\textit{Odds Ratio}}\\
+&	&	\multicolumn{2}{|c|}{Kealamian}\\
+\cline{3-4}
+&	&	DTNP	&Gab.
+\\\hline
+audio yang tidak dipilih seperti di-mixing pada aplikasi dengan timing yang salah&	51&	0.00&	0.21\\\hline
+pada audio yang tidak dipilih, terasa seperti decressendo, padahal lebih terdengar seperti gain-nya saja dikurangi&	22&	0.00&	0.25\\\hline
+pitch jelas&	67&	0.12&	0.50\\\hline
+suara jelas&	54&	0.17&	0.09\\\hline
+tidak ada perubahan dinamika mendadak&	54&	0.17&	0.09\\\hline
+Audio yang tidak dipilih terdengar noisy&	35&	0.28&	0.68\\\hline
+seperti audio yang sengaja di-bend ekualisasinya&	96&	0.33&	0.50\\\hline
+phrasing&	87&	0.42&	0.53\\\hline
+audio yang tidak dipilih seperti audio yang sengaja didistorsi&	151&	0.53&	0.58\\\hline
+variasi warna suara&	168&	0.53&	1.24\\\hline
+walaupun di audio yang tidak dipilih terdengar seperti ada crossing senar&	19&	0.72&	0.79\\\hline
+bingung pisan denger apa yang salah satunya teh ?!?&	11&	0.85&	0.63\\\hline
+	\end{tabular}
+  \end{center}
+\end{table}
+
+Aspek \textit{timbre} ini juga dinyatakan dalam Tabel \ref{tab-pertimbangan-oddsratio-lessnatural} sebagai aspek yang menurunkan kealamian sistem ini. Istilah yang digunakan oleh responden pendengar adalah "warna suara". Untuk variasi warna suara, baik secara umum ataupun detil-detil seperti yang terkait \textit{pitch} maupun dinamika sistem yang diajukan masih dianggap kurang alami dibandingkan dengan \textit{baseline}.
+
+Untuk sistem gabungan, \textit{timbre} alat musik sudah lebih alami daripada sistem Neural Parametrik, namun ia juga belum mampu mengeksekusi ekspresi-ekspresi \textit{pitch} dan dinamika yang dihasilkan oleh sistem Neural Parametrik. Hal ini karena teknik RPM hanya didesain untuk menerima gestur ekspresi dari \textit{keyboard}. Gestur ekspresi \textit{keyboard} biasanya hanya sampai tingkat not, tidak kontinu. Ketika RPM diberi gestur ekspresi berupa deviasi \textit{pitch} dan variasi dinamika yang kontinu, RPM juga tidak mampu menghasilkan \textit{timbre} yang sesuai.
+
+Dengan demikian, sebenarnya gestur-gestur ekspresi \textit{timing}, \textit{pitch}, dan dinamika dari sistem yang diajukan sudah dianggap alami, namun dalam eksekusinya \textit{timbre} yang tidak sesuai menyebabkan keluaran sistem ini secara keseluruhan dianggap kurang alami. Timbre yang dihasilkan kurang alami karena:
+
+\begin{enumerate}
+	\item warna suara alat musik secara umum
+	\item \textit{timbre} tidak mengikuti perubahan \textit{pitch}
+	\item \textit{timbre} tidak mengikuti perubahan dinamika
+	\item \textit{noisy} atau suara tidak jelas
+\end{enumerate}
+
+%TODO gestur ekspresi high-level seperti "stroke" dan "phrasing"
+
+%TODO semua item tersebut
+
+Kurangnya kealamian warna suara secara umum disebabkan oleh model \textit{timbre} yang tidak mampu menangkap pola-pola jangka pendek, sebagaimana dijelaskan pada Subbab \ref{section-wholesystem-corrcoef-test}, yang terlihat pada Gambar \ref{fig-wholesystem-hmag-output-sample-zoomed}. Pola jangka pendek pada keluaran sistem RPM, meski memiliki bentuk, ukuran, dan kerapatan yang berbeda dari dataset, menghasilkan efek perseptual yang terasa lebih mirip kepada suara alat musik asli apabila dibandingkan dengan keluaran sistem Neural Parametrik yang tidak memiliki pola jangka-pendek tersebut.
+
+Model \textit{timbre} tidak mampu mengikuti perubahan \textit{pitch} dan dinamika tampak pada Gambar \ref{fig-wholesystem-hfreq-output-sample} dan Gambar \ref{fig-wholesystem-hmag-output-sample}. Tampak bahwa jarak frekuensi harmonik terhadap frekuensi fundamental selalu sama. Tampak pula bahwa rasio magnitudo harmonik selalu sama walaupun tingkat keras suara secara keseluruhan berubah. Ketidakmampuan \textit{timbre} mengikuti perubahan \textit{pitch} dan perubahan dinamika juga disebabkan karena model tidak mampu menangkap pola-pola jangka pendek yang kompleks.
+
+Suara yang dihasilkan bersifat \textit{noisy} atau tidak jelas diakibatkan oleh model amplop stokastik yang membangkitkan amplop stokastik di luar \textit{range} yang wajar, sebagaimana tampak pada Gambar \ref{fig-wholesystem-stocenv-output-sample}. Hal ini karena jaringan syaraf tiruan Wavenet yang dimodifikasi memiliki kecenderungan untuk mengakumulasi galat dari input-input fitur akustik sebelum pada saat pembangkitan.
+
+Dengan demikian, kekurangan jaringan syaraf tiruan yang digunakan untuk model ini terdiri dari dua bagian:
+\begin{enumerate}
+	\item Model tidak mampu menangkap pola-pola yang detil seperti \textit{spike}, osilasi, bukit-bukit, punuk-punuk, dan saling menyilang antara dua \textit{output}
+	\item Model mengakumulasi galat dan menghasilkan keluaran di luar \textit{range} yang wajar
+\end{enumerate}
+
+%TODO coba dikonfirmasi apakah Modified WaveNet benar demikian

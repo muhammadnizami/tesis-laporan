@@ -1,28 +1,68 @@
 \chapter{Tinjauan Pustaka}
 
+\section{Permainan Musik}\label{section-music-performance}
+
+Permainan musik atau sintesis musik adalah proses membangkitkan sinyal suara dari deskripsi lagu atau karya musik. Suatu sinyal suara musik memiliki dimensi-dimensi yang mendasar, di antaranya yaitu \textit{pitch}, tingkat keras suara, durasi, dan \textit{timbre}. \parencite{emilia2006tonaldesc}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{resources/sound-signal-example.eps}
+    \caption{Gambaran amplitudo dan periode sinyal suara} \label{soundsignalexample}
+\end{figure}
+
+\textit{Pitch} atau intonasi adalah atribut subjektif dalam persepsi pendengar yang berhubungan dengan frekuensi \parencite{emilia2006tonaldesc}. \textit{Pitch} adalah sifat suara yang memungkinkan pendengar menganggapnya "lebih tinggi" atau "lebih rendah" dari suara lain \parencite{pitchneuralcoding}. Dalam gelombang yang sederhana seperti gelombang sinusoidal, frekuensi dinyatakan sebagai jumlah ulangan siklus per detik \parencite{grovedict}. Invers dari frekuensi $f$ adalah periode yang dinyatakan sebagai $T=1/f$. Kebanyakan suara-suara yang bernada adalah sinyal kompleks yang terdiri dari beberapa komponen. Dalam kasus gelombang harmonik, frekuensi tiap komponen adalah kelipatan dari frekuensi terendah yang disebut sebagai frekuensi fundamental atau f0 \parencite{emilia2006tonaldesc}.
+
+Tingkat keras suara adalah besarnya sensasi yang diterima oleh pendengar saat mendengarkan suatu suara. Tingkat keras suara biasanya diukur dari tingkat amplitudo tertinggi dari suatu sinyal. \parencite{stevensloudness} Amplitudo adalah ukuran simpangan sinyal. \parencite{emilia2006tonaldesc} Gambar \ref{soundsignalexample} menunjukkan contoh sinyal suara sinusoidal dan gabungan beberapa komponen sinusoidal beserta gambaran amplitudo dan periode dari sinyal tersebut.
+
+Berhubungan dengan tingkat keras suara adalah dinamika. Dinamika adalah intensitas volume yang dengannya suara diekspresikan. Meski berhubungan dengan tingkat keras suara, dinammika dapat pula diinterpretasi dengan cara-cara lain seperti variasi \textit{timbre} atau artikulasi. \parencite{Thiemel2001}
+
+Kedua sinyal suara dalam Gambar \ref{soundsignalexample} memiliki tingkat keras dan frekuensi yang sama, namun mereka memiliki bentuk yang berbeda. Ketika didengarkan oleh manusia, akan terdengar sifat yang berbeda. Sifat ini disebut \textit{timbre}. Timbre adalah sifat suara yang tidak dapat dikategorikan ke dalam \textit{pitch} dan tingkat keras. Berbagai sifat suara dapat dianggap bagian dari timbre, diantaranya adalah jangkauan karakter tonal dan \textit{noise}, amplop spektral, amplop waktu yang meliputi kenaikan, durasi, dan \textit{decay}, perubahan dari amplop spektral (\textit{formant-glide}) dan frekuensi fundamental (intonasi-mikro), dan sebagainya \parencite{ericksonsoundstructure}. %TODO timbre alat musik yang sama
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{resources/sheet-example.eps}
+    \caption{Contoh partitur dalam berbagai representasi} \label{sheetexample}
+\end{figure}
+
+Deskripsi lagu atau karya musik biasanya berupa partitur. Partitur adalah kumpulan not-not. Informasi yang dikandung untuk tiap not dalam partitur adalah nada untuk not tersebut dan durasinya. Ilustrasi dari partitur dengan berbagai representasi tampak pada Gambar \ref{sheetexample}. Pada contoh tersebut, tampak not-not yang dimainkan secara berurutan yaitu not D5 satu ketuk, kemudian not-not E5, F5, C\#5, A4, A5, dan G5 sepanjang masing-masing setengah ketuk. Dalam contoh ini, tertulis tempo 55 bpm yang berarti dalam satu menit terdapat 55 ketuk. Artinya, secara tertulis, not yang berdurasi satu ketuk dimainkan dalam waktu $60\div55$ detik. Not yang berdurasi setengah ketuk dimainkan dalam waktu $60\div55\div2$ detik.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Nama, nomor dan frekuensi not \parencite{ewa2006pitch} \parencite{benward2003music} \parencite{jorgensen1991tuning}}\label{tab-note-pitches}
+    \begin{tabular}{ |p{0.07\textwidth}|p{0.07\textwidth}|p{0.17\textwidth}|p{0.17\textwidth}|p{0.17\textwidth}|p{0.17\textwidth}| } 
+     \hline
+     No. Not MIDI & Nama Not & Frekuensi (Hz) - \textit{Equal Temperament}, A440 (standar) & Frekuensi (Hz) - \textit{C Maj. Just Tuning}, A440 & Frekuensi (Hz) - \textit{Equal Temperament}, A415 & Frekuensi (Hz) - \textit{Equal Temperament}, A466\\
+     \hline 
+     69&    A4& 440.000 & 436.05 & 415.00& 466.0\\
+     70&    A\#4& 466.164 & 470.05 & 439.68 & 493.71\\
+     71&    B4& 493.883 & 490.55 & 465.82 & 523.07\\
+     72&    C5& 523.251 & 523.25 & 493.52 & 554.17\\
+     73&    C\#5& 554.365 & 545.08 & 522.87 & 587.12\\
+     74&    D5& 587.330 & 588.66 & 553.96 & 622.03\\
+     75&    D\#5& 622.254 & 627.92 & 586.90 & 659.03\\
+     76&    E5& 659.255 & 654.06 & 621.80 & 698.22\\
+     77&    F5& 698.457 & 697.66 & 658.77 & 739.73\\
+     78&    F\#5& 739.989 & 735.84 & 697.94 & 783.71\\
+     79&    G5& 783.991 & 784.88 & 739.45 & 830.32\\
+     80&    G\#5& 830.609 & 837.20 & 783.42 & 879.69\\
+     81&    A5& 880.000 & 872.10 & 830.00 & 932.00\\
+     \hline
+    \end{tabular}
+\end{table}
+
+Tabel \ref{tab-note-pitches} menunjukkan sebagian not-not, dan frekuensi-frekuensinya. Tiap not memiliki frekuensi standar, namun berdasarkan konteksnya, suatu not dapat dimainkan dalam frekuensi yang berbeda dari frekuensi standar. Not-not yang dimainkan dalam tangga nada C mayor, misalnya, akan terdengar lebih bulat apabila dimainkan dalam \textit{c major just tuning} \parencite{benward2003music} \parencite{jorgensen1991tuning}. Dalam tabel tersebut, hanya dituliskan tiga sistem \textit{pitch} selain \textit{pitch} standar. Pada prakteknya, deviasi \textit{pitch} dari \textit{pitch} standar sangat bervariasi. Selain deviasi \textit{pitch} tingkat not, deviasi \textit{pitch} juga dapat dilakukan pada jangka-pendek, seperti pada pergantian not, \textit{vibrato}, dan sebagainya. Perlu diperhatikan bahwa dengan \textit{pitch} yang berbeda, \textit{timbre} yang dihasilkan alat musik akan berbeda pula \parencite{setharestuningtimbre}.
+
 \section{Sistem untuk Permainan Musik Ekspresif}
 
 Sistem komputer untuk permainan musik ekspresif (\textit{Computer Systems for Expressive Musical Performance} - CSEMP) adalah sistem yang dapat membangkitkan permainan musik yang ekspresif. Sebagai contoh, perangkat lunak \textit{typesetting} musik pada umumnya dapat memainkan musik secara "robotik". Sistem seperti ini bukan termasuk kategori sistem komputer untuk permainan musik ekspresif. Sistem komputer untuk permainan musik ekspresif mampu memainkan musik dengan sentuhan manusiawi. \parencite{miranda2010}
 
 Ukuran yang digunakan untuk menentukan apakah suatu sistem komputer untuk permainan musik mampu memainkan musik dengan sentuhan manusiawi bermacam-macam, di antaranya kealamian \parencite{schubert2017test}, ekspresivitas, \textit{correctness}, dan kreativitas \parencite{miranda2010}. Kealamian atau \textit{humanness} merupakan ukuran seberapa pendengar manusia mampu membedakan permainan yang dibangkitkan sistem dari permainan manusia. Kealamian biasa diuji dengan tes buta pendengar \parencite{schubert2017test}, baik dengan pendengar ahli maupun pendengar umum. Ukuran kinerja ekspresivitas dan \textit{correctness} dapat dilakuan dengan tes buta dengan pendengar ahli. Adapun kreativitas dapat diuji dengan menghitung banyaknya interpretasi berbeda yang dibangkitkan \parencite{miranda2010}. Umumnya, penelitian sistem permainan musik ekspresif saat ini berusaha meningkatkan kealamian.
 
-Tujuan akhir dari sistem komputer untuk permainan musik ekspresif adalah membangkitkan suara yang memiliki gestur-gestur ekspresif dari not-not yang dideskripsikan dalam partitur. Masukan dari sistem ini adalah partitur. Partitur merupakan representasi dari sekumpulan not, yang mengindikasikan nada yang dimainkan beserta ritmenya. Contoh dari partitur tampak pada Gambar \ref{humanmusicsheet} dan Gambar \ref{midimusicsheet}.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\textwidth]{resources/sheet-example-human.png}
-    \caption{Contoh partitur dengan notasi not balok} \label{humanmusicsheet}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\textwidth]{resources/sheet-example-midi.png}
-    \caption{Contoh partitur dalam representasi MIDI} \label{midimusicsheet}
-\end{figure}
+Tujuan akhir dari sistem komputer untuk permainan musik ekspresif adalah membangkitkan suara yang memiliki gestur-gestur ekspresif dari not-not yang dideskripsikan dalam partitur. Masukan dari sistem ini adalah partitur non ekspresif.
 
 Keluaran dari sistem ini adalah suara yang di dalamnya terkandung gestur-gestur ekspresif. Contoh representasi suara terlihat pada Gambar \ref{waveformexample} dan Gambar \ref{spectogramexample}. Gambar \ref{waveformexample} adalah gambaran suara dalam bentuk \textit{waveform}, yang dapat diubah menjadi spektogram pada Gambar \ref{spectogramexample}. Gestur ekspresif implisit terkandung dalam suara yang dihasilkan, berupa distorsi waktu, distorsi \textit{pitch}, variasi dinamika, variasi timbre, dan fitur-fitur suara lainnya.
 
-Dalam bentuk spektogram, atau fitur akustik lainnya, ataupun dalam bentuk representasi gestur ekspresi, koefisien korelasi kepada referensi pemain manusia juga dapat digunakan sebagai salah satu ukuran kinerja. Koefisien korelasi menunjukkan keberhasilan sistem membangkitkan ekspresi musik yang sesuai dengan pola-pola ekspresi musik manusia. \parencite{schubert2017test} \parencite{lindemann2007rpm}
+Dalam bentuk spektogram, atau fitur akustik lainnya, ataupun dalam bentuk representasi gestur ekspresi, koefisien korelasi kepada referensi pemain manusia dapat digunakan sebagai salah satu ukuran kinerja. Koefisien korelasi menunjukkan keberhasilan sistem membangkitkan ekspresi musik yang sesuai dengan pola-pola ekspresi musik manusia. \parencite{schubert2017test} \parencite{lindemann2007rpm}
 
 \begin{figure}[h]
     \centering
@@ -190,7 +230,7 @@ Di antara masalah yang dihadapi model-model dengan arsitektur ini adalah terkait
 
 Sintesis neural parametrik nyanyian \parencite{bonada2017singing} menggunakan \textit{vocoder} WORLD \parencite{morise2016world}. Sebagaimana \textit{vocoder} pada umumnya, WORLD mengkodekan sinyal suara menjadi \textit{pitch}/f0 dan amplop spektral \parencite{dudley1939vocoder}. WORLD mengasumsikan bahwa sinyal suara diproduksi dengan sinyal eksitasi yang dihitung langsung dari \textit{waveform}, F0, dan amplop spektral \parencite{morise2016world}.
 
-Dalam \textit{vocoder} WORLD, \textit{waveform} diasumsikan berasal dari getaran pita suara. Algoritma estimasi F0 yang digunakan adalah algoritma DIO \parencite{morise2009fast} yang menggunakan \textit{zero-crossing interval} dari sinyal sinus hasil penerapan \textit{low-pass filter} dari sinyal suara. Estimasi amplop spektral pada \textit{vocoder} WORLD menggunakan algoritma CheapTrick \parencite{morise2015cheaptrick}, yang menggunakan informasi \textit{waveform} dan F0.
+Dalam \textit{vocoder} WORLD, \textit{waveform} diasumsikan berasal dari getaran pita suara. Algoritma estimasi F0 yang digunakan adalah algoritma DIO \parencite{morise2009fast} yang menggunakan \textit{zero-crossing interval} dari sinyal sinus hasil penerapan \textit{low-pass filter} dari sinyal suara. \textit{Zero-crossing interval} adalah jarak antara titik-titik di mana \textit{waveform} menyeberangi nilai nol. Estimasi amplop spektral pada \textit{vocoder} WORLD menggunakan algoritma CheapTrick \parencite{morise2015cheaptrick}, yang menggunakan informasi \textit{waveform} dan F0.
 
 Terdapat pengkodean lain yang biasa digunakan untuk mengkodekan sinyal suara alat musik, yaitu pengkodean harmonik plus stokastik. Dalam pengkodean harmonik plus stokastik, sinyal suara dimodelkan sebagai jumlah dari komponen deterministik dan stokastik sebagai berikut:\parencite{serra1997sineplusnoise}
 
@@ -212,15 +252,15 @@ Kesulitan yang dialami dengan algoritma TWM ini adalah gaung dari not sebelum. G
 
 Frekuensi dan magnitudo harmonik diambil dari puncak-puncak yang telah terdeteksi. Diambil puncak-puncak yang memiliki deviasi kecil. \parencite{sierra1990sms}
 
-%TODO proses produksi suara pada alat musik gesek
+\section{Metriks Kinerja}
 
-% \section{Metriks Kinerja}
+Dalam bentuk spektogram, atau fitur akustik lainnya, ataupun dalam bentuk representasi gestur ekspresi, koefisien korelasi kepada data permainan pemain manusia dapat digunakan sebagai salah satu ukuran kinerja. Koefisien korelasi menunjukkan keberhasilan sistem membangkitkan ekspresi musik yang sesuai dengan pola-pola ekspresi musik manusia \parencite{schubert2017test} \parencite{lindemann2007rpm}
+\parencite{yu2017bowing}. Dalam penelitian ini, akan digunakan koefisien korelasi Pearson seperti yang dituliskan pada Persamaan \ref{pearson-corrcoef-eq} \parencite{pearson1895note}.
 
-% Di antara metrik yang dapat digunakan untuk mengukur kinerja sistem permainan musik ekspresif adalah koefisien korelasi \parencite{yu2017bowing}, seperti yang dituliskan pada Persamaan \ref{pearson-corrcoef-eq}.
+%TODO ilustrasi korelasi
 
-% \begin{equation}
-%     r_{xy}=\dfrac{\sum^n_{i=1}(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum^n_{i=1}(x_i-\bar{x})^2}{\sqrt{\sum^n_{i=1}(y_i-\bar{y})^2}}}
-% \end{equation}\label{pearson-corrcoef-eq}
+\begin{equation}
+    r_{xy}=\dfrac{\sum^n_{i=1}(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum^n_{i=1}(x_i-\bar{x})^2}{\sqrt{\sum^n_{i=1}(y_i-\bar{y})^2}}}
+\end{equation}\label{pearson-corrcoef-eq}
 
-% Metrik lainnya, yaitu uji preferensi, diukur dengan meminta pendengar memilih di antara keluaran  
-%TODO Decision tree...
+Metrik lainnya, yaitu uji preferensi, diukur dengan meminta pendengar memilih di antara keluaran-keluaran sistem. Tiap pendengar diminta mendengarkan pasangan-pasangan potongan-potongan pendek dari sistem yang dibandingkan. \parencite{bonada2017singing}
