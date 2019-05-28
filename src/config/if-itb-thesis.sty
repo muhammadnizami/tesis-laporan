@@ -54,14 +54,10 @@
 % Setting judul
 \chapterfont{\centering \large}
 \titleformat{\chapter}[block]
-  {\large\centering\bfseries}
+  {\vspace*{-1cm}\large\centering\bfseries}
   {\chaptertitlename\ \thechapter}{6pt}
     {\large\bfseries\capitalisewords}
-\titleformat{name=\chapter, numberless}[block]
-{\vspace*{-3cm}\large\centering\bfseries}
-{} {0pt}
-{\thispagestyle{empty}}
-
+\titlespacing*{\chapter} {0pt}{0pt}{1ex}
 
 % Setting nomor pada subbsubsubbab
 \setcounter{secnumdepth}{3}
