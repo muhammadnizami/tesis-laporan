@@ -279,16 +279,18 @@ Tabel \ref{tab-timing-model-subset-results} menunjukkan perbandingan kinerja mod
      \cline{2-3}
      & terhadap data latih & terhadap data uji \\\hline
 
-	\textit{fold}-1          &0.1816  &0.0528\\\hline
-	\textit{fold}-2          &0.2049 &-0.0252\\\hline
-	\textit{fold}-3          &0.2009  &0.1483\\\hline
-	\textit{fold}-4          &0.2515  &0.0187\\\hline
-	\textit{fold}-5          &0.2868  &0.0001\\\hline
+	subset-1          &0.1816  &0.0528\\\hline
+	subset-2          &0.2049 &-0.0252\\\hline
+	subset-3          &0.2009  &0.1483\\\hline
+	subset-4          &0.2515  &0.0187\\\hline
+	subset-5          &0.2868  &0.0001\\\hline
 	data latih utuh			 &0.2511  &0.2213\\\hline
     \end{tabular}
 \end{table}
 
-Tabel \ref{tab-f0-model-subset-results} menunjukkan perbandingan kinerja model f0 yang dilatih dengan keseluruhan data latih dan model yang dilatih dengan sebagian data latih. Perhatikan bahwa kinerja tertinggi terhadap data latih diperoleh dengan subset \textit{fold}-1. Kinerja model yang dilatih dengan subset ini terhadap data uji lebih baik daripada kinerja model yang dilatih dengan keseluruhan data latih. Hal ini menunjukkan bahwa untuk model f0, dengan memilih subset data latih dengan kinerja terhadap data latih tertinggi, kinerjanya kepada data uji lebih baik daripada model yang dilatih dengan data latih utuh. 
+Tabel \ref{tab-f0-model-subset-results} menunjukkan perbandingan kinerja model f0 yang dilatih dengan keseluruhan data latih dan model yang dilatih dengan sebagian data latih. Tiap subset-$i$ adalah data latih \textit{fold}-$i$ dari \textit{fold}-\textit{fold} yang sebelumnya digunakan pada validasi silang $5$-\textit{fold}.
+
+Perhatikan bahwa kinerja tertinggi terhadap data latih diperoleh dengan subset subset-1. Kinerja model yang dilatih dengan subset ini terhadap data uji lebih baik daripada kinerja model yang dilatih dengan keseluruhan data latih. Hal ini menunjukkan bahwa untuk model f0, dengan memilih subset data latih dengan kinerja terhadap data latih tertinggi, kinerjanya kepada data uji lebih baik daripada model yang dilatih dengan data latih utuh. 
 
 Terdapat dua kemungkinan yang menyebabkan hal ini. Kemungkinan pertama, penambahan data latih menurunkan kinerja. Kemungkinan kedua adalah kualitas data latih tidak merata.
 
@@ -300,11 +302,11 @@ Terdapat dua kemungkinan yang menyebabkan hal ini. Kemungkinan pertama, penambah
      \multirow{2}{*}{Subset data latih} & \multicolumn{2}{l|}{Pearson r untuk F0 Tiap \textit{Frame}} \\
      \cline{2-3}
      & terhadap data latih & terhadap data uji \\\hline
-	\textit{fold}-1          &0.9529  & 0.9551\\\hline
-	\textit{fold}-2          &0.9511  &-0.9534\\\hline
-	\textit{fold}-3          &0.9520  &0.9534\\\hline
-	\textit{fold}-4          &0.9512  &0.9547\\\hline
-	\textit{fold}-5          &0.9513  &0.9547\\\hline
+	subset-1          &0.9529  & 0.9551\\\hline
+	subset-2          &0.9511  &-0.9534\\\hline
+	subset-3          &0.9520  &0.9534\\\hline
+	subset-4          &0.9512  &0.9547\\\hline
+	subset-5          &0.9513  &0.9547\\\hline
 	data latih utuh			 &0.9514  &0.9547\\\hline
     \end{tabular}
 \end{table}
@@ -321,18 +323,18 @@ Hal ini menunjukkan bahwa untuk model frekuensi harmonik, penambahan data latih 
      \multirow{2}{*}{Subset data latih} & \multicolumn{2}{l|}{Pearson r untuk Frekuensi Harmonik Tiap \textit{Frame}} \\
      \cline{2-3}
      & terhadap data latih & terhadap data uji \\\hline
-	\textit{fold}-1      &0.9897  &0.9924\\\hline
-	\textit{fold}-2      &0.9898  &0.9917\\\hline
-	\textit{fold}-3      &0.9909  &0.9924\\\hline
-	\textit{fold}-4      &0.9868  &0.9930\\\hline
-	\textit{fold}-5      &0.9896  &0.9932\\\hline
+	subset-1      &0.9897  &0.9924\\\hline
+	subset-2      &0.9898  &0.9917\\\hline
+	subset-3      &0.9909  &0.9924\\\hline
+	subset-4      &0.9868  &0.9930\\\hline
+	subset-5      &0.9896  &0.9932\\\hline
 	data latih utuh      &0.9920  &0.9935\\\hline
     \end{tabular}
 \end{table}
 
-Tabel \ref{tab-mag-model-subset-results} menunjukkan perbandingan kinerja model magnitudo harmonik yang dilatih dengan keseluruhan data latih dan model yang dilatih dengan sebagian data latih. Perhatikan bahwa kinerja tertinggi terhadap data latih diperoleh dengan subset \textit{fold}-5. Kinerja model yang dilatih dengan subset ini terhadap data uji lebih baik daripada kinerja model yang dilatih dengan keseluruhan data latih. Hal ini menunjukkan bahwa untuk model magnitudo harmonik, dengan memilih subset data latih dengan kinerja terhadap data latih tertinggi, kinerjanya kepada data uji lebih baik daripada model yang dilatih dengan data latih utuh. 
+Tabel \ref{tab-mag-model-subset-results} menunjukkan perbandingan kinerja model magnitudo harmonik yang dilatih dengan keseluruhan data latih dan model yang dilatih dengan sebagian data latih. Perhatikan bahwa kinerja tertinggi terhadap data latih diperoleh dengan subset subset-5. Kinerja model yang dilatih dengan subset ini terhadap data uji lebih baik daripada kinerja model yang dilatih dengan keseluruhan data latih. Hal ini menunjukkan bahwa untuk model magnitudo harmonik, dengan memilih subset data latih dengan kinerja terhadap data latih tertinggi, kinerjanya kepada data uji lebih baik daripada model yang dilatih dengan data latih utuh. 
 
-Perhatikan pula bahwa kinerja model yang dilatih dengan subset \textit{fold}-1 hingga \textit{fold}-5 memiliki kinerja terhadap data latih utuh yang lebih tinggi dibandingkan dengan model yang dilatih dengan data latih utuh. Begitu pula kinerja terhadap data uji dari model yang dilatih dengan subset \textit{fold}-1 hingga \textit{fold}-5 secara umum lebih baik daripada model yang dilatih dengan data latih utuh. Hal ini menunjukkan bahwa untuk model magnitudo harmonik, data latih yang berukuran lebih besar memiliki kinerja lebih rendah.
+Perhatikan pula bahwa kinerja model yang dilatih dengan subset subset-1 hingga subset-5 memiliki kinerja terhadap data latih utuh yang lebih tinggi dibandingkan dengan model yang dilatih dengan data latih utuh. Begitu pula kinerja terhadap data uji dari model yang dilatih dengan subset subset-1 hingga subset-5 secara umum lebih baik daripada model yang dilatih dengan data latih utuh. Hal ini menunjukkan bahwa untuk model magnitudo harmonik, data latih yang berukuran lebih besar memiliki kinerja lebih rendah.
 
 \begin{table}[htbp]
     \centering
@@ -342,11 +344,11 @@ Perhatikan pula bahwa kinerja model yang dilatih dengan subset \textit{fold}-1 h
      \multirow{2}{*}{Subset data latih} & \multicolumn{2}{l|}{Pearson r untuk Magnitudo Harmonik Tiap \textit{Frame}} \\
      \cline{2-3}
      & terhadap data latih & terhadap data uji \\\hline
-	\textit{fold}-1      &0.3997  &0.3031\\\hline
-	\textit{fold}-2      &0.3846  &0.2725\\\hline
-	\textit{fold}-3      &0.4118  &0.2469\\\hline
-	\textit{fold}-4      &0.3886  &0.2972\\\hline
-	\textit{fold}-5      &0.4469  &0.3211\\\hline
+	subset-1      &0.3997  &0.3031\\\hline
+	subset-2      &0.3846  &0.2725\\\hline
+	subset-3      &0.4118  &0.2469\\\hline
+	subset-4      &0.3886  &0.2972\\\hline
+	subset-5      &0.4469  &0.3211\\\hline
 	data latih utuh    	 &0.3050  &0.2534\\\hline
     \end{tabular}
 \end{table}
@@ -357,9 +359,9 @@ Perhatikan pula bahwa kinerja model yang dilatih dengan subset \textit{fold}-1 h
     \caption{Contoh perbandingan keluaran model magnitudo harmonik yang dilatih dengan subset dan keseluruhan data latih (4 harmonik pertama), dengan masukan \textit{timing}, f0, dan hfreq dari dataset}\label{fig-hmag-subset-output-sample}
 \end{figure}
 
-Gambar \ref{fig-hmag-subset-output-sample} menujukkan contoh perbandingan keluaran model magnitudo harmonik yang dilatih dengan subset dan yang dilatih dengan keseluruhan data latih. Grafik paling atas menunjukkan referensi pada data, grafik tengah menunjukkan keluaran dari model yang dilatih dengan subset \textit{fold}-5, dan grafik paling bawah menunjukkan keluaran dari model yang dilatih dengan keseluruhan data latih. Tampak bahwa model yang dilatih dengan keseluruhan data latih lebih banyak menghasilkan magnitudo kecil. Pada taraf magnitudo -100 hingga -120 dB seperti pada gambar tersebut, pendengar akan mendengar seolah-olah tidak ada suara.
+Gambar \ref{fig-hmag-subset-output-sample} menujukkan contoh perbandingan keluaran model magnitudo harmonik yang dilatih dengan subset dan yang dilatih dengan keseluruhan data latih. Grafik paling atas menunjukkan referensi pada data, grafik tengah menunjukkan keluaran dari model yang dilatih dengan subset subset-5, dan grafik paling bawah menunjukkan keluaran dari model yang dilatih dengan keseluruhan data latih. Tampak bahwa model yang dilatih dengan keseluruhan data latih lebih banyak menghasilkan magnitudo kecil. Pada taraf magnitudo -100 hingga -120 dB seperti pada gambar tersebut, pendengar akan mendengar seolah-olah tidak ada suara.
 
-Tabel \ref{tab-stoc-model-subset-results} menunjukkan perbandingan kinerja model stokastik yang dilatih dengan keseluruhan data latih dan model yang dilatih dengan sebagian data latih. Perhatikan bahwa kinerja tertinggi terhadap data latih diperoleh dengan subset \textit{fold}-1. Kinerja model yang dilatih dengan subset ini terhadap data uji lebih baik daripada kinerja model yang dilatih dengan keseluruhan data latih. Hal ini menunjukkan bahwa untuk model stokastik, dengan memilih subset data latih dengan kinerja terhadap data latih tertinggi, kinerjanya kepada data uji lebih baik daripada model yang dilatih dengan data latih utuh. 
+Tabel \ref{tab-stoc-model-subset-results} menunjukkan perbandingan kinerja model stokastik yang dilatih dengan keseluruhan data latih dan model yang dilatih dengan sebagian data latih. Perhatikan bahwa kinerja tertinggi terhadap data latih diperoleh dengan subset subset-1. Kinerja model yang dilatih dengan subset ini terhadap data uji lebih baik daripada kinerja model yang dilatih dengan keseluruhan data latih. Hal ini menunjukkan bahwa untuk model stokastik, dengan memilih subset data latih dengan kinerja terhadap data latih tertinggi, kinerjanya kepada data uji lebih baik daripada model yang dilatih dengan data latih utuh. 
 
 Terdapat dua kemungkinan yang menyebabkan hal ini. Kemungkinan pertama, penambahan data latih menurunkan kinerja. Kemungkinan kedua adalah kualitas data latih tidak merata.
 
@@ -371,11 +373,11 @@ Terdapat dua kemungkinan yang menyebabkan hal ini. Kemungkinan pertama, penambah
      \multirow{2}{*}{Subset data latih} & \multicolumn{2}{l|}{Pearson r untuk Amplop Stokastik Tiap \textit{Frame}} \\
      \cline{2-3}
      & terhadap data latih & terhadap data uji \\\hline
-	\textit{fold}-1       &0.2471  &0.0211\\\hline
-	\textit{fold}-2       &0.5555  &0.0508\\\hline
-	\textit{fold}-3       &0.2820  &0.0355\\\hline
-	\textit{fold}-4       &0.5925  &0.0640\\\hline
-	\textit{fold}-5       &0.5598  &0.1240\\\hline
+	subset-1       &0.2471  &0.0211\\\hline
+	subset-2       &0.5555  &0.0508\\\hline
+	subset-3       &0.2820  &0.0355\\\hline
+	subset-4       &0.5925  &0.0640\\\hline
+	subset-5       &0.5598  &0.1240\\\hline
 	data latih utuh       &0.4303  &0.0552\\\hline
     \end{tabular}
 \end{table}
@@ -618,9 +620,9 @@ Jawaban-jawaban pertimbangan yang diberikan oleh responden digunakan untuk menca
 
 Untuk melihat keterhubungan antara pertimbangan responden dan persepsi kealamiannya, digunakan \textit{odds ratio}. \textit{Odds ratio} adalah ukuran yang menggambarkan keterhubungan antara suatu paparan dan kejadian. \textit{Odds ratio} dinyatakan sebagai rasio antara peluang kejadian dengan paparan dan peluang kejadian tanpa paparan. \parencite{oddsratio}
 
-Dalam konteks preferensi kealamian, kejadian yang menjadi perhatian adalah ketika sistem yang diajukan dipilih. Paparan yang menjadi perhatian adalah pertimbangan responden. Sehingga, \textit{odds ratio} di sini adalah nilai preferensi kealamian dengan pertimbangan dibagi dengan nilai preferensi kealamian tanpa pertimbangan.
+Dalam konteks preferensi kealamian, kejadian yang menjadi perhatian adalah ketika sistem yang diajukan dipilih. Paparan yang menjadi perhatian adalah pertimbangan responden. Sehingga, \textit{odds ratio} di sini adalah nilai preferensi kealamian dengan pertimbangan dibagi nilai preferensi kealamian tanpa pertimbangan.
 
-Nilai \textit{odds ratio} lebih dari 1 menunjukkan bahwa dengan pertimbangan tersebut, kealamian sistem yang diajukan dibandingkan dengan \textit{baseline} lebih tinggi daripada kealamian sistem ketika responden tidak mempertimbangkan pertimbangan tersebut. Nilai \textit{odds ratio} kurang dari 1 menunjukkan bahwa dengan pertimbangan tersebut, kealamian sistem yang diajukan dibandingkan dengan \textit{baseline} lebih rendah daripada kealamian sistem ketika responden tidak mempertimbangkan pertimbangan tersebut. Dapat dikatakan bahwa \textit{odds ratio} lebih dari 1 menunjukkan pertimbangan yang meningkatkan kealamian, dan \textit{odds ratio} kurang dari 1 menunjukkan pertimbangan yang menurunkan kealamian.
+Nilai \textit{odds ratio} lebih dari 1 menunjukkan bahwa dengan pertimbangan tersebut, kealamian sistem yang diajukan, relatif terhadap \textit{baseline}, lebih tinggi daripada kealamian sistem ketika responden tidak mempertimbangkan pertimbangan tersebut. Nilai \textit{odds ratio} kurang dari 1 menunjukkan bahwa dengan pertimbangan tersebut, kealamian sistem yang diajukan, relatif terhadap \textit{baseline}, lebih rendah daripada kealamian sistem ketika responden tidak mempertimbangkan pertimbangan tersebut. Dapat dikatakan bahwa \textit{odds ratio} lebih dari 1 menunjukkan pertimbangan yang meningkatkan kealamian, dan \textit{odds ratio} kurang dari 1 menunjukkan pertimbangan yang menurunkan kealamian.
 
 Dari data pertimbangan-pertimbangan, dilakukan penyortiran. Pertama, dipilih pertimbangan-pertimbangan dengan jumlah kemunculan minimal 10. Kemudian, pertimbangan-pertimbangan tersebut diurutkan berdasarkan \textit{odds ratio} kealamian sistem DT-Neural Parametrik. Tabel \ref{tab-pertimbangan-oddsratio-morenatural} menunjukkan pertimbangan-pertimbangan yang meningkatkan kealamian sistem DT-Neural Parametrik. Tabel \ref{tab-pertimbangan-oddsratio-lessnatural} menunjukkan pertimbangan-pertimbangan yang menurunkan kealamian sistem DT-Neural Parametrik.
 

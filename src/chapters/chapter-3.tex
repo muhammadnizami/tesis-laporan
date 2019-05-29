@@ -107,7 +107,7 @@ Agar gaung tidak mempengaruhi estimasi timbre, asumsi gelombang glottal dan ampl
 
 Sisa spektrum yang tidak dapat dikodekan dengan gelombang-gelombang sinusoidal pada tiap harmonik tersebut kemudian dikodekan dengan model stokastik. Model ini merepresentasikan aperiodisitas.
 
-Dengan demikian, hasil pengkodean harmonik terarah plus stokastik memiliki format yang sama dengan pengkodean harmonik plus stokastik. Hasilnya berupa deskripsi frekuensi fundamental, frekuensi dan ukuran harmonik, dan stokastik untuk setiap langkah waktu. Yang membedakan keduanya adalah adanya batasan frekuensi fundamental yang diarahkan oleh data partitur dan \textit{timing}.
+Dengan demikian, hasil pengkodean harmonik terarah plus stokastik memiliki format yang sama dengan pengkodean harmonik plus stokastik. Hasilnya berupa deskripsi frekuensi harmonik (termasuk di dalamnya frekuensi fundamental), magnitudo harmonik, dan amplop stokastik untuk setiap langkah waktu. Yang membedakan keduanya adalah adanya batasan frekuensi fundamental yang diarahkan oleh data partitur dan \textit{timing}.
 
 Pengkodean dengan cara ini mampu mengatasi polifoni yang diakibatkan oleh gaung. Polifoni yang diakibatkan karena dua atau lebih not berbunyi sekaligus tidak dapat diatasi dengan cara ini. Cara ini hanya mampu mengekstrak satu frekuensi fundamental dari setiap langkah waktu.
 
@@ -158,7 +158,7 @@ Model \textit{pitch} berfungsi membangkitkan frekuensi fundamental untuk tiap la
     \caption{Input dan output model f0}\label{fig-f0-model-in-out}
 \end{figure}
 
-Input dan output model f0 ditunjukkan pada Gambar \ref{fig-f0-model-in-out}.tersebut. Deviasi f0 dibangkitkan satu per satu secara berurutan dari \textit{frame} awal hingga \textit{frame} akhir.
+Input dan output model f0 ditunjukkan pada Gambar \ref{fig-f0-model-in-out} tersebut. Deviasi f0 dibangkitkan satu per satu secara berurutan dari \textit{frame} awal hingga \textit{frame} akhir.
 
 Input jaringan syaraf tiruan ini terdiri dari dua, yaitu input fitur akustik keluaran sebelumnya, dan input kontrol. Input kontrol berasal dari partitur.
 
