@@ -175,55 +175,41 @@ Model ini menerima masukan fitur akustik dengan konvolusi kausal terdilasi \pare
 \end{figure}
 
 Fitur akustik yang telah dilakukan konvolusi kausal terdilasi digabungkan dengan input fitur kontrol dari partitur dan fonetik. Setelah itu, unit aktivasi yang digunakan adalah unit aktivasi bergerbang \parencite{Oord2016ConditionalIG}. Dengan demikian, fungsi aktivasi yang diterapkan kepada masukan gabungan fitur-fitur akustik dan fitur-fitur kontrol menjadi:
-
 \begin{equation}
     \mathbf{z} = tanh(W_{f,k}*\mathbf{x}+V^T_{f,k}\mathbf{h})\odot\sigma(W_{g,k}*\mathbf{x}+V^T_{f,k}\mathbf{h})
 \end{equation}\label{eq-gated-activation}
-
 dengan $*$ menunjukkan operator konvolusi, $\odot$ menunjukkan operasi perkalian tiap-elemen, $\sigma$ merupakan fungsi sigmoid, $k$ indeks lapisan, $f$ dan $g$ merupakan filter dan gerbang, $W$ dan $V$ adalah bobot konvolusi untuk masukan fitur akustik dan fitur kontrol yang dapat dipelajari.
 
 Dari satu lapisan ke lapisan lain, diberikan koneksi residual. Serta, dari tiap lapisan, terdapat koneksi skip menuju lapisan output. Dengan cara ini, dapat dilatih jaringan syaraf tiruan yang memiliki lebih banyak lapisan. \parencite{He2016DeepRL}
 
 Pada lapisan output, output tiap lapisan kembali dijumlahkan dengan masukan kontrol. Setelah itu, kembali dikenakan fungsi $tanh$\parencite{bonada2017singing}. Berbeda dengan WaveNet \parencite{Oord2016WaveNetAG} yang menggunakan distribusi keluaran SoftMax, pada teknik neural parametrik digunakan distribusi keluaran \textit{multivariate mixture density}. \textit{Mixture density} yang digunakan adalah Constrained Gaussian Mixture. Hal ini karena dalam riset sebelumnya dengan distribusi softmax bentuk distribusi keluaran jejaring mirip dengan Constrained Gaussian Mixture. dengan $K=4$ Gaussian: \parencite{bonada2017singing}
-
 \begin{equation}
     p(x) = \sum\limits_{k=0}^{K-1}w_k\mathcal{N}(x;\mu_k,\sigma_k^2)
 \end{equation}\label{eq-cgm}
-
 Dengan parameter-parameter $w_k$, $\mu_k$, $\sigma_k$ untuk $k=0,1,...,K-1$ dihitung dari empat parameter bebas: $\xi$, skala $\omega$, kemencengan $\alpha$, dan bentuk $\beta$. Bila jaringan memprediksi empat keluaran dengan aktivasi linear, $a_0$, $a_1$, $a_2$, $a_3$, parameter bebas ini diperoleh dengan cara sebagai berikut: \parencite{bonada2017singing}
-
 \begin{equation}
     \xi = 2 sigm(a_0)-1; range[-1,1]
-\end{equation}
-\begin{equation}
+\end{equation}\begin{equation}
     \omega = \dfrac{2}{255}e^{4sigm(a_1)}; range[\dfrac{2}{255}, \dfrac{2 e^4}{255}]
-\end{equation}
-\begin{equation}
+\end{equation}\begin{equation}
     \alpha = 2 sigm(a_2)-1; range[-1,1]
-\end{equation}
-\begin{equation}
+\end{equation}\begin{equation}
     \beta = 2 sigm(a_3); range[0,2]
 \end{equation}
-
 Kemudian, parameter-parameter Gaussian $w_k$, $\mu_k$, dan $\sigma_k$ dihitung sebagai berikut:\parencite{bonada2017singing}
 \begin{equation}
     \sigma_k = \omega e^{(|\alpha|\gamma_s-1)k|}
-\end{equation}
-\begin{equation}
+\end{equation}\begin{equation}
     \mu_k = \xi + \sum\limits_{i=0}^{k-1}\sigma_k\gamma_u\alpha
-\end{equation}
-\begin{equation}
+\end{equation}\begin{equation}
     w_k = \dfrac{\alpha^{2k}\beta{k}\gamma_w^k}{\Sigma_{j=0}{K-1}\alpha^{2i}\beta{i}\gamma_w^i}
 \end{equation}
-
 dengan konstanta $\gamma_u$, $\gamma_s$, dan $\gamma_y$ di-\textit{tune} secara manual.
 
 Pelatihan jaringan syaraf tiruan ini menggunakan fungsi objektif \textit{log likelihood} dengan \textit{denoising} Gaussian:\parencite{bonada2017singing}
-
 \begin{equation}
-    \Lambda = -log p(\mathbf{x}_t|\mathbf{\tilde{x}}_{<t},\mathbf{c}) \text{ dengan } \mathbf{\tilde{x}}_{<t} \sim \mathcal{N}(\mathbf{\tilde{x}}_{<t}; \mathbf{x}_{<t},\lambda I )
+    \lambda = -log p(\mathbf{x}_t|\mathbf{\tilde{x}}_{<t},\mathbf{c}) \text{ dengan } \mathbf{\tilde{x}}_{<t} \sim \mathcal{N}(\mathbf{\tilde{x}}_{<t}; \mathbf{x}_{<t},\lambda I )
 \end{equation}
-
 Di antara masalah yang dihadapi model-model dengan arsitektur ini adalah terkait data latih. Apabila data latih ditambah melebihi durasi 30 menit, kinerja sistem sintesis neural parametrik untuk nyanyian menurun. \parencite{bonada2017singing}
 
 \section{Pengkodean Suara} \label{voice coding}
@@ -233,17 +219,13 @@ Sintesis neural parametrik nyanyian \parencite{bonada2017singing} menggunakan \t
 Dalam \textit{vocoder} WORLD, \textit{waveform} diasumsikan berasal dari getaran pita suara. Algoritma estimasi F0 yang digunakan adalah algoritma DIO \parencite{morise2009fast} yang menggunakan \textit{zero-crossing interval} dari sinyal sinus hasil penerapan \textit{low-pass filter} dari sinyal suara. \textit{Zero-crossing interval} adalah jarak antara titik-titik di mana \textit{waveform} menyeberangi nilai nol. Estimasi amplop spektral pada \textit{vocoder} WORLD menggunakan algoritma CheapTrick \parencite{morise2015cheaptrick}, yang menggunakan informasi \textit{waveform} dan F0.
 
 Terdapat pengkodean lain yang biasa digunakan untuk mengkodekan sinyal suara alat musik, yaitu pengkodean harmonik plus stokastik. Dalam pengkodean harmonik plus stokastik, sinyal suara dimodelkan sebagai jumlah dari komponen deterministik dan stokastik sebagai berikut:\parencite{serra1997sineplusnoise}
-
 \begin{equation}
 s(t)=\Sigma_{r=1}^{R} A_r(t) cos (\int_0^t\omega_(t))+e(t)
 \end{equation}
-
 Di sini, komponen deterministik berupa penjumlahan gelombang sinusoidal dengan amplitudo $A_r(t)$ dan frekuensi sudut $\omega_r(t)$ untuk harmonik ke-$1$ s.d. $R$. Komponen stokastik $e(t)$ berupa \textit{white noise} $u(\tau)$ yang di-\textit{filter} dengan \textit{filter} yang bervariasi sepanjang waktu $h(t,\tau)$: \parencite{serra1997sineplusnoise}
-
 \begin{equation}
 e(t)=\int_0^t h(t,\tau)u(\tau)d\tau
 \end{equation}
-
 Proses pengkodean harmonik plus stokastik dari sinyal suara terdiri dari penghitungan spektral, deteksi puncak, deteksi \textit{pitch}/frekuensi fundamental, penentuan frekuensi-frekuensi harmonik, dan analisis stokastik. Hasil pengkodean ini direpresentasikan dengan nilai-nilai frekuensi harmonik (Hz), magnitudo harmonik (dB), dan amplop stokastik (dB). \parencite{serra1997sineplusnoise}
 
 Dengan asumsi bahwa sinyal suara terdiri dari kumpulan gelombang-gelombang harmonik, pencarian frekuensi fundamental dapat dilakukan dengan algoritma TWM. Algoritma TWM mengambil frekuensi dengan \textit{cost} terendah diantara kandidat-kandidat frekuensi harmonik. Kandidat-kandidat frekuensi harmonik yang digunakan adalah puncak-puncak spektral yang telah dideteksi. \textit{Cost} yang digunakan TWM adalah galat dua arah antara frekuensi harmonik yang diprediksi dan frekuensi puncak-puncak terdekat. \parencite{beauchamp1994twm}
@@ -256,11 +238,8 @@ Frekuensi dan magnitudo harmonik diambil dari puncak-puncak yang telah terdeteks
 
 Dalam bentuk spektogram, atau fitur akustik lainnya, ataupun dalam bentuk representasi gestur ekspresi, koefisien korelasi kepada data permainan pemain manusia dapat digunakan sebagai salah satu ukuran kinerja. Koefisien korelasi menunjukkan keberhasilan sistem membangkitkan ekspresi musik yang sesuai dengan pola-pola ekspresi musik manusia \parencite{schubert2017test} \parencite{lindemann2007rpm}
 \parencite{yu2017bowing}. Dalam penelitian ini, akan digunakan koefisien korelasi Pearson seperti yang dituliskan pada Persamaan \ref{pearson-corrcoef-eq} \parencite{pearson1895note}.
-
 %TODO ilustrasi korelasi
-
 \begin{equation}
     r_{xy}=\dfrac{\sum^n_{i=1}(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum^n_{i=1}(x_i-\bar{x})^2}{\sqrt{\sum^n_{i=1}(y_i-\bar{y})^2}}}
 \end{equation}\label{pearson-corrcoef-eq}
-
 Metrik lainnya, yaitu uji preferensi, diukur dengan meminta pendengar memilih di antara keluaran-keluaran sistem. Tiap pendengar diminta mendengarkan pasangan-pasangan potongan-potongan pendek dari sistem yang dibandingkan. \parencite{bonada2017singing}

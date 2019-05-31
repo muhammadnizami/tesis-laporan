@@ -98,7 +98,7 @@ Yang diuji dengan uji persepsi adalah sistem dengan teknik neural parametrik seb
     \caption{Tampilan cuplikan kuesioner yang digunakan untuk uji preferensi kealamian}\label{fig-questionnaire-sample}
 \end{figure}
 
-Urutan pasangan segmen-segmen ini diacak, kemudian urutan segmen tiap pasang juga diacak. Untuk tiap pasang, responden diminta untuk memilih segmen audio yang lebih alami. Dari hasil ini, dapat dihitung persentase preferensi sistem ini terhadap sistem \textit{baseline}. Selain itu, responden juga dapat menyebutkan pertimbangan memilih segmen suara tersebut. Responden dapat memilih pertimbangan dari daftar yang telah ada ataupun menuliskan pertimbangan baru. Cuplikan kuesioner yang digunakan dapat dilihat pada Gambar \ref{fig-questionnaire-sample}. %TODO Mean Preference Score dibenerin
+Urutan pasangan segmen-segmen ini diacak, kemudian urutan segmen tiap pasang juga diacak. Untuk tiap pasang, responden diminta untuk memilih segmen audio yang lebih alami. Dari hasil ini, dapat dihitung persentase preferensi sistem ini terhadap sistem \textit{baseline}. Selain itu, responden juga dapat menyebutkan pertimbangan atau pendapat yang mempengaruhi bagaimana ia memilih segmen suara tersebut. Responden dapat memilih pendapat dari daftar yang telah ada ataupun menuliskan pendapat baru. Cuplikan kuesioner yang digunakan dapat dilihat pada Gambar \ref{fig-questionnaire-sample}. %TODO Mean Preference Score dibenerin
 
 \section{Hasil Eksperimen Komponen Sistem}
 
@@ -614,85 +614,85 @@ Tabel \ref{tab-preference} menunjukkan hasil uji preferensi kealamian sistem yan
   \end{center}
 \end{table}
 
-Tabel pada Lampiran \ref{appendix-pertimbangan} menunjukkan pertimbangan-pertimbangan responden dalam memilih segmen yang lebih alami. Untuk tiap isi pertimbangan pada tabel tersebut, ditunjukkan seberapa sering pertimbangan tersebut muncul. Ditunjukkan seberapa sering muncul secara total dan tiap pasangan segmen. Untuk tiap pasangan segmen suara, dituliskan jumlah kemunculan pertimbangan tersebut berbarengan dengan terpilihnya segmen suara dari tiap teknik.
+Tabel pada Lampiran \ref{appendix-pendapat} menunjukkan pendapat-pendapat responden dalam memilih segmen yang lebih alami. Untuk tiap isi pendapat pada tabel tersebut, ditunjukkan seberapa sering pendapat tersebut muncul. Ditunjukkan seberapa sering muncul secara total dan tiap pasangan segmen. Untuk tiap pasangan segmen suara, dituliskan jumlah kemunculan pendapat tersebut berbarengan dengan terpilihnya segmen suara dari tiap teknik.
 
-Jawaban-jawaban pertimbangan yang diberikan oleh responden digunakan untuk mencari penyebab-penyebab rendahnya nilai preferensi persepsi kealamian dari sistem neural parametrik dan juga sistem gabungan. Karena data ini masih berupa kemunculan pertimbangan-pertimbangan yang bermacam-macam pada data preferensi tertentu, data ini tidak dapat secara langsung menunjukkan pada teknik mana fenomena yang disebutkan terjadi, dan apakah fenomena tersebut menyebabkan terdengar lebih alami atau sebaliknya.
+Jawaban-jawaban pendapat yang diberikan oleh responden digunakan untuk mencari penyebab-penyebab rendahnya nilai preferensi persepsi kealamian dari sistem neural parametrik dan juga sistem gabungan. Karena data ini masih berupa kemunculan pendapat-pendapat yang bermacam-macam pada data preferensi tertentu, data ini tidak dapat secara langsung menunjukkan pada teknik mana fenomena yang disebutkan terjadi, dan apakah fenomena tersebut menyebabkan terdengar lebih alami atau sebaliknya.
 
-Untuk melihat keterhubungan antara pertimbangan responden dan persepsi kealamiannya, digunakan \textit{odds ratio}. \textit{Odds ratio} adalah ukuran yang menggambarkan keterhubungan antara suatu paparan dan kejadian. \textit{Odds ratio} dinyatakan sebagai rasio antara peluang kejadian dengan paparan dan peluang kejadian tanpa paparan. \parencite{oddsratio}
+Untuk melihat keterhubungan antara pendapat responden dan persepsi kealamiannya, digunakan \textit{odds ratio}. \textit{Odds ratio} adalah ukuran yang menggambarkan keterhubungan antara suatu paparan dan kejadian. \textit{Odds ratio} dinyatakan sebagai rasio antara peluang kejadian dengan paparan dan peluang kejadian tanpa paparan. \parencite{oddsratio}
 
-Dalam konteks preferensi kealamian, kejadian yang menjadi perhatian adalah ketika sistem yang diajukan dipilih. Paparan yang menjadi perhatian adalah pertimbangan responden. Sehingga, \textit{odds ratio} di sini adalah nilai preferensi kealamian dengan pertimbangan dibagi nilai preferensi kealamian tanpa pertimbangan.
+Dalam konteks preferensi kealamian, kejadian yang menjadi perhatian adalah ketika sistem yang diajukan dipilih. Paparan yang menjadi perhatian adalah pendapat responden. Sehingga, \textit{odds ratio} di sini adalah nilai preferensi kealamian dengan pendapat dibagi nilai preferensi kealamian tanpa pendapat.
 
-Nilai \textit{odds ratio} lebih dari 1 menunjukkan bahwa dengan pertimbangan tersebut, kealamian sistem yang diajukan, relatif terhadap \textit{baseline}, lebih tinggi daripada kealamian sistem ketika responden tidak mempertimbangkan pertimbangan tersebut. Nilai \textit{odds ratio} kurang dari 1 menunjukkan bahwa dengan pertimbangan tersebut, kealamian sistem yang diajukan, relatif terhadap \textit{baseline}, lebih rendah daripada kealamian sistem ketika responden tidak mempertimbangkan pertimbangan tersebut. Dapat dikatakan bahwa \textit{odds ratio} lebih dari 1 menunjukkan pertimbangan yang meningkatkan kealamian, dan \textit{odds ratio} kurang dari 1 menunjukkan pertimbangan yang menurunkan kealamian.
+Nilai \textit{odds ratio} lebih dari 1 menunjukkan bahwa dengan pendapat tersebut, kealamian sistem yang diajukan, relatif terhadap \textit{baseline}, lebih tinggi daripada kealamian sistem ketika responden tidak mempertimbangkan pendapat tersebut. Nilai \textit{odds ratio} kurang dari 1 menunjukkan bahwa dengan pendapat tersebut, kealamian sistem yang diajukan, relatif terhadap \textit{baseline}, lebih rendah daripada kealamian sistem ketika responden tidak mempertimbangkan pendapat tersebut. Dapat dikatakan bahwa \textit{odds ratio} lebih dari 1 menunjukkan pendapat yang meningkatkan kealamian, dan \textit{odds ratio} kurang dari 1 menunjukkan pendapat yang menurunkan kealamian.
 
-Dari data pertimbangan-pertimbangan, dilakukan penyortiran. Pertama, dipilih pertimbangan-pertimbangan dengan jumlah kemunculan minimal 10. Kemudian, pertimbangan-pertimbangan tersebut diurutkan berdasarkan \textit{odds ratio} kealamian sistem DT-Neural Parametrik. Tabel \ref{tab-pertimbangan-oddsratio-morenatural} menunjukkan pertimbangan-pertimbangan yang meningkatkan kealamian sistem DT-Neural Parametrik. Tabel \ref{tab-pertimbangan-oddsratio-lessnatural} menunjukkan pertimbangan-pertimbangan yang menurunkan kealamian sistem DT-Neural Parametrik.
+Dari data pendapat-pendapat responden, dilakukan penyortiran. Pertama, dipilih pendapat-pendapat dengan jumlah kemunculan minimal 10. Kemudian, pendapat-pendapat tersebut diurutkan berdasarkan \textit{odds ratio} kealamian sistem DT-Neural Parametrik. Tabel \ref{tab-pendapat-oddsratio-morenatural} menunjukkan pendapat-pendapat yang meningkatkan kealamian sistem DT-Neural Parametrik. Tabel \ref{tab-pendapat-oddsratio-lessnatural} menunjukkan pendapat-pendapat yang menurunkan kealamian sistem DT-Neural Parametrik.
 
 \begin{table}[htbp]
   \begin{center}
-	\caption{Pertimbangan-pertimbangan yang menyebabkan sistem yang diajukan lebih alami dibandingkan dengan \textit{baseline}}\label{tab-pertimbangan-oddsratio-morenatural}
+	\caption{Pendapat-pendapat responden yang meningkatkan kealamian sistem terhadap \textit{baseline}}\label{tab-pendapat-oddsratio-morenatural}
 	\begin{tabular}{|p{0.69\textwidth}|r|r|r|}
 	\hline
-Pertimbangan&	Total&	\multicolumn{2}{|c|}{\textit{Odds Ratio}}\\
+Pendapat&	Total&	\multicolumn{2}{|c|}{\textit{Odds Ratio}}\\
 &	&	\multicolumn{2}{|c|}{Kealamian}\\
 \cline{3-4}
 &	&	DTNP	&Gab.
 \\\hline
-variasi timing&	119&	7.67&	1.82\\\hline
-fingering seperti sedang meraih-raih nada&	30&	4.40&	2.00\\\hline
-sebenernya saya lebih suka timbre dari audio yang tidak dipilih (untuk phrasing ini), tapi mainnya gak rapih jadi terganggu waktu mau menikmati suaranya&	15&	4.25&	2.62\\\hline
-fingering nadanya dan cara stroke-nya terdengar lebih manusiawi, walaupun terdengar seperti orang yang bermain asal dan terburu-buru&	32&	4.03&	2.13\\\hline
-adanya rubato yang sebenarnya memberikan sedikit ekspresi dibandingkan audio yang satunya, tapi entah kenapa masih ada yang mengganjal&	16&	3.34&	2.61\\\hline
-trill-nya terdengar aneh tapi overall play-nya terdengar lebih natural&	30&	3.00&	2.00\\\hline
-pada audio yang tidak dipilih, perpindahan pitch dan "stroke"-nya seperti dimainkan pada aplikasi music sheet, tidak berekspresi sama sekali&	25&	2.23&	2.15\\\hline
-ada sedikit crescendo&	38&	2.18&	1.58\\\hline
-cara dinamikanya beda2&	62&	1.90&	2.53\\\hline
-deviasi pitch&	104&	1.85&	1.42\\\hline
-keduanya tidak terdengar natural&	76&	1.37&	1.09\\\hline
-variasi dinamika&	130&	1.32&	1.60\\\hline
-permainan long bow-nya terasa alami&	30&	1.32&	1.51\\\hline
-vibrato&	88&	1.19&	1.38\\\hline
-karena phrase tersebut terdengar lebih natural dengan timbre dari media yang digunakan pada audio yang saya pilih&	56&	1.18&	0.99\\\hline
-phrasing-nya mungkin terasa seperti "terlalu tepat", tapi jadinya lebih terdengar seperti pemusik yang bermain pada ketukan cepat dengan timing yang tepat&	28&	1.11&	0.21\\\hline
+\begin{intabquote}variasi timing\end{intabquote}&	119&	7.67&	1.82\\\hline
+\begin{intabquote}fingering seperti sedang meraih-raih nada\end{intabquote}&	30&	4.40&	2.00\\\hline
+\begin{intabquote}sebenernya saya lebih suka timbre dari audio yang tidak dipilih (untuk phrasing ini), tapi mainnya gak rapih jadi terganggu waktu mau menikmati suaranya\end{intabquote}&	15&	4.25&	2.62\\\hline
+\begin{intabquote}fingering nadanya dan cara stroke-nya terdengar lebih manusiawi, walaupun terdengar seperti orang yang bermain asal dan terburu-buru\end{intabquote}&	32&	4.03&	2.13\\\hline
+\begin{intabquote}adanya rubato yang sebenarnya memberikan sedikit ekspresi dibandingkan audio yang satunya, tapi entah kenapa masih ada yang mengganjal\end{intabquote}&	16&	3.34&	2.61\\\hline
+\begin{intabquote}trill-nya terdengar aneh tapi overall play-nya terdengar lebih natural\end{intabquote}&	30&	3.00&	2.00\\\hline
+\begin{intabquote}pada audio yang tidak dipilih, perpindahan pitch dan "stroke"-nya seperti dimainkan pada aplikasi music sheet, tidak berekspresi sama sekali\end{intabquote}&	25&	2.23&	2.15\\\hline
+\begin{intabquote}ada sedikit crescendo\end{intabquote}&	38&	2.18&	1.58\\\hline
+\begin{intabquote}cara dinamikanya beda2\end{intabquote}&	62&	1.90&	2.53\\\hline
+\begin{intabquote}deviasi pitch\end{intabquote}&	104&	1.85&	1.42\\\hline
+\begin{intabquote}keduanya tidak terdengar natural\end{intabquote}&	76&	1.37&	1.09\\\hline
+\begin{intabquote}variasi dinamika\end{intabquote}&	130&	1.32&	1.60\\\hline
+\begin{intabquote}permainan long bow-nya terasa alami\end{intabquote}&	30&	1.32&	1.51\\\hline
+\begin{intabquote}vibrato\end{intabquote}&	88&	1.19&	1.38\\\hline
+\begin{intabquote}karena phrase tersebut terdengar lebih natural dengan timbre dari media yang digunakan pada audio yang saya pilih\end{intabquote}&	56&	1.18&	0.99\\\hline
+\begin{intabquote}phrasing-nya mungkin terasa seperti "terlalu tepat", tapi jadinya lebih terdengar seperti pemusik yang bermain pada ketukan cepat dengan timing yang tepat\end{intabquote}&	28&	1.11&	0.21\\\hline
 \end{tabular}
   \end{center}
 \end{table}
 
-Pertimbangan yang paling kuat meningkatkan kealamian teknik DT-Neural Parametrik adalah variasi \textit{timing}. Padahal, dalam uji korelasi komponen, model \textit{timing} memiliki koefisien korelasi yang rendah. Hal ini menunjukkan bahwa untuk \textit{timing}, kealamian telah dicapai meskipun \textit{correctness} masih rendah. Namun, sebagian responden juga menyatakan bahwa \textit{timing} yang salah menyebabkan terasa tidak alami, seperti terlihat pada Tabel \ref{tab-pertimbangan-oddsratio-lessnatural}.
+Pendapat yang paling kuat meningkatkan kealamian teknik DT-Neural Parametrik adalah variasi \textit{timing}. Padahal, dalam uji korelasi komponen, model \textit{timing} memiliki koefisien korelasi yang rendah. Hal ini menunjukkan bahwa untuk \textit{timing}, kealamian telah dicapai meskipun \textit{correctness} masih rendah. Namun, sebagian responden juga menyatakan bahwa \textit{timing} yang salah menyebabkan terasa tidak alami, seperti terlihat pada Tabel \ref{tab-pendapat-oddsratio-lessnatural}.
 
-Aspek lainnya yang meningkatkan kealamian adalah \textit{pitch}. Kata kunci terkait \textit{pitch} pada Tabel \ref{tab-pertimbangan-oddsratio-morenatural} adalah \textit{fingering}, selain juga secara eksplisit dinyatakan deviasi \textit{pitch}. \textit{Fingering} yang terasa lebih alami berdasarkan persepsi pendengar disebabkan karena suaranya seperti sedang mencoba meraih-raih nada atau juga dinyatakan "lebih manusiawi" meskipun tidak dijelaskan lebih dalam seperti apa "lebih manusiawi" itu.
+Aspek lainnya yang meningkatkan kealamian adalah \textit{pitch}. Kata kunci terkait \textit{pitch} pada Tabel \ref{tab-pendapat-oddsratio-morenatural} adalah \textit{fingering}, selain juga secara eksplisit dinyatakan deviasi \textit{pitch}. \textit{Fingering} yang terasa lebih alami berdasarkan persepsi pendengar disebabkan karena suaranya seperti sedang mencoba meraih-raih nada atau juga dinyatakan "lebih manusiawi" meskipun tidak dijelaskan lebih dalam seperti apa "lebih manusiawi" itu.
 
-Bersama dengan pertimbangan \textit{fingering} dinyatakan bahwa audio terdengar seperti orang yang bermain asal dan terburu-buru. Hal ini menunjukkan bahwa \textit{correctness} yang rendah namun sudah berbunyi seperti pemain manusia yang tidak bermain dengan baik.
+Bersama dengan pendapat \textit{fingering} dinyatakan bahwa audio terdengar seperti orang yang bermain asal dan terburu-buru. Hal ini menunjukkan bahwa \textit{correctness} yang rendah namun sudah berbunyi seperti pemain manusia yang tidak bermain dengan baik.
 
-Meski aspek \textit{pitch} dinyatakan lebih alami, muncul pula pertimbangan yang menyatakan bahwa audio tersebut seperti audio yang sengaja didistorsi atau di-\textit{bend}. Audio yang didistorsi atau di-\textit{bend} memiliki makna bahwa audio tersebut seperti berasal dari audio tanpa deviasi \textit{pitch} lalu dilakukan \textit{post-process} pergeseran \textit{pitch}. Artinya, ada aspek lain yang seharusnya ikut berubah saat \textit{pitch} berubah, namun pada sistem ini aspek tersebut tidak menyesuaikan dengan \textit{pitch}. Sebagaimana dikaji dari literatur-literatur pada Subbab \ref{section-music-performance}, \textit{timbre} alat musik seharusnya berbeda apabila \textit{pitch} yang dimainkan berbeda.
+Meski aspek \textit{pitch} dinyatakan lebih alami, muncul pula pendapat yang menyatakan bahwa audio tersebut seperti audio yang sengaja didistorsi atau di-\textit{bend}. Audio yang didistorsi atau di-\textit{bend} memiliki makna bahwa audio tersebut seperti berasal dari audio tanpa deviasi \textit{pitch} lalu dilakukan \textit{post-process} pergeseran \textit{pitch}. Artinya, ada aspek lain yang seharusnya ikut berubah saat \textit{pitch} berubah, namun pada sistem ini aspek tersebut tidak menyesuaikan dengan \textit{pitch}. Sebagaimana dikaji dari literatur-literatur pada Subbab \ref{section-music-performance}, \textit{timbre} alat musik seharusnya berbeda apabila \textit{pitch} yang dimainkan berbeda.
 
 Aspek lainnya yang meningkatkan kealamian adalah variasi dinamika. Terkait dinamika, yang lebih meningkatkan kealamian adalah perubahan dinamika yang tidak mendadak seperti mengeras perlahan (\textit{crescendo}) atau melemah perlahan (\textit{decrescendo}). Perubahan dinamika yang secara mendadak lebih banyak menurunkan kealamian. Perubahan dinamika yang dilakukan hanya dengan mengubah \textit{gain} atau amplitudo dari sinyal suara menurunkan kealamian. Artinya, sebagaimana deviasi \textit{pitch}, perubahan dinamika juga seharusnya diikuti perubahan \textit{timbre}.
 
 \begin{table}[htbp]
   \begin{center}
-	\caption{Pertimbangan-pertimbangan yang menyebabkan sistem yang diajukan kurang alami dibandingkan dengan \textit{baseline}}\label{tab-pertimbangan-oddsratio-lessnatural}
+	\caption{Pendapat-pendapat responden yang menurunkan kealamian sistem terhadap \textit{baseline}}\label{tab-pendapat-oddsratio-lessnatural}
 	\begin{tabular}{|p{0.69\textwidth}|r|r|r|}
 	\hline
-Pertimbangan&	Total&	\multicolumn{2}{|c|}{\textit{Odds Ratio}}\\
+Pendapat&	Total&	\multicolumn{2}{|c|}{\textit{Odds Ratio}}\\
 &	&	\multicolumn{2}{|c|}{Kealamian}\\
 \cline{3-4}
 &	&	DTNP	&Gab.
 \\\hline
-audio yang tidak dipilih seperti di-mixing pada aplikasi dengan timing yang salah&	51&	0.00&	0.21\\\hline
-pada audio yang tidak dipilih, terasa seperti decressendo, padahal lebih terdengar seperti gain-nya saja dikurangi&	22&	0.00&	0.25\\\hline
-pitch jelas&	67&	0.12&	0.50\\\hline
-suara jelas&	54&	0.17&	0.09\\\hline
-tidak ada perubahan dinamika mendadak&	54&	0.17&	0.09\\\hline
-Audio yang tidak dipilih terdengar noisy&	35&	0.28&	0.68\\\hline
-seperti audio yang sengaja di-bend ekualisasinya&	96&	0.33&	0.50\\\hline
-phrasing&	87&	0.42&	0.53\\\hline
-audio yang tidak dipilih seperti audio yang sengaja didistorsi&	151&	0.53&	0.58\\\hline
-variasi warna suara&	168&	0.53&	1.24\\\hline
-walaupun di audio yang tidak dipilih terdengar seperti ada crossing senar&	19&	0.72&	0.79\\\hline
-bingung pisan denger apa yang salah satunya teh ?!?&	11&	0.85&	0.63\\\hline
+\begin{intabquote}audio yang tidak dipilih seperti di-mixing pada aplikasi dengan timing yang salah\end{intabquote}&	51&	0.00&	0.21\\\hline
+\begin{intabquote}pada audio yang tidak dipilih, terasa seperti decressendo, padahal lebih terdengar seperti gain-nya saja dikurangi\end{intabquote}&	22&	0.00&	0.25\\\hline
+\begin{intabquote}pitch jelas\end{intabquote}&	67&	0.12&	0.50\\\hline
+\begin{intabquote}suara jelas\end{intabquote}&	54&	0.17&	0.09\\\hline
+\begin{intabquote}tidak ada perubahan dinamika mendadak\end{intabquote}&	54&	0.17&	0.09\\\hline
+\begin{intabquote}Audio yang tidak dipilih terdengar noisy\end{intabquote}&	35&	0.28&	0.68\\\hline
+\begin{intabquote}seperti audio yang sengaja di-bend ekualisasinya\end{intabquote}&	96&	0.33&	0.50\\\hline
+\begin{intabquote}phrasing\end{intabquote}&	87&	0.42&	0.53\\\hline
+\begin{intabquote}audio yang tidak dipilih seperti audio yang sengaja didistorsi\end{intabquote}&	151&	0.53&	0.58\\\hline
+\begin{intabquote}variasi warna suara\end{intabquote}&	168&	0.53&	1.24\\\hline
+\begin{intabquote}walaupun di audio yang tidak dipilih terdengar seperti ada crossing senar\end{intabquote}&	19&	0.72&	0.79\\\hline
+\begin{intabquote}bingung pisan denger apa yang salah satunya teh ?!?\end{intabquote}&	11&	0.85&	0.63\\\hline
 	\end{tabular}
   \end{center}
 \end{table}
 
-Aspek \textit{timbre} ini juga dinyatakan dalam Tabel \ref{tab-pertimbangan-oddsratio-lessnatural} sebagai aspek yang menurunkan kealamian sistem ini. Istilah yang digunakan oleh responden pendengar adalah "warna suara". Untuk variasi warna suara, baik secara umum ataupun detil-detil seperti yang terkait \textit{pitch} maupun dinamika sistem yang diajukan masih dianggap kurang alami dibandingkan dengan \textit{baseline}.
+Aspek \textit{timbre} ini juga dinyatakan dalam Tabel \ref{tab-pendapat-oddsratio-lessnatural} sebagai aspek yang menurunkan kealamian sistem ini. Istilah yang digunakan oleh responden pendengar adalah "warna suara". Untuk variasi warna suara, baik secara umum ataupun detil-detil seperti yang terkait \textit{pitch} maupun dinamika sistem yang diajukan masih dianggap kurang alami dibandingkan dengan \textit{baseline}.
 
 Untuk sistem gabungan, \textit{timbre} alat musik sudah lebih alami daripada sistem Neural Parametrik, namun ia juga belum mampu mengeksekusi ekspresi-ekspresi \textit{pitch} dan dinamika yang dihasilkan oleh sistem Neural Parametrik. Hal ini karena teknik RPM hanya didesain untuk menerima gestur ekspresi dari \textit{keyboard}. Gestur ekspresi \textit{keyboard} biasanya hanya sampai tingkat not, tidak kontinu. Ketika RPM diberi gestur ekspresi berupa deviasi \textit{pitch} dan variasi dinamika yang kontinu, RPM juga tidak mampu menghasilkan \textit{timbre} yang sesuai.
 
