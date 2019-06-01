@@ -8,15 +8,25 @@
 
 % tujuan penelitian: Penelitian ini bertujuan untuk mengembangkan sebuah sistem komputer untuk permainan ekspresif alat musik gesek yang mampu menghasilkan suara ekspresif dari partitur non ekspresif. Untuk itu, dalam penelitian ini akan dibangun sebuah sistem permainan ekspresif alat musik gesek partitur-ke-suara dengan teknik sintesis neural parametrik.
 
-Telah dibangun sebuah sistem komputer untuk permainan ekspresif alat musik gesek yang mampu menghasilkan suara ekspresif dari partitur non-ekspresif. Sistem permainan ekspresif alat musik gesek partitur-ke-suara dibangun dengan teknik sintesis neural parametrik. Modifikasi yang digunakan terdapat pada pengkodean yang digunakan, komponen model \textit{timing} dan \textit{timbre}, arsitektur model \textit{timing}, serta fitur-fitur masukan untuk model-model \textit{timing}, \textit{pitch}, dan \textit{timbre}.
+Dicapai kesimpulan sebagai berikut:
 
-Uji korelasi sistem ini menunjukkan bahwa sistem ini memiliki kinerja -dengan metrik koefisien korelasi- lebih baik daripada sistem pensintesis \textit{baseline} yaitu RPM tanpa masukan gestur ekspresi. Koefisien korelasi sistem ini bernilai 0.1133, sedangkan RPM memiliki koefisien korelasi -0.0020.
+\begin{enumerate}
 
-Kealamian subjektif pendengar sistem permainan musik ekspresif alat musik gesek dengan teknik neural parametrik lebih rendah daripada sistem RPM. Nilai preferensi sistem permainan musik alat musik gesek dengan teknik neural parametrik terhadap RPM adalah $19,44\%$. %TODO analisis
+\item Telah dibangun sebuah sistem komputer untuk permainan ekspresif alat musik gesek yang mampu menghasilkan suara ekspresif dari partitur non-ekspresif. Sistem permainan ekspresif alat musik gesek partitur-ke-suara dibangun dengan teknik sintesis neural parametrik. Modifikasi yang digunakan terdapat pada pengkodean yang digunakan, komponen model \textit{timing} dan \textit{timbre}, arsitektur model \textit{timing}, serta fitur-fitur masukan untuk model-model \textit{timing}, \textit{pitch}, dan \textit{timbre}.
+
+\item Penggunaan \textit{decision tree} untuk model \textit{timing} berhasil menghasilkan \textit{timing} yang memiliki kinerja lebih baik daripada model \textit{timing} yang menggunakan jaringan syaraf tiruan, dengan metrik kinerja koefisien korelasi nada yang bersesuaian.
+
+\item Uji korelasi sistem ini menunjukkan bahwa sistem ini memiliki kinerja -dengan metrik koefisien korelasi- lebih baik daripada sistem pensintesis \textit{baseline} yaitu RPM tanpa masukan gestur ekspresi. Koefisien korelasi sistem ini bernilai 0.1133, sedangkan RPM memiliki koefisien korelasi -0.0020.
+
+\item Kealamian subjektif pendengar sistem permainan musik ekspresif alat musik gesek dengan teknik neural parametrik lebih rendah daripada sistem RPM. Nilai preferensi sistem permainan musik alat musik gesek dengan teknik neural parametrik terhadap RPM adalah $19,44\%$. %TODO analisis
 Sistem permainan musik ekspresif nyanyian dengan teknik gabungan gestur ekspresi neural parametrik dan pensintesis RPM menghasilkan kealamian subjektif pendengar yang lebih rendah daripada sistem RPM. Nilai preferensi sistem permainan musik alat musik gesek dengan teknik neural parametrik terhadap RPM adalah $31,25\%$. %TODO analisis
 Nilai preferensi untuk kealamian subjektif pendengar ini bertolak belakang dengan hasil uji korelasi sistem. Dengan uji korelasi, teknik neural parametrik memiliki kinerja lebih tinggi daripada RPM, sedangkan dengan uji preferensi kealamian, teknik neural parametrik memiliki kinerja lebih rendah daripada RPM.
 
-Untuk gestur-gestur ekspresi seperti \textit{timing}, deviasi \textit{pitch}, dan variasi dinamika, sistem ini sudah dianggap alami. Meski demikian, \textit{timbre} yang belum mirip dengan suara alat musik asli dan juga tidak ikut berubah mengikuti gestur-gestur ekspresi tersebut menyebabkan keluaran sistem neural parametrik secara keseluruhan dianggap kurang alami.
+\item Gestur-gestur ekspresi seperti \textit{timing}, deviasi \textit{pitch}, dan variasi dinamika dari sistem yang diajukan sudah dianggap alami. Meski demikian, \textit{timbre} yang belum mirip dengan suara alat musik asli dan juga tidak ikut berubah mengikuti gestur-gestur ekspresi tersebut menyebabkan keluaran sistem neural parametrik secara keseluruhan dianggap kurang alami.
+
+\item Jaringan syaraf tiruan dengan arsitektur WaveNet yang dimodifikasi mampu menghasilkan pola-pola jangka panjang namun pola-pola detil jangka pendek tidak mampu ia pelajari. Karena inilah gestur ekspresi deviasi \textit{timing}, deviasi \textit{pitch}, dan variasi dinamika menjadi lebih alami sementara \textit{timbre} yang dihasilkan tidak alami. Jaringan syaraf tiruan dengan arsitektur WaveNet yang dimodifikasi tidak cocok dengan data kode harmonik plus stokastik alat musik gesek yang tidak mulus dan memiliki banyak pola perubahan jangka-pendek.
+
+\end{enumerate}
 
 \section{Saran}
 
@@ -24,6 +34,7 @@ Dari penelitian ini, terdapat beberapa saran baik untuk memperbaiki sistem yang 
 \begin{enumerate}
 	\item Peningkatan kealamian sistem dapat dilakukan apabila dibuat arsitektur model yang mampu menangkap pola lebih kompleks dan lebih detil agar ekspresi terkait \textit{pitch} dan \textit{timbre} dari data latih benar-benar dapat direproduksi oleh model. Perbaikan arsitektur model ini lebih penting daripada penambahan data latih karena penambahan data latih tanpa perbaikan arsitektur model \textit{pitch} dan \textit{timbre} justru akan menurunkan kinerja.
 	\item Peningkatan kealamian sistem juga dapat dilakukan dengan menggunakan, bila ada, pengkodean suara yang lebih mulus dan tidak memiliki pola-pola jangka-pendek yang terlalu kompleks.
+	\item Alternatif lain dari perbaikan sistem adalah tetap menggunakan arsitektur yang diajukan untuk menangkap gestur-gestur ekspresi deviasi \textit{timing}, deviasi \textit{pitch} dan variasi dinamika namun ditambah model lain khusus untuk menangkap pola \textit{timbre}.
 	\item Perlu dibuat metrik yang mampu menilai kemiripan bentuk variasi jangka-pendek dari keluaran model-model. Variasi ini meliputi \textit{spike}, osilasi, saling silang antar fitur dan sebagainya.
 	\item Penelitian dapat dilanjutkan ke aspek \textit{correctness} dari sistem, terutama untuk gestur-gestur deviasi \textit{timing}, deviasi \textit{pitch}, dan dinamika.
 \end{enumerate}
