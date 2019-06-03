@@ -208,7 +208,7 @@ dengan konstanta $\gamma_u$, $\gamma_s$, dan $\gamma_y$ di-\textit{tune} secara 
 
 Pelatihan jaringan syaraf tiruan ini menggunakan fungsi objektif \textit{log likelihood} dengan \textit{denoising} Gaussian:\parencite{bonada2017singing}
 \begin{equation}
-    \lambda = -log p(\mathbf{x}_t|\mathbf{\tilde{x}}_{<t},\mathbf{c}) \text{ dengan } \mathbf{\tilde{x}}_{<t} \sim \mathcal{N}(\mathbf{\tilde{x}}_{<t}; \mathbf{x}_{<t},\lambda I )
+    \mathcal{L} = -log p(\mathbf{x}_t|\mathbf{\tilde{x}}_{<t},\mathbf{c}) \text{ dengan } \mathbf{\tilde{x}}_{<t} \sim \mathcal{N}(\mathbf{\tilde{x}}_{<t}; \mathbf{x}_{<t},\lambda I )
 \end{equation}
 Di antara masalah yang dihadapi model-model dengan arsitektur ini adalah terkait data latih. Apabila data latih ditambah melebihi durasi 30 menit, kinerja sistem sintesis neural parametrik untuk nyanyian menurun. \parencite{bonada2017singing}
 
@@ -220,7 +220,7 @@ Dalam \textit{vocoder} WORLD, \textit{waveform} diasumsikan berasal dari getaran
 
 Terdapat pengkodean lain yang biasa digunakan untuk mengkodekan sinyal suara alat musik, yaitu pengkodean harmonik plus stokastik. Dalam pengkodean harmonik plus stokastik, sinyal suara dimodelkan sebagai jumlah dari komponen deterministik dan stokastik sebagai berikut:\parencite{serra1997sineplusnoise}
 \begin{equation}
-s(t)=\Sigma_{r=1}^{R} A_r(t) cos (\int_0^t\omega_(t))+e(t)
+s(t)=\Sigma_{r=1}^{R} A_r(t) cos (\int_0^t\omega_r(t))+e(t)
 \end{equation}
 Di sini, komponen deterministik berupa penjumlahan gelombang sinusoidal dengan amplitudo $A_r(t)$ dan frekuensi sudut $\omega_r(t)$ untuk harmonik ke-$1$ s.d. $R$. Komponen stokastik $e(t)$ berupa \textit{white noise} $u(\tau)$ yang di-\textit{filter} dengan \textit{filter} yang bervariasi sepanjang waktu $h(t,\tau)$: \parencite{serra1997sineplusnoise}
 \begin{equation}
