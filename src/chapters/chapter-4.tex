@@ -8,7 +8,7 @@ Meski tujuan utama eksperimen ini adalah menunjukkan kinerja sistem utuh, eksper
 
 Sebelum pengujian untuk menunjukkan kinerja sistem permainan musik ekspresif untuk alat musik gesek, dilakukan eksperimen penyetelan parameter untuk menentukan parameter-parameter terbaik. Hal ini karena arsitektur model dan pelatihannya dipengaruhi oleh berbagai parameter.
 
-Selain itu, dilakukan juga pengujian untuk membuktikan bahwa skema pemilihan subset data latih yang diuraikan dalam Subbab \ref{subsetselectionsection} mampu menghasilkan model dengan kinerja lebih baik daripada model yang dilatih langsung menggunakan keseluruhan data latih untuk model-model yang menggunakan arsitektur Wavenet yang dimodifikasi. Hal ini akan dibuktikan untuk model-model \textit{pitch} dan \textit{timbre}. Adapun untuk model \textit{timing}, dilakukan pengujian untuk membuktikan bahwa skema pemilihan subset data latih tidak menghasilkan model dengan kinerja yang lebih baik daripada model yang dilatih langsung menggunakan keseluruhan data latih.
+Selain itu, dilakukan juga pengujian untuk membuktikan bahwa skema pemilihan subset data latih yang diuraikan dalam Subbab \ref{subsetselectionsection} mampu menghasilkan model dengan kinerja lebih baik daripada model yang dilatih langsung menggunakan keseluruhan data latih untuk model-model yang menggunakan arsitektur WaveNet yang dimodifikasi. Hal ini akan dibuktikan untuk model-model \textit{pitch} dan \textit{timbre}. Adapun untuk model \textit{timing}, dilakukan pengujian untuk membuktikan bahwa skema pemilihan subset data latih tidak menghasilkan model dengan kinerja yang lebih baik daripada model yang dilatih langsung menggunakan keseluruhan data latih.
 
 \begin{table}[htbp]
     \centering
@@ -268,7 +268,7 @@ Dengan demikian, nilai parameter-parameter model yang telah disetel terdapat pad
 \end{table}
 \subsection{Perbandingan kinerja model dari keseluruhan data latih dengan model dari sebagian data latih}
 
-Tabel \ref{tab-timing-model-subset-results} menunjukkan perbandingan kinerja model \textit{timing} yang dilatih dengan keseluruhan data latih dan model yang dilatih dengan sebagian data latih. Hasil ini membuktikan bahwa untuk model \textit{timing}, model yang dilatih dengan keseluruhan data latih memiliki kinerja lebih baik. Adapun model yang dilatih dengan sebagian data latih, umumnya memiliki kinerja terhadap data uji yang lebih buruk. Hal ini karena model \textit{timing} tidak mengalami anomali yang dialami oleh model-model yang menggunakan arsitektur Wavenet yang dimodifikasi.
+Tabel \ref{tab-timing-model-subset-results} menunjukkan perbandingan kinerja model \textit{timing} yang dilatih dengan keseluruhan data latih dan model yang dilatih dengan sebagian data latih. Hasil ini membuktikan bahwa untuk model \textit{timing}, model yang dilatih dengan keseluruhan data latih memiliki kinerja lebih baik. Adapun model yang dilatih dengan sebagian data latih, umumnya memiliki kinerja terhadap data uji yang lebih buruk. Hal ini karena model \textit{timing} tidak mengalami anomali yang dialami oleh model-model yang menggunakan arsitektur WaveNet yang dimodifikasi.
 
 \begin{table}[htbp]
     \centering
@@ -384,7 +384,7 @@ Terdapat dua kemungkinan yang menyebabkan hal ini. Kemungkinan pertama, penambah
 
 Dengan demikian, dapat diambil kesimpulan untuk skema pemilihan subset. Untuk model \textit{timing}, kinerja model yang dilatih dengan keseluruhan dataset lebih besar daripada model yang dilatih dengan subset yang dipilih dengan skema tersebut. Untuk model frekuensi harmonik, dari skema pemilihan tersebut dipilih data latih utuh, sehingga kinerja dengan skema tersebut sama dengan apabila model dilatih tanpa skema pemilihan subset data latih. Untuk model f0, magnitudo harmonik, dan amplop stokastik, model yang dilatih dengan dataset yang dipilih dengan skema pemilihan subset menghasilkan kinerja yang lebih baik daripada model yang dilatih dengan data latih utuh.
 
-Dengan demikian, pernyataan pada riset neural parametrik nyanyian bahwa penambahan data latih dapat menurunkan kinerja. Untuk jaringan syaraf tiruan dengan arsitektur Wavenet yang dimodifikasi, penambahan data latih dapat menurunkan kinerja. Adapun untuk model \textit{timing} yang tidak menggunakan arsitektur tersebut, penambahan data latih tetap meningkatkan kinerja.
+Dengan demikian, pernyataan pada riset neural parametrik nyanyian bahwa penambahan data latih dapat menurunkan kinerja. Untuk jaringan syaraf tiruan dengan arsitektur WaveNet yang dimodifikasi, penambahan data latih dapat menurunkan kinerja. Adapun untuk model \textit{timing} yang tidak menggunakan arsitektur tersebut, penambahan data latih tetap meningkatkan kinerja.
 
 \subsection{Hasil Uji Korelasi Tiap Komponen}
 
@@ -696,7 +696,13 @@ Aspek \textit{timbre} ini juga dinyatakan dalam Tabel \ref{tab-pendapat-oddsrati
 
 Untuk sistem gabungan, \textit{timbre} alat musik sudah lebih alami daripada sistem Neural Parametrik, namun ia juga belum mampu mengeksekusi ekspresi-ekspresi \textit{pitch} dan dinamika yang dihasilkan oleh sistem Neural Parametrik. Hal ini karena teknik RPM hanya didesain untuk menerima gestur ekspresi dari \textit{keyboard}. Gestur ekspresi \textit{keyboard} biasanya hanya sampai tingkat not, tidak kontinu. Ketika RPM diberi gestur ekspresi berupa deviasi \textit{pitch} dan variasi dinamika yang kontinu, RPM juga tidak mampu menghasilkan \textit{timbre} yang sesuai.
 
-Dengan demikian, sebenarnya gestur-gestur ekspresi \textit{timing}, \textit{pitch}, dan dinamika dari sistem yang diajukan sudah dianggap alami, namun dalam eksekusinya \textit{timbre} yang tidak sesuai menyebabkan keluaran sistem ini secara keseluruhan dianggap kurang alami. Timbre yang dihasilkan kurang alami karena:
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{resources/pertimbangan-categories.png}
+    \caption{Kategorisasi pertimbangan responden}\label{fig-pertimbangan-categories}
+\end{figure}
+
+Dengan demikian, sebenarnya gestur-gestur ekspresi \textit{timing}, \textit{pitch}, dan dinamika dari sistem yang diajukan sudah dianggap alami, namun dalam eksekusinya \textit{timbre} yang tidak sesuai menyebabkan keluaran sistem ini secara keseluruhan dianggap kurang alami. Secara ringkas, pendapat-pendapat responden ini dan hubungannya terhadap aspek-aspek yang menyebabkan suara hasil sintesis dianggap lebih alami atau kurang alami dapat dilihat pada Gambar \ref{fig-pertimbangan-categories}. Timbre yang dihasilkan kurang alami karena:
 
 \begin{enumerate}
 	\item warna suara alat musik secara umum
@@ -705,15 +711,11 @@ Dengan demikian, sebenarnya gestur-gestur ekspresi \textit{timing}, \textit{pitc
 	\item \textit{noisy} atau suara tidak jelas
 \end{enumerate}
 
-%TODO gestur ekspresi high-level seperti "stroke" dan "phrasing"
-
-%TODO semua item tersebut
-
 Kurangnya kealamian warna suara secara umum disebabkan oleh model \textit{timbre} yang tidak mampu menangkap pola-pola jangka pendek, sebagaimana dijelaskan pada Subbab \ref{section-wholesystem-corrcoef-test}, yang terlihat pada Gambar \ref{fig-wholesystem-hmag-output-sample-zoomed}. Pola jangka pendek pada keluaran sistem RPM, meski memiliki bentuk, ukuran, dan kerapatan yang berbeda dari dataset, menghasilkan efek perseptual yang terasa lebih mirip kepada suara alat musik asli apabila dibandingkan dengan keluaran sistem Neural Parametrik yang tidak memiliki pola jangka-pendek tersebut.
 
 Model \textit{timbre} tidak mampu mengikuti perubahan \textit{pitch} dan dinamika tampak pada Gambar \ref{fig-wholesystem-hfreq-output-sample} dan Gambar \ref{fig-wholesystem-hmag-output-sample}. Tampak bahwa jarak frekuensi harmonik terhadap frekuensi fundamental selalu sama. Tampak pula bahwa rasio magnitudo harmonik selalu sama walaupun tingkat keras suara secara keseluruhan berubah. Ketidakmampuan \textit{timbre} mengikuti perubahan \textit{pitch} dan perubahan dinamika bukan disebabkan oleh kurangnya fitur masukan, karena model \textit{timbre} sudah menerima deviasi \textit{pitch} sebagai masukan tambahan dan dinamika juga dibangkitkan secara implisit bersama dengan \textit{timbre}. Ketidakmampuan \textit{timbre} mengikuti perubahan \textit{pitch} dan perubahan dinamika disebabkan karena model tidak mampu menangkap pola-pola jangka pendek yang kompleks.
 
-Suara yang dihasilkan bersifat \textit{noisy} atau tidak jelas diakibatkan oleh model amplop stokastik yang membangkitkan amplop stokastik di luar \textit{range} yang wajar, sebagaimana tampak pada Gambar \ref{fig-wholesystem-stocenv-output-sample}. Hal ini karena jaringan syaraf tiruan Wavenet yang dimodifikasi memiliki kecenderungan untuk mengakumulasi galat dari input-input fitur akustik sebelum pada saat pembangkitan.
+Suara yang dihasilkan bersifat \textit{noisy} atau tidak jelas diakibatkan oleh model amplop stokastik yang membangkitkan amplop stokastik di luar \textit{range} yang wajar, sebagaimana tampak pada Gambar \ref{fig-wholesystem-stocenv-output-sample}. Hal ini karena jaringan syaraf tiruan WaveNet yang dimodifikasi memiliki kecenderungan untuk mengakumulasi galat dari input-input fitur akustik sebelum pada saat pembangkitan.
 
 Dengan demikian, kekurangan jaringan syaraf tiruan yang digunakan untuk model ini terdiri dari dua bagian:
 \begin{enumerate}
@@ -729,15 +731,15 @@ Ketidakmampuan menangkap pola ini terjadi secara merata dan bukan disebabkan ole
     \caption{(Diperbesar) Contoh magnitudo harmonik (4 harmonik pertama) yang dihasilkan oleh sistem DT-Neural Parametrik utuh dan RPM dari partitur pada data latih}\label{fig-wholesystem-hmag-output-sample-traindata-zoomed}
 \end{figure}
 
-Untuk memastikan bahwa memang arsitektur Wavenet yang dimodifikasi kurang kompleks untuk menangkap pola-pola janga-pendek yang disebutkan, dilakukan percobaan \textit{curve-fitting} data sintetik kecil. Data sintetik kecil ini bukan data pengkodean suara, namun memiliki pola-pola yang telah disebutkan. Pola-pola ini adalah \textit{spike}, osilasi, bukit-bukit/punuk-punuk, dan saling menyilang antara dua output.
+Untuk memastikan bahwa memang arsitektur WaveNet yang dimodifikasi kurang kompleks untuk menangkap pola-pola janga-pendek yang disebutkan, dilakukan percobaan \textit{curve-fitting} data sintetik kecil. Data sintetik kecil ini bukan data pengkodean suara, namun memiliki pola-pola yang telah disebutkan. Pola-pola ini adalah \textit{spike}, osilasi, bukit-bukit/punuk-punuk, dan saling menyilang antara dua output.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{resources/analisis_modified_wavenet.png}
-    \caption{Hasil percobaan \textit{curve-fitting} Wavenet yang dimodifikasi kepada data sintetik dengan satu output}\label{fig-curvefit-modified-wavenet}
+    \caption{Hasil percobaan \textit{curve-fitting} WaveNet yang dimodifikasi kepada data sintetik dengan satu output}\label{fig-curvefit-modified-wavenet}
 \end{figure}
 
-Gambar \ref{fig-curvefit-modified-wavenet} menunjukkan hasil \textit{curve-fitting} pola-pola detil pada satu output. Tampak bahwa apabila kurva hanya terdiri dari osilasi, jaringan syaraf tiruan Wavenet yang dimodifikasi ini dapat sedikit menangkap pola naik-turun output, meski tidak benar-benar \textit{fit} kepada kurva tersebut. Pada gambar kedua dari atas, tampak bahwa ketika pola osilasi muncul bersama pola lain yang lebih besar, pola osilasi detil menjadi hilang dan jaringan syaraf tiruan tersebut menganggap pola osilasi yang detil itu sebagai \textit{noise}.
+Gambar \ref{fig-curvefit-modified-wavenet} menunjukkan hasil \textit{curve-fitting} pola-pola detil pada satu output. Tampak bahwa apabila kurva hanya terdiri dari osilasi, jaringan syaraf tiruan WaveNet yang dimodifikasi ini dapat sedikit menangkap pola naik-turun output, meski tidak benar-benar \textit{fit} kepada kurva tersebut. Pada gambar kedua dari atas, tampak bahwa ketika pola osilasi muncul bersama pola lain yang lebih besar, pola osilasi detil menjadi hilang dan jaringan syaraf tiruan tersebut menganggap pola osilasi yang detil itu sebagai \textit{noise}.
 
 Pada \textit{curve-fitting} pola osilasi dan pola naik turun yang besar ditambahkan dengan pola \textit{spike}, selain pola osilasi menjadi hilang, pola \textit{spike} tidak dapat ditangkap dengan benar. Muncul \textit{spike} pada saat yang tidak tepat. Pada saat yang seharusnya, \textit{spike} yang kedua tidak muncul. \textit{Spike} yang pertama muncul dengan ukuran yang jauh lebih besar daripada yang seharusnya.
 
@@ -748,9 +750,13 @@ Ketika pola punuk ini digabung dengan pola lain yang lebih besar, sebagaimana ta
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{resources/analisis_modified_wavenet_two_outputs.png}
-    \caption{Hasil percobaan \textit{curve-fitting} Wavenet yang dimodifikasi kepada data sintetik dengan dua output}\label{fig-curvefit-modified-wavenet-two-outputs}
+    \caption{Hasil percobaan \textit{curve-fitting} WaveNet yang dimodifikasi kepada data sintetik dengan dua output}\label{fig-curvefit-modified-wavenet-two-outputs}
 \end{figure}
 
 Pola dua output yang saling menyilang terlihat pada Gambar \ref{fig-curvefit-modified-wavenet-two-outputs}. Pola ini hilang sama sekali. Memang pada bagian depan, terlihat ada saling menyilang, namun saling menyilang ini memiliki bentuk dan jarak yang berbeda dengan kurva target \textit{fitting}. Selain pada bagian depan tersebut, pada output jaringan syaraf tiruan ini tidak ada saling menyeberangi satu sama lain.
 
-Dengan demikian, jaringan syaraf tiruan Wavenet yang dimodifikasi sebagaimana disebutkan dalam riset neural parametrik nyanyian tidak dapat mempelajari pola-pola detil yang telah disebutkan tersebut. Hal ini karena model ini kurang kompleks untuk mempelajari pola-pola detil tersebut. Akibatnya, jaringan syaraf tiruan dengan arsitektur ini tidak cocok terhadap data kode harmonik plus stokastik alat musik gesek. Jadi, kurangnya kealamian sistem secara umum dan model \textit{timbre} secara khusus disebabkan oleh tidak cocoknya arsitektur jaringan syaraf tiruan yang digunakan dengan pengkodean suara harmonik plus stokastik dan domain alat musik gesek.
+Dengan demikian, jaringan syaraf tiruan WaveNet yang dimodifikasi sebagaimana disebutkan dalam riset neural parametrik nyanyian tidak dapat mempelajari pola-pola detil yang telah disebutkan tersebut. Hal ini karena model ini kurang kompleks untuk mempelajari pola-pola detil tersebut. Akibatnya, jaringan syaraf tiruan dengan arsitektur ini tidak cocok terhadap data kode harmonik plus stokastik alat musik gesek. Jadi, kurangnya kealamian sistem secara umum dan model \textit{timbre} secara khusus disebabkan oleh tidak cocoknya arsitektur jaringan syaraf tiruan yang digunakan dengan pengkodean suara harmonik plus stokastik dan domain alat musik gesek.
+
+Model yang dibutuhkan untuk mempelajari pola-pola detil harmonik plus stokastik alat musik gesek harus memiliki kapabilitas seperti WaveNet tanpa modifikasi. Berbeda dengan WaveNet yang dimodifikasi pada riset sintesis Neural Parametrik nyanyian (dan riset ini) yang menggunakan keluaran Gaussian Mixture, WaveNet tanpa modifikasi menggunakan keluaran SoftMax. Seperti yang dijelaskan pada \ref{literature-neural-parametric}, WaveNet tanpa modifikasi mampu mengeluarkan \textit{waveform} secara langsung, yang artinya ia mampu menangkap pola-pola detil osilasi dengan berbagai bentuk yang cukup kompleks.
+
+Meski harus memiliki kapabilitas seperti WaveNet tanpa modifikasi, model ini juga harus bisa dilatih dan juga membangkitkan keluaran dengan cepat dan hemat memori. Penggunaan SoftMax seperti WaveNet tanpa modifikasi, baik untuk menghasilkan \textit{waveform} ataupun menghasilkan parameter harmonik plus stokastik, akan meningkatkan jumlah parameter model secara signifikan sehingga pelatihan dan pembangkitannya membutuhkan waktu dan memori yang sangat besar. Begitu pula apabila hendak digunakan arsitektur-arsitektur RNN seperti LSTM atau semacamnya, akan dibutuhkan waktu eksekusi dan memori yang sangat besar. Hal ini dengan mempertimbangkan segmen-segmen data latih yang terdiri dari sekuens \textit{frame}-\textit{frame} dengan jumlah besar. Artinya, dibutuhkan arsitektur model yang memiliki kapabilitas tinggi seperti WaveNet tanpa modifikasi namun membutuhkan waktu dan memori yang tidak terlalu besar.
